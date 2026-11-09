@@ -4,23 +4,52 @@
 
 
     /* =====================================================
-       SETTINGS
+       HELIOTECH 3D SETTINGS
     ===================================================== */
 
+    /*
+        Much longer 3D experience.
+
+        700vh  = previous version
+        1100vh = detailed vehicle tour
+    */
+
     const VEHICLE_SCROLL_HEIGHT =
-        "700vh";
+        "1100vh";
 
 
     /*
-        Current orientation correction.
+        Current corrected Fusion orientation.
     */
 
     const MODEL_ORIENTATION =
         "0deg -90deg 0deg";
 
 
+    /*
+        Full vehicle framing.
+    */
+
     const FULL_VIEW_DISTANCE =
         150;
+
+
+    /*
+        Close-up distances.
+
+        Smaller number = closer camera.
+    */
+
+    const DETAIL_DISTANCE =
+        42;
+
+
+    const WHEEL_DISTANCE =
+        30;
+
+
+    const EXTREME_CLOSE_DISTANCE =
+        27;
 
 
     const TRANSITION_FLAG =
@@ -29,64 +58,39 @@
 
     /* =====================================================
        MODEL COLOR PALETTE
-
-       These correspond to the 15 materials
-       inside your actual Fusion GLB.
-
-       The goal is:
-       - nothing near black
-       - clear separation between components
-       - softer whites
-       - brighter green / blue / orange
-       - good visibility on black background
     ===================================================== */
 
     const MODEL_COLORS = [
 
-        /* 0  structural gray */
-        "#aebbc4",
+        "#aebbc4",   // structural gray
 
-        /* 1  light blue */
-        "#75c9ee",
+        "#75c9ee",   // bright cyan-blue
 
-        /* 2  orange */
-        "#ff9f43",
+        "#ff9f43",   // orange
 
-        /* 3  main white / shell */
-        "#d7e0e6",
+        "#d7e0e6",   // body / shell
 
-        /* 4  secondary gray */
-        "#98a7b1",
+        "#98a7b1",   // gray
 
-        /* 5  pale blue / lavender */
-        "#a5b8f3",
+        "#a5b8f3",   // pale blue
 
-        /* 6  default neutral */
-        "#c2cdd4",
+        "#c2cdd4",   // neutral silver
 
-        /* 7  darker gray, but NOT black */
-        "#758690",
+        "#758690",   // darker gray
 
-        /* 8  warm gray */
-        "#bbb6ae",
+        "#bbb6ae",   // warm gray
 
-        /* 9  blue */
-        "#527fe5",
+        "#527fe5",   // blue
 
-        /* 10 yellow / amber */
-        "#ffc44c",
+        "#ffc44c",   // amber
 
-        /* 11 pale cyan */
-        "#a9def4",
+        "#a9def4",   // pale cyan
 
-        /* 12 green */
-        "#68c978",
+        "#68c978",   // green
 
-        /* 13 deep blue */
-        "#6677df",
+        "#6677df",   // indigo
 
-        /* 14 fallback */
-        "#b7c4cc"
+        "#b7c4cc"    // fallback
 
     ];
 
@@ -332,12 +336,33 @@
     };
 
 
+    /*
+        Automatically detected axes.
+    */
+
     let modelLongAxis =
         "z";
 
 
+    let modelWidthAxis =
+        "x";
+
+
+    let modelHeightAxis =
+        "y";
+
+
+    /*
+        Camera sequence generated
+        after model dimensions load.
+    */
+
+    let cameraTour =
+        [];
+
+
     /* =====================================================
-       MODEL FILE FALLBACKS
+       MODEL FILES
     ===================================================== */
 
     const MODEL_CANDIDATES = [
@@ -362,7 +387,7 @@
 
 
     /* =====================================================
-       LONG 3D SCROLL
+       LONG VEHICLE SCROLL
     ===================================================== */
 
     if(
@@ -493,7 +518,7 @@
 
 
     /* =====================================================
-       INCOMING TRANSITION
+       PAGE TRANSITION
     ===================================================== */
 
     function isIncomingTransition() {
@@ -526,7 +551,6 @@
         ) {
 
             console.warn(
-                "Transition storage unavailable.",
                 error
             );
 
@@ -537,10 +561,6 @@
 
     }
 
-
-    /* =====================================================
-       PAGE ENTRY
-    ===================================================== */
 
     function revealPageOnce() {
 
@@ -637,10 +657,6 @@
     }
 
 
-    /* =====================================================
-       PAGE EXIT
-    ===================================================== */
-
     function navigateWithTransition(
         href
     ) {
@@ -719,7 +735,7 @@
 
 
     /* =====================================================
-       INTERNAL LINK TRANSITION
+       INTERNAL LINKS
     ===================================================== */
 
     document.addEventListener(
@@ -860,11 +876,9 @@
 
                             () => {
 
-                                element
-                                    .classList
-                                    .add(
-                                        "flicker-visible"
-                                    );
+                                element.classList.add(
+                                    "flicker-visible"
+                                );
 
                             },
 
@@ -994,7 +1008,7 @@
 
 
     /* =====================================================
-       MODEL MATERIAL COLORS
+       MODEL MATERIALS
     ===================================================== */
 
     function applyModelMaterialFixes() {
@@ -1014,13 +1028,6 @@
             modelViewer.model.materials;
 
 
-        console.log(
-            "Applying HelioTech color palette to",
-            materials.length,
-            "materials"
-        );
-
-
         materials.forEach(
 
             (
@@ -1031,9 +1038,8 @@
                 try {
 
                     /*
-                        Prevent thin Fusion surfaces
-                        from disappearing when seen
-                        from the opposite side.
+                        Make Fusion surfaces visible
+                        from either side.
                     */
 
                     if(
@@ -1061,11 +1067,6 @@
                     }
 
 
-                    /*
-                        Assign a bright color from
-                        the actual GLB material index.
-                    */
-
                     const color =
                         MODEL_COLORS[
                             index
@@ -1079,11 +1080,7 @@
 
 
                     /*
-                        Fusion CAD materials can become
-                        very dark because of metallic
-                        reflections.
-
-                        Keep everything mostly matte.
+                        Matte CAD look.
                     */
 
                     pbr.setMetallicFactor(
@@ -1096,12 +1093,6 @@
                     );
 
 
-                    /*
-                        Make sure transparent / unusual
-                        material modes do not make parts
-                        unexpectedly disappear.
-                    */
-
                     if(
                         typeof material.setAlphaMode ===
                         "function"
@@ -1113,23 +1104,14 @@
 
                     }
 
-
-                    console.log(
-                        `Material ${index}:`,
-                        material.name,
-                        "→",
-                        color
-                    );
-
                 }
                 catch(
                     error
                 ) {
 
                     console.warn(
-                        "Material color update failed:",
+                        "Material error:",
                         index,
-                        material?.name,
                         error
                     );
 
@@ -1140,34 +1122,15 @@
         );
 
 
-        /*
-            Neutral grayscale lighting.
-        */
-
         modelViewer.environmentImage =
             "neutral";
 
-
-        /*
-            Neutral PBR tone mapping gives
-            better color separation.
-        */
 
         modelViewer.setAttribute(
             "tone-mapping",
             "neutral"
         );
 
-
-        /*
-            Moderate exposure.
-
-            The previous 1.35 could wash out
-            the white body.
-
-            1.18 keeps white, green and blue
-            visibly separated.
-        */
 
         modelViewer.exposure =
             1.18;
@@ -1202,7 +1165,7 @@
         ) {
 
             console.error(
-                "HelioTech: no 3D model could be loaded."
+                "No GLB model found."
             );
 
 
@@ -1229,7 +1192,7 @@
 
                 "MODEL FILE NOT FOUND",
 
-                "Make sure the GLB file is inside the models folder."
+                "Make sure the GLB is inside the models folder."
 
             );
 
@@ -1251,40 +1214,910 @@
             "0";
 
 
-        if(
-            vehicleStory
-        ) {
-
-            vehicleStory.classList.remove(
-                "model-loaded"
-            );
-
-        }
-
-
         const src =
             MODEL_CANDIDATES[
                 index
             ];
 
 
-        console.log(
-            "HelioTech loading model:",
-            src
-        );
-
-
         setPlaceholderStatus(
 
             "LOADING 3D MODEL",
 
-            "Loading vehicle geometry..."
+            "Loading HelioTech vehicle..."
 
         );
 
 
         modelViewer.src =
             src;
+
+    }
+
+
+    /* =====================================================
+       MODEL AXES
+    ===================================================== */
+
+    function detectModelAxes() {
+
+        const dimensions = [
+
+            {
+                axis:
+                    "x",
+
+                size:
+                    modelSize.x
+            },
+
+            {
+                axis:
+                    "y",
+
+                size:
+                    modelSize.y
+            },
+
+            {
+                axis:
+                    "z",
+
+                size:
+                    modelSize.z
+            }
+
+        ];
+
+
+        /*
+            Largest = vehicle length
+
+            Middle = vehicle width
+
+            Smallest = vehicle height
+        */
+
+        dimensions.sort(
+
+            (
+                a,
+                b
+            ) =>
+
+                b.size -
+                a.size
+
+        );
+
+
+        modelLongAxis =
+            dimensions[0].axis;
+
+
+        modelWidthAxis =
+            dimensions[1].axis;
+
+
+        modelHeightAxis =
+            dimensions[2].axis;
+
+
+        console.log(
+            "Vehicle axes:",
+            {
+                long:
+                    modelLongAxis,
+
+                width:
+                    modelWidthAxis,
+
+                height:
+                    modelHeightAxis
+            }
+        );
+
+    }
+
+
+    /* =====================================================
+       TARGET ANY PART OF CAR
+
+       longPosition:
+       -1 rear
+        0 center
+       +1 front
+
+       widthPosition:
+       -1 left
+       +1 right
+
+       heightPosition:
+       -1 bottom
+       +1 top
+    ===================================================== */
+
+    function modelTarget(
+        longPosition = 0,
+        widthPosition = 0,
+        heightPosition = 0
+    ) {
+
+        const target = {
+
+            x:
+                modelCenter.x,
+
+            y:
+                modelCenter.y,
+
+            z:
+                modelCenter.z
+
+        };
+
+
+        target[
+            modelLongAxis
+        ] +=
+
+            modelSize[
+                modelLongAxis
+            ] *
+
+            longPosition *
+
+            .40;
+
+
+        target[
+            modelWidthAxis
+        ] +=
+
+            modelSize[
+                modelWidthAxis
+            ] *
+
+            widthPosition *
+
+            .40;
+
+
+        target[
+            modelHeightAxis
+        ] +=
+
+            modelSize[
+                modelHeightAxis
+            ] *
+
+            heightPosition *
+
+            .32;
+
+
+        return target;
+
+    }
+
+
+    /* =====================================================
+       BUILD COMPLETE CAMERA TOUR
+    ===================================================== */
+
+    function buildCameraTour() {
+
+        cameraTour = [
+
+
+            /* =========================================
+               FULL FRONT
+            ========================================= */
+
+            {
+                p:
+                    0.00,
+
+                orbit:
+                    0,
+
+                phi:
+                    72,
+
+                radius:
+                    165,
+
+                target:
+                    modelTarget(
+                        0,
+                        0,
+                        0
+                    ),
+
+                label:
+                    "FULL VEHICLE / FRONT"
+            },
+
+
+            {
+                p:
+                    .055,
+
+                orbit:
+                    18,
+
+                phi:
+                    70,
+
+                radius:
+                    145,
+
+                target:
+                    modelTarget(
+                        0,
+                        0,
+                        0
+                    ),
+
+                label:
+                    "FULL VEHICLE"
+            },
+
+
+            /* =========================================
+               FRONT CLOSE-UP
+            ========================================= */
+
+            {
+                p:
+                    .11,
+
+                orbit:
+                    30,
+
+                phi:
+                    69,
+
+                radius:
+                    58,
+
+                target:
+                    modelTarget(
+                        .67,
+                        0,
+                        0
+                    ),
+
+                label:
+                    "FRONT"
+            },
+
+
+            /* =========================================
+               FRONT LEFT
+            ========================================= */
+
+            {
+                p:
+                    .17,
+
+                orbit:
+                    48,
+
+                phi:
+                    70,
+
+                radius:
+                    DETAIL_DISTANCE,
+
+                target:
+                    modelTarget(
+                        .60,
+                        -.20,
+                        0
+                    ),
+
+                label:
+                    "FRONT / LEFT"
+            },
+
+
+            /* =========================================
+               FRONT LEFT WHEEL
+            ========================================= */
+
+            {
+                p:
+                    .23,
+
+                orbit:
+                    70,
+
+                phi:
+                    78,
+
+                radius:
+                    WHEEL_DISTANCE,
+
+                target:
+                    modelTarget(
+                        .58,
+                        -.42,
+                        -.18
+                    ),
+
+                label:
+                    "FRONT WHEEL / LEFT"
+            },
+
+
+            /* =========================================
+               LEFT SIDE
+            ========================================= */
+
+            {
+                p:
+                    .29,
+
+                orbit:
+                    90,
+
+                phi:
+                    70,
+
+                radius:
+                    54,
+
+                target:
+                    modelTarget(
+                        .10,
+                        -.16,
+                        0
+                    ),
+
+                label:
+                    "LEFT SIDE"
+            },
+
+
+            /* =========================================
+               DRIVER / COCKPIT
+            ========================================= */
+
+            {
+                p:
+                    .35,
+
+                orbit:
+                    110,
+
+                phi:
+                    60,
+
+                radius:
+                    EXTREME_CLOSE_DISTANCE,
+
+                target:
+                    modelTarget(
+                        .08,
+                        -.05,
+                        .12
+                    ),
+
+                label:
+                    "DRIVER / COCKPIT"
+            },
+
+
+            /* =========================================
+               ELECTRONICS / CENTER
+            ========================================= */
+
+            {
+                p:
+                    .41,
+
+                orbit:
+                    132,
+
+                phi:
+                    66,
+
+                radius:
+                    31,
+
+                target:
+                    modelTarget(
+                        -.06,
+                        0,
+                        .04
+                    ),
+
+                label:
+                    "ELECTRONICS / CENTER"
+            },
+
+
+            /* =========================================
+               REAR LEFT WHEEL
+            ========================================= */
+
+            {
+                p:
+                    .47,
+
+                orbit:
+                    150,
+
+                phi:
+                    78,
+
+                radius:
+                    WHEEL_DISTANCE,
+
+                target:
+                    modelTarget(
+                        -.60,
+                        -.42,
+                        -.18
+                    ),
+
+                label:
+                    "REAR WHEEL / LEFT"
+            },
+
+
+            /* =========================================
+               REAR
+            ========================================= */
+
+            {
+                p:
+                    .53,
+
+                orbit:
+                    180,
+
+                phi:
+                    70,
+
+                radius:
+                    61,
+
+                target:
+                    modelTarget(
+                        -.68,
+                        0,
+                        0
+                    ),
+
+                label:
+                    "REAR"
+            },
+
+
+            /* =========================================
+               REAR RIGHT WHEEL
+            ========================================= */
+
+            {
+                p:
+                    .59,
+
+                orbit:
+                    215,
+
+                phi:
+                    78,
+
+                radius:
+                    WHEEL_DISTANCE,
+
+                target:
+                    modelTarget(
+                        -.60,
+                        .42,
+                        -.18
+                    ),
+
+                label:
+                    "REAR WHEEL / RIGHT"
+            },
+
+
+            /* =========================================
+               RIGHT SIDE
+            ========================================= */
+
+            {
+                p:
+                    .65,
+
+                orbit:
+                    270,
+
+                phi:
+                    70,
+
+                radius:
+                    53,
+
+                target:
+                    modelTarget(
+                        0,
+                        .16,
+                        0
+                    ),
+
+                label:
+                    "RIGHT SIDE"
+            },
+
+
+            /* =========================================
+               FRONT RIGHT WHEEL
+            ========================================= */
+
+            {
+                p:
+                    .71,
+
+                orbit:
+                    300,
+
+                phi:
+                    78,
+
+                radius:
+                    WHEEL_DISTANCE,
+
+                target:
+                    modelTarget(
+                        .58,
+                        .42,
+                        -.18
+                    ),
+
+                label:
+                    "FRONT WHEEL / RIGHT"
+            },
+
+
+            /* =========================================
+               FRONT RIGHT
+            ========================================= */
+
+            {
+                p:
+                    .77,
+
+                orbit:
+                    330,
+
+                phi:
+                    67,
+
+                radius:
+                    DETAIL_DISTANCE,
+
+                target:
+                    modelTarget(
+                        .50,
+                        .20,
+                        0
+                    ),
+
+                label:
+                    "FRONT / RIGHT"
+            },
+
+
+            /* =========================================
+               TOP DOWN
+            ========================================= */
+
+            {
+                p:
+                    .83,
+
+                orbit:
+                    360,
+
+                phi:
+                    22,
+
+                radius:
+                    75,
+
+                target:
+                    modelTarget(
+                        0,
+                        0,
+                        .05
+                    ),
+
+                label:
+                    "TOP VIEW"
+            },
+
+
+            /* =========================================
+               SOLAR ARRAY TOP CLOSE-UP
+            ========================================= */
+
+            {
+                p:
+                    .88,
+
+                orbit:
+                    390,
+
+                phi:
+                    29,
+
+                radius:
+                    38,
+
+                target:
+                    modelTarget(
+                        .15,
+                        0,
+                        .24
+                    ),
+
+                label:
+                    "SOLAR ARRAY / TOP"
+            },
+
+
+            /* =========================================
+               LOW ANGLE / UNDERCARRIAGE
+            ========================================= */
+
+            {
+                p:
+                    .93,
+
+                orbit:
+                    420,
+
+                phi:
+                    108,
+
+                radius:
+                    45,
+
+                target:
+                    modelTarget(
+                        0,
+                        0,
+                        -.22
+                    ),
+
+                label:
+                    "LOW ANGLE / CHASSIS"
+            },
+
+
+            /* =========================================
+               FULL VEHICLE
+            ========================================= */
+
+            {
+                p:
+                    .97,
+
+                orbit:
+                    450,
+
+                phi:
+                    72,
+
+                radius:
+                    145,
+
+                target:
+                    modelTarget(
+                        0,
+                        0,
+                        0
+                    ),
+
+                label:
+                    "FULL VEHICLE"
+            },
+
+
+            /* =========================================
+               FINAL FULL VIEW
+            ========================================= */
+
+            {
+                p:
+                    1.00,
+
+                orbit:
+                    500,
+
+                phi:
+                    68,
+
+                radius:
+                    155,
+
+                target:
+                    modelTarget(
+                        0,
+                        0,
+                        0
+                    ),
+
+                label:
+                    "FULL VEHICLE / COMPLETE"
+            }
+
+        ];
+
+    }
+
+
+    /* =====================================================
+       INTERPOLATE CAMERA TOUR
+    ===================================================== */
+
+    function cameraState(
+        progress
+    ) {
+
+        if(
+            cameraTour.length <
+            2
+        ) {
+
+            return {
+
+                orbit:
+                    0,
+
+                phi:
+                    72,
+
+                radius:
+                    FULL_VIEW_DISTANCE,
+
+                target:
+                    modelCenter,
+
+                label:
+                    "FULL VEHICLE"
+
+            };
+
+        }
+
+
+        if(
+            progress <=
+            cameraTour[0].p
+        ) {
+
+            return cameraTour[0];
+
+        }
+
+
+        if(
+            progress >=
+            cameraTour[
+                cameraTour.length -
+                1
+            ].p
+        ) {
+
+            return cameraTour[
+                cameraTour.length -
+                1
+            ];
+
+        }
+
+
+        for(
+            let i = 0;
+            i <
+            cameraTour.length -
+            1;
+            i++
+        ) {
+
+            const start =
+                cameraTour[
+                    i
+                ];
+
+
+            const end =
+                cameraTour[
+                    i +
+                    1
+                ];
+
+
+            if(
+                progress >=
+                start.p &&
+                progress <=
+                end.p
+            ) {
+
+                const rawT =
+
+                    (
+                        progress -
+                        start.p
+                    ) /
+
+                    (
+                        end.p -
+                        start.p
+                    );
+
+
+                const t =
+                    smoothstep(
+                        rawT
+                    );
+
+
+                return {
+
+                    orbit:
+                        lerp(
+                            start.orbit,
+                            end.orbit,
+                            t
+                        ),
+
+                    phi:
+                        lerp(
+                            start.phi,
+                            end.phi,
+                            t
+                        ),
+
+                    radius:
+                        lerp(
+                            start.radius,
+                            end.radius,
+                            t
+                        ),
+
+                    target:
+                        mixTarget(
+                            start.target,
+                            end.target,
+                            t
+                        ),
+
+                    label:
+
+                        rawT <
+                        .50
+
+                        ? start.label
+                        : end.label
+
+                };
+
+            }
+
+        }
+
+
+        return cameraTour[
+            cameraTour.length -
+            1
+        ];
 
     }
 
@@ -1346,10 +2179,6 @@
 
         try {
 
-            /*
-                Apply colors immediately.
-            */
-
             applyModelMaterialFixes();
 
 
@@ -1399,34 +2228,15 @@
             };
 
 
-            if(
-                modelSize.x >=
-                modelSize.y &&
-                modelSize.x >=
-                modelSize.z
-            ) {
+            detectModelAxes();
 
-                modelLongAxis =
-                    "x";
 
-            }
-            else if(
-                modelSize.y >=
-                modelSize.x &&
-                modelSize.y >=
-                modelSize.z
-            ) {
+            /*
+                Build the full 360°
+                inspection sequence.
+            */
 
-                modelLongAxis =
-                    "y";
-
-            }
-            else {
-
-                modelLongAxis =
-                    "z";
-
-            }
+            buildCameraTour();
 
 
             console.log(
@@ -1442,8 +2252,8 @@
 
 
             console.log(
-                "Model long axis:",
-                modelLongAxis
+                "Camera tour:",
+                cameraTour
             );
 
         }
@@ -1452,21 +2262,12 @@
         ) {
 
             console.warn(
-                "Unable to prepare model.",
+                "Unable to prepare model:",
                 error
             );
 
         }
 
-
-        /*
-            Apply materials once more on
-            the next rendered frame.
-
-            This prevents the viewer from
-            restoring any original material
-            state during its final load pass.
-        */
 
         requestAnimationFrame(
 
@@ -1569,7 +2370,9 @@
 
 
         const htmlSource =
+
             modelViewer.dataset.modelSrc ||
+
             modelViewer.getAttribute(
                 "src"
             );
@@ -1759,8 +2562,7 @@
 
                 1,
 
-                vehicleStory
-                    .offsetHeight -
+                vehicleStory.offsetHeight -
                 window.innerHeight
 
             );
@@ -1772,402 +2574,6 @@
             travel
 
         );
-
-    }
-
-
-    /* =====================================================
-       MODEL TARGET
-    ===================================================== */
-
-    function modelTarget(
-        position
-    ) {
-
-        const target = {
-
-            x:
-                modelCenter.x,
-
-            y:
-                modelCenter.y,
-
-            z:
-                modelCenter.z
-
-        };
-
-
-        target[
-            modelLongAxis
-        ] +=
-
-            modelSize[
-                modelLongAxis
-            ] *
-
-            position *
-
-            .33;
-
-
-        return target;
-
-    }
-
-
-    /* =====================================================
-       CAMERA STORY
-    ===================================================== */
-
-    function cameraState(
-        progress
-    ) {
-
-        const fullIntro = {
-
-            orbit: 90,
-
-            phi: 71,
-
-            radius:
-                FULL_VIEW_DISTANCE,
-
-            target:
-                modelTarget(
-                    0
-                )
-
-        };
-
-
-        const solarDetail = {
-
-            orbit: 76,
-
-            phi: 66,
-
-            radius: 56,
-
-            target:
-                modelTarget(
-                    .68
-                )
-
-        };
-
-
-        const centerDetail = {
-
-            orbit: 96,
-
-            phi: 62,
-
-            radius: 43,
-
-            target:
-                modelTarget(
-                    .04
-                )
-
-        };
-
-
-        const rearDetail = {
-
-            orbit: 115,
-
-            phi: 67,
-
-            radius: 52,
-
-            target:
-                modelTarget(
-                    -.66
-                )
-
-        };
-
-
-        const fullEnd = {
-
-            orbit: 98,
-
-            phi: 72,
-
-            radius:
-                FULL_VIEW_DISTANCE,
-
-            target:
-                modelTarget(
-                    0
-                )
-
-        };
-
-
-        /* =================================================
-           FULL VEHICLE
-        ================================================= */
-
-        if(
-            progress <
-            .20
-        ) {
-
-            const t =
-                smoothstep(
-                    progress /
-                    .20
-                );
-
-
-            return {
-
-                orbit:
-                    lerp(
-                        84,
-                        fullIntro.orbit,
-                        t
-                    ),
-
-                phi:
-                    lerp(
-                        74,
-                        fullIntro.phi,
-                        t
-                    ),
-
-                radius:
-                    lerp(
-                        165,
-                        fullIntro.radius,
-                        t
-                    ),
-
-                target:
-                    fullIntro.target
-
-            };
-
-        }
-
-
-        /* =================================================
-           SOLAR / FRONT
-        ================================================= */
-
-        if(
-            progress <
-            .40
-        ) {
-
-            const t =
-                smoothstep(
-
-                    (
-                        progress -
-                        .20
-                    ) /
-                    .20
-
-                );
-
-
-            return {
-
-                orbit:
-                    lerp(
-                        fullIntro.orbit,
-                        solarDetail.orbit,
-                        t
-                    ),
-
-                phi:
-                    lerp(
-                        fullIntro.phi,
-                        solarDetail.phi,
-                        t
-                    ),
-
-                radius:
-                    lerp(
-                        fullIntro.radius,
-                        solarDetail.radius,
-                        t
-                    ),
-
-                target:
-                    mixTarget(
-                        fullIntro.target,
-                        solarDetail.target,
-                        t
-                    )
-
-            };
-
-        }
-
-
-        /* =================================================
-           CONTROL / DRIVER
-        ================================================= */
-
-        if(
-            progress <
-            .60
-        ) {
-
-            const t =
-                smoothstep(
-
-                    (
-                        progress -
-                        .40
-                    ) /
-                    .20
-
-                );
-
-
-            return {
-
-                orbit:
-                    lerp(
-                        solarDetail.orbit,
-                        centerDetail.orbit,
-                        t
-                    ),
-
-                phi:
-                    lerp(
-                        solarDetail.phi,
-                        centerDetail.phi,
-                        t
-                    ),
-
-                radius:
-                    lerp(
-                        solarDetail.radius,
-                        centerDetail.radius,
-                        t
-                    ),
-
-                target:
-                    mixTarget(
-                        solarDetail.target,
-                        centerDetail.target,
-                        t
-                    )
-
-            };
-
-        }
-
-
-        /* =================================================
-           DRIVETRAIN
-        ================================================= */
-
-        if(
-            progress <
-            .80
-        ) {
-
-            const t =
-                smoothstep(
-
-                    (
-                        progress -
-                        .60
-                    ) /
-                    .20
-
-                );
-
-
-            return {
-
-                orbit:
-                    lerp(
-                        centerDetail.orbit,
-                        rearDetail.orbit,
-                        t
-                    ),
-
-                phi:
-                    lerp(
-                        centerDetail.phi,
-                        rearDetail.phi,
-                        t
-                    ),
-
-                radius:
-                    lerp(
-                        centerDetail.radius,
-                        rearDetail.radius,
-                        t
-                    ),
-
-                target:
-                    mixTarget(
-                        centerDetail.target,
-                        rearDetail.target,
-                        t
-                    )
-
-            };
-
-        }
-
-
-        /* =================================================
-           FINAL FULL VEHICLE
-        ================================================= */
-
-        const t =
-            smoothstep(
-
-                (
-                    progress -
-                    .80
-                ) /
-                .20
-
-            );
-
-
-        return {
-
-            orbit:
-                lerp(
-                    rearDetail.orbit,
-                    fullEnd.orbit,
-                    t
-                ),
-
-            phi:
-                lerp(
-                    rearDetail.phi,
-                    fullEnd.phi,
-                    t
-                ),
-
-            radius:
-                lerp(
-                    rearDetail.radius,
-                    fullEnd.radius,
-                    t
-                ),
-
-            target:
-                mixTarget(
-                    rearDetail.target,
-                    fullEnd.target,
-                    t
-                )
-
-        };
 
     }
 
@@ -2305,12 +2711,24 @@
             );
 
 
+        /*
+            Camera angle.
+        */
+
         modelViewer.cameraOrbit =
 
             `${state.orbit}deg ` +
             `${state.phi}deg ` +
             `${state.radius}%`;
 
+
+        /*
+            Camera target.
+
+            This is what allows us to
+            zoom onto wheels, cockpit,
+            solar array, chassis, etc.
+        */
 
         modelViewer.cameraTarget =
 
@@ -2320,7 +2738,7 @@
 
 
         /* =================================================
-           ANGLE
+           ORBIT READOUT
         ================================================= */
 
         if(
@@ -2354,55 +2772,15 @@
 
 
         /* =================================================
-           VIEW LABEL
+           CURRENT POV
         ================================================= */
 
         if(
             viewReadout
         ) {
 
-            if(
-                progress <
-                .20
-            ) {
-
-                viewReadout.textContent =
-                    "FULL VEHICLE";
-
-            }
-            else if(
-                progress <
-                .40
-            ) {
-
-                viewReadout.textContent =
-                    "SOLAR / FRONT";
-
-            }
-            else if(
-                progress <
-                .60
-            ) {
-
-                viewReadout.textContent =
-                    "CONTROL / DRIVER";
-
-            }
-            else if(
-                progress <
-                .80
-            ) {
-
-                viewReadout.textContent =
-                    "DRIVETRAIN";
-
-            }
-            else {
-
-                viewReadout.textContent =
-                    "FULL VEHICLE";
-
-            }
+            viewReadout.textContent =
+                state.label;
 
         }
 
@@ -2460,7 +2838,7 @@
 
 
     /* =====================================================
-       ACTIVE NAVIGATION
+       ACTIVE NAV
     ===================================================== */
 
     function updateNavigation() {
@@ -2475,9 +2853,11 @@
 
 
         let active =
+
             chapterData[0]
                 ?.element
                 .id ||
+
             "home";
 
 
@@ -2537,7 +2917,7 @@
 
 
     /* =====================================================
-       MAIN RENDER
+       RENDER
     ===================================================== */
 
     function render() {
