@@ -68,7 +68,7 @@
 
         "#ff9f43",   // orange
 
-        "#d7e0e6",   // body / shell
+        "#68747d",   // body / shell
 
         "#98a7b1",   // gray
 
