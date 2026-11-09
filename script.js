@@ -1,159 +1,136 @@
 (() => {
 
-    'use strict';
+    "use strict";
 
+
+    /* =====================================================
+       CONFIG
+    ===================================================== */
+
+    const AUTO_DURATION =
+        48000;
+
+
+    const AUTO_DELAY =
+        700;
+
+
+    const CURSOR_COLORS = [
+
+        "#61b4e8",
+        "#7a91f0",
+        "#55c5ad",
+        "#a598ef",
+        "#6099cb",
+        "#65c6de",
+        "#8aa8ff"
+
+    ];
+
+
+    const CURSOR_LABELS = [
+
+        "ELEC",
+        "UI",
+        "MECH",
+        "DATA",
+        "AERO",
+        "PCB",
+        "OPS"
+
+    ];
+
+
+    const CURSOR_COUNT =
+        CURSOR_COLORS.length;
+
+
+    /* =====================================================
+       DOM
+    ===================================================== */
 
     const root =
         document.documentElement;
 
 
-    const nav =
+    const body =
+        document.body;
+
+
+    const layer =
         document.querySelector(
-            '#navigation'
-        );
-
-
-    const menu =
-        document.querySelector(
-            '.menu-toggle'
-        );
-
-
-    const progress =
-        document.querySelector(
-            '.scroll-progress'
+            "#builder-layer"
         );
 
 
     const hero =
         document.querySelector(
-            '.hero'
+            ".hero"
         );
 
 
-    const buildTargets = [
+    const nav =
+        document.querySelector(
+            "#navigation"
+        );
+
+
+    const menu =
+        document.querySelector(
+            ".menu-toggle"
+        );
+
+
+    const progressBar =
+        document.querySelector(
+            ".scroll-progress"
+        );
+
+
+    const status =
+        document.querySelector(
+            "#autobuild-status"
+        );
+
+
+    const buildElements = [
         ...document.querySelectorAll(
-            '[data-build]'
+            "[data-build]"
+        )
+    ];
+
+
+    const typeElements = [
+        ...document.querySelectorAll(
+            "[data-type]"
         )
     ];
 
 
     const chapters = [
         ...document.querySelectorAll(
-            '.chapter'
+            ".chapter"
         )
     ];
 
 
-    const layer =
-        document.querySelector(
-            '#builder-layer'
-        );
-
-
-    const year =
-        document.querySelector(
-            '#year'
-        );
-
-
-    const reduced =
+    const reducedMotion =
         matchMedia(
-            '(prefers-reduced-motion: reduce)'
+            "(prefers-reduced-motion: reduce)"
         );
 
 
     const desktop =
         matchMedia(
-            '(min-width: 1001px) and (min-height: 650px) and (pointer: fine)'
+            "(min-width: 1001px) and (min-height: 650px) and (pointer: fine)"
         );
 
 
-    const clamp =
-        (
-            n,
-            a = 0,
-            b = 1
-        ) =>
-        Math.min(
-            b,
-            Math.max(
-                a,
-                n
-            )
-        );
+    /* =====================================================
+       STATE
+    ===================================================== */
 
-
-    const smooth =
-        n =>
-        n *
-        n *
-        (
-            3 -
-            2 *
-            n
-        );
-
-
-    const smoother =
-        n =>
-        n *
-        n *
-        n *
-        (
-            n *
-            (
-                n *
-                6 -
-                15
-            ) +
-            10
-        );
-
-
-    const colors = [
-
-        '#55d7ff',
-
-        '#ff5b4d',
-
-        '#9ee37d',
-
-        '#f5d547',
-
-        '#c28cff',
-
-        '#68f0cf',
-
-        '#ff8ac8'
-
-    ];
-
-
-    const labels = [
-
-        'ELEC',
-
-        'UI',
-
-        'MECH',
-
-        'DATA',
-
-        'AERO',
-
-        'PCB',
-
-        'OPS'
-
-    ];
-
-
-    const cursorCount =
-        colors.length;
-
-
-    let enabled =
+    let builderEnabled =
         false;
 
 
@@ -177,298 +154,115 @@
         1;
 
 
-    let targetData =
+    let buildItems =
         [];
 
 
-    let chapterData =
+    let cursorObjects =
         [];
 
 
-    let routes =
+    let typingObjects =
         [];
 
 
-    let lastTime =
+    let chapterMetrics =
+        [];
+
+
+    let autoplayActive =
+        false;
+
+
+    let autoplayCancelled =
+        false;
+
+
+    let autoplayStart =
         0;
 
 
-    const cursors =
-        [];
+    let autoplayFrame =
+        0;
 
 
-    const boxes =
-        [];
+    let lastRender =
+        0;
 
 
-    if(year) {
-
-        year.textContent =
-            new Date()
-            .getFullYear();
-
-    }
+    let imageGhost =
+        null;
 
 
-    function makeCursor(index) {
-
-        const el =
-            document
-            .createElement(
-                'div'
-            );
+    let imageBuild =
+        null;
 
 
-        el.className =
-            'builder-cursor';
+    /* =====================================================
+       HELPERS
+    ===================================================== */
 
-
-        el.style
-        .setProperty(
-            '--cursor-color',
-            colors[index]
+    const clamp =
+        (
+            value,
+            min = 0,
+            max = 1
+        ) =>
+        Math.max(
+            min,
+            Math.min(
+                max,
+                value
+            )
         );
 
 
-        el.innerHTML = `
-
-            <svg
-                viewBox="0 0 22 27"
-                aria-hidden="true"
-            >
-
-                <path
-                    d="
-                        M2 2
-                        L19 16.5
-                        L12.2 17.2
-                        L9.2 24.5
-                        Z
-                    "
-                ></path>
-
-            </svg>
+    const lerp =
+        (
+            a,
+            b,
+            t
+        ) =>
+        a +
+        (
+            b -
+            a
+        ) *
+        t;
 
 
-            <span class="cursor-tag">
-                ${labels[index]}
-            </span>
-
-
-            <i class="cursor-pulse"></i>
-
-        `;
-
-
-        layer.appendChild(
-            el
+    const smooth =
+        value =>
+        value *
+        value *
+        (
+            3 -
+            2 *
+            value
         );
 
 
-        const box =
-            document
-            .createElement(
-                'div'
-            );
-
-
-        box.className =
-            'build-box';
-
-
-        box.style
-        .setProperty(
-            '--box-color',
-            colors[index]
-        );
-
-
-        box.innerHTML = `
-
-            <span class="box-label">
-                ${labels[index]} / BUILD
-            </span>
-
-        `;
-
-
-        layer.appendChild(
-            box
-        );
-
-
-        const angle =
+    const smoother =
+        value =>
+        value *
+        value *
+        value *
+        (
+            value *
             (
-                Math.PI *
-                2 *
-                index
-            ) /
-            cursorCount;
-
-
-        return {
-
-            el,
-
-            box,
-
-            x:
-                width *
-                .5 +
-                Math.cos(
-                    angle
-                ) *
-                18,
-
-            y:
-                height *
-                .5 +
-                Math.sin(
-                    angle
-                ) *
-                18,
-
-            tx:
-                width *
-                .5,
-
-            ty:
-                height *
-                .5,
-
-            activeKey:
-                '',
-
-            pulseTimer:
-                0
-
-        };
-
-    }
-
-
-    for(
-        let i = 0;
-        i < cursorCount;
-        i++
-    ) {
-
-        const item =
-            makeCursor(
-                i
-            );
-
-
-        cursors.push(
-            item
+                value *
+                6 -
+                15
+            ) +
+            10
         );
 
 
-        boxes.push(
-            item.box
-        );
-
-    }
-
-
-    function closeMenu() {
-
-        nav.classList
-        .remove(
-            'open'
-        );
-
-
-        menu.setAttribute(
-            'aria-expanded',
-            'false'
-        );
-
-
-        menu.textContent =
-            'Menu +';
-
-    }
-
-
-    menu.addEventListener(
-
-        'click',
-
-        () => {
-
-            const open =
-                !nav.classList
-                .contains(
-                    'open'
-                );
-
-
-            nav.classList
-            .toggle(
-                'open',
-                open
-            );
-
-
-            menu.setAttribute(
-                'aria-expanded',
-                String(
-                    open
-                )
-            );
-
-
-            menu.textContent =
-                open
-                ? 'Close −'
-                : 'Menu +';
-
-        }
-
-    );
-
-
-    nav.addEventListener(
-
-        'click',
-
-        event => {
-
-            if(
-                event.target
-                .closest(
-                    'a'
-                )
-            ) {
-
-                closeMenu();
-
-            }
-
-        }
-
-    );
-
-
-    function schedule() {
-
-        if(!frame) {
-
-            frame =
-                requestAnimationFrame(
-                    render
-                );
-
-        }
-
-    }
-
-
-    function docTop(el) {
+    function docTop(element) {
 
         const rect =
-            el.getBoundingClientRect();
+            element
+            .getBoundingClientRect();
 
 
         return (
@@ -479,7 +273,418 @@
     }
 
 
-    function measure() {
+    /* =====================================================
+       TEXT PREPARATION
+    ===================================================== */
+
+    function collectTextNodes(element) {
+
+        const walker =
+            document.createTreeWalker(
+
+                element,
+
+                NodeFilter.SHOW_TEXT,
+
+                {
+                    acceptNode(node) {
+
+                        if(
+                            !node.nodeValue ||
+                            !node.nodeValue.trim()
+                        ) {
+
+                            return NodeFilter
+                            .FILTER_REJECT;
+
+                        }
+
+
+                        return NodeFilter
+                        .FILTER_ACCEPT;
+
+                    }
+                }
+
+            );
+
+
+        const nodes =
+            [];
+
+
+        while(
+            walker.nextNode()
+        ) {
+
+            nodes.push(
+                walker.currentNode
+            );
+
+        }
+
+
+        return nodes;
+
+    }
+
+
+    function prepareTyping() {
+
+        typingObjects =
+            [];
+
+
+        typeElements
+        .forEach(
+
+            (
+                element,
+                elementIndex
+            ) => {
+
+
+                if(
+                    element.dataset
+                    .typingPrepared ===
+                    "yes"
+                ) {
+
+                    return;
+
+                }
+
+
+                element.dataset
+                .typingPrepared =
+                    "yes";
+
+
+                const textNodes =
+                    collectTextNodes(
+                        element
+                    );
+
+
+                const chars =
+                    [];
+
+
+                textNodes
+                .forEach(
+
+                    textNode => {
+
+
+                        const text =
+                            textNode.nodeValue;
+
+
+                        const fragment =
+                            document
+                            .createDocumentFragment();
+
+
+                        for(
+                            let i = 0;
+                            i < text.length;
+                            i++
+                        ) {
+
+                            const span =
+                                document
+                                .createElement(
+                                    "span"
+                                );
+
+
+                            span.className =
+                                "typed-char";
+
+
+                            span.textContent =
+                                text[i];
+
+
+                            fragment.appendChild(
+                                span
+                            );
+
+
+                            chars.push(
+                                span
+                            );
+
+                        }
+
+
+                        textNode.parentNode
+                        .replaceChild(
+                            fragment,
+                            textNode
+                        );
+
+                    }
+
+                );
+
+
+                const parentBuild =
+                    element.closest(
+                        "[data-build]"
+                    );
+
+
+                const cursor =
+                    parentBuild
+
+                    ? Number(
+                        parentBuild.dataset
+                        .cursor ||
+                        elementIndex %
+                        CURSOR_COUNT
+                    )
+
+                    : elementIndex %
+                    CURSOR_COUNT;
+
+
+                typingObjects.push({
+
+                    element,
+
+                    chars,
+
+                    cursor:
+                        cursor %
+                        CURSOR_COUNT,
+
+                    visibleCount:
+                        0,
+
+                    item:
+                        null
+
+                });
+
+            }
+
+        );
+
+    }
+
+
+    /* =====================================================
+       CURSORS
+    ===================================================== */
+
+    function createCursor(index) {
+
+        const element =
+            document.createElement(
+                "div"
+            );
+
+
+        element.className =
+            "build-cursor";
+
+
+        element.style
+        .setProperty(
+            "--cursor",
+            CURSOR_COLORS[index]
+        );
+
+
+        element.innerHTML = `
+
+            <svg viewBox="0 0 22 27">
+
+                <path
+                    d="
+                        M2 2
+                        L19 16.5
+                        L12.1 17.2
+                        L9.1 24.7
+                        Z
+                    "
+                ></path>
+
+            </svg>
+
+            <span class="cursor-label">
+                ${CURSOR_LABELS[index]}
+            </span>
+
+            <i class="cursor-click"></i>
+
+        `;
+
+
+        layer.appendChild(
+            element
+        );
+
+
+        const outline =
+            document.createElement(
+                "div"
+            );
+
+
+        outline.className =
+            "build-outline";
+
+
+        outline.style
+        .setProperty(
+            "--outline",
+            CURSOR_COLORS[index]
+        );
+
+
+        layer.appendChild(
+            outline
+        );
+
+
+        const leftSide =
+            index %
+            2 ===
+            0;
+
+
+        return {
+
+            element,
+
+            outline,
+
+            side:
+                leftSide
+                ? -1
+                : 1,
+
+            x:
+                leftSide
+                ? -120
+                : width + 120,
+
+            y:
+                100 +
+                index *
+                70,
+
+            targetX:
+                leftSide
+                ? -120
+                : width + 120,
+
+            targetY:
+                100 +
+                index *
+                70,
+
+            lastTarget:
+                null,
+
+            clickTimeout:
+                0
+
+        };
+
+    }
+
+
+    function createCursors() {
+
+        cursorObjects
+        .forEach(
+
+            cursor => {
+
+                cursor.element
+                .remove();
+
+                cursor.outline
+                .remove();
+
+            }
+
+        );
+
+
+        cursorObjects =
+            [];
+
+
+        for(
+            let i = 0;
+            i < CURSOR_COUNT;
+            i++
+        ) {
+
+            cursorObjects
+            .push(
+                createCursor(
+                    i
+                )
+            );
+
+        }
+
+    }
+
+
+    function pulseCursor(cursor) {
+
+        cursor.element
+        .classList
+        .remove(
+            "click"
+        );
+
+
+        clearTimeout(
+            cursor.clickTimeout
+        );
+
+
+        requestAnimationFrame(
+
+            () =>
+            cursor.element
+            .classList
+            .add(
+                "click"
+            )
+
+        );
+
+
+        cursor.clickTimeout =
+            setTimeout(
+
+                () =>
+                cursor.element
+                .classList
+                .remove(
+                    "click"
+                ),
+
+                500
+
+            );
+
+    }
+
+
+    /* =====================================================
+       BUILD ITEM MEASUREMENT
+    ===================================================== */
+
+    function measureBuildItems() {
 
         width =
             innerWidth;
@@ -503,96 +708,222 @@
 
 
         heroTravel =
-            enabled
-
-            ? Math.max(
+            Math.max(
 
                 1,
 
-                hero.offsetHeight -
-                height
+                hero
+                ? hero.offsetHeight -
+                    height
+                : height
 
-            )
-
-            : 1;
+            );
 
 
-        targetData =
-            buildTargets
+        buildItems =
+            buildElements
             .map(
 
                 (
-                    el,
+                    element,
                     index
                 ) => {
 
+
                     const phase =
                         Number(
-                            el.dataset
-                            .buildPhase
+                            element
+                            .dataset
+                            .phase
                         );
 
 
                     const cursor =
-                        Number.isFinite(
-                            Number(
-                                el.dataset
-                                .cursor
-                            )
-                        )
-
-                        ? Number(
-                            el.dataset
-                            .cursor
+                        Number(
+                            element
+                            .dataset
+                            .cursor ||
+                            index %
+                            CURSOR_COUNT
                         ) %
-                        cursorCount
-
-                        : index %
-                        cursorCount;
+                        CURSOR_COUNT;
 
 
-                    const top =
-                        docTop(
-                            el
-                        );
+                    const kind =
+                        element
+                        .dataset
+                        .build;
 
 
-                    const at =
+                    let at;
+
+
+                    if(
                         Number.isFinite(
                             phase
                         )
+                    ) {
 
-                        ? heroTravel *
-                        phase
-
-                        : Math.max(
-
+                        at =
                             heroTravel *
-                            .42,
+                            phase;
 
+                    }
+                    else {
+
+                        const top =
+                            docTop(
+                                element
+                            );
+
+
+                        const chapter =
+                            element.closest(
+                                ".chapter"
+                            );
+
+
+                        let localOffset =
+                            0;
+
+
+                        if(chapter) {
+
+                            const local =
+                                [
+                                    ...chapter
+                                    .querySelectorAll(
+                                        "[data-build]"
+                                    )
+                                ];
+
+
+                            const localIndex =
+                                local.indexOf(
+                                    element
+                                );
+
+
+                            localOffset =
+                                Math.min(
+                                    220,
+                                    localIndex *
+                                    46
+                                );
+
+                        }
+
+
+                        at =
                             top -
                             height *
-                            .70
+                            .78 +
+                            localOffset;
+
+                    }
+
+
+                    const typing =
+                        typingObjects
+                        .filter(
+
+                            object =>
+                            element ===
+                            object.element ||
+                            element.contains(
+                                object.element
+                            )
 
                         );
 
 
-                    return {
+                    const charCount =
+                        typing.reduce(
 
-                        el,
+                            (
+                                total,
+                                item
+                            ) =>
+                            total +
+                            item.chars.length,
+
+                            0
+
+                        );
+
+
+                    let duration;
+
+
+                    if(
+                        kind ===
+                        "text"
+                    ) {
+
+                        duration =
+                            Math.max(
+                                260,
+                                Math.min(
+                                    700,
+                                    charCount *
+                                    5
+                                )
+                            );
+
+                    }
+                    else if(
+                        kind ===
+                        "image"
+                    ) {
+
+                        duration =
+                            420;
+
+                    }
+                    else {
+
+                        duration =
+                            280;
+
+                    }
+
+
+                    const item = {
+
+                        element,
 
                         cursor,
 
+                        kind,
+
                         at,
 
-                        top,
+                        duration,
 
                         index,
 
-                        key:
-                            `${cursor}:${index}`
+                        typing,
+
+                        activated:
+                            false,
+
+                        progress:
+                            0
 
                     };
+
+
+                    typing
+                    .forEach(
+
+                        object =>
+                        object.item =
+                            item
+
+                    );
+
+
+                    return item;
 
                 }
 
@@ -609,91 +940,17 @@
             );
 
 
-        routes =
-            Array.from(
+        chapterMetrics =
+            chapters.map(
 
-                {
-                    length:
-                        cursorCount
-                },
+                chapter => ({
 
-                (
-                    _,
-                    cursorIndex
-                ) => {
-
-
-                    const angle =
-                        (
-                            Math.PI *
-                            2 *
-                            cursorIndex
-                        ) /
-                        cursorCount;
-
-
-                    const start = {
-
-                        synthetic:
-                            true,
-
-                        at:
-                            -height *
-                            .05,
-
-                        x:
-                            width *
-                            .5 +
-                            Math.cos(
-                                angle
-                            ) *
-                            20,
-
-                        y:
-                            height *
-                            .48 +
-                            Math.sin(
-                                angle
-                            ) *
-                            20,
-
-                        key:
-                            `start-${cursorIndex}`
-
-                    };
-
-
-                    return [
-
-                        start,
-
-                        ...targetData
-                        .filter(
-
-                            item =>
-                            item.cursor ===
-                            cursorIndex
-
-                        )
-
-                    ];
-
-                }
-
-            );
-
-
-        chapterData =
-            chapters
-            .map(
-
-                el => ({
-
-                    el,
+                    element:
+                        chapter,
 
                     top:
                         docTop(
-                            el
+                            chapter
                         )
 
                 })
@@ -701,122 +958,339 @@
             );
 
 
+        imageBuild =
+            buildItems.find(
+
+                item =>
+                item.kind ===
+                "image"
+
+            );
+
+
+        prepareImageGhost();
+
+
         schedule();
 
     }
 
 
-    function configure() {
+    /* =====================================================
+       IMAGE GHOST
+    ===================================================== */
 
-        enabled =
-            desktop.matches &&
-            !reduced.matches;
+    function prepareImageGhost() {
 
+        if(imageGhost) {
 
-        root.classList
-        .toggle(
+            imageGhost.remove();
 
-            'builder-enabled',
-
-            enabled
-
-        );
-
-
-        if(!enabled) {
-
-            buildTargets
-            .forEach(
-
-                el =>
-                el.style
-                .setProperty(
-                    '--build',
-                    '1'
-                )
-
-            );
-
-
-            boxes
-            .forEach(
-
-                box =>
-                box.style.opacity =
-                    '0'
-
-            );
+            imageGhost =
+                null;
 
         }
 
 
-        measure();
+        if(!imageBuild) {
+
+            return;
+
+        }
+
+
+        imageGhost =
+            document
+            .createElement(
+                "div"
+            );
+
+
+        imageGhost.className =
+            "image-ghost";
+
+
+        imageGhost.innerHTML =
+            imageBuild
+            .element
+            .innerHTML;
+
+
+        layer.appendChild(
+            imageGhost
+        );
 
     }
 
 
-    function pulse(cursor) {
+    /* =====================================================
+       BUILD PROGRESS
+    ===================================================== */
 
-        cursor.el
-        .classList
-        .remove(
-            'click'
-        );
+    function getBuildProgress(
+        item,
+        scroll
+    ) {
 
+        return smooth(
 
-        clearTimeout(
-            cursor.pulseTimer
-        );
+            clamp(
 
+                (
+                    scroll -
+                    item.at
+                ) /
+                item.duration
 
-        requestAnimationFrame(
-
-            () =>
-            cursor.el
-            .classList
-            .add(
-                'click'
             )
 
         );
 
+    }
 
-        cursor.pulseTimer =
-            setTimeout(
 
-                () =>
-                cursor.el
-                .classList
-                .remove(
-                    'click'
-                ),
+    function flashBlock(item) {
 
-                520
+        item.element
+        .classList
+        .remove(
+            "build-flash"
+        );
 
-            );
+
+        void item.element
+        .offsetWidth;
+
+
+        item.element
+        .classList
+        .add(
+            "build-flash"
+        );
 
     }
 
 
-    function targetPoint(
-        item,
-        cursorIndex
+    function updateTyping(
+        object,
+        progress
+    ) {
+
+        const total =
+            object.chars.length;
+
+
+        const targetCount =
+            Math.floor(
+                total *
+                progress
+            );
+
+
+        if(
+            targetCount ===
+            object.visibleCount
+        ) {
+
+            return;
+
+        }
+
+
+        if(
+            targetCount >
+            object.visibleCount
+        ) {
+
+            for(
+                let i =
+                    object.visibleCount;
+                i <
+                    targetCount;
+                i++
+            ) {
+
+                const char =
+                    object.chars[i];
+
+
+                char.classList
+                .add(
+                    "is-visible"
+                );
+
+
+                if(
+                    char.textContent
+                    .trim()
+                ) {
+
+                    char.classList
+                    .remove(
+                        "char-flash"
+                    );
+
+
+                    void char.offsetWidth;
+
+
+                    char.classList
+                    .add(
+                        "char-flash"
+                    );
+
+                }
+
+            }
+
+        }
+        else {
+
+            for(
+                let i =
+                    targetCount;
+                i <
+                    object.visibleCount;
+                i++
+            ) {
+
+                object.chars[i]
+                .classList
+                .remove(
+                    "is-visible",
+                    "char-flash"
+                );
+
+            }
+
+        }
+
+
+        object.visibleCount =
+            targetCount;
+
+    }
+
+
+    function updateBuild(
+        scroll
+    ) {
+
+        buildItems
+        .forEach(
+
+            item => {
+
+
+                const progress =
+                    getBuildProgress(
+                        item,
+                        scroll
+                    );
+
+
+                item.progress =
+                    progress;
+
+
+                item.element
+                .style
+                .setProperty(
+                    "--b",
+                    progress
+                    .toFixed(
+                        4
+                    )
+                );
+
+
+                if(
+                    progress >
+                    .03 &&
+                    !item.activated
+                ) {
+
+                    item.activated =
+                        true;
+
+
+                    flashBlock(
+                        item
+                    );
+
+                }
+
+
+                if(
+                    progress <
+                    .01
+                ) {
+
+                    item.activated =
+                        false;
+
+                }
+
+
+                item.typing
+                .forEach(
+
+                    typing =>
+                    updateTyping(
+                        typing,
+                        progress
+                    )
+
+                );
+
+            }
+
+        );
+
+    }
+
+
+    /* =====================================================
+       CARET POSITION
+    ===================================================== */
+
+    function caretPoint(
+        typing
     ) {
 
         if(
-            item.synthetic
+            typing.visibleCount >
+            0
         ) {
+
+            const index =
+                Math.min(
+
+                    typing.chars.length -
+                    1,
+
+                    typing.visibleCount -
+                    1
+
+                );
+
+
+            const rect =
+                typing.chars[
+                    index
+                ]
+                .getBoundingClientRect();
+
 
             return {
 
                 x:
-                    item.x,
+                    rect.right +
+                    4,
 
                 y:
-                    item.y,
-
-                rect:
-                    null
+                    rect.bottom -
+                    5
 
             };
 
@@ -824,256 +1298,428 @@
 
 
         const rect =
-            item.el
+            typing.element
             .getBoundingClientRect();
-
-
-        const presets = [
-
-            [
-                .18,
-                .32
-            ],
-
-            [
-                .78,
-                .25
-            ],
-
-            [
-                .52,
-                .52
-            ],
-
-            [
-                .28,
-                .72
-            ],
-
-            [
-                .82,
-                .68
-            ],
-
-            [
-                .64,
-                .38
-            ],
-
-            [
-                .42,
-                .82
-            ]
-
-        ];
-
-
-        const [
-            fx,
-            fy
-        ] =
-        presets[
-            cursorIndex %
-            presets.length
-        ];
 
 
         return {
 
             x:
-                clamp(
-
-                    rect.left +
-                    rect.width *
-                    fx,
-
-                    18,
-
-                    width -
-                    120
-
-                ),
+                rect.left +
+                4,
 
             y:
-                clamp(
-
-                    rect.top +
-                    rect.height *
-                    fy,
-
-                    90,
-
-                    height -
-                    55
-
-                ),
-
-            rect
+                rect.top +
+                Math.min(
+                    20,
+                    rect.height /
+                    2
+                )
 
         };
 
     }
 
 
-    function routeSegment(
-        route,
-        s
+    /* =====================================================
+       SHAPE TRACE POSITION
+    ===================================================== */
+
+    function traceRectangle(
+        rect,
+        progress
     ) {
 
-        let i =
-            0;
+        const perimeter =
+            (
+                rect.width +
+                rect.height
+            ) *
+            2;
 
 
-        while(
+        let distance =
+            perimeter *
+            progress;
 
-            i <
-            route.length -
-            2 &&
 
-            s >=
-            route[
-                i + 1
-            ].at
-
+        if(
+            distance <=
+            rect.width
         ) {
 
-            i++;
+            return {
+
+                x:
+                    rect.left +
+                    distance,
+
+                y:
+                    rect.top
+
+            };
 
         }
 
 
-        const a =
-            route[i];
+        distance -=
+            rect.width;
 
 
-        const b =
-            route[
-                Math.min(
+        if(
+            distance <=
+            rect.height
+        ) {
 
-                    i + 1,
+            return {
 
-                    route.length -
-                    1
+                x:
+                    rect.right,
 
-                )
-            ];
+                y:
+                    rect.top +
+                    distance
 
+            };
 
-        const span =
-            Math.max(
-
-                1,
-
-                b.at -
-                a.at
-
-            );
+        }
 
 
-        const raw =
-            clamp(
-
-                (
-                    s -
-                    a.at
-                ) /
-                span
-
-            );
+        distance -=
+            rect.height;
 
 
-        const t =
-            smoother(
+        if(
+            distance <=
+            rect.width
+        ) {
 
-                clamp(
+            return {
 
-                    (
-                        raw -
-                        .22
-                    ) /
-                    .56
+                x:
+                    rect.right -
+                    distance,
 
-                )
+                y:
+                    rect.bottom
 
-            );
+            };
+
+        }
+
+
+        distance -=
+            rect.width;
 
 
         return {
 
-            a,
+            x:
+                rect.left,
 
-            b,
-
-            raw,
-
-            t
+            y:
+                rect.bottom -
+                distance
 
         };
 
     }
 
 
-    function updateTargetBuild(s) {
+    /* =====================================================
+       IMAGE INSERT
+    ===================================================== */
 
-        targetData
-        .forEach(
+    function updateImage(
+        item
+    ) {
 
-            item => {
+        if(
+            !imageGhost ||
+            !item
+        ) {
 
-                const local =
-                    smooth(
+            return null;
 
-                        clamp(
-
-                            (
-                                s -
-                                item.at +
-                                height *
-                                .06
-                            ) /
-                            (
-                                height *
-                                .20
-                            )
-
-                        )
-
-                    );
+        }
 
 
-                item.el.style
-                .setProperty(
+        const progress =
+            item.progress;
 
-                    '--build',
 
-                    local
-                    .toFixed(
-                        3
-                    )
+        const rect =
+            item.element
+            .getBoundingClientRect();
 
-                );
 
-            }
+        if(
+            progress <=
+            .01 ||
+            progress >=
+            .98
+        ) {
+
+            imageGhost.style
+            .opacity =
+                "0";
+
+
+            return null;
+
+        }
+
+
+        const cursor =
+            cursorObjects[
+                item.cursor
+            ];
+
+
+        const startX =
+            cursor.side <
+            0
+
+            ? -220
+
+            : width + 220;
+
+
+        const startY =
+            clamp(
+
+                rect.top -
+                120,
+
+                100,
+
+                height -
+                260
+
+            );
+
+
+        const p =
+            smoother(
+                progress
+            );
+
+
+        const ghostWidth =
+            lerp(
+                160,
+                rect.width,
+                p
+            );
+
+
+        const ghostHeight =
+            lerp(
+                100,
+                rect.height,
+                p
+            );
+
+
+        const x =
+            lerp(
+                startX,
+                rect.left,
+                p
+            );
+
+
+        const y =
+            lerp(
+                startY,
+                rect.top,
+                p
+            );
+
+
+        imageGhost.style
+        .opacity =
+            String(
+                1 -
+                Math.max(
+                    0,
+                    (
+                        progress -
+                        .85
+                    ) /
+                    .15
+                )
+            );
+
+
+        imageGhost.style
+        .width =
+            `${ghostWidth}px`;
+
+
+        imageGhost.style
+        .height =
+            `${ghostHeight}px`;
+
+
+        imageGhost.style
+        .transform =
+            `translate3d(
+                ${x}px,
+                ${y}px,
+                0
+            )`;
+
+
+        return {
+
+            x:
+                x +
+                ghostWidth *
+                .88,
+
+            y:
+                y +
+                ghostHeight *
+                .82
+
+        };
+
+    }
+
+
+    /* =====================================================
+       CURSOR TARGET
+    ===================================================== */
+
+    function cursorActiveItem(
+        cursorIndex
+    ) {
+
+        return buildItems
+        .find(
+
+            item =>
+            item.cursor ===
+            cursorIndex &&
+            item.progress >
+            .01 &&
+            item.progress <
+            .99
 
         );
 
     }
 
 
-    function updateBox(
+    function nextCursorItem(
+        cursorIndex,
+        scroll
+    ) {
+
+        return buildItems
+        .find(
+
+            item =>
+            item.cursor ===
+            cursorIndex &&
+            item.at >
+            scroll
+
+        );
+
+    }
+
+
+    function positionForBuild(
+        item
+    ) {
+
+        const rect =
+            item.element
+            .getBoundingClientRect();
+
+
+        if(
+            item.typing.length
+        ) {
+
+            const activeTyping =
+                item.typing.find(
+
+                    typing =>
+                    typing.visibleCount <
+                    typing.chars.length
+
+                ) ||
+                item.typing[
+                    item.typing.length -
+                    1
+                ];
+
+
+            return caretPoint(
+                activeTyping
+            );
+
+        }
+
+
+        if(
+            item.kind ===
+            "panel" ||
+            item.kind ===
+            "button" ||
+            item.kind ===
+            "rule"
+        ) {
+
+            return traceRectangle(
+                rect,
+                item.progress
+            );
+
+        }
+
+
+        return {
+
+            x:
+                rect.left +
+                rect.width *
+                item.progress,
+
+            y:
+                rect.top +
+                rect.height *
+                .5
+
+        };
+
+    }
+
+
+    /* =====================================================
+       OUTLINE
+    ===================================================== */
+
+    function updateOutline(
         cursor,
-        target,
-        raw
+        item
     ) {
 
         if(
-            !target ||
-            target.synthetic
+            !item ||
+            item.kind ===
+            "text" ||
+            item.kind ===
+            "image"
         ) {
 
-            cursor.box
-            .style.opacity =
-                '0';
+            cursor.outline
+            .style
+            .opacity =
+                "0";
 
 
             return;
@@ -1082,355 +1728,310 @@
 
 
         const rect =
-            target.el
+            item.element
             .getBoundingClientRect();
 
 
-        const inView =
-
-            rect.bottom >
-            86 &&
-
-            rect.top <
-            height -
-            30;
-
-
-        const arrival =
-
-            1 -
-
-            Math.min(
-
-                1,
-
-                Math.abs(
-                    raw -
-                    1
-                ) *
-                5.5
-
+        cursor.outline
+        .style
+        .opacity =
+            String(
+                clamp(
+                    item.progress *
+                    1.8
+                )
             );
 
 
-        const opacity =
-
-            inView
-
-            ? clamp(
-                arrival
-            )
-
-            : 0;
+        cursor.outline
+        .style
+        .width =
+            `${rect.width}px`;
 
 
-        const pad =
-            5;
+        cursor.outline
+        .style
+        .height =
+            `${rect.height}px`;
 
 
-        cursor.box
-        .style.opacity =
-            opacity
-            .toFixed(
-                2
-            );
-
-
-        cursor.box
-        .style.width =
-            `${
-                Math.max(
-
-                    8,
-
-                    rect.width +
-                    pad *
-                    2
-
-                )
-            }px`;
-
-
-        cursor.box
-        .style.height =
-            `${
-                Math.max(
-
-                    8,
-
-                    rect.height +
-                    pad *
-                    2
-
-                )
-            }px`;
-
-
-        cursor.box
-        .style.transform =
-
+        cursor.outline
+        .style
+        .transform =
             `translate3d(
-                ${rect.left - pad}px,
-                ${rect.top - pad}px,
+                ${rect.left}px,
+                ${rect.top}px,
                 0
             )`;
 
     }
 
 
-    function updateNavigation(s) {
+    /* =====================================================
+       CURSOR MOVEMENT
+    ===================================================== */
 
-        let active =
-            chapterData[0]
-            ?.el.id ||
-            'home';
-
-
-        chapterData
-        .forEach(
-
-            item => {
-
-                if(
-
-                    s +
-                    height *
-                    .34 >=
-                    item.top
-
-                ) {
-
-                    active =
-                        item.el.id;
-
-                }
-
-            }
-
-        );
-
-
-        nav.querySelectorAll(
-            'a[href^="#"]'
-        )
-        .forEach(
-
-            link => {
-
-                link.toggleAttribute(
-
-                    'aria-current',
-
-                    link.hash ===
-                    `#${active}`
-
-                );
-
-
-                if(
-                    link.hasAttribute(
-                        'aria-current'
-                    )
-                ) {
-
-                    link.setAttribute(
-                        'aria-current',
-                        'location'
-                    );
-
-                }
-
-            }
-
-        );
-
-    }
-
-
-    function render(time) {
-
-        frame =
-            0;
-
-
-        const s =
-            scrollY;
-
-
-        progress.style
-        .transform =
-
-            `scaleX(
-                ${clamp(
-                    s /
-                    maxScroll
-                )}
-            )`;
-
-
-        updateNavigation(
-            s
-        );
-
-
-        if(
-            !enabled ||
-            document.hidden
-        ) {
-
-            lastTime =
-                0;
-
-
-            return;
-
-        }
-
-
-        updateTargetBuild(
-            s
-        );
-
+    function updateCursors(
+        timestamp,
+        scroll
+    ) {
 
         const dt =
-            lastTime
+            lastRender
 
             ? Math.min(
-
                 50,
-
-                time -
-                lastTime
-
+                timestamp -
+                lastRender
             )
 
             : 16;
 
 
-        lastTime =
-            time;
+        lastRender =
+            timestamp;
 
 
         const follow =
-
             1 -
-
             Math.exp(
-
                 -dt /
-                78
-
+                62
             );
 
 
-        routes
+        let imageCursorPoint =
+            null;
+
+
+        if(imageBuild) {
+
+            imageCursorPoint =
+                updateImage(
+                    imageBuild
+                );
+
+        }
+
+
+        cursorObjects
         .forEach(
 
             (
-                route,
+                cursor,
                 index
             ) => {
 
 
-                const cursor =
-                    cursors[
-                        index
-                    ];
-
-
-                const {
-
-                    a,
-
-                    b,
-
-                    raw,
-
-                    t
-
-                } =
-                routeSegment(
-                    route,
-                    s
-                );
-
-
-                const pa =
-                    targetPoint(
-                        a,
+                const active =
+                    cursorActiveItem(
                         index
                     );
 
 
-                const pb =
-                    targetPoint(
-                        b,
-                        index
+                if(active) {
+
+
+                    let point;
+
+
+                    if(
+                        active ===
+                        imageBuild &&
+                        imageCursorPoint
+                    ) {
+
+                        point =
+                            imageCursorPoint;
+
+                    }
+                    else {
+
+                        point =
+                            positionForBuild(
+                                active
+                            );
+
+                    }
+
+
+                    cursor.targetX =
+                        point.x;
+
+
+                    cursor.targetY =
+                        point.y;
+
+
+                    updateOutline(
+                        cursor,
+                        active
                     );
 
 
-                const arc =
-                    Math.sin(
-                        t *
-                        Math.PI
-                    );
+                    if(
+                        cursor.lastTarget !==
+                        active
+                    ) {
+
+                        cursor.lastTarget =
+                            active;
 
 
-                cursor.tx =
+                        pulseCursor(
+                            cursor
+                        );
 
-                    pa.x +
+                    }
 
-                    (
-                        pb.x -
-                        pa.x
-                    ) *
-                    t +
-
-                    (
-                        index %
-                        2
-
-                        ? 1
-
-                        : -1
-                    ) *
-
-                    arc *
-
-                    (
-                        22 +
-                        index *
-                        2
-                    );
+                }
+                else {
 
 
-                cursor.ty =
+                    cursor.outline
+                    .style
+                    .opacity =
+                        "0";
 
-                    pa.y +
 
-                    (
-                        pb.y -
-                        pa.y
-                    ) *
-                    t -
+                    const next =
+                        nextCursorItem(
+                            index,
+                            scroll
+                        );
 
-                    arc *
 
-                    (
-                        16 +
+                    if(next) {
 
-                        (
-                            index %
-                            3
-                        ) *
-                        5
-                    );
+
+                        const distance =
+                            next.at -
+                            scroll;
+
+
+                        const rect =
+                            next.element
+                            .getBoundingClientRect();
+
+
+                        if(
+                            distance <
+                            520
+                        ) {
+
+
+                            const entry =
+                                clamp(
+                                    1 -
+                                    distance /
+                                    520
+                                );
+
+
+                            const sideX =
+                                cursor.side <
+                                0
+
+                                ? -100
+
+                                : width + 100;
+
+
+                            cursor.targetX =
+                                lerp(
+
+                                    sideX,
+
+                                    rect.left +
+                                    rect.width *
+                                    .5,
+
+                                    smoother(
+                                        entry
+                                    )
+
+                                );
+
+
+                            cursor.targetY =
+                                lerp(
+
+                                    clamp(
+                                        rect.top +
+                                        rect.height *
+                                        .5,
+                                        80,
+                                        height - 60
+                                    ),
+
+                                    clamp(
+                                        rect.top +
+                                        rect.height *
+                                        .5,
+                                        80,
+                                        height - 60
+                                    ),
+
+                                    entry
+
+                                );
+
+                        }
+                        else {
+
+
+                            cursor.targetX =
+                                cursor.side <
+                                0
+
+                                ? -140
+
+                                : width + 140;
+
+
+                            cursor.targetY =
+                                90 +
+                                index *
+                                (
+                                    (
+                                        height -
+                                        180
+                                    ) /
+                                    CURSOR_COUNT
+                                );
+
+                        }
+
+                    }
+                    else {
+
+
+                        cursor.targetX =
+                            cursor.side <
+                            0
+
+                            ? width + 160
+
+                            : -160;
+
+
+                        cursor.targetY =
+                            100 +
+                            (
+                                CURSOR_COUNT -
+                                index
+                            ) *
+                            55;
+
+                    }
+
+                }
 
 
                 cursor.x +=
 
                     (
-                        cursor.tx -
+                        cursor.targetX -
                         cursor.x
                     ) *
                     follow;
@@ -1439,96 +2040,180 @@
                 cursor.y +=
 
                     (
-                        cursor.ty -
+                        cursor.targetY -
                         cursor.y
                     ) *
                     follow;
 
 
-                cursor.el.style
+                cursor.element
+                .style
                 .transform =
-
                     `translate3d(
                         ${cursor.x}px,
                         ${cursor.y}px,
                         0
                     )`;
 
+            }
 
-                const activeTarget =
+        );
 
-                    raw >
-                    .52
-
-                    ? b
-
-                    : a;
+    }
 
 
-                const activeKey =
+    /* =====================================================
+       NAV ACTIVE STATE
+    ===================================================== */
 
-                    activeTarget
-                    ?.key ||
-                    '';
+    function updateNavigation(
+        scroll
+    ) {
 
+        let active =
+            "home";
+
+
+        chapterMetrics
+        .forEach(
+
+            metric => {
 
                 if(
-
-                    activeKey &&
-
-                    activeKey !==
-                    cursor.activeKey &&
-
-                    !activeTarget
-                    .synthetic
-
+                    scroll +
+                    height *
+                    .35 >=
+                    metric.top
                 ) {
 
-                    pulse(
-                        cursor
-                    );
-
-
-                    cursor.activeKey =
-                        activeKey;
+                    active =
+                        metric
+                        .element
+                        .id;
 
                 }
-
-
-                updateBox(
-                    cursor,
-                    b,
-                    raw
-                );
 
             }
 
         );
 
 
+        nav
+        .querySelectorAll(
+            'a[href^="#"]'
+        )
+        .forEach(
+
+            link => {
+
+                if(
+                    link.hash ===
+                    `#${active}`
+                ) {
+
+                    link.setAttribute(
+                        "aria-current",
+                        "location"
+                    );
+
+                }
+                else {
+
+                    link.removeAttribute(
+                        "aria-current"
+                    );
+
+                }
+
+            }
+
+        );
+
+    }
+
+
+    /* =====================================================
+       RENDER
+    ===================================================== */
+
+    function render(
+        timestamp
+    ) {
+
+        frame =
+            0;
+
+
+        const scroll =
+            scrollY;
+
+
+        progressBar
+        .style
+        .transform =
+            `scaleX(
+                ${
+                    clamp(
+                        scroll /
+                        maxScroll
+                    )
+                }
+            )`;
+
+
+        updateNavigation(
+            scroll
+        );
+
+
+        if(
+            !builderEnabled ||
+            document.hidden
+        ) {
+
+            lastRender =
+                0;
+
+            return;
+
+        }
+
+
+        updateBuild(
+            scroll
+        );
+
+
+        updateCursors(
+            timestamp,
+            scroll
+        );
+
+
         const moving =
-            cursors
+            cursorObjects
             .some(
 
-                c =>
+                cursor =>
 
                 Math.abs(
-                    c.tx -
-                    c.x
+                    cursor.targetX -
+                    cursor.x
                 ) +
 
                 Math.abs(
-                    c.ty -
-                    c.y
+                    cursor.targetY -
+                    cursor.y
                 ) >
 
-                .35
+                .3
 
             );
 
 
         if(
-            moving
+            moving ||
+            autoplayActive
         ) {
 
             schedule();
@@ -1538,44 +2223,403 @@
     }
 
 
-    addEventListener(
+    function schedule() {
 
-        'scroll',
+        if(!frame) {
 
-        schedule,
+            frame =
+                requestAnimationFrame(
+                    render
+                );
 
-        {
-            passive: true
+        }
+
+    }
+
+
+    /* =====================================================
+       AUTOSCROLL
+    ===================================================== */
+
+    function stopAutoplay() {
+
+        if(
+            autoplayCancelled
+        ) {
+
+            return;
+
+        }
+
+
+        autoplayCancelled =
+            true;
+
+
+        autoplayActive =
+            false;
+
+
+        cancelAnimationFrame(
+            autoplayFrame
+        );
+
+
+        status.classList
+        .add(
+            "off"
+        );
+
+    }
+
+
+    function autoplay(
+        timestamp
+    ) {
+
+        if(
+            autoplayCancelled ||
+            !builderEnabled
+        ) {
+
+            return;
+
+        }
+
+
+        if(!autoplayStart) {
+
+            autoplayStart =
+                timestamp;
+
+        }
+
+
+        autoplayActive =
+            true;
+
+
+        const elapsed =
+            timestamp -
+            autoplayStart;
+
+
+        const progress =
+            clamp(
+                elapsed /
+                AUTO_DURATION
+            );
+
+
+        /*
+           This is intentionally mostly linear.
+           It makes the cursors look like they
+           are steadily constructing the site.
+        */
+
+        const eased =
+            progress;
+
+
+        window.scrollTo(
+
+            0,
+
+            maxScroll *
+            eased
+
+        );
+
+
+        schedule();
+
+
+        if(
+            progress <
+            1
+        ) {
+
+            autoplayFrame =
+                requestAnimationFrame(
+                    autoplay
+                );
+
+        }
+        else {
+
+            autoplayActive =
+                false;
+
+
+            status
+            .classList
+            .add(
+                "off"
+            );
+
+        }
+
+    }
+
+
+    function startAutoplay() {
+
+        if(
+            autoplayCancelled ||
+            !builderEnabled
+        ) {
+
+            return;
+
+        }
+
+
+        autoplayStart =
+            0;
+
+
+        autoplayFrame =
+            requestAnimationFrame(
+                autoplay
+            );
+
+    }
+
+
+    /* =====================================================
+       USER INPUT STOPS AUTO MODE
+    ===================================================== */
+
+    [
+        "wheel",
+        "touchstart",
+        "pointerdown"
+    ]
+    .forEach(
+
+        eventName => {
+
+            window.addEventListener(
+
+                eventName,
+
+                () => {
+
+                    if(
+                        autoplayActive
+                    ) {
+
+                        stopAutoplay();
+
+                    }
+
+                },
+
+                {
+                    passive:
+                        true
+                }
+
+            );
+
         }
 
     );
 
 
-    addEventListener(
+    window.addEventListener(
 
-        'load',
+        "keydown",
 
-        measure
+        event => {
+
+            if(
+                [
+                    "ArrowUp",
+                    "ArrowDown",
+                    "PageUp",
+                    "PageDown",
+                    "Home",
+                    "End",
+                    " "
+                ]
+                .includes(
+                    event.key
+                )
+            ) {
+
+                stopAutoplay();
+
+            }
+
+        }
 
     );
 
 
-    addEventListener(
+    /* =====================================================
+       MOBILE MENU
+    ===================================================== */
 
-        'pageshow',
+    if(menu) {
 
-        measure
+        menu.addEventListener(
+
+            "click",
+
+            () => {
+
+
+                stopAutoplay();
+
+
+                const open =
+                    !nav
+                    .classList
+                    .contains(
+                        "open"
+                    );
+
+
+                nav
+                .classList
+                .toggle(
+                    "open",
+                    open
+                );
+
+
+                menu
+                .setAttribute(
+                    "aria-expanded",
+                    String(
+                        open
+                    )
+                );
+
+
+                menu.textContent =
+                    open
+                    ? "Close −"
+                    : "Menu +";
+
+            }
+
+        );
+
+    }
+
+
+    /* =====================================================
+       ENABLE / DISABLE
+    ===================================================== */
+
+    function revealEverything() {
+
+        buildElements
+        .forEach(
+
+            element => {
+
+                element
+                .style
+                .setProperty(
+                    "--b",
+                    "1"
+                );
+
+            }
+
+        );
+
+
+        typingObjects
+        .forEach(
+
+            object => {
+
+                object.chars
+                .forEach(
+
+                    char =>
+                    char.classList
+                    .add(
+                        "is-visible"
+                    )
+
+                );
+
+
+                object.visibleCount =
+                    object.chars
+                    .length;
+
+            }
+
+        );
+
+    }
+
+
+    function configure() {
+
+        builderEnabled =
+            desktop.matches &&
+            !reducedMotion.matches;
+
+
+        root
+        .classList
+        .toggle(
+            "builder-active",
+            builderEnabled
+        );
+
+
+        if(
+            !builderEnabled
+        ) {
+
+            revealEverything();
+
+
+            status.classList
+            .add(
+                "off"
+            );
+
+        }
+
+
+        measureBuildItems();
+
+    }
+
+
+    /* =====================================================
+       EVENTS
+    ===================================================== */
+
+    window.addEventListener(
+
+        "scroll",
+
+        schedule,
+
+        {
+            passive:
+                true
+        }
 
     );
 
 
-    let resizeTimer =
-        0;
+    let resizeTimer;
 
 
-    addEventListener(
+    window.addEventListener(
 
-        'resize',
+        "resize",
 
         () => {
 
@@ -1598,33 +2642,29 @@
     );
 
 
-    reduced.addEventListener(
-
-        'change',
-
+    reducedMotion
+    .addEventListener(
+        "change",
         configure
-
     );
 
 
-    desktop.addEventListener(
-
-        'change',
-
+    desktop
+    .addEventListener(
+        "change",
         configure
-
     );
 
 
-    document.addEventListener(
+    document
+    .addEventListener(
 
-        'visibilitychange',
+        "visibilitychange",
 
         () => {
 
-            lastTime =
+            lastRender =
                 0;
-
 
             schedule();
 
@@ -1633,7 +2673,42 @@
     );
 
 
-    configure();
+    /* =====================================================
+       START
+    ===================================================== */
+
+    function initialize() {
+
+        prepareTyping();
+
+        createCursors();
+
+        configure();
+
+
+        if(builderEnabled) {
+
+
+            window.scrollTo(
+                0,
+                0
+            );
+
+
+            setTimeout(
+
+                startAutoplay,
+
+                AUTO_DELAY
+
+            );
+
+        }
+
+    }
+
+
+    initialize();
 
 
 })();
