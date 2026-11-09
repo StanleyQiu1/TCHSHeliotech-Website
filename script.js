@@ -3,6 +3,10 @@
     "use strict";
 
 
+    /* =====================================================
+       HELPERS
+    ===================================================== */
+
     const clamp =
         (
             value,
@@ -17,6 +21,21 @@
             )
         );
 
+
+    const smooth =
+        value =>
+        value *
+        value *
+        (
+            3 -
+            2 *
+            value
+        );
+
+
+    /* =====================================================
+       DOM
+    ===================================================== */
 
     const menu =
         document.querySelector(
@@ -36,6 +55,12 @@
         );
 
 
+    const transition =
+        document.querySelector(
+            "#page-transition"
+        );
+
+
     const flickerElements = [
         ...document.querySelectorAll(
             "[data-flicker]"
@@ -50,15 +75,9 @@
     ];
 
 
-    const modelSection =
+    const vehicleStory =
         document.querySelector(
-            ".model-scroll"
-        );
-
-
-    const modelStage =
-        document.querySelector(
-            "#model-stage"
+            ".vehicle-story"
         );
 
 
@@ -68,15 +87,34 @@
         );
 
 
-    const rotationValue =
+    const modelPlaceholder =
         document.querySelector(
-            "#rotation-value"
+            "#model-placeholder"
         );
 
 
-    const viewValue =
+    const modelSteps = [
+        ...document.querySelectorAll(
+            "[data-model-step]"
+        )
+    ];
+
+
+    const orbitReadout =
         document.querySelector(
-            "#view-value"
+            "#orbit-readout"
+        );
+
+
+    const viewReadout =
+        document.querySelector(
+            "#view-readout"
+        );
+
+
+    const reducedMotion =
+        matchMedia(
+            "(prefers-reduced-motion: reduce)"
         );
 
 
@@ -92,11 +130,25 @@
         [];
 
 
+    let lastActiveStory =
+        null;
+
+
     /* =====================================================
        MOBILE MENU
     ===================================================== */
 
     function closeMenu() {
+
+        if(
+            !nav ||
+            !menu
+        ) {
+
+            return;
+
+        }
+
 
         nav.classList.remove(
             "open"
@@ -115,77 +167,350 @@
     }
 
 
-    menu.addEventListener(
+    if(
+        menu &&
+        nav
+    ) {
 
-        "click",
+        menu.addEventListener(
 
-        () => {
+            "click",
 
-            const open =
-                !nav.classList.contains(
-                    "open"
+            () => {
+
+
+                const open =
+                    !nav.classList
+                    .contains(
+                        "open"
+                    );
+
+
+                nav.classList
+                .toggle(
+                    "open",
+                    open
                 );
 
 
-            nav.classList.toggle(
-                "open",
-                open
-            );
+                menu.setAttribute(
+                    "aria-expanded",
+                    String(
+                        open
+                    )
+                );
 
 
-            menu.setAttribute(
-                "aria-expanded",
-                String(
+                menu.textContent =
                     open
-                )
-            );
+                    ? "Close −"
+                    : "Menu +";
+
+            }
+
+        );
 
 
-            menu.textContent =
-                open
-                ? "Close −"
-                : "Menu +";
+        nav.addEventListener(
+
+            "click",
+
+            event => {
+
+                if(
+                    event.target.closest(
+                        "a"
+                    )
+                ) {
+
+                    closeMenu();
+
+                }
+
+            }
+
+        );
+
+
+        document.addEventListener(
+
+            "keydown",
+
+            event => {
+
+                if(
+                    event.key ===
+                    "Escape"
+                ) {
+
+                    closeMenu();
+
+                }
+
+            }
+
+        );
+
+    }
+
+
+    /* =====================================================
+       PAGE TRANSITION — INITIAL REVEAL
+    ===================================================== */
+
+    function revealPage() {
+
+        if(
+            !transition ||
+            reducedMotion.matches
+        ) {
+
+            return;
 
         }
 
-    );
+
+        /*
+            Start with screen covered.
+            Then slide the transition
+            screen away to the left.
+        */
+
+        setTimeout(
+
+            () => {
+
+                transition
+                .classList
+                .add(
+                    "is-revealed"
+                );
+
+            },
+
+            180
+
+        );
+
+    }
 
 
-    nav.addEventListener(
+    /* =====================================================
+       PAGE TRANSITION — LINK CLICK
+    ===================================================== */
+
+    function navigateWithTransition(
+        href
+    ) {
+
+        if(
+            !transition ||
+            reducedMotion.matches
+        ) {
+
+            window.location.href =
+                href;
+
+
+            return;
+
+        }
+
+
+        /*
+            Move transition layer
+            instantly to right side.
+        */
+
+        transition.className =
+            "page-transition is-preparing";
+
+
+        /*
+            Browser needs two frames
+            so it registers the starting
+            transform before animating.
+        */
+
+        requestAnimationFrame(
+
+            () => {
+
+                requestAnimationFrame(
+
+                    () => {
+
+                        transition.className =
+                            "page-transition is-covering";
+
+
+                        setTimeout(
+
+                            () => {
+
+                                window.location.href =
+                                    href;
+
+                            },
+
+                            850
+
+                        );
+
+                    }
+
+                );
+
+            }
+
+        );
+
+    }
+
+
+    /*
+        Animate navigation for internal
+        page links.
+
+        Hash links stay normal because
+        they only move around this page.
+    */
+
+    document.addEventListener(
 
         "click",
 
         event => {
 
-            if(
+
+            const link =
                 event.target.closest(
                     "a"
+                );
+
+
+            if(
+                !link
+            ) {
+
+                return;
+
+            }
+
+
+            const href =
+                link.getAttribute(
+                    "href"
+                );
+
+
+            if(
+                !href ||
+                href.startsWith(
+                    "#"
+                ) ||
+                href.startsWith(
+                    "mailto:"
+                ) ||
+                href.startsWith(
+                    "tel:"
                 )
             ) {
 
-                closeMenu();
+                return;
 
             }
+
+
+            /*
+                Do not intercept Ctrl-click,
+                Cmd-click, Shift-click, etc.
+            */
+
+            if(
+                event.metaKey ||
+                event.ctrlKey ||
+                event.shiftKey ||
+                event.altKey ||
+                link.target ===
+                "_blank"
+            ) {
+
+                return;
+
+            }
+
+
+            let targetURL;
+
+
+            try {
+
+                targetURL =
+                    new URL(
+                        href,
+                        window.location.href
+                    );
+
+            }
+            catch {
+
+                return;
+
+            }
+
+
+            /*
+                Only animate links staying
+                on the same website.
+            */
+
+            if(
+                targetURL.origin !==
+                window.location.origin
+            ) {
+
+                return;
+
+            }
+
+
+            event.preventDefault();
+
+
+            navigateWithTransition(
+                targetURL.href
+            );
 
         }
 
     );
 
 
-    document.addEventListener(
+    /*
+        Important for browser Back button.
+    */
 
-        "keydown",
+    window.addEventListener(
 
-        event => {
+        "pageshow",
+
+        () => {
 
             if(
-                event.key ===
-                "Escape"
+                !transition
             ) {
 
-                closeMenu();
+                return;
 
             }
+
+
+            transition.className =
+                "page-transition";
+
+
+            revealPage();
 
         }
 
@@ -193,7 +518,7 @@
 
 
     /* =====================================================
-       FLICKER
+       TEXT FLICKER
     ===================================================== */
 
     const flickerObserver =
@@ -201,9 +526,11 @@
 
             entries => {
 
+
                 entries.forEach(
 
                     entry => {
+
 
                         if(
                             !entry.isIntersecting
@@ -231,10 +558,10 @@
                             () => {
 
                                 element
-                                .classList
-                                .add(
-                                    "flicker-visible"
-                                );
+                                    .classList
+                                    .add(
+                                        "flicker-visible"
+                                    );
 
                             },
 
@@ -244,9 +571,9 @@
 
 
                         flickerObserver
-                        .unobserve(
-                            element
-                        );
+                            .unobserve(
+                                element
+                            );
 
                     }
 
@@ -255,58 +582,55 @@
             },
 
             {
+
                 threshold:
                     .18,
 
                 rootMargin:
                     "0px 0px -8% 0px"
+
             }
 
         );
 
 
     flickerElements
-    .forEach(
+        .forEach(
 
-        (
-            element,
-            index
-        ) => {
-
-            /*
-               Slight stagger prevents every
-               block flickering at exactly
-               the same instant.
-            */
-
-            element.dataset
-            .flickerDelay =
-                String(
-                    (
-                        index %
-                        4
-                    ) *
-                    65
-                );
+            (
+                element,
+                index
+            ) => {
 
 
-            flickerObserver
-            .observe(
-                element
-            );
+                element.dataset
+                    .flickerDelay =
+                        String(
+                            (
+                                index %
+                                3
+                            ) *
+                            75
+                        );
 
-        }
 
-    );
+                flickerObserver
+                    .observe(
+                        element
+                    );
+
+            }
+
+        );
 
 
     /* =====================================================
-       MODEL
+       MODEL LOADING
     ===================================================== */
 
     if(
         modelViewer &&
-        modelStage
+        vehicleStory
     ) {
 
         modelViewer.addEventListener(
@@ -315,10 +639,25 @@
 
             () => {
 
-                modelStage.classList
-                .add(
-                    "model-loaded"
-                );
+
+                vehicleStory
+                    .classList
+                    .add(
+                        "model-loaded"
+                    );
+
+
+                if(
+                    modelPlaceholder
+                ) {
+
+                    modelPlaceholder
+                        .setAttribute(
+                            "aria-hidden",
+                            "true"
+                        );
+
+                }
 
             }
 
@@ -331,10 +670,12 @@
 
             () => {
 
-                modelStage.classList
-                .remove(
-                    "model-loaded"
-                );
+
+                vehicleStory
+                    .classList
+                    .remove(
+                        "model-loaded"
+                    );
 
             }
 
@@ -343,10 +684,14 @@
     }
 
 
-    function getModelProgress() {
+    /* =====================================================
+       MODEL SCROLL PROGRESS
+    ===================================================== */
+
+    function modelProgress() {
 
         if(
-            !modelSection
+            !vehicleStory
         ) {
 
             return 0;
@@ -355,8 +700,8 @@
 
 
         const rect =
-            modelSection
-            .getBoundingClientRect();
+            vehicleStory
+                .getBoundingClientRect();
 
 
         const travel =
@@ -364,26 +709,122 @@
 
                 1,
 
-                modelSection
-                .offsetHeight -
+                vehicleStory
+                    .offsetHeight -
                 innerHeight
 
             );
 
 
         return clamp(
+
             -rect.top /
             travel
+
         );
 
     }
 
 
+    /* =====================================================
+       STORY TEXT
+    ===================================================== */
+
+    function updateModelStories(
+        progress
+    ) {
+
+        let current =
+            null;
+
+
+        modelSteps
+            .forEach(
+
+                story => {
+
+
+                    const start =
+                        Number(
+                            story.dataset.start
+                        );
+
+
+                    const end =
+                        Number(
+                            story.dataset.end
+                        );
+
+
+                    const active =
+                        progress >= start &&
+                        progress <= end;
+
+
+                    story.classList
+                        .toggle(
+                            "is-active",
+                            active
+                        );
+
+
+                    if(
+                        active
+                    ) {
+
+                        current =
+                            story;
+
+                    }
+
+                }
+
+            );
+
+
+        /*
+            Flicker each story once
+            when it becomes active.
+        */
+
+        if(
+            current &&
+            current !==
+            lastActiveStory
+        ) {
+
+
+            current.classList
+                .remove(
+                    "story-flicker"
+                );
+
+
+            void current.offsetWidth;
+
+
+            current.classList
+                .add(
+                    "story-flicker"
+                );
+
+
+            lastActiveStory =
+                current;
+
+        }
+
+    }
+
+
+    /* =====================================================
+       MODEL CAMERA
+    ===================================================== */
+
     function updateModel() {
 
         if(
-            !modelViewer ||
-            !modelSection
+            !vehicleStory
         ) {
 
             return;
@@ -392,39 +833,27 @@
 
 
         const progress =
-            getModelProgress();
+            modelProgress();
 
 
         /*
-           The model starts from a slight
-           front-left angle and rotates
-           almost a complete turn while
-           the section is scrolled.
+            About one complete turn,
+            but not perfectly flat.
         */
 
         const theta =
             -42 +
             progress *
-            300;
+            340;
 
 
         /*
-           Slight vertical camera change
-           makes the orbit feel more
-           cinematic than a flat turntable.
+            Camera rises slightly toward
+            the middle of the sequence.
         */
 
         const phi =
-            73 -
-            Math.sin(
-                progress *
-                Math.PI
-            ) *
-            7;
-
-
-        const radius =
-            108 -
+            72 -
             Math.sin(
                 progress *
                 Math.PI
@@ -432,11 +861,30 @@
             8;
 
 
-        modelViewer.cameraOrbit =
-            `${theta}deg ${phi}deg ${radius}%`;
+        /*
+            Small zoom-in at the center.
+        */
+
+        const radius =
+            108 -
+            Math.sin(
+                progress *
+                Math.PI
+            ) *
+            10;
 
 
-        const normalizedAngle =
+        if(
+            modelViewer
+        ) {
+
+            modelViewer.cameraOrbit =
+                `${theta}deg ${phi}deg ${radius}%`;
+
+        }
+
+
+        const normalized =
             (
                 (
                     theta %
@@ -448,33 +896,36 @@
 
 
         if(
-            rotationValue
+            orbitReadout
         ) {
 
-            rotationValue.textContent =
-                `${Math.round(
-                    normalizedAngle
-                )
-                .toString()
-                .padStart(
-                    3,
-                    "0"
-                )}°`;
+            orbitReadout.textContent =
+                `${
+                    Math
+                        .round(
+                            normalized
+                        )
+                        .toString()
+                        .padStart(
+                            3,
+                            "0"
+                        )
+                }°`;
 
         }
 
 
         if(
-            viewValue
+            viewReadout
         ) {
 
             let view;
 
 
             if(
-                normalizedAngle <
+                normalized <
                 45 ||
-                normalizedAngle >=
+                normalized >=
                 315
             ) {
 
@@ -483,16 +934,16 @@
 
             }
             else if(
-                normalizedAngle <
+                normalized <
                 135
             ) {
 
                 view =
-                    "SIDE";
+                    "RIGHT SIDE";
 
             }
             else if(
-                normalizedAngle <
+                normalized <
                 225
             ) {
 
@@ -503,21 +954,26 @@
             else {
 
                 view =
-                    "SIDE";
+                    "LEFT SIDE";
 
             }
 
 
-            viewValue.textContent =
+            viewReadout.textContent =
                 view;
 
         }
+
+
+        updateModelStories(
+            progress
+        );
 
     }
 
 
     /* =====================================================
-       PAGE MEASUREMENT
+       ACTIVE NAV
     ===================================================== */
 
     function measure() {
@@ -528,8 +984,8 @@
                 1,
 
                 document
-                .documentElement
-                .scrollHeight -
+                    .documentElement
+                    .scrollHeight -
                 innerHeight
 
             );
@@ -540,9 +996,10 @@
 
                 chapter => {
 
+
                     const rect =
                         chapter
-                        .getBoundingClientRect();
+                            .getBoundingClientRect();
 
 
                     return {
@@ -566,73 +1023,87 @@
     }
 
 
-    /* =====================================================
-       NAVIGATION + SCROLL
-    ===================================================== */
-
     function updateNavigation() {
+
+        if(
+            !nav
+        ) {
+
+            return;
+
+        }
+
 
         let active =
             chapterData[0]
-            ?.element
-            .id ||
+                ?.element
+                .id ||
             "home";
 
 
         chapterData
-        .forEach(
+            .forEach(
 
-            item => {
-
-                if(
-                    scrollY +
-                    innerHeight *
-                    .38 >=
-                    item.top
-                ) {
-
-                    active =
-                        item.element.id;
-
-                }
-
-            }
-
-        );
+                item => {
 
 
-        nav.querySelectorAll(
-            'a[href^="#"]'
-        )
-        .forEach(
+                    if(
+                        scrollY +
+                        innerHeight *
+                        .38 >=
+                        item.top
+                    ) {
 
-            link => {
+                        active =
+                            item
+                                .element
+                                .id;
 
-                if(
-                    link.hash ===
-                    `#${active}`
-                ) {
-
-                    link.setAttribute(
-                        "aria-current",
-                        "location"
-                    );
-
-                }
-                else {
-
-                    link.removeAttribute(
-                        "aria-current"
-                    );
+                    }
 
                 }
 
-            }
+            );
 
-        );
+
+        nav
+            .querySelectorAll(
+                'a[href^="#"]'
+            )
+            .forEach(
+
+                link => {
+
+
+                    if(
+                        link.hash ===
+                        `#${active}`
+                    ) {
+
+                        link.setAttribute(
+                            "aria-current",
+                            "location"
+                        );
+
+                    }
+                    else {
+
+                        link.removeAttribute(
+                            "aria-current"
+                        );
+
+                    }
+
+                }
+
+            );
 
     }
 
+
+    /* =====================================================
+       RENDER
+    ===================================================== */
 
     function render() {
 
@@ -640,18 +1111,22 @@
             0;
 
 
-        const pageProgress =
+        const progress =
             clamp(
                 scrollY /
                 maxScroll
             );
 
 
-        progressBar.style
-        .transform =
-            `scaleX(
-                ${pageProgress}
-            )`;
+        if(
+            progressBar
+        ) {
+
+            progressBar.style
+                .transform =
+                    `scaleX(${progress})`;
+
+        }
 
 
         updateNavigation();
@@ -665,15 +1140,18 @@
     function schedule() {
 
         if(
-            !frame
+            frame
         ) {
 
-            frame =
-                requestAnimationFrame(
-                    render
-                );
+            return;
 
         }
+
+
+        frame =
+            requestAnimationFrame(
+                render
+            );
 
     }
 
@@ -706,6 +1184,7 @@
 
         () => {
 
+
             clearTimeout(
                 resizeTimer
             );
@@ -729,12 +1208,31 @@
 
         "load",
 
-        measure
+        () => {
+
+            measure();
+
+            revealPage();
+
+        }
 
     );
 
 
-    measure();
+    /*
+        If script loads after everything
+        is already loaded.
+    */
 
+    if(
+        document.readyState ===
+        "complete"
+    ) {
+
+        measure();
+
+        revealPage();
+
+    }
 
 })();
