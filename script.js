@@ -3,10 +3,6 @@
     "use strict";
 
 
-    /* =====================================================
-       HELPERS
-    ===================================================== */
-
     const clamp =
         (
             value,
@@ -21,21 +17,6 @@
             )
         );
 
-
-    const smooth =
-        value =>
-        value *
-        value *
-        (
-            3 -
-            2 *
-            value
-        );
-
-
-    /* =====================================================
-       DOM
-    ===================================================== */
 
     const menu =
         document.querySelector(
@@ -134,6 +115,11 @@
         null;
 
 
+    let transitionTimer =
+        0;
+
+
+
     /* =====================================================
        MOBILE MENU
     ===================================================== */
@@ -177,7 +163,6 @@
             "click",
 
             () => {
-
 
                 const open =
                     !nav.classList
@@ -254,15 +239,15 @@
     }
 
 
+
     /* =====================================================
-       PAGE TRANSITION — INITIAL REVEAL
+       PAGE TRANSITION — PAGE ENTRY
     ===================================================== */
 
     function revealPage() {
 
         if(
-            !transition ||
-            reducedMotion.matches
+            !transition
         ) {
 
             return;
@@ -270,33 +255,58 @@
         }
 
 
+        if(
+            reducedMotion.matches
+        ) {
+
+            transition.style.display =
+                "none";
+
+
+            return;
+
+        }
+
+
+        clearTimeout(
+            transitionTimer
+        );
+
+
         /*
-            Start with screen covered.
-            Then slide the transition
-            screen away to the left.
+            Reset to fully covered.
+
+            This lets the HelioTech logo
+            flicker briefly before the
+            diagonal panels sweep away.
         */
 
-        setTimeout(
+        transition.className =
+            "page-transition";
 
-            () => {
 
-                transition
-                .classList
-                .add(
-                    "is-revealed"
-                );
+        transitionTimer =
+            setTimeout(
 
-            },
+                () => {
 
-            180
+                    transition.classList
+                        .add(
+                            "is-revealed"
+                        );
 
-        );
+                },
+
+                520
+
+            );
 
     }
 
 
+
     /* =====================================================
-       PAGE TRANSITION — LINK CLICK
+       PAGE TRANSITION — PAGE EXIT
     ===================================================== */
 
     function navigateWithTransition(
@@ -318,8 +328,8 @@
 
 
         /*
-            Move transition layer
-            instantly to right side.
+            Put the diagonal transition
+            completely off-screen right.
         */
 
         transition.className =
@@ -327,9 +337,9 @@
 
 
         /*
-            Browser needs two frames
-            so it registers the starting
-            transform before animating.
+            Two animation frames ensure
+            the browser registers the
+            off-screen starting position.
         */
 
         requestAnimationFrame(
@@ -340,9 +350,23 @@
 
                     () => {
 
+                        /*
+                            Sweep onto the screen.
+
+                            The logo also performs
+                            the small flicker here.
+                        */
+
                         transition.className =
                             "page-transition is-covering";
 
+
+                        /*
+                            Load the new page after
+                            the transition has
+                            essentially covered
+                            the entire viewport.
+                        */
 
                         setTimeout(
 
@@ -353,7 +377,7 @@
 
                             },
 
-                            850
+                            900
 
                         );
 
@@ -368,20 +392,16 @@
     }
 
 
-    /*
-        Animate navigation for internal
-        page links.
 
-        Hash links stay normal because
-        they only move around this page.
-    */
+    /* =====================================================
+       INTERCEPT SAME-SITE PAGE LINKS
+    ===================================================== */
 
     document.addEventListener(
 
         "click",
 
         event => {
-
 
             const link =
                 event.target.closest(
@@ -423,8 +443,9 @@
 
 
             /*
-                Do not intercept Ctrl-click,
-                Cmd-click, Shift-click, etc.
+                Preserve normal browser behavior
+                for Ctrl-click, Cmd-click,
+                Shift-click, etc.
             */
 
             if(
@@ -461,8 +482,8 @@
 
 
             /*
-                Only animate links staying
-                on the same website.
+                External websites do not
+                use our local transition.
             */
 
             if(
@@ -487,35 +508,6 @@
     );
 
 
-    /*
-        Important for browser Back button.
-    */
-
-    window.addEventListener(
-
-        "pageshow",
-
-        () => {
-
-            if(
-                !transition
-            ) {
-
-                return;
-
-            }
-
-
-            transition.className =
-                "page-transition";
-
-
-            revealPage();
-
-        }
-
-    );
-
 
     /* =====================================================
        TEXT FLICKER
@@ -526,11 +518,9 @@
 
             entries => {
 
-
                 entries.forEach(
 
                     entry => {
-
 
                         if(
                             !entry.isIntersecting
@@ -602,7 +592,6 @@
                 index
             ) => {
 
-
                 element.dataset
                     .flickerDelay =
                         String(
@@ -624,8 +613,9 @@
         );
 
 
+
     /* =====================================================
-       MODEL LOADING
+       3D MODEL LOAD
     ===================================================== */
 
     if(
@@ -638,7 +628,6 @@
             "load",
 
             () => {
-
 
                 vehicleStory
                     .classList
@@ -670,7 +659,6 @@
 
             () => {
 
-
                 vehicleStory
                     .classList
                     .remove(
@@ -682,6 +670,7 @@
         );
 
     }
+
 
 
     /* =====================================================
@@ -726,8 +715,9 @@
     }
 
 
+
     /* =====================================================
-       STORY TEXT
+       MODEL STORY TEXT
     ===================================================== */
 
     function updateModelStories(
@@ -743,7 +733,6 @@
 
                 story => {
 
-
                     const start =
                         Number(
                             story.dataset.start
@@ -757,8 +746,10 @@
 
 
                     const active =
-                        progress >= start &&
-                        progress <= end;
+                        progress >=
+                        start &&
+                        progress <=
+                        end;
 
 
                     story.classList
@@ -783,8 +774,9 @@
 
 
         /*
-            Flicker each story once
-            when it becomes active.
+            When a new 3D story becomes
+            active, restart its subtle
+            reveal state.
         */
 
         if(
@@ -793,20 +785,28 @@
             lastActiveStory
         ) {
 
-
-            current.classList
-                .remove(
-                    "story-flicker"
-                );
+            current.style.opacity =
+                "0";
 
 
-            void current.offsetWidth;
+            requestAnimationFrame(
 
+                () => {
 
-            current.classList
-                .add(
-                    "story-flicker"
-                );
+                    requestAnimationFrame(
+
+                        () => {
+
+                            current.style.opacity =
+                                "";
+
+                        }
+
+                    );
+
+                }
+
+            );
 
 
             lastActiveStory =
@@ -817,8 +817,9 @@
     }
 
 
+
     /* =====================================================
-       MODEL CAMERA
+       3D CAMERA
     ===================================================== */
 
     function updateModel() {
@@ -837,8 +838,8 @@
 
 
         /*
-            About one complete turn,
-            but not perfectly flat.
+            Approximately one full
+            scroll-driven rotation.
         */
 
         const theta =
@@ -848,8 +849,8 @@
 
 
         /*
-            Camera rises slightly toward
-            the middle of the sequence.
+            Camera moves vertically
+            slightly during the turn.
         */
 
         const phi =
@@ -862,7 +863,8 @@
 
 
         /*
-            Small zoom-in at the center.
+            Slight cinematic zoom toward
+            the middle of the sequence.
         */
 
         const radius =
@@ -972,8 +974,9 @@
     }
 
 
+
     /* =====================================================
-       ACTIVE NAV
+       MEASURE PAGE
     ===================================================== */
 
     function measure() {
@@ -995,7 +998,6 @@
             chapters.map(
 
                 chapter => {
-
 
                     const rect =
                         chapter
@@ -1023,6 +1025,11 @@
     }
 
 
+
+    /* =====================================================
+       ACTIVE NAVIGATION
+    ===================================================== */
+
     function updateNavigation() {
 
         if(
@@ -1045,7 +1052,6 @@
             .forEach(
 
                 item => {
-
 
                     if(
                         scrollY +
@@ -1074,7 +1080,6 @@
 
                 link => {
 
-
                     if(
                         link.hash ===
                         `#${active}`
@@ -1099,6 +1104,7 @@
             );
 
     }
+
 
 
     /* =====================================================
@@ -1156,6 +1162,7 @@
     }
 
 
+
     /* =====================================================
        EVENTS
     ===================================================== */
@@ -1184,7 +1191,6 @@
 
         () => {
 
-
             clearTimeout(
                 resizeTimer
             );
@@ -1204,9 +1210,19 @@
     );
 
 
+    /*
+        pageshow works for both:
+        - normal navigation
+        - browser Back/Forward cache
+
+        This prevents the transition
+        from remaining stuck after
+        pressing Back.
+    */
+
     window.addEventListener(
 
-        "load",
+        "pageshow",
 
         () => {
 
@@ -1220,8 +1236,8 @@
 
 
     /*
-        If script loads after everything
-        is already loaded.
+        Fallback in case script is
+        evaluated after pageshow.
     */
 
     if(
