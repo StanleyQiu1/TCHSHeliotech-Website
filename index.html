@@ -23,17 +23,35 @@
     <title>
         TCHS HelioTech — Solar Car Engineering
     </title>
-    
+
+
+    <!-- =================================================
+         FAVICON
+
+         Uses the original logo with blue background.
+    ================================================== -->
+
     <link
         rel="icon"
         type="image/png"
         href="images/Heliotech.png"
     >
-    
+
+    <link
+        rel="shortcut icon"
+        type="image/png"
+        href="images/Heliotech.png"
+    >
+
     <link
         rel="apple-touch-icon"
         href="images/Heliotech.png"
     >
+
+
+    <!-- =================================================
+         FONTS
+    ================================================== -->
 
     <link
         rel="preconnect"
@@ -51,10 +69,16 @@
         rel="stylesheet"
     >
 
+
+    <!-- =================================================
+         MAIN CSS
+    ================================================== -->
+
     <link
         rel="stylesheet"
         href="styles.css"
     >
+
 
     <!-- =================================================
          MODEL VIEWER + OUTLINE EFFECTS
@@ -65,7 +89,6 @@
         src="https://ga.jspm.io/npm:es-module-shims@1.7.1/dist/es-module-shims.js"
     ></script>
 
-
     <script type="importmap">
     {
         "imports": {
@@ -74,18 +97,20 @@
     }
     </script>
 
-
     <script
         type="module"
         src="https://cdn.jsdelivr.net/npm/@google/model-viewer/dist/model-viewer-module.min.js"
     ></script>
-
 
     <script
         type="module"
         src="https://cdn.jsdelivr.net/npm/@google/model-viewer-effects/dist/model-viewer-effects.min.js"
     ></script>
 
+
+    <!-- =================================================
+         MAIN JAVASCRIPT
+    ================================================== -->
 
     <script
         src="script.js"
@@ -106,18 +131,24 @@
 </a>
 
 
+
+<!-- =====================================================
+     HEADER
+===================================================== -->
+
 <header class="site-header">
 
     <a
         class="brand"
-        href="#home"
+        href="index.html"
+        aria-label="HelioTech Home"
     >
 
-        <span class="heliotech-mark"></span>
-
-        <span class="brand-name">
-            HELIO<span>TECH</span>
-        </span>
+        <img
+            class="brand-logo"
+            src="images/Heliotech-nobg.png"
+            alt="TCHS HelioTech"
+        >
 
     </a>
 
@@ -156,6 +187,7 @@
             href="Support%20us.html"
         >
             Support
+
             <span class="link-icon">
                 ↗
             </span>
@@ -182,8 +214,13 @@
 </header>
 
 
+
 <main id="main">
 
+
+<!-- =====================================================
+     HERO
+===================================================== -->
 
 <section
     id="home"
@@ -313,6 +350,10 @@
 
 
 
+<!-- =====================================================
+     ABOUT
+===================================================== -->
+
 <section
     id="about"
     class="standard-section chapter"
@@ -388,6 +429,10 @@
 
 
 
+<!-- =====================================================
+     3D VEHICLE
+===================================================== -->
+
 <section
     id="vehicle"
     class="vehicle-story chapter"
@@ -404,31 +449,61 @@
 
             <model-viewer
                 id="car-model"
+
                 data-model-src="./models/heliotech-car-fixed.glb"
+
                 alt="3D model of the TCHS HelioTech solar car"
+
                 orientation="0deg -90deg 0deg"
+
                 camera-orbit="90deg 72deg 150%"
+
                 camera-target="auto auto auto"
+
                 field-of-view="38deg"
+
                 min-field-of-view="18deg"
                 max-field-of-view="50deg"
+
                 camera-controls
                 disable-pan
                 disable-zoom
+
                 interaction-prompt="none"
+
                 touch-action="pan-y"
+
                 interpolation-decay="180"
+
                 shadow-intensity="0"
-                exposure="1.35"
+
+                exposure="1.18"
+
                 environment-image="neutral"
+
+                tone-mapping="neutral"
+
                 loading="eager"
             >
-                <effect-composer render-mode="performance">
-                    <outline-effect color="#60798b"></outline-effect>
-                    <smaa-effect></smaa-effect>
-                    <color-grade-effect></color-grade-effect>
+
+                <effect-composer
+                    render-mode="performance"
+                >
+
+                    <outline-effect
+                        color="#60798b"
+                    ></outline-effect>
+
+                    <smaa-effect>
+                    </smaa-effect>
+
+                    <color-grade-effect>
+                    </color-grade-effect>
+
                 </effect-composer>
+
             </model-viewer>
+
 
 
             <div
@@ -469,6 +544,7 @@
         </div>
 
 
+
         <div class="vehicle-interface">
 
 
@@ -483,6 +559,7 @@
                 </span>
 
             </div>
+
 
 
             <article
@@ -511,6 +588,7 @@
             </article>
 
 
+
             <article
                 class="model-story model-story-right"
                 data-model-step
@@ -535,6 +613,7 @@
                 </p>
 
             </article>
+
 
 
             <article
@@ -563,6 +642,7 @@
             </article>
 
 
+
             <article
                 class="model-story model-story-right"
                 data-model-step
@@ -589,6 +669,7 @@
             </article>
 
 
+
             <div class="vehicle-bottom">
 
                 <span id="view-readout">
@@ -610,6 +691,10 @@
 </section>
 
 
+
+<!-- =====================================================
+     SYSTEMS
+===================================================== -->
 
 <section
     id="systems"
@@ -684,6 +769,7 @@
         </a>
 
 
+
         <a
             class="system-row page-link"
             href="technical.html#pcb"
@@ -717,6 +803,7 @@
         </a>
 
 
+
         <a
             class="system-row page-link"
             href="our%20cars.html"
@@ -747,6 +834,7 @@
             </span>
 
         </a>
+
 
 
         <a
@@ -786,6 +874,10 @@
 </section>
 
 
+
+<!-- =====================================================
+     RESULTS
+===================================================== -->
 
 <section
     id="results"
@@ -845,6 +937,7 @@
         </article>
 
 
+
         <article>
 
             <div class="result-year">
@@ -875,6 +968,10 @@
 </section>
 
 
+
+<!-- =====================================================
+     TEAM
+===================================================== -->
 
 <section
     id="team"
@@ -932,6 +1029,7 @@
         </a>
 
 
+
         <a
             href="The%20team.html"
             class="team-card page-link"
@@ -954,6 +1052,7 @@
         </a>
 
 
+
         <a
             href="The%20team.html"
             class="team-card page-link"
@@ -974,6 +1073,7 @@
             </span>
 
         </a>
+
 
 
         <a
@@ -1003,6 +1103,10 @@
 </section>
 
 
+
+<!-- =====================================================
+     SUPPORT
+===================================================== -->
 
 <section
     id="support"
@@ -1061,17 +1165,29 @@
 
 
 
+<!-- =====================================================
+     FOOTER
+===================================================== -->
+
 <footer class="site-footer">
 
 
-    <div>
+    <div class="footer-brand-area">
 
         <a
-            class="footer-brand"
-            href="#home"
+            class="footer-logo-link"
+            href="index.html"
+            aria-label="HelioTech Home"
         >
-            HELIOTECH
+
+            <img
+                class="footer-logo"
+                src="images/Heliotech-nobg.png"
+                alt="TCHS HelioTech"
+            >
+
         </a>
+
 
         <p>
             Temple City High School<br>
@@ -1091,6 +1207,7 @@
             <span class="link-icon">↗</span>
         </a>
 
+
         <a
             class="page-link"
             href="media.html"
@@ -1098,6 +1215,7 @@
             Media
             <span class="link-icon">↗</span>
         </a>
+
 
         <a
             class="page-link"
@@ -1107,8 +1225,9 @@
             <span class="link-icon">↗</span>
         </a>
 
-        <a href="#home">
-            Back to top
+
+        <a href="index.html">
+            Home
             <span class="link-icon">↑</span>
         </a>
 
@@ -1132,6 +1251,10 @@
 
 
 
+<!-- =====================================================
+     PAGE TRANSITION
+===================================================== -->
+
 <div
     id="page-transition"
     class="page-transition"
@@ -1143,22 +1266,11 @@
 
     <div class="transition-brand">
 
-
-        <div class="transition-logo">
-
-            <span class="transition-circle"></span>
-
-            <span class="transition-leg left"></span>
-
-            <span class="transition-leg right"></span>
-
-        </div>
-
-
-        <div class="transition-wordmark">
-            HELIO<span>TECH</span>
-        </div>
-
+        <img
+            class="transition-logo-image"
+            src="images/Heliotech-nobg.png"
+            alt=""
+        >
 
     </div>
 
