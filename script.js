@@ -4,7 +4,7 @@
 
 
     /* =====================================================
-       HELIOTECH SETTINGS
+       SETTINGS
     ===================================================== */
 
     const VEHICLE_SCROLL_HEIGHT =
@@ -12,22 +12,22 @@
 
 
     /*
-        Fusion correction:
+        IMPORTANT:
 
-        90deg = lays car horizontally
-        180deg = flips upside-down car upright
+        model-viewer uses:
+
+        roll pitch yaw
+
+        The original +90 degree pitch
+        made the car horizontal but upside down.
+
+        -90 degrees keeps it horizontal
+        and reverses that orientation.
     */
 
     const MODEL_ORIENTATION =
-        "180deg 90deg 0deg";
+        "0deg -90deg 0deg";
 
-
-    /*
-        Larger = farther from car.
-
-        150 gives the full car plenty
-        of room on screen.
-    */
 
     const FULL_VIEW_DISTANCE =
         150;
@@ -283,7 +283,7 @@
 
 
     /* =====================================================
-       POSSIBLE MODEL FILENAMES
+       MODEL FILE FALLBACKS
     ===================================================== */
 
     const MODEL_CANDIDATES = [
@@ -308,7 +308,7 @@
 
 
     /* =====================================================
-       EXTEND 3D SCROLL
+       LONG 3D SCROLL
     ===================================================== */
 
     if(
@@ -439,7 +439,7 @@
 
 
     /* =====================================================
-       CHECK IF WE CAME FROM ANOTHER HELIOTECH PAGE
+       INCOMING TRANSITION
     ===================================================== */
 
     function isIncomingTransition() {
@@ -485,18 +485,10 @@
 
 
     /* =====================================================
-       PAGE ENTRY TRANSITION
+       PAGE ENTRY
     ===================================================== */
 
     function revealPageOnce() {
-
-        /*
-            Prevent pageshow + initialization
-            from restarting the logo animation.
-
-            This was one cause of the
-            double flicker.
-        */
 
         if(
             pageRevealStarted
@@ -543,16 +535,11 @@
 
 
         /*
-            IMPORTANT:
+            If this page was opened from another
+            HelioTech page, the logo already
+            flickered on the previous page.
 
-            If we came from another page,
-            the logo ALREADY flickered once
-            during the outgoing transition.
-
-            Therefore DO NOT flicker again.
-
-            Just show it solid for a moment
-            and slide the panel away.
+            Keep it solid and slide away.
         */
 
         if(
@@ -584,10 +571,10 @@
 
 
         /*
-            Fresh website visit:
+            Fresh page load.
 
-            Let the logo flicker exactly
-            ONE time before revealing page.
+            CSS delays the logo slightly
+            so the slant is visually first.
         */
 
         transition.className =
@@ -604,7 +591,7 @@
 
                 },
 
-                650
+                760
 
             );
 
@@ -612,7 +599,7 @@
 
 
     /* =====================================================
-       PAGE EXIT TRANSITION
+       PAGE EXIT
     ===================================================== */
 
     function navigateWithTransition(
@@ -633,11 +620,6 @@
         }
 
 
-        /*
-            Reset panel off-screen right.
-            Logo hidden.
-        */
-
         transition.className =
             "page-transition is-preparing";
 
@@ -651,10 +633,10 @@
                     () => {
 
                         /*
-                            Slanted panel enters.
+                            Slant begins immediately.
 
-                            Logo flickers exactly
-                            ONE time here.
+                            CSS holds the logo
+                            invisible for .18 seconds.
                         */
 
                         transition.className =
@@ -664,13 +646,6 @@
                         window.setTimeout(
 
                             () => {
-
-                                /*
-                                    Tell destination page:
-
-                                    "The logo already flickered.
-                                    Do not flicker again."
-                                */
 
                                 try {
 
@@ -696,7 +671,7 @@
 
                             },
 
-                            900
+                            950
 
                         );
 
@@ -712,7 +687,7 @@
 
 
     /* =====================================================
-       INTERCEPT SAME-SITE PAGE LINKS
+       INTERCEPT INTERNAL LINKS
     ===================================================== */
 
     document.addEventListener(
@@ -743,8 +718,7 @@
 
 
             /*
-                Hash links stay on same page
-                and should NOT trigger transition.
+                Do not transition hash scrolling.
             */
 
             if(
@@ -764,10 +738,6 @@
 
             }
 
-
-            /*
-                Preserve Ctrl/Cmd click etc.
-            */
 
             if(
                 event.metaKey ||
@@ -803,7 +773,7 @@
 
 
             /*
-                External sites behave normally.
+                External links remain normal.
             */
 
             if(
@@ -892,7 +862,7 @@
             {
 
                 threshold:
-                    0.18,
+                    .18,
 
                 rootMargin:
                     "0px 0px -8% 0px"
@@ -929,7 +899,7 @@
 
 
     /* =====================================================
-       MODEL PLACEHOLDER
+       PLACEHOLDER
     ===================================================== */
 
     function setPlaceholderStatus(
@@ -1000,7 +970,7 @@
 
 
     /* =====================================================
-       LOAD MODEL CANDIDATE
+       TRY MODEL FILE
     ===================================================== */
 
     function tryModelCandidate(
@@ -1126,10 +1096,15 @@
 
 
         /*
-            Correct Fusion orientation.
+            Corrected orientation.
 
-            90° lays the vehicle horizontal.
-            180° flips it upright.
+            The old version used:
+
+            0deg 90deg 0deg
+
+            which put your model upside down.
+
+            This reverses the pitch.
         */
 
         modelViewer.orientation =
@@ -1172,10 +1147,6 @@
 
 
         try {
-
-            /*
-                Reframe after orientation.
-            */
 
             if(
                 typeof modelViewer.updateFraming ===
@@ -1224,7 +1195,8 @@
 
 
             /*
-                Find the longest car axis.
+                Find the vehicle's longest
+                geometry axis automatically.
             */
 
             if(
@@ -1385,11 +1357,11 @@
 
 
         /*
-            Grab existing HTML source before
-            removing it.
+            Use data-model-src first.
 
-            This prevents model-viewer from
-            loading before our listeners exist.
+            This avoids a race where the GLB
+            finishes before our event
+            handlers exist.
         */
 
         const htmlSource =
@@ -1447,8 +1419,8 @@
 
 
         /*
-            Put HTML's preferred filename
-            at the top of candidate list.
+            Put the HTML-selected model
+            first in the fallback array.
         */
 
         if(
@@ -1490,6 +1462,11 @@
 
         }
 
+
+        /*
+            Wait for model-viewer to
+            register before assigning src.
+        */
 
         if(
             window.customElements &&
@@ -1546,7 +1523,7 @@
 
 
     /* =====================================================
-       MODEL SCROLL PROGRESS
+       3D SCROLL PROGRESS
     ===================================================== */
 
     function modelProgress() {
@@ -1586,7 +1563,7 @@
 
 
     /* =====================================================
-       TARGET POINT ALONG VEHICLE
+       TARGET POSITION ON VEHICLE
     ===================================================== */
 
     function modelTarget(
@@ -1617,7 +1594,7 @@
 
             position *
 
-            0.33;
+            .33;
 
 
         return target;
@@ -1634,10 +1611,7 @@
     ) {
 
         /*
-            FULL VEHICLE
-
-            Very far back so the entire
-            solar car is visible.
+            FULL VEHICLE INTRO
         */
 
         const fullIntro = {
@@ -1676,16 +1650,17 @@
 
             target:
                 modelTarget(
-                    0.68
+                    .68
                 )
 
         };
 
 
         /*
-            CENTER / DRIVER / ELECTRONICS
+            CENTER / DRIVER /
+            ELECTRONICS
 
-            Closest camera position.
+            Deepest zoom.
         */
 
         const centerDetail = {
@@ -1701,7 +1676,7 @@
 
             target:
                 modelTarget(
-                    0.04
+                    .04
                 )
 
         };
@@ -1724,14 +1699,14 @@
 
             target:
                 modelTarget(
-                    -0.66
+                    -.66
                 )
 
         };
 
 
         /*
-            FINAL FULL VEHICLE
+            FULL VEHICLE END
         */
 
         const fullEnd = {
@@ -1754,20 +1729,20 @@
 
 
         /* =================================================
-           0 → 20%
-           FULL VEHICLE
+           0% - 20%
+           FULL CAR
         ================================================= */
 
         if(
             progress <
-            0.20
+            .20
         ) {
 
             const t =
                 smoothstep(
 
                     progress /
-                    0.20
+                    .20
 
                 );
 
@@ -1804,13 +1779,13 @@
 
 
         /* =================================================
-           20 → 40%
-           FULL → SOLAR
+           20% - 40%
+           FULL → FRONT / SOLAR
         ================================================= */
 
         if(
             progress <
-            0.40
+            .40
         ) {
 
             const t =
@@ -1818,9 +1793,9 @@
 
                     (
                         progress -
-                        0.20
+                        .20
                     ) /
-                    0.20
+                    .20
 
                 );
 
@@ -1861,13 +1836,13 @@
 
 
         /* =================================================
-           40 → 60%
-           SOLAR → DRIVER / CONTROL
+           40% - 60%
+           FRONT → CENTER
         ================================================= */
 
         if(
             progress <
-            0.60
+            .60
         ) {
 
             const t =
@@ -1875,9 +1850,9 @@
 
                     (
                         progress -
-                        0.40
+                        .40
                     ) /
-                    0.20
+                    .20
 
                 );
 
@@ -1918,13 +1893,13 @@
 
 
         /* =================================================
-           60 → 80%
-           CENTER → DRIVETRAIN
+           60% - 80%
+           CENTER → REAR
         ================================================= */
 
         if(
             progress <
-            0.80
+            .80
         ) {
 
             const t =
@@ -1932,9 +1907,9 @@
 
                     (
                         progress -
-                        0.60
+                        .60
                     ) /
-                    0.20
+                    .20
 
                 );
 
@@ -1975,8 +1950,8 @@
 
 
         /* =================================================
-           80 → 100%
-           DRIVETRAIN → FULL VEHICLE
+           80% - 100%
+           REAR → FULL CAR
         ================================================= */
 
         const t =
@@ -1984,9 +1959,9 @@
 
                 (
                     progress -
-                    0.80
+                    .80
                 ) /
-                0.20
+                .20
 
             );
 
@@ -2027,7 +2002,7 @@
 
 
     /* =====================================================
-       MODEL STORY TEXT
+       STORY TEXT
     ===================================================== */
 
     function updateModelStories(
@@ -2159,12 +2134,21 @@
             );
 
 
+        /*
+            Camera rotation + zoom.
+        */
+
         modelViewer.cameraOrbit =
 
             `${state.orbit}deg ` +
             `${state.phi}deg ` +
             `${state.radius}%`;
 
+
+        /*
+            Move focus point across
+            different parts of vehicle.
+        */
 
         modelViewer.cameraTarget =
 
@@ -2174,7 +2158,7 @@
 
 
         /* =================================================
-           ORBIT READOUT
+           ANGLE READOUT
         ================================================= */
 
         if(
@@ -2208,7 +2192,7 @@
 
 
         /* =================================================
-           VIEW NAME
+           VIEW READOUT
         ================================================= */
 
         if(
@@ -2217,7 +2201,7 @@
 
             if(
                 progress <
-                0.20
+                .20
             ) {
 
                 viewReadout.textContent =
@@ -2226,7 +2210,7 @@
             }
             else if(
                 progress <
-                0.40
+                .40
             ) {
 
                 viewReadout.textContent =
@@ -2235,7 +2219,7 @@
             }
             else if(
                 progress <
-                0.60
+                .60
             ) {
 
                 viewReadout.textContent =
@@ -2244,7 +2228,7 @@
             }
             else if(
                 progress <
-                0.80
+                .80
             ) {
 
                 viewReadout.textContent =
@@ -2288,7 +2272,8 @@
                 chapter => {
 
                     const rect =
-                        chapter.getBoundingClientRect();
+                        chapter
+                            .getBoundingClientRect();
 
 
                     return {
@@ -2341,7 +2326,7 @@
                 if(
                     window.scrollY +
                     window.innerHeight *
-                    0.38 >=
+                    .38 >=
                     item.top
                 ) {
 
@@ -2390,7 +2375,7 @@
 
 
     /* =====================================================
-       RENDER
+       MAIN RENDER LOOP
     ===================================================== */
 
     function render() {
@@ -2488,6 +2473,7 @@
 
                         measure();
 
+
                         updateModel();
 
                     },
@@ -2534,19 +2520,12 @@
     }
 
 
-    /*
-        Because script.js is loaded with
-        defer, the DOM already exists here.
-    */
-
     initialize();
 
 
-    /*
-        Browser Back / Forward cache.
-
-        Do NOT replay the logo flicker.
-    */
+    /* =====================================================
+       BACK / FORWARD CACHE
+    ===================================================== */
 
     window.addEventListener(
 
