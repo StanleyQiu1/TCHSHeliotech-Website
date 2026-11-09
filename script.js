@@ -10,14 +10,85 @@
     const VEHICLE_SCROLL_HEIGHT =
         "700vh";
 
+
+    /*
+        Current orientation correction.
+    */
+
     const MODEL_ORIENTATION =
         "0deg -90deg 0deg";
+
 
     const FULL_VIEW_DISTANCE =
         150;
 
+
     const TRANSITION_FLAG =
         "heliotech-transition-incoming";
+
+
+    /* =====================================================
+       MODEL COLOR PALETTE
+
+       These correspond to the 15 materials
+       inside your actual Fusion GLB.
+
+       The goal is:
+       - nothing near black
+       - clear separation between components
+       - softer whites
+       - brighter green / blue / orange
+       - good visibility on black background
+    ===================================================== */
+
+    const MODEL_COLORS = [
+
+        /* 0  structural gray */
+        "#aebbc4",
+
+        /* 1  light blue */
+        "#75c9ee",
+
+        /* 2  orange */
+        "#ff9f43",
+
+        /* 3  main white / shell */
+        "#d7e0e6",
+
+        /* 4  secondary gray */
+        "#98a7b1",
+
+        /* 5  pale blue / lavender */
+        "#a5b8f3",
+
+        /* 6  default neutral */
+        "#c2cdd4",
+
+        /* 7  darker gray, but NOT black */
+        "#758690",
+
+        /* 8  warm gray */
+        "#bbb6ae",
+
+        /* 9  blue */
+        "#527fe5",
+
+        /* 10 yellow / amber */
+        "#ffc44c",
+
+        /* 11 pale cyan */
+        "#a9def4",
+
+        /* 12 green */
+        "#68c978",
+
+        /* 13 deep blue */
+        "#6677df",
+
+        /* 14 fallback */
+        "#b7c4cc"
+
+    ];
 
 
     /* =====================================================
@@ -65,6 +136,7 @@
             clamp(
                 value
             );
+
 
         return (
             t *
@@ -122,20 +194,24 @@
             ".menu-toggle"
         );
 
+
     const nav =
         document.querySelector(
             "#navigation"
         );
+
 
     const progressBar =
         document.querySelector(
             ".scroll-progress"
         );
 
+
     const transition =
         document.querySelector(
             "#page-transition"
         );
+
 
     const flickerElements = [
         ...document.querySelectorAll(
@@ -143,26 +219,31 @@
         )
     ];
 
+
     const chapters = [
         ...document.querySelectorAll(
             ".chapter"
         )
     ];
 
+
     const vehicleStory =
         document.querySelector(
             ".vehicle-story"
         );
+
 
     const modelViewer =
         document.querySelector(
             "#car-model"
         );
 
+
     const modelPlaceholder =
         document.querySelector(
             "#model-placeholder"
         );
+
 
     const modelSteps = [
         ...document.querySelectorAll(
@@ -170,15 +251,18 @@
         )
     ];
 
+
     const orbitReadout =
         document.querySelector(
             "#orbit-readout"
         );
 
+
     const viewReadout =
         document.querySelector(
             "#view-readout"
         );
+
 
     const reducedMotion =
         window.matchMedia(
@@ -193,20 +277,26 @@
     let frame =
         0;
 
+
     let maxScroll =
         1;
+
 
     let chapterData =
         [];
 
+
     let lastActiveStory =
         null;
+
 
     let transitionTimer =
         0;
 
+
     let initialized =
         false;
+
 
     let pageRevealStarted =
         false;
@@ -219,20 +309,28 @@
     let modelLoaded =
         false;
 
+
     let currentModelCandidate =
         0;
 
+
     let modelCenter = {
+
         x: 0,
         y: 0,
         z: 0
+
     };
 
+
     let modelSize = {
+
         x: 1,
         y: 1,
         z: 1
+
     };
+
 
     let modelLongAxis =
         "z";
@@ -245,12 +343,19 @@
     const MODEL_CANDIDATES = [
 
         "./models/heliotech-car-fixed.glb",
+
         "./models/heliotech-car.glb",
+
         "./models/Full Assemby.glb",
+
         "./models/Full Assembly.glb",
+
         "./heliotech-car-fixed.glb",
+
         "./heliotech-car.glb",
+
         "./Full Assemby.glb",
+
         "./Full Assembly.glb"
 
     ];
@@ -260,7 +365,7 @@
        LONG 3D SCROLL
     ===================================================== */
 
-    if (
+    if(
         vehicleStory
     ) {
 
@@ -276,21 +381,26 @@
 
     function closeMenu() {
 
-        if (
+        if(
             !nav ||
             !menu
         ) {
+
             return;
+
         }
+
 
         nav.classList.remove(
             "open"
         );
 
+
         menu.setAttribute(
             "aria-expanded",
             "false"
         );
+
 
         menu.textContent =
             "Menu +";
@@ -298,13 +408,15 @@
     }
 
 
-    if (
+    if(
         menu &&
         nav
     ) {
 
         menu.addEventListener(
+
             "click",
+
             () => {
 
                 const open =
@@ -312,50 +424,69 @@
                         "open"
                     );
 
+
                 nav.classList.toggle(
                     "open",
                     open
                 );
 
+
                 menu.setAttribute(
                     "aria-expanded",
-                    String(open)
+                    String(
+                        open
+                    )
                 );
+
 
                 menu.textContent =
                     open
-                        ? "Close −"
-                        : "Menu +";
+                    ? "Close −"
+                    : "Menu +";
 
             }
+
         );
 
 
         nav.addEventListener(
+
             "click",
+
             event => {
 
-                if (
-                    event.target.closest("a")
+                if(
+                    event.target.closest(
+                        "a"
+                    )
                 ) {
+
                     closeMenu();
+
                 }
 
             }
+
         );
 
 
         document.addEventListener(
+
             "keydown",
+
             event => {
 
-                if (
-                    event.key === "Escape"
+                if(
+                    event.key ===
+                    "Escape"
                 ) {
+
                     closeMenu();
+
                 }
 
             }
+
         );
 
     }
@@ -374,19 +505,25 @@
                     TRANSITION_FLAG
                 );
 
-            if (
-                incoming === "1"
+
+            if(
+                incoming ===
+                "1"
             ) {
 
                 sessionStorage.removeItem(
                     TRANSITION_FLAG
                 );
 
+
                 return true;
+
             }
 
         }
-        catch (error) {
+        catch(
+            error
+        ) {
 
             console.warn(
                 "Transition storage unavailable.",
@@ -394,6 +531,7 @@
             );
 
         }
+
 
         return false;
 
@@ -406,71 +544,94 @@
 
     function revealPageOnce() {
 
-        if (
+        if(
             pageRevealStarted
         ) {
+
             return;
+
         }
+
 
         pageRevealStarted =
             true;
 
-        if (
+
+        if(
             !transition
         ) {
+
             return;
+
         }
 
-        if (
+
+        if(
             reducedMotion.matches
         ) {
 
             transition.style.display =
                 "none";
 
+
             return;
+
         }
+
 
         clearTimeout(
             transitionTimer
         );
 
+
         const incoming =
             isIncomingTransition();
 
-        if (
+
+        if(
             incoming
         ) {
 
             transition.className =
                 "page-transition is-arriving";
 
+
             transitionTimer =
                 window.setTimeout(
+
                     () => {
 
                         transition.className =
                             "page-transition is-revealed";
 
                     },
+
                     180
+
                 );
 
+
             return;
+
         }
+
 
         transition.className =
             "page-transition is-entering";
 
+
         transitionTimer =
             window.setTimeout(
+
                 () => {
 
                     transition.className =
                         "page-transition is-revealed";
 
                 },
+
                 760
+
             );
 
     }
@@ -484,7 +645,7 @@
         href
     ) {
 
-        if (
+        if(
             !transition ||
             reducedMotion.matches
         ) {
@@ -492,22 +653,30 @@
             window.location.href =
                 href;
 
+
             return;
+
         }
+
 
         transition.className =
             "page-transition is-preparing";
 
+
         requestAnimationFrame(
+
             () => {
 
                 requestAnimationFrame(
+
                     () => {
 
                         transition.className =
                             "page-transition is-covering";
 
+
                         window.setTimeout(
+
                             () => {
 
                                 try {
@@ -518,7 +687,9 @@
                                     );
 
                                 }
-                                catch (error) {
+                                catch(
+                                    error
+                                ) {
 
                                     console.warn(
                                         error
@@ -526,62 +697,92 @@
 
                                 }
 
+
                                 window.location.href =
                                     href;
 
                             },
+
                             950
+
                         );
 
                     }
+
                 );
 
             }
+
         );
 
     }
 
 
     /* =====================================================
-       INTERCEPT INTERNAL LINKS
+       INTERNAL LINK TRANSITION
     ===================================================== */
 
     document.addEventListener(
+
         "click",
+
         event => {
 
             const link =
-                event.target.closest("a");
+                event.target.closest(
+                    "a"
+                );
 
-            if (
+
+            if(
                 !link
             ) {
+
                 return;
+
             }
+
 
             const href =
-                link.getAttribute("href");
+                link.getAttribute(
+                    "href"
+                );
 
-            if (
+
+            if(
                 !href ||
-                href.startsWith("#") ||
-                href.startsWith("mailto:") ||
-                href.startsWith("tel:")
+                href.startsWith(
+                    "#"
+                ) ||
+                href.startsWith(
+                    "mailto:"
+                ) ||
+                href.startsWith(
+                    "tel:"
+                )
             ) {
+
                 return;
+
             }
 
-            if (
+
+            if(
                 event.metaKey ||
                 event.ctrlKey ||
                 event.shiftKey ||
                 event.altKey ||
-                link.target === "_blank"
+                link.target ===
+                "_blank"
             ) {
+
                 return;
+
             }
 
+
             let targetURL;
+
 
             try {
 
@@ -593,23 +794,31 @@
 
             }
             catch {
+
                 return;
+
             }
 
-            if (
+
+            if(
                 targetURL.origin !==
                 window.location.origin
             ) {
+
                 return;
+
             }
 
+
             event.preventDefault();
+
 
             navigateWithTransition(
                 targetURL.href
             );
 
         }
+
     );
 
 
@@ -619,65 +828,97 @@
 
     const flickerObserver =
         new IntersectionObserver(
+
             entries => {
 
                 entries.forEach(
+
                     entry => {
 
-                        if (
+                        if(
                             !entry.isIntersecting
                         ) {
+
                             return;
+
                         }
+
 
                         const element =
                             entry.target;
 
+
                         const delay =
                             Number(
                                 element.dataset
-                                    .flickerDelay || 0
+                                    .flickerDelay ||
+                                0
                             );
 
+
                         window.setTimeout(
+
                             () => {
 
-                                element.classList.add(
-                                    "flicker-visible"
-                                );
+                                element
+                                    .classList
+                                    .add(
+                                        "flicker-visible"
+                                    );
 
                             },
+
                             delay
+
                         );
+
 
                         flickerObserver.unobserve(
                             element
                         );
 
                     }
+
                 );
 
             },
+
             {
-                threshold: .18,
-                rootMargin: "0px 0px -8% 0px"
+
+                threshold:
+                    .18,
+
+                rootMargin:
+                    "0px 0px -8% 0px"
+
             }
+
         );
 
 
     flickerElements.forEach(
-        (element, index) => {
+
+        (
+            element,
+            index
+        ) => {
 
             element.dataset.flickerDelay =
                 String(
-                    (index % 3) * 75
+                    (
+                        index %
+                        3
+                    ) *
+                    75
                 );
+
 
             flickerObserver.observe(
                 element
             );
 
         }
+
     );
 
 
@@ -690,157 +931,204 @@
         message
     ) {
 
-        if (
+        if(
             !modelPlaceholder
         ) {
+
             return;
+
         }
+
 
         const strong =
             modelPlaceholder.querySelector(
                 "strong"
             );
 
+
         const paragraph =
             modelPlaceholder.querySelector(
                 "p"
             );
+
 
         const code =
             modelPlaceholder.querySelector(
                 "code"
             );
 
-        if (
+
+        if(
             strong
         ) {
+
             strong.textContent =
                 title;
+
         }
 
-        if (
+
+        if(
             paragraph
         ) {
+
             paragraph.textContent =
                 message;
+
         }
 
-        if (
+
+        if(
             code
         ) {
+
             code.textContent =
                 MODEL_CANDIDATES[
                     currentModelCandidate
-                ] || "";
+                ] ||
+                "";
+
         }
 
     }
 
 
     /* =====================================================
-       MATERIAL FIX
+       MODEL MATERIAL COLORS
     ===================================================== */
 
     function applyModelMaterialFixes() {
 
-        if (
+        if(
             !modelViewer ||
             !modelViewer.model ||
             !modelViewer.model.materials
         ) {
+
             return;
+
         }
+
 
         const materials =
             modelViewer.model.materials;
 
+
+        console.log(
+            "Applying HelioTech color palette to",
+            materials.length,
+            "materials"
+        );
+
+
         materials.forEach(
-            material => {
+
+            (
+                material,
+                index
+            ) => {
 
                 try {
 
-                    if (
-                        typeof material.setDoubleSided === "function"
+                    /*
+                        Prevent thin Fusion surfaces
+                        from disappearing when seen
+                        from the opposite side.
+                    */
+
+                    if(
+                        typeof material.setDoubleSided ===
+                        "function"
                     ) {
-                        material.setDoubleSided(true);
+
+                        material.setDoubleSided(
+                            true
+                        );
+
                     }
 
-                    if (
-                        material.pbrMetallicRoughness
+
+                    const pbr =
+                        material.pbrMetallicRoughness;
+
+
+                    if(
+                        !pbr
                     ) {
 
-                        const pbr =
-                            material.pbrMetallicRoughness;
-
-                        if (
-                            typeof pbr.setMetallicFactor === "function"
-                        ) {
-                            pbr.setMetallicFactor(0);
-                        }
-
-                        if (
-                            typeof pbr.setRoughnessFactor === "function"
-                        ) {
-                            pbr.setRoughnessFactor(0.95);
-                        }
-
-                        const materialName =
-                            (
-                                material.name || ""
-                            ).toLowerCase();
-
-                        if (
-                            materialName.includes("shell") ||
-                            materialName.includes("body") ||
-                            materialName.includes("fairing") ||
-                            materialName.includes("cover")
-                        ) {
-
-                            if (
-                                typeof pbr.setBaseColorFactor === "function"
-                            ) {
-                                pbr.setBaseColorFactor(
-                                    [0.93, 0.93, 0.93, 1]
-                                );
-                            }
-
-                        }
-                        else if (
-                            materialName.includes("panel") ||
-                            materialName.includes("solar")
-                        ) {
-
-                            if (
-                                typeof pbr.setBaseColorFactor === "function"
-                            ) {
-                                pbr.setBaseColorFactor(
-                                    [0.65, 0.86, 0.65, 1]
-                                );
-                            }
-
-                        }
-                        else if (
-                            materialName.includes("wheel") ||
-                            materialName.includes("tire")
-                        ) {
-
-                            if (
-                                typeof pbr.setBaseColorFactor === "function"
-                            ) {
-                                pbr.setBaseColorFactor(
-                                    [0.78, 0.88, 1.0, 1]
-                                );
-                            }
-
-                        }
+                        return;
 
                     }
+
+
+                    /*
+                        Assign a bright color from
+                        the actual GLB material index.
+                    */
+
+                    const color =
+                        MODEL_COLORS[
+                            index
+                        ] ||
+                        "#b9c5cd";
+
+
+                    pbr.setBaseColorFactor(
+                        color
+                    );
+
+
+                    /*
+                        Fusion CAD materials can become
+                        very dark because of metallic
+                        reflections.
+
+                        Keep everything mostly matte.
+                    */
+
+                    pbr.setMetallicFactor(
+                        .03
+                    );
+
+
+                    pbr.setRoughnessFactor(
+                        .78
+                    );
+
+
+                    /*
+                        Make sure transparent / unusual
+                        material modes do not make parts
+                        unexpectedly disappear.
+                    */
+
+                    if(
+                        typeof material.setAlphaMode ===
+                        "function"
+                    ) {
+
+                        material.setAlphaMode(
+                            "OPAQUE"
+                        );
+
+                    }
+
+
+                    console.log(
+                        `Material ${index}:`,
+                        material.name,
+                        "→",
+                        color
+                    );
 
                 }
-                catch (error) {
+                catch(
+                    error
+                ) {
 
                     console.warn(
-                        "Material fix failed:",
+                        "Material color update failed:",
+                        index,
                         material?.name,
                         error
                     );
@@ -848,93 +1136,152 @@
                 }
 
             }
+
         );
 
-        modelViewer.exposure =
-            1.35;
 
-        modelViewer.shadowIntensity =
-            0;
+        /*
+            Neutral grayscale lighting.
+        */
 
         modelViewer.environmentImage =
             "neutral";
+
+
+        /*
+            Neutral PBR tone mapping gives
+            better color separation.
+        */
+
+        modelViewer.setAttribute(
+            "tone-mapping",
+            "neutral"
+        );
+
+
+        /*
+            Moderate exposure.
+
+            The previous 1.35 could wash out
+            the white body.
+
+            1.18 keeps white, green and blue
+            visibly separated.
+        */
+
+        modelViewer.exposure =
+            1.18;
+
+
+        modelViewer.shadowIntensity =
+            0;
 
     }
 
 
     /* =====================================================
-       TRY MODEL FILE
+       TRY MODEL
     ===================================================== */
 
     function tryModelCandidate(
         index
     ) {
 
-        if (
+        if(
             !modelViewer
         ) {
+
             return;
+
         }
 
-        if (
-            index >= MODEL_CANDIDATES.length
+
+        if(
+            index >=
+            MODEL_CANDIDATES.length
         ) {
 
             console.error(
                 "HelioTech: no 3D model could be loaded."
             );
 
+
             modelLoaded =
                 false;
+
 
             modelViewer.style.opacity =
                 "0";
 
-            if (
+
+            if(
                 vehicleStory
             ) {
+
                 vehicleStory.classList.remove(
                     "model-loaded"
                 );
+
             }
 
+
             setPlaceholderStatus(
+
                 "MODEL FILE NOT FOUND",
+
                 "Make sure the GLB file is inside the models folder."
+
             );
 
+
             return;
+
         }
+
 
         currentModelCandidate =
             index;
 
+
         modelLoaded =
             false;
+
 
         modelViewer.style.opacity =
             "0";
 
-        if (
+
+        if(
             vehicleStory
         ) {
+
             vehicleStory.classList.remove(
                 "model-loaded"
             );
+
         }
 
+
         const src =
-            MODEL_CANDIDATES[index];
+            MODEL_CANDIDATES[
+                index
+            ];
+
 
         console.log(
             "HelioTech loading model:",
             src
         );
 
+
         setPlaceholderStatus(
+
             "LOADING 3D MODEL",
+
             "Loading vehicle geometry..."
+
         );
+
 
         modelViewer.src =
             src;
@@ -953,32 +1300,41 @@
             modelViewer.src
         );
 
+
         modelLoaded =
             true;
+
 
         modelViewer.orientation =
             MODEL_ORIENTATION;
 
+
         modelViewer.style.opacity =
             "1";
 
-        if (
+
+        if(
             vehicleStory
         ) {
+
             vehicleStory.classList.add(
                 "model-loaded"
             );
+
         }
 
-        if (
+
+        if(
             modelPlaceholder
         ) {
 
             modelPlaceholder.style.opacity =
                 "0";
 
+
             modelPlaceholder.style.pointerEvents =
                 "none";
+
 
             modelPlaceholder.setAttribute(
                 "aria-hidden",
@@ -987,59 +1343,103 @@
 
         }
 
+
         try {
+
+            /*
+                Apply colors immediately.
+            */
 
             applyModelMaterialFixes();
 
-            if (
-                typeof modelViewer.updateFraming === "function"
+
+            if(
+                typeof modelViewer.updateFraming ===
+                "function"
             ) {
+
                 modelViewer.updateFraming();
+
             }
+
 
             const center =
                 modelViewer.getBoundingBoxCenter();
 
+
             const dimensions =
                 modelViewer.getDimensions();
 
+
             modelCenter = {
-                x: center.x,
-                y: center.y,
-                z: center.z
+
+                x:
+                    center.x,
+
+                y:
+                    center.y,
+
+                z:
+                    center.z
+
             };
+
 
             modelSize = {
-                x: dimensions.x,
-                y: dimensions.y,
-                z: dimensions.z
+
+                x:
+                    dimensions.x,
+
+                y:
+                    dimensions.y,
+
+                z:
+                    dimensions.z
+
             };
 
-            if (
-                modelSize.x >= modelSize.y &&
-                modelSize.x >= modelSize.z
+
+            if(
+                modelSize.x >=
+                modelSize.y &&
+                modelSize.x >=
+                modelSize.z
             ) {
-                modelLongAxis = "x";
+
+                modelLongAxis =
+                    "x";
+
             }
-            else if (
-                modelSize.y >= modelSize.x &&
-                modelSize.y >= modelSize.z
+            else if(
+                modelSize.y >=
+                modelSize.x &&
+                modelSize.y >=
+                modelSize.z
             ) {
-                modelLongAxis = "y";
+
+                modelLongAxis =
+                    "y";
+
             }
             else {
-                modelLongAxis = "z";
+
+                modelLongAxis =
+                    "z";
+
             }
+
 
             console.log(
                 "Model center:",
                 modelCenter
             );
 
+
             console.log(
                 "Model dimensions:",
                 modelSize
             );
+
 
             console.log(
                 "Model long axis:",
@@ -1047,36 +1447,61 @@
             );
 
         }
-        catch (error) {
+        catch(
+            error
+        ) {
 
             console.warn(
-                "Unable to read model dimensions.",
+                "Unable to prepare model.",
                 error
             );
 
         }
 
+
+        /*
+            Apply materials once more on
+            the next rendered frame.
+
+            This prevents the viewer from
+            restoring any original material
+            state during its final load pass.
+        */
+
         requestAnimationFrame(
+
             () => {
 
                 try {
 
                     applyModelMaterialFixes();
 
-                    if (
-                        typeof modelViewer.updateFraming === "function"
+
+                    if(
+                        typeof modelViewer.updateFraming ===
+                        "function"
                     ) {
+
                         modelViewer.updateFraming();
+
                     }
 
                 }
-                catch (error) {
-                    console.warn(error);
+                catch(
+                    error
+                ) {
+
+                    console.warn(
+                        error
+                    );
+
                 }
+
 
                 updateModel();
 
             }
+
         );
 
     }
@@ -1091,22 +1516,33 @@
     ) {
 
         console.warn(
+
             "Model failed:",
+
             MODEL_CANDIDATES[
                 currentModelCandidate
             ],
+
             event
+
         );
 
+
         window.setTimeout(
+
             () => {
 
                 tryModelCandidate(
-                    currentModelCandidate + 1
+
+                    currentModelCandidate +
+                    1
+
                 );
 
             },
+
             120
+
         );
 
     }
@@ -1118,7 +1554,7 @@
 
     function initializeModel() {
 
-        if (
+        if(
             !modelViewer
         ) {
 
@@ -1126,48 +1562,85 @@
                 "#car-model not found."
             );
 
+
             return;
+
         }
+
 
         const htmlSource =
             modelViewer.dataset.modelSrc ||
-            modelViewer.getAttribute("src");
+            modelViewer.getAttribute(
+                "src"
+            );
 
-        if (
-            modelViewer.hasAttribute("src")
+
+        if(
+            modelViewer.hasAttribute(
+                "src"
+            )
         ) {
-            modelViewer.removeAttribute("src");
+
+            modelViewer.removeAttribute(
+                "src"
+            );
+
         }
+
 
         modelViewer.style.display =
             "block";
 
+
         modelViewer.style.width =
             "100%";
+
 
         modelViewer.style.height =
             "100%";
 
+
         modelViewer.orientation =
             MODEL_ORIENTATION;
 
+
+        modelViewer.environmentImage =
+            "neutral";
+
+
+        modelViewer.setAttribute(
+            "tone-mapping",
+            "neutral"
+        );
+
+
         modelViewer.exposure =
-            1.35;
+            1.18;
+
 
         modelViewer.shadowIntensity =
             0;
 
+
         modelViewer.addEventListener(
+
             "load",
+
             handleModelLoaded
+
         );
+
 
         modelViewer.addEventListener(
+
             "error",
+
             handleModelError
+
         );
 
-        if (
+
+        if(
             htmlSource
         ) {
 
@@ -1176,8 +1649,10 @@
                     htmlSource
                 );
 
-            if (
-                existingIndex > 0
+
+            if(
+                existingIndex >
+                0
             ) {
 
                 MODEL_CANDIDATES.splice(
@@ -1185,13 +1660,15 @@
                     1
                 );
 
+
                 MODEL_CANDIDATES.unshift(
                     htmlSource
                 );
 
             }
-            else if (
-                existingIndex === -1
+            else if(
+                existingIndex ===
+                -1
             ) {
 
                 MODEL_CANDIDATES.unshift(
@@ -1202,21 +1679,29 @@
 
         }
 
-        if (
+
+        if(
             window.customElements &&
             window.customElements.whenDefined
         ) {
 
             window.customElements
-                .whenDefined("model-viewer")
+                .whenDefined(
+                    "model-viewer"
+                )
                 .then(
+
                     () => {
 
-                        tryModelCandidate(0);
+                        tryModelCandidate(
+                            0
+                        );
 
                     }
+
                 )
                 .catch(
+
                     error => {
 
                         console.error(
@@ -1224,18 +1709,25 @@
                             error
                         );
 
+
                         setPlaceholderStatus(
+
                             "3D VIEWER FAILED",
+
                             "The 3D viewer library could not load."
+
                         );
 
                     }
+
                 );
 
         }
         else {
 
-            tryModelCandidate(0);
+            tryModelCandidate(
+                0
+            );
 
         }
 
@@ -1243,36 +1735,49 @@
 
 
     /* =====================================================
-       3D SCROLL PROGRESS
+       MODEL SCROLL PROGRESS
     ===================================================== */
 
     function modelProgress() {
 
-        if (
+        if(
             !vehicleStory
         ) {
+
             return 0;
+
         }
 
+
         const rect =
-            vehicleStory.getBoundingClientRect();
+            vehicleStory
+                .getBoundingClientRect();
+
 
         const travel =
             Math.max(
+
                 1,
-                vehicleStory.offsetHeight -
+
+                vehicleStory
+                    .offsetHeight -
                 window.innerHeight
+
             );
 
+
         return clamp(
-            -rect.top / travel
+
+            -rect.top /
+            travel
+
         );
 
     }
 
 
     /* =====================================================
-       TARGET POSITION ON VEHICLE
+       MODEL TARGET
     ===================================================== */
 
     function modelTarget(
@@ -1280,19 +1785,31 @@
     ) {
 
         const target = {
-            x: modelCenter.x,
-            y: modelCenter.y,
-            z: modelCenter.z
+
+            x:
+                modelCenter.x,
+
+            y:
+                modelCenter.y,
+
+            z:
+                modelCenter.z
+
         };
+
 
         target[
             modelLongAxis
         ] +=
+
             modelSize[
                 modelLongAxis
             ] *
+
             position *
+
             .33;
+
 
         return target;
 
@@ -1308,129 +1825,355 @@
     ) {
 
         const fullIntro = {
+
             orbit: 90,
+
             phi: 71,
-            radius: FULL_VIEW_DISTANCE,
-            target: modelTarget(0)
+
+            radius:
+                FULL_VIEW_DISTANCE,
+
+            target:
+                modelTarget(
+                    0
+                )
+
         };
+
 
         const solarDetail = {
+
             orbit: 76,
+
             phi: 66,
+
             radius: 56,
-            target: modelTarget(.68)
+
+            target:
+                modelTarget(
+                    .68
+                )
+
         };
+
 
         const centerDetail = {
+
             orbit: 96,
+
             phi: 62,
+
             radius: 43,
-            target: modelTarget(.04)
+
+            target:
+                modelTarget(
+                    .04
+                )
+
         };
+
 
         const rearDetail = {
+
             orbit: 115,
+
             phi: 67,
+
             radius: 52,
-            target: modelTarget(-.66)
+
+            target:
+                modelTarget(
+                    -.66
+                )
+
         };
+
 
         const fullEnd = {
+
             orbit: 98,
+
             phi: 72,
-            radius: FULL_VIEW_DISTANCE,
-            target: modelTarget(0)
+
+            radius:
+                FULL_VIEW_DISTANCE,
+
+            target:
+                modelTarget(
+                    0
+                )
+
         };
 
-        if (
-            progress < .20
+
+        /* =================================================
+           FULL VEHICLE
+        ================================================= */
+
+        if(
+            progress <
+            .20
         ) {
 
             const t =
                 smoothstep(
-                    progress / .20
+                    progress /
+                    .20
                 );
 
+
             return {
-                orbit: lerp(84, fullIntro.orbit, t),
-                phi: lerp(74, fullIntro.phi, t),
-                radius: lerp(165, fullIntro.radius, t),
-                target: fullIntro.target
+
+                orbit:
+                    lerp(
+                        84,
+                        fullIntro.orbit,
+                        t
+                    ),
+
+                phi:
+                    lerp(
+                        74,
+                        fullIntro.phi,
+                        t
+                    ),
+
+                radius:
+                    lerp(
+                        165,
+                        fullIntro.radius,
+                        t
+                    ),
+
+                target:
+                    fullIntro.target
+
             };
 
         }
 
-        if (
-            progress < .40
+
+        /* =================================================
+           SOLAR / FRONT
+        ================================================= */
+
+        if(
+            progress <
+            .40
         ) {
 
             const t =
                 smoothstep(
-                    (progress - .20) / .20
+
+                    (
+                        progress -
+                        .20
+                    ) /
+                    .20
+
                 );
 
+
             return {
-                orbit: lerp(fullIntro.orbit, solarDetail.orbit, t),
-                phi: lerp(fullIntro.phi, solarDetail.phi, t),
-                radius: lerp(fullIntro.radius, solarDetail.radius, t),
-                target: mixTarget(fullIntro.target, solarDetail.target, t)
+
+                orbit:
+                    lerp(
+                        fullIntro.orbit,
+                        solarDetail.orbit,
+                        t
+                    ),
+
+                phi:
+                    lerp(
+                        fullIntro.phi,
+                        solarDetail.phi,
+                        t
+                    ),
+
+                radius:
+                    lerp(
+                        fullIntro.radius,
+                        solarDetail.radius,
+                        t
+                    ),
+
+                target:
+                    mixTarget(
+                        fullIntro.target,
+                        solarDetail.target,
+                        t
+                    )
+
             };
 
         }
 
-        if (
-            progress < .60
+
+        /* =================================================
+           CONTROL / DRIVER
+        ================================================= */
+
+        if(
+            progress <
+            .60
         ) {
 
             const t =
                 smoothstep(
-                    (progress - .40) / .20
+
+                    (
+                        progress -
+                        .40
+                    ) /
+                    .20
+
                 );
 
+
             return {
-                orbit: lerp(solarDetail.orbit, centerDetail.orbit, t),
-                phi: lerp(solarDetail.phi, centerDetail.phi, t),
-                radius: lerp(solarDetail.radius, centerDetail.radius, t),
-                target: mixTarget(solarDetail.target, centerDetail.target, t)
+
+                orbit:
+                    lerp(
+                        solarDetail.orbit,
+                        centerDetail.orbit,
+                        t
+                    ),
+
+                phi:
+                    lerp(
+                        solarDetail.phi,
+                        centerDetail.phi,
+                        t
+                    ),
+
+                radius:
+                    lerp(
+                        solarDetail.radius,
+                        centerDetail.radius,
+                        t
+                    ),
+
+                target:
+                    mixTarget(
+                        solarDetail.target,
+                        centerDetail.target,
+                        t
+                    )
+
             };
 
         }
 
-        if (
-            progress < .80
+
+        /* =================================================
+           DRIVETRAIN
+        ================================================= */
+
+        if(
+            progress <
+            .80
         ) {
 
             const t =
                 smoothstep(
-                    (progress - .60) / .20
+
+                    (
+                        progress -
+                        .60
+                    ) /
+                    .20
+
                 );
 
+
             return {
-                orbit: lerp(centerDetail.orbit, rearDetail.orbit, t),
-                phi: lerp(centerDetail.phi, rearDetail.phi, t),
-                radius: lerp(centerDetail.radius, rearDetail.radius, t),
-                target: mixTarget(centerDetail.target, rearDetail.target, t)
+
+                orbit:
+                    lerp(
+                        centerDetail.orbit,
+                        rearDetail.orbit,
+                        t
+                    ),
+
+                phi:
+                    lerp(
+                        centerDetail.phi,
+                        rearDetail.phi,
+                        t
+                    ),
+
+                radius:
+                    lerp(
+                        centerDetail.radius,
+                        rearDetail.radius,
+                        t
+                    ),
+
+                target:
+                    mixTarget(
+                        centerDetail.target,
+                        rearDetail.target,
+                        t
+                    )
+
             };
 
         }
+
+
+        /* =================================================
+           FINAL FULL VEHICLE
+        ================================================= */
 
         const t =
             smoothstep(
-                (progress - .80) / .20
+
+                (
+                    progress -
+                    .80
+                ) /
+                .20
+
             );
 
+
         return {
-            orbit: lerp(rearDetail.orbit, fullEnd.orbit, t),
-            phi: lerp(rearDetail.phi, fullEnd.phi, t),
-            radius: lerp(rearDetail.radius, fullEnd.radius, t),
-            target: mixTarget(rearDetail.target, fullEnd.target, t)
+
+            orbit:
+                lerp(
+                    rearDetail.orbit,
+                    fullEnd.orbit,
+                    t
+                ),
+
+            phi:
+                lerp(
+                    rearDetail.phi,
+                    fullEnd.phi,
+                    t
+                ),
+
+            radius:
+                lerp(
+                    rearDetail.radius,
+                    fullEnd.radius,
+                    t
+                ),
+
+            target:
+                mixTarget(
+                    rearDetail.target,
+                    fullEnd.target,
+                    t
+                )
+
         };
 
     }
 
 
     /* =====================================================
-       STORY TEXT
+       MODEL STORY TEXT
     ===================================================== */
 
     function updateModelStories(
@@ -1440,7 +2183,9 @@
         let current =
             null;
 
+
         modelSteps.forEach(
+
             story => {
 
                 const start =
@@ -1448,51 +2193,69 @@
                         story.dataset.start
                     );
 
+
                 const end =
                     Number(
                         story.dataset.end
                     );
 
+
                 const active =
-                    progress >= start &&
-                    progress <= end;
+                    progress >=
+                    start &&
+                    progress <=
+                    end;
+
 
                 story.classList.toggle(
                     "is-active",
                     active
                 );
 
-                if (
+
+                if(
                     active
                 ) {
-                    current = story;
+
+                    current =
+                        story;
+
                 }
 
             }
+
         );
 
-        if (
+
+        if(
             current &&
-            current !== lastActiveStory
+            current !==
+            lastActiveStory
         ) {
 
             current.style.opacity =
                 "0";
 
+
             requestAnimationFrame(
+
                 () => {
 
                     requestAnimationFrame(
+
                         () => {
 
                             current.style.opacity =
                                 "";
 
                         }
+
                     );
 
                 }
+
             );
+
 
             lastActiveStory =
                 current;
@@ -1508,82 +2271,137 @@
 
     function updateModel() {
 
-        if (
+        if(
             !vehicleStory
         ) {
+
             return;
+
         }
+
 
         const progress =
             modelProgress();
+
 
         updateModelStories(
             progress
         );
 
-        if (
+
+        if(
             !modelViewer ||
             !modelLoaded
         ) {
+
             return;
+
         }
 
+
         const state =
-            cameraState(progress);
+            cameraState(
+                progress
+            );
+
 
         modelViewer.cameraOrbit =
-            `${state.orbit}deg ${state.phi}deg ${state.radius}%`;
+
+            `${state.orbit}deg ` +
+            `${state.phi}deg ` +
+            `${state.radius}%`;
+
 
         modelViewer.cameraTarget =
-            `${state.target.x}m ${state.target.y}m ${state.target.z}m`;
 
-        if (
+            `${state.target.x}m ` +
+            `${state.target.y}m ` +
+            `${state.target.z}m`;
+
+
+        /* =================================================
+           ANGLE
+        ================================================= */
+
+        if(
             orbitReadout
         ) {
 
             const angle =
                 (
                     (
-                        state.orbit % 360
-                    ) + 360
-                ) % 360;
+                        state.orbit %
+                        360
+                    ) +
+                    360
+                ) %
+                360;
+
 
             orbitReadout.textContent =
-                `${Math.round(angle).toString().padStart(3, "0")}°`;
+
+                `${Math
+                    .round(
+                        angle
+                    )
+                    .toString()
+                    .padStart(
+                        3,
+                        "0"
+                    )}°`;
 
         }
 
-        if (
+
+        /* =================================================
+           VIEW LABEL
+        ================================================= */
+
+        if(
             viewReadout
         ) {
 
-            if (
-                progress < .20
+            if(
+                progress <
+                .20
             ) {
+
                 viewReadout.textContent =
                     "FULL VEHICLE";
+
             }
-            else if (
-                progress < .40
+            else if(
+                progress <
+                .40
             ) {
+
                 viewReadout.textContent =
                     "SOLAR / FRONT";
+
             }
-            else if (
-                progress < .60
+            else if(
+                progress <
+                .60
             ) {
+
                 viewReadout.textContent =
                     "CONTROL / DRIVER";
+
             }
-            else if (
-                progress < .80
+            else if(
+                progress <
+                .80
             ) {
+
                 viewReadout.textContent =
                     "DRIVETRAIN";
+
             }
             else {
+
                 viewReadout.textContent =
                     "FULL VEHICLE";
+
             }
 
         }
@@ -1599,25 +2417,42 @@
 
         maxScroll =
             Math.max(
+
                 1,
-                document.documentElement.scrollHeight -
+
+                document
+                    .documentElement
+                    .scrollHeight -
                 window.innerHeight
+
             );
+
 
         chapterData =
             chapters.map(
+
                 chapter => {
 
                     const rect =
-                        chapter.getBoundingClientRect();
+                        chapter
+                            .getBoundingClientRect();
+
 
                     return {
-                        element: chapter,
-                        top: rect.top + window.scrollY
+
+                        element:
+                            chapter,
+
+                        top:
+                            rect.top +
+                            window.scrollY
+
                     };
 
                 }
+
             );
+
 
         schedule();
 
@@ -1625,63 +2460,84 @@
 
 
     /* =====================================================
-       ACTIVE NAV
+       ACTIVE NAVIGATION
     ===================================================== */
 
     function updateNavigation() {
 
-        if (
+        if(
             !nav
         ) {
+
             return;
+
         }
 
+
         let active =
-            chapterData[0]?.element.id ||
+            chapterData[0]
+                ?.element
+                .id ||
             "home";
 
+
         chapterData.forEach(
+
             item => {
 
-                if (
+                if(
                     window.scrollY +
-                    window.innerHeight * .38 >=
+                    window.innerHeight *
+                    .38 >=
                     item.top
                 ) {
+
                     active =
                         item.element.id;
+
                 }
 
             }
+
         );
 
-        nav.querySelectorAll(
-            'a[href^="#"]'
-        ).forEach(
-            link => {
 
-                if (
-                    link.hash === `#${active}`
-                ) {
-                    link.setAttribute(
-                        "aria-current",
-                        "location"
-                    );
-                }
-                else {
-                    link.removeAttribute(
-                        "aria-current"
-                    );
+        nav
+            .querySelectorAll(
+                'a[href^="#"]'
+            )
+            .forEach(
+
+                link => {
+
+                    if(
+                        link.hash ===
+                        `#${active}`
+                    ) {
+
+                        link.setAttribute(
+                            "aria-current",
+                            "location"
+                        );
+
+                    }
+                    else {
+
+                        link.removeAttribute(
+                            "aria-current"
+                        );
+
+                    }
+
                 }
 
-            }
-        );
+            );
 
     }
 
 
     /* =====================================================
-       MAIN RENDER LOOP
+       MAIN RENDER
     ===================================================== */
 
     function render() {
@@ -1689,19 +2545,29 @@
         frame =
             0;
 
+
         const pageProgress =
             clamp(
-                window.scrollY / maxScroll
+
+                window.scrollY /
+                maxScroll
+
             );
 
-        if (
+
+        if(
             progressBar
         ) {
+
             progressBar.style.transform =
                 `scaleX(${pageProgress})`;
+
         }
 
+
         updateNavigation();
+
+
         updateModel();
 
     }
@@ -1709,11 +2575,14 @@
 
     function schedule() {
 
-        if (
+        if(
             frame
         ) {
+
             return;
+
         }
+
 
         frame =
             requestAnimationFrame(
@@ -1728,11 +2597,15 @@
     ===================================================== */
 
     window.addEventListener(
+
         "scroll",
+
         schedule,
+
         {
             passive: true
         }
+
     );
 
 
@@ -1743,26 +2616,36 @@
     let resizeTimer =
         0;
 
+
     window.addEventListener(
+
         "resize",
+
         () => {
 
             clearTimeout(
                 resizeTimer
             );
 
+
             resizeTimer =
                 window.setTimeout(
+
                     () => {
 
                         measure();
+
+
                         updateModel();
 
                     },
+
                     120
+
                 );
 
         }
+
     );
 
 
@@ -1772,21 +2655,32 @@
 
     function initialize() {
 
-        if (
+        if(
             initialized
         ) {
+
             return;
+
         }
+
 
         initialized =
             true;
 
+
         initializeModel();
+
+
         measure();
+
+
         revealPageOnce();
+
+
         schedule();
 
     }
+
 
     initialize();
 
@@ -1796,26 +2690,34 @@
     ===================================================== */
 
     window.addEventListener(
+
         "pageshow",
+
         event => {
 
-            if (
+            if(
                 event.persisted
             ) {
 
-                if (
+                if(
                     transition
                 ) {
+
                     transition.className =
                         "page-transition is-revealed";
+
                 }
 
+
                 measure();
+
+
                 schedule();
 
             }
 
         }
+
     );
 
 })();
