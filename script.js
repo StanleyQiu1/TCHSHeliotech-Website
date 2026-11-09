@@ -1,192 +1,1639 @@
 (() => {
-  'use strict';
-  const root = document.documentElement;
-  const menu = document.querySelector('.menu-toggle');
-  const nav = document.querySelector('#navigation');
-  const motion = document.querySelector('#motion-toggle');
-  const cursor = document.querySelector('.demo-cursor');
-  const echoes = [...document.querySelectorAll('.cursor-echo')];
-  const progress = document.querySelector('.scroll-progress');
-  const hero = document.querySelector('.hero');
-  const figure = document.querySelector('.car-figure');
-  const parts = [...document.querySelectorAll('.assembly-part')];
-  const reveals = [...document.querySelectorAll('.reveal')];
-  const chapters = [...document.querySelectorAll('.chapter')];
-  const targets = [...document.querySelectorAll('[data-target]')];
-  const reduced = matchMedia('(prefers-reduced-motion: reduce)');
-  const desktop = matchMedia('(min-width: 901px) and (min-height: 680px) and (pointer: fine)');
-  const clamp = (n, a = 0, b = 1) => Math.min(b, Math.max(a, n));
-  const ease = n => n * n * (3 - 2 * n);
-  let enabled = false, userOff = false, frame = 0, lastTime = 0;
-  let width = innerWidth, height = innerHeight, maxScroll = 1, heroTravel = 0;
-  let revealData = [], partData = [], route = [], chapterData = [];
-  let previousScroll = scrollY, x = width * .5, y = height * .5;
-  let echoX = x, echoY = y, echo2X = x, echo2Y = y, pulseTimer;
 
-  // This preference is optional: storage may be unavailable for local files.
-  try { userOff = localStorage.getItem('heliotech-motion') === 'off'; } catch {}
-  document.querySelector('#year').textContent = new Date().getFullYear();
-  root.classList.add('js-ready');
-  menu.hidden = false;
-  motion.hidden = false;
-  function closeMenu() {
-    nav.classList.remove('open');
-    menu.setAttribute('aria-expanded', 'false');
-    menu.textContent = 'Menu +';
-  }
-  menu.addEventListener('click', () => {
-    const open = menu.getAttribute('aria-expanded') !== 'true';
-    nav.classList.toggle('open', open);
-    menu.setAttribute('aria-expanded', String(open));
-    menu.textContent = open ? 'Close −' : 'Menu +';
-  });
-  nav.addEventListener('click', event => {
-    if (event.target.closest('a')) closeMenu();
-  });
-  document.addEventListener('keydown', event => {
-    if (event.key === 'Escape' && nav.classList.contains('open')) {
-      closeMenu(); menu.focus();
+    'use strict';
+
+
+    const root =
+        document.documentElement;
+
+
+    const nav =
+        document.querySelector(
+            '#navigation'
+        );
+
+
+    const menu =
+        document.querySelector(
+            '.menu-toggle'
+        );
+
+
+    const progress =
+        document.querySelector(
+            '.scroll-progress'
+        );
+
+
+    const hero =
+        document.querySelector(
+            '.hero'
+        );
+
+
+    const buildTargets = [
+        ...document.querySelectorAll(
+            '[data-build]'
+        )
+    ];
+
+
+    const chapters = [
+        ...document.querySelectorAll(
+            '.chapter'
+        )
+    ];
+
+
+    const layer =
+        document.querySelector(
+            '#builder-layer'
+        );
+
+
+    const year =
+        document.querySelector(
+            '#year'
+        );
+
+
+    const reduced =
+        matchMedia(
+            '(prefers-reduced-motion: reduce)'
+        );
+
+
+    const desktop =
+        matchMedia(
+            '(min-width: 1001px) and (min-height: 650px) and (pointer: fine)'
+        );
+
+
+    const clamp =
+        (
+            n,
+            a = 0,
+            b = 1
+        ) =>
+        Math.min(
+            b,
+            Math.max(
+                a,
+                n
+            )
+        );
+
+
+    const smooth =
+        n =>
+        n *
+        n *
+        (
+            3 -
+            2 *
+            n
+        );
+
+
+    const smoother =
+        n =>
+        n *
+        n *
+        n *
+        (
+            n *
+            (
+                n *
+                6 -
+                15
+            ) +
+            10
+        );
+
+
+    const colors = [
+
+        '#55d7ff',
+
+        '#ff5b4d',
+
+        '#9ee37d',
+
+        '#f5d547',
+
+        '#c28cff',
+
+        '#68f0cf',
+
+        '#ff8ac8'
+
+    ];
+
+
+    const labels = [
+
+        'ELEC',
+
+        'UI',
+
+        'MECH',
+
+        'DATA',
+
+        'AERO',
+
+        'PCB',
+
+        'OPS'
+
+    ];
+
+
+    const cursorCount =
+        colors.length;
+
+
+    let enabled =
+        false;
+
+
+    let frame =
+        0;
+
+
+    let width =
+        innerWidth;
+
+
+    let height =
+        innerHeight;
+
+
+    let maxScroll =
+        1;
+
+
+    let heroTravel =
+        1;
+
+
+    let targetData =
+        [];
+
+
+    let chapterData =
+        [];
+
+
+    let routes =
+        [];
+
+
+    let lastTime =
+        0;
+
+
+    const cursors =
+        [];
+
+
+    const boxes =
+        [];
+
+
+    if(year) {
+
+        year.textContent =
+            new Date()
+            .getFullYear();
+
     }
-  });
-  function schedule() { if (!frame) frame = requestAnimationFrame(render); }
-  function bounds(element) {
-    const rect = element.getBoundingClientRect();
-    return { element, top: rect.top + scrollY, x: rect.left + rect.width * .65,
-      y: rect.top + scrollY + Math.min(rect.height * .45, 120) };
-  }
-  function measure() {
-    // All layout reads are grouped here, never in the animation loop.
-    width = innerWidth; height = innerHeight;
-    const animated = [...reveals, ...parts, figure];
-    animated.forEach(element => { element.style.transform = 'none'; });
-    heroTravel = enabled ? Math.max(0, hero.offsetHeight - height) : 0;
-    revealData = reveals.map(bounds);
-    revealData.filter(item => item.element.classList.contains('team-card')).forEach((item, i) => {
-      item.top += enabled ? (i % 3) * height * .06 : 0;
-    });
-    partData = parts.map(bounds);
-    chapterData = chapters.map(bounds);
-    route = targets.map(element => {
-      const item = bounds(element);
-      const inHero = hero.contains(element);
-      if (inHero) item.y -= Math.min(scrollY, heroTravel);
-      item.hero = inHero;
-      item.at = inHero ? (element.dataset.target === 'title' ? 0 : heroTravel * .65)
-        : Math.max(0, item.y - height * .56);
-      const partIndex = parts.indexOf(element);
-      if (partIndex >= 0) item.at = item.top - height * .68 + partIndex * height * .09;
-      if (element.dataset.target === 'electrical') item.at += height * .08;
-      item.dark = !!element.closest('.support,.car-figure');
-      return item;
-    }).sort((a, b) => a.at - b.at);
-    animated.forEach(element => { element.style.removeProperty('transform'); });
-    maxScroll = Math.max(1, document.documentElement.scrollHeight - height);
-    previousScroll = scrollY;
-    schedule();
-  }
-  function configure() {
-    enabled = desktop.matches && !reduced.matches && !userOff;
-    root.classList.toggle('enhanced', enabled);
-    motion.disabled = reduced.matches || !desktop.matches;
-    motion.textContent = reduced.matches ? 'Reduced motion' : enabled ? 'Motion: on' : 'Motion: off';
-    motion.setAttribute('aria-pressed', String(!enabled));
-    motion.setAttribute('aria-label', enabled ? 'Turn scroll animation off' : 'Turn scroll animation on');
-    // CSS custom properties must not leave content hidden after switching modes.
-    if (!enabled) {
-      [...reveals, ...parts, figure].forEach(element => element.removeAttribute('style'));
-      document.querySelector('.assembly').style.removeProperty('--line-progress');
-      hero.style.removeProperty('--title-outline');
+
+
+    function makeCursor(index) {
+
+        const el =
+            document
+            .createElement(
+                'div'
+            );
+
+
+        el.className =
+            'builder-cursor';
+
+
+        el.style
+        .setProperty(
+            '--cursor-color',
+            colors[index]
+        );
+
+
+        el.innerHTML = `
+
+            <svg
+                viewBox="0 0 22 27"
+                aria-hidden="true"
+            >
+
+                <path
+                    d="
+                        M2 2
+                        L19 16.5
+                        L12.2 17.2
+                        L9.2 24.5
+                        Z
+                    "
+                ></path>
+
+            </svg>
+
+
+            <span class="cursor-tag">
+                ${labels[index]}
+            </span>
+
+
+            <i class="cursor-pulse"></i>
+
+        `;
+
+
+        layer.appendChild(
+            el
+        );
+
+
+        const box =
+            document
+            .createElement(
+                'div'
+            );
+
+
+        box.className =
+            'build-box';
+
+
+        box.style
+        .setProperty(
+            '--box-color',
+            colors[index]
+        );
+
+
+        box.innerHTML = `
+
+            <span class="box-label">
+                ${labels[index]} / BUILD
+            </span>
+
+        `;
+
+
+        layer.appendChild(
+            box
+        );
+
+
+        const angle =
+            (
+                Math.PI *
+                2 *
+                index
+            ) /
+            cursorCount;
+
+
+        return {
+
+            el,
+
+            box,
+
+            x:
+                width *
+                .5 +
+                Math.cos(
+                    angle
+                ) *
+                18,
+
+            y:
+                height *
+                .5 +
+                Math.sin(
+                    angle
+                ) *
+                18,
+
+            tx:
+                width *
+                .5,
+
+            ty:
+                height *
+                .5,
+
+            activeKey:
+                '',
+
+            pulseTimer:
+                0
+
+        };
+
     }
-    measure();
-  }
-  motion.addEventListener('click', () => {
-    userOff = !userOff;
-    try { localStorage.setItem('heliotech-motion', userOff ? 'off' : 'on'); } catch {}
+
+
+    for(
+        let i = 0;
+        i < cursorCount;
+        i++
+    ) {
+
+        const item =
+            makeCursor(
+                i
+            );
+
+
+        cursors.push(
+            item
+        );
+
+
+        boxes.push(
+            item.box
+        );
+
+    }
+
+
+    function closeMenu() {
+
+        nav.classList
+        .remove(
+            'open'
+        );
+
+
+        menu.setAttribute(
+            'aria-expanded',
+            'false'
+        );
+
+
+        menu.textContent =
+            'Menu +';
+
+    }
+
+
+    menu.addEventListener(
+
+        'click',
+
+        () => {
+
+            const open =
+                !nav.classList
+                .contains(
+                    'open'
+                );
+
+
+            nav.classList
+            .toggle(
+                'open',
+                open
+            );
+
+
+            menu.setAttribute(
+                'aria-expanded',
+                String(
+                    open
+                )
+            );
+
+
+            menu.textContent =
+                open
+                ? 'Close −'
+                : 'Menu +';
+
+        }
+
+    );
+
+
+    nav.addEventListener(
+
+        'click',
+
+        event => {
+
+            if(
+                event.target
+                .closest(
+                    'a'
+                )
+            ) {
+
+                closeMenu();
+
+            }
+
+        }
+
+    );
+
+
+    function schedule() {
+
+        if(!frame) {
+
+            frame =
+                requestAnimationFrame(
+                    render
+                );
+
+        }
+
+    }
+
+
+    function docTop(el) {
+
+        const rect =
+            el.getBoundingClientRect();
+
+
+        return (
+            rect.top +
+            scrollY
+        );
+
+    }
+
+
+    function measure() {
+
+        width =
+            innerWidth;
+
+
+        height =
+            innerHeight;
+
+
+        maxScroll =
+            Math.max(
+
+                1,
+
+                document
+                .documentElement
+                .scrollHeight -
+                height
+
+            );
+
+
+        heroTravel =
+            enabled
+
+            ? Math.max(
+
+                1,
+
+                hero.offsetHeight -
+                height
+
+            )
+
+            : 1;
+
+
+        targetData =
+            buildTargets
+            .map(
+
+                (
+                    el,
+                    index
+                ) => {
+
+                    const phase =
+                        Number(
+                            el.dataset
+                            .buildPhase
+                        );
+
+
+                    const cursor =
+                        Number.isFinite(
+                            Number(
+                                el.dataset
+                                .cursor
+                            )
+                        )
+
+                        ? Number(
+                            el.dataset
+                            .cursor
+                        ) %
+                        cursorCount
+
+                        : index %
+                        cursorCount;
+
+
+                    const top =
+                        docTop(
+                            el
+                        );
+
+
+                    const at =
+                        Number.isFinite(
+                            phase
+                        )
+
+                        ? heroTravel *
+                        phase
+
+                        : Math.max(
+
+                            heroTravel *
+                            .42,
+
+                            top -
+                            height *
+                            .70
+
+                        );
+
+
+                    return {
+
+                        el,
+
+                        cursor,
+
+                        at,
+
+                        top,
+
+                        index,
+
+                        key:
+                            `${cursor}:${index}`
+
+                    };
+
+                }
+
+            )
+            .sort(
+
+                (
+                    a,
+                    b
+                ) =>
+                a.at -
+                b.at
+
+            );
+
+
+        routes =
+            Array.from(
+
+                {
+                    length:
+                        cursorCount
+                },
+
+                (
+                    _,
+                    cursorIndex
+                ) => {
+
+
+                    const angle =
+                        (
+                            Math.PI *
+                            2 *
+                            cursorIndex
+                        ) /
+                        cursorCount;
+
+
+                    const start = {
+
+                        synthetic:
+                            true,
+
+                        at:
+                            -height *
+                            .05,
+
+                        x:
+                            width *
+                            .5 +
+                            Math.cos(
+                                angle
+                            ) *
+                            20,
+
+                        y:
+                            height *
+                            .48 +
+                            Math.sin(
+                                angle
+                            ) *
+                            20,
+
+                        key:
+                            `start-${cursorIndex}`
+
+                    };
+
+
+                    return [
+
+                        start,
+
+                        ...targetData
+                        .filter(
+
+                            item =>
+                            item.cursor ===
+                            cursorIndex
+
+                        )
+
+                    ];
+
+                }
+
+            );
+
+
+        chapterData =
+            chapters
+            .map(
+
+                el => ({
+
+                    el,
+
+                    top:
+                        docTop(
+                            el
+                        )
+
+                })
+
+            );
+
+
+        schedule();
+
+    }
+
+
+    function configure() {
+
+        enabled =
+            desktop.matches &&
+            !reduced.matches;
+
+
+        root.classList
+        .toggle(
+
+            'builder-enabled',
+
+            enabled
+
+        );
+
+
+        if(!enabled) {
+
+            buildTargets
+            .forEach(
+
+                el =>
+                el.style
+                .setProperty(
+                    '--build',
+                    '1'
+                )
+
+            );
+
+
+            boxes
+            .forEach(
+
+                box =>
+                box.style.opacity =
+                    '0'
+
+            );
+
+        }
+
+
+        measure();
+
+    }
+
+
+    function pulse(cursor) {
+
+        cursor.el
+        .classList
+        .remove(
+            'click'
+        );
+
+
+        clearTimeout(
+            cursor.pulseTimer
+        );
+
+
+        requestAnimationFrame(
+
+            () =>
+            cursor.el
+            .classList
+            .add(
+                'click'
+            )
+
+        );
+
+
+        cursor.pulseTimer =
+            setTimeout(
+
+                () =>
+                cursor.el
+                .classList
+                .remove(
+                    'click'
+                ),
+
+                520
+
+            );
+
+    }
+
+
+    function targetPoint(
+        item,
+        cursorIndex
+    ) {
+
+        if(
+            item.synthetic
+        ) {
+
+            return {
+
+                x:
+                    item.x,
+
+                y:
+                    item.y,
+
+                rect:
+                    null
+
+            };
+
+        }
+
+
+        const rect =
+            item.el
+            .getBoundingClientRect();
+
+
+        const presets = [
+
+            [
+                .18,
+                .32
+            ],
+
+            [
+                .78,
+                .25
+            ],
+
+            [
+                .52,
+                .52
+            ],
+
+            [
+                .28,
+                .72
+            ],
+
+            [
+                .82,
+                .68
+            ],
+
+            [
+                .64,
+                .38
+            ],
+
+            [
+                .42,
+                .82
+            ]
+
+        ];
+
+
+        const [
+            fx,
+            fy
+        ] =
+        presets[
+            cursorIndex %
+            presets.length
+        ];
+
+
+        return {
+
+            x:
+                clamp(
+
+                    rect.left +
+                    rect.width *
+                    fx,
+
+                    18,
+
+                    width -
+                    120
+
+                ),
+
+            y:
+                clamp(
+
+                    rect.top +
+                    rect.height *
+                    fy,
+
+                    90,
+
+                    height -
+                    55
+
+                ),
+
+            rect
+
+        };
+
+    }
+
+
+    function routeSegment(
+        route,
+        s
+    ) {
+
+        let i =
+            0;
+
+
+        while(
+
+            i <
+            route.length -
+            2 &&
+
+            s >=
+            route[
+                i + 1
+            ].at
+
+        ) {
+
+            i++;
+
+        }
+
+
+        const a =
+            route[i];
+
+
+        const b =
+            route[
+                Math.min(
+
+                    i + 1,
+
+                    route.length -
+                    1
+
+                )
+            ];
+
+
+        const span =
+            Math.max(
+
+                1,
+
+                b.at -
+                a.at
+
+            );
+
+
+        const raw =
+            clamp(
+
+                (
+                    s -
+                    a.at
+                ) /
+                span
+
+            );
+
+
+        const t =
+            smoother(
+
+                clamp(
+
+                    (
+                        raw -
+                        .22
+                    ) /
+                    .56
+
+                )
+
+            );
+
+
+        return {
+
+            a,
+
+            b,
+
+            raw,
+
+            t
+
+        };
+
+    }
+
+
+    function updateTargetBuild(s) {
+
+        targetData
+        .forEach(
+
+            item => {
+
+                const local =
+                    smooth(
+
+                        clamp(
+
+                            (
+                                s -
+                                item.at +
+                                height *
+                                .06
+                            ) /
+                            (
+                                height *
+                                .20
+                            )
+
+                        )
+
+                    );
+
+
+                item.el.style
+                .setProperty(
+
+                    '--build',
+
+                    local
+                    .toFixed(
+                        3
+                    )
+
+                );
+
+            }
+
+        );
+
+    }
+
+
+    function updateBox(
+        cursor,
+        target,
+        raw
+    ) {
+
+        if(
+            !target ||
+            target.synthetic
+        ) {
+
+            cursor.box
+            .style.opacity =
+                '0';
+
+
+            return;
+
+        }
+
+
+        const rect =
+            target.el
+            .getBoundingClientRect();
+
+
+        const inView =
+
+            rect.bottom >
+            86 &&
+
+            rect.top <
+            height -
+            30;
+
+
+        const arrival =
+
+            1 -
+
+            Math.min(
+
+                1,
+
+                Math.abs(
+                    raw -
+                    1
+                ) *
+                5.5
+
+            );
+
+
+        const opacity =
+
+            inView
+
+            ? clamp(
+                arrival
+            )
+
+            : 0;
+
+
+        const pad =
+            5;
+
+
+        cursor.box
+        .style.opacity =
+            opacity
+            .toFixed(
+                2
+            );
+
+
+        cursor.box
+        .style.width =
+            `${
+                Math.max(
+
+                    8,
+
+                    rect.width +
+                    pad *
+                    2
+
+                )
+            }px`;
+
+
+        cursor.box
+        .style.height =
+            `${
+                Math.max(
+
+                    8,
+
+                    rect.height +
+                    pad *
+                    2
+
+                )
+            }px`;
+
+
+        cursor.box
+        .style.transform =
+
+            `translate3d(
+                ${rect.left - pad}px,
+                ${rect.top - pad}px,
+                0
+            )`;
+
+    }
+
+
+    function updateNavigation(s) {
+
+        let active =
+            chapterData[0]
+            ?.el.id ||
+            'home';
+
+
+        chapterData
+        .forEach(
+
+            item => {
+
+                if(
+
+                    s +
+                    height *
+                    .34 >=
+                    item.top
+
+                ) {
+
+                    active =
+                        item.el.id;
+
+                }
+
+            }
+
+        );
+
+
+        nav.querySelectorAll(
+            'a[href^="#"]'
+        )
+        .forEach(
+
+            link => {
+
+                link.toggleAttribute(
+
+                    'aria-current',
+
+                    link.hash ===
+                    `#${active}`
+
+                );
+
+
+                if(
+                    link.hasAttribute(
+                        'aria-current'
+                    )
+                ) {
+
+                    link.setAttribute(
+                        'aria-current',
+                        'location'
+                    );
+
+                }
+
+            }
+
+        );
+
+    }
+
+
+    function render(time) {
+
+        frame =
+            0;
+
+
+        const s =
+            scrollY;
+
+
+        progress.style
+        .transform =
+
+            `scaleX(
+                ${clamp(
+                    s /
+                    maxScroll
+                )}
+            )`;
+
+
+        updateNavigation(
+            s
+        );
+
+
+        if(
+            !enabled ||
+            document.hidden
+        ) {
+
+            lastTime =
+                0;
+
+
+            return;
+
+        }
+
+
+        updateTargetBuild(
+            s
+        );
+
+
+        const dt =
+            lastTime
+
+            ? Math.min(
+
+                50,
+
+                time -
+                lastTime
+
+            )
+
+            : 16;
+
+
+        lastTime =
+            time;
+
+
+        const follow =
+
+            1 -
+
+            Math.exp(
+
+                -dt /
+                78
+
+            );
+
+
+        routes
+        .forEach(
+
+            (
+                route,
+                index
+            ) => {
+
+
+                const cursor =
+                    cursors[
+                        index
+                    ];
+
+
+                const {
+
+                    a,
+
+                    b,
+
+                    raw,
+
+                    t
+
+                } =
+                routeSegment(
+                    route,
+                    s
+                );
+
+
+                const pa =
+                    targetPoint(
+                        a,
+                        index
+                    );
+
+
+                const pb =
+                    targetPoint(
+                        b,
+                        index
+                    );
+
+
+                const arc =
+                    Math.sin(
+                        t *
+                        Math.PI
+                    );
+
+
+                cursor.tx =
+
+                    pa.x +
+
+                    (
+                        pb.x -
+                        pa.x
+                    ) *
+                    t +
+
+                    (
+                        index %
+                        2
+
+                        ? 1
+
+                        : -1
+                    ) *
+
+                    arc *
+
+                    (
+                        22 +
+                        index *
+                        2
+                    );
+
+
+                cursor.ty =
+
+                    pa.y +
+
+                    (
+                        pb.y -
+                        pa.y
+                    ) *
+                    t -
+
+                    arc *
+
+                    (
+                        16 +
+
+                        (
+                            index %
+                            3
+                        ) *
+                        5
+                    );
+
+
+                cursor.x +=
+
+                    (
+                        cursor.tx -
+                        cursor.x
+                    ) *
+                    follow;
+
+
+                cursor.y +=
+
+                    (
+                        cursor.ty -
+                        cursor.y
+                    ) *
+                    follow;
+
+
+                cursor.el.style
+                .transform =
+
+                    `translate3d(
+                        ${cursor.x}px,
+                        ${cursor.y}px,
+                        0
+                    )`;
+
+
+                const activeTarget =
+
+                    raw >
+                    .52
+
+                    ? b
+
+                    : a;
+
+
+                const activeKey =
+
+                    activeTarget
+                    ?.key ||
+                    '';
+
+
+                if(
+
+                    activeKey &&
+
+                    activeKey !==
+                    cursor.activeKey &&
+
+                    !activeTarget
+                    .synthetic
+
+                ) {
+
+                    pulse(
+                        cursor
+                    );
+
+
+                    cursor.activeKey =
+                        activeKey;
+
+                }
+
+
+                updateBox(
+                    cursor,
+                    b,
+                    raw
+                );
+
+            }
+
+        );
+
+
+        const moving =
+            cursors
+            .some(
+
+                c =>
+
+                Math.abs(
+                    c.tx -
+                    c.x
+                ) +
+
+                Math.abs(
+                    c.ty -
+                    c.y
+                ) >
+
+                .35
+
+            );
+
+
+        if(
+            moving
+        ) {
+
+            schedule();
+
+        }
+
+    }
+
+
+    addEventListener(
+
+        'scroll',
+
+        schedule,
+
+        {
+            passive: true
+        }
+
+    );
+
+
+    addEventListener(
+
+        'load',
+
+        measure
+
+    );
+
+
+    addEventListener(
+
+        'pageshow',
+
+        measure
+
+    );
+
+
+    let resizeTimer =
+        0;
+
+
+    addEventListener(
+
+        'resize',
+
+        () => {
+
+            clearTimeout(
+                resizeTimer
+            );
+
+
+            resizeTimer =
+                setTimeout(
+
+                    configure,
+
+                    120
+
+                );
+
+        }
+
+    );
+
+
+    reduced.addEventListener(
+
+        'change',
+
+        configure
+
+    );
+
+
+    desktop.addEventListener(
+
+        'change',
+
+        configure
+
+    );
+
+
+    document.addEventListener(
+
+        'visibilitychange',
+
+        () => {
+
+            lastTime =
+                0;
+
+
+            schedule();
+
+        }
+
+    );
+
+
     configure();
-  });
-  function pulse() {
-    cursor.classList.remove('clicking');
-    clearTimeout(pulseTimer);
-    // A new animation name is not needed; the next frame restarts the ring.
-    requestAnimationFrame(() => cursor.classList.add('clicking'));
-    pulseTimer = setTimeout(() => cursor.classList.remove('clicking'), 650);
-  }
-  function render(time) {
-    frame = 0;
-    const s = scrollY;
-    progress.style.transform = `scaleX(${clamp(s / maxScroll)})`;
-    let active = chapterData[0]?.element.id;
-    chapterData.forEach(item => { if (s + height * .4 >= item.top) active = item.element.id; });
-    nav.querySelectorAll('a').forEach(link => {
-      if (link.hash === `#${active}`) link.setAttribute('aria-current', 'location');
-      else link.removeAttribute('aria-current');
-    });
-    if (!enabled || document.hidden) { lastTime = 0; return; }
-    const dt = lastTime ? Math.min(64, time - lastTime) : 16;
-    lastTime = time;
-    const hp = clamp(s / Math.max(1, heroTravel));
-    const car = ease(clamp((hp - .08) / .55));
-    figure.style.setProperty('--car-opacity', .35 + car * .65);
-    figure.style.setProperty('--car-y', `${(1 - car) * 24}px`);
-    figure.style.setProperty('--outline', Math.sin(car * Math.PI).toFixed(3));
-    hero.style.setProperty('--title-outline', Math.max(0, 1 - hp * 5));
-    revealData.forEach(item => {
-      const p = ease(clamp((s + height * .92 - item.top) / (height * .32)));
-      item.element.style.setProperty('--reveal', p.toFixed(3));
-      item.element.style.setProperty('--reveal-y', `${(1 - p) * 32}px`);
-      item.element.style.setProperty('--outline', Math.sin(p * Math.PI).toFixed(3));
-    });
-    let line = 0;
-    partData.forEach((item, i) => {
-      const p = ease(clamp((s + height * .85 - item.top - i * height * .09) / (height * .19)));
-      item.element.style.setProperty('--part', (.16 + p * .84).toFixed(3));
-      item.element.style.setProperty('--part-y', `${(1 - p) * 25}px`);
-      line += p / parts.length;
-    });
-    document.querySelector('.assembly').style.setProperty('--line-progress', line.toFixed(3));
-    let index = 0;
-    while (index < route.length - 2 && s > route[index + 1].at) index++;
-    const a = route[index], b = route[Math.min(index + 1, route.length - 1)];
-    const raw = clamp((s - a.at) / Math.max(1, b.at - a.at));
-    // Hold briefly at each target, then travel smoothly to the next one.
-    const t = ease(clamp((raw - .12) / .76));
-    const screenY = item => item.y - (item.hero ? Math.max(0, s - heroTravel) : s);
-    const tx = clamp(a.x + (b.x - a.x) * t, 24, width - 100);
-    const ty = clamp(screenY(a) + (screenY(b) - screenY(a)) * t, 115, height - 65);
-    const follow = 1 - Math.exp(-dt / 65);
-    x += (tx - x) * follow; y += (ty - y) * follow;
-    echoX += (x - echoX) * follow * .55; echoY += (y - echoY) * follow * .55;
-    echo2X += (echoX - echo2X) * follow * .45; echo2Y += (echoY - echo2Y) * follow * .45;
-    cursor.style.transform = `translate3d(${x}px,${y}px,0)`;
-    echoes[0].style.transform = `translate3d(${echoX - 10}px,${echoY + 14}px,0)`;
-    echoes[1].style.transform = `translate3d(${echo2X + 14}px,${echo2Y + 25}px,0)`;
-    const target = t > .5 ? b : a;
-    cursor.classList.toggle('on-dark', target.dark);
-    echoes.forEach(element => { element.style.color = target.dark ? '#fff' : '#1e1f2b'; });
-    const visible = s < maxScroll - 100;
-    cursor.style.opacity = visible ? '1' : '0';
-    echoes.forEach(element => { element.style.visibility = visible ? 'visible' : 'hidden'; });
-    if (route.some(item => previousScroll < item.at && s >= item.at)) pulse();
-    previousScroll = s;
-    if (Math.abs(tx - x) + Math.abs(ty - y) + Math.abs(x - echo2X) + Math.abs(y - echo2Y) > .4) schedule();
-  }
-  // Native scroll remains in control; no wheel/touch interception or scroll locking.
-  addEventListener('scroll', schedule, { passive: true });
-  let resizeTimer;
-  addEventListener('resize', () => {
-    clearTimeout(resizeTimer); resizeTimer = setTimeout(configure, 120);
-  });
-  addEventListener('load', measure);
-  addEventListener('pageshow', measure);
-  reduced.addEventListener('change', configure);
-  desktop.addEventListener('change', configure);
-  document.addEventListener('visibilitychange', () => { lastTime = 0; schedule(); });
-  // Keyboard focus always exposes its containing animated content.
-  document.addEventListener('focusin', event => {
-    if (enabled && event.target.closest('.reveal')) {
-      event.target.closest('.reveal').style.setProperty('--reveal', '1');
-      event.target.closest('.reveal').style.setProperty('--reveal-y', '0px');
-    }
-  });
-  configure();
+
+
 })();
