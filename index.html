@@ -1,22 +1,23 @@
-<!doctype html>
+<!DOCTYPE html>
 <html lang="en">
 
 <head>
-    <meta charset="utf-8">
+
+    <meta charset="UTF-8">
 
     <meta
         name="viewport"
-        content="width=device-width, initial-scale=1"
+        content="width=device-width, initial-scale=1.0"
     >
 
     <meta
         name="description"
-        content="Temple City High School HelioTech — student-built solar cars, PCB systems, engineering, fabrication, and racing."
+        content="TCHS HelioTech Solar Car Team — student engineering, solar racing, PCB design, embedded systems, fabrication, and vehicle development."
     >
 
     <meta
         name="theme-color"
-        content="#0a0c0e"
+        content="#07111b"
     >
 
     <title>
@@ -24,14 +25,31 @@
     </title>
 
     <link
+        rel="preconnect"
+        href="https://fonts.googleapis.com"
+    >
+
+    <link
+        rel="preconnect"
+        href="https://fonts.gstatic.com"
+        crossorigin
+    >
+
+    <link
+        href="https://fonts.googleapis.com/css2?family=Inter:wght@400;500;600;700;800;900&family=Space+Mono:wght@400;700&display=swap"
         rel="stylesheet"
-        href="./styles.css"
+    >
+
+    <link
+        rel="stylesheet"
+        href="styles.css"
     >
 
     <script
-        src="./script.js"
+        src="script.js"
         defer
     ></script>
+
 </head>
 
 
@@ -48,19 +66,21 @@
 
 <header class="site-header">
 
+
     <a
-        class="brand"
         href="#home"
-        aria-label="TCHS HelioTech home"
+        class="brand"
+        data-build="button"
+        data-phase="0.015"
+        data-cursor="0"
     >
 
-        <span
-            class="brand-mark"
-            aria-hidden="true"
-        ></span>
+        <span class="brand-symbol">
+            <span></span>
+        </span>
 
-        <span>
-            HELIO<strong>TECH</strong>
+        <span data-type>
+            HELIOTECH
         </span>
 
     </a>
@@ -71,30 +91,55 @@
         aria-label="Main navigation"
     >
 
-        <a href="#mission">
+        <a
+            href="#mission"
+            data-build="button"
+            data-phase="0.025"
+            data-cursor="1"
+            data-type
+        >
             Mission
         </a>
 
-        <a href="#systems">
+        <a
+            href="#systems"
+            data-build="button"
+            data-phase="0.04"
+            data-cursor="2"
+            data-type
+        >
             Systems
         </a>
 
-        <a href="#cars">
+        <a
+            href="#cars"
+            data-build="button"
+            data-phase="0.055"
+            data-cursor="3"
+            data-type
+        >
             Cars
         </a>
 
-        <a href="#team">
+        <a
+            href="#team"
+            data-build="button"
+            data-phase="0.07"
+            data-cursor="4"
+            data-type
+        >
             Team
         </a>
 
         <a
-            class="nav-cta"
             href="#support"
+            class="nav-cta"
+            data-build="button"
+            data-phase="0.085"
+            data-cursor="5"
+            data-type
         >
-            Support
-            <span aria-hidden="true">
-                ↗
-            </span>
+            Support ↗
         </a>
 
     </nav>
@@ -103,17 +148,15 @@
     <button
         class="menu-toggle"
         type="button"
-        aria-controls="navigation"
         aria-expanded="false"
+        aria-controls="navigation"
     >
         Menu +
     </button>
 
 
-    <div
-        class="scroll-progress"
-        aria-hidden="true"
-    ></div>
+    <div class="scroll-progress"></div>
+
 
 </header>
 
@@ -124,32 +167,32 @@
 <section
     id="home"
     class="hero chapter dark-section"
-    aria-labelledby="hero-title"
 >
+
 
     <div class="hero-sticky">
 
 
         <div
             class="system-strip"
-            data-build
-            data-cursor="0"
-            data-build-phase="0.04"
+            data-build="rule"
+            data-phase="0.10"
+            data-cursor="6"
         >
 
-            <span>
+            <span data-type>
                 TCHS / HELIOTECH
             </span>
 
-            <span>
+            <span data-type>
                 SOLAR MOBILITY
             </span>
 
-            <span>
-                TEMPLE CITY, CA
+            <span data-type>
+                TEMPLE CITY / CA
             </span>
 
-            <span>
+            <span data-type>
                 STUDENT BUILT
             </span>
 
@@ -161,199 +204,431 @@
 
             <div class="hero-copy-block">
 
+
                 <p
                     class="kicker"
-                    data-build
-                    data-cursor="1"
-                    data-build-phase="0.09"
+                    data-build="text"
+                    data-type
+                    data-phase="0.13"
+                    data-cursor="0"
                 >
                     /01 — STUDENT ENGINEERING
                 </p>
 
 
                 <h1
-                    id="hero-title"
-                    data-build
-                    data-cursor="2"
-                    data-build-phase="0.14"
+                    data-build="text"
+                    data-type
+                    data-phase="0.17"
+                    data-cursor="1"
                 >
-                    Turn sunlight<br>
-
-                    into
-                    <span>
-                        motion.
+                    BUILDING<br>
+                    THE NEXT<br>
+                    <span class="outline">
+                        SOLAR CAR.
                     </span>
                 </h1>
 
 
                 <p
                     class="hero-copy"
-                    data-build
-                    data-cursor="3"
-                    data-build-phase="0.21"
+                    data-build="text"
+                    data-type
+                    data-phase="0.25"
+                    data-cursor="2"
                 >
-                    Temple City High School students
-                    design, build, test, and race
-                    solar-powered vehicles — from
-                    custom electronics and PCB systems
-                    to structures, controls, and
-                    race operations.
+                    Temple City High School students design,
+                    manufacture, program, integrate, test,
+                    and race solar-powered vehicles.
                 </p>
 
 
-                <div
-                    class="hero-actions"
-                    data-build
-                    data-cursor="4"
-                    data-build-phase="0.28"
-                >
+                <div class="hero-actions">
+
 
                     <a
                         class="primary-button"
                         href="#cars"
+                        data-build="button"
+                        data-phase="0.31"
+                        data-cursor="3"
+                        data-type
                     >
-                        Explore the cars
-
-                        <span>
-                            ↘
-                        </span>
+                        Explore the cars ↘
                     </a>
 
 
                     <a
-                        class="quiet-link"
+                        class="secondary-link"
                         href="#systems"
+                        data-build="button"
+                        data-phase="0.35"
+                        data-cursor="4"
+                        data-type
                     >
-                        View the system map ↗
+                        View systems ↗
                     </a>
 
+
                 </div>
+
 
             </div>
 
 
-            <div
-                class="hero-system"
-                data-build
+            <article
+                class="hero-system build-panel"
+                data-build="panel"
+                data-phase="0.20"
                 data-cursor="5"
-                data-build-phase="0.18"
             >
 
-                <div class="hero-system-head">
 
-                    <span>
-                        ADVANCED CAR / SYSTEM VIEW
+                <div
+                    class="hero-system-header"
+                    data-build="rule"
+                    data-phase="0.22"
+                    data-cursor="5"
+                >
+
+                    <span data-type>
+                        ADVANCED CAR
                     </span>
 
-                    <span>
-                        HT-27
+                    <span data-type>
+                        SYSTEM / 2027
                     </span>
 
                 </div>
 
 
-                <figure class="vehicle-frame">
+                <div
+                    class="vehicle-art"
+                    data-build="image"
+                    data-phase="0.28"
+                    data-cursor="6"
+                    data-image
+                >
 
-                    <img
-                        src="./images/solar-car-placeholder.svg"
-                        alt="Conceptual schematic of a solar car system"
+
+                    <svg
+                        viewBox="0 0 900 430"
+                        xmlns="http://www.w3.org/2000/svg"
+                        aria-label="Solar car system illustration"
                     >
 
-                    <figcaption>
+                        <defs>
 
-                        <span>
-                            ENERGY → CONTROL → MOTION
-                        </span>
+                            <linearGradient
+                                id="panelGradient"
+                                x1="0"
+                                y1="0"
+                                x2="1"
+                                y2="1"
+                            >
 
-                        <span>
-                            STUDENT DEVELOPED
-                        </span>
+                                <stop
+                                    offset="0%"
+                                    stop-color="#244d73"
+                                />
 
-                    </figcaption>
+                                <stop
+                                    offset="100%"
+                                    stop-color="#102d49"
+                                />
 
-                </figure>
+                            </linearGradient>
+
+                        </defs>
+
+
+                        <g
+                            fill="none"
+                            stroke="#9fb4c8"
+                            stroke-width="2"
+                        >
+
+                            <path
+                                d="
+                                    M100 276
+                                    L170 246
+                                    L250 174
+                                    L615 174
+                                    L740 237
+                                    L800 273
+                                "
+                            />
+
+                            <path
+                                d="
+                                    M174 246
+                                    L726 246
+                                "
+                            />
+
+                            <circle
+                                cx="230"
+                                cy="292"
+                                r="53"
+                            />
+
+                            <circle
+                                cx="680"
+                                cy="292"
+                                r="53"
+                            />
+
+                            <circle
+                                cx="230"
+                                cy="292"
+                                r="24"
+                            />
+
+                            <circle
+                                cx="680"
+                                cy="292"
+                                r="24"
+                            />
+
+                        </g>
+
+
+                        <path
+                            d="
+                                M270 182
+                                L596 182
+                                L690 230
+                                L214 230
+                                Z
+                            "
+                            fill="url(#panelGradient)"
+                            stroke="#5e88ad"
+                            stroke-width="2"
+                        />
+
+
+                        <g
+                            stroke="#8aa9c4"
+                            stroke-width="1"
+                        >
+
+                            <line
+                                x1="315"
+                                y1="183"
+                                x2="280"
+                                y2="230"
+                            />
+
+                            <line
+                                x1="367"
+                                y1="183"
+                                x2="337"
+                                y2="230"
+                            />
+
+                            <line
+                                x1="419"
+                                y1="183"
+                                x2="395"
+                                y2="230"
+                            />
+
+                            <line
+                                x1="471"
+                                y1="183"
+                                x2="453"
+                                y2="230"
+                            />
+
+                            <line
+                                x1="523"
+                                y1="183"
+                                x2="511"
+                                y2="230"
+                            />
+
+                            <line
+                                x1="575"
+                                y1="183"
+                                x2="569"
+                                y2="230"
+                            />
+
+                            <line
+                                x1="627"
+                                y1="194"
+                                x2="625"
+                                y2="230"
+                            />
+
+                        </g>
+
+
+                        <g
+                            fill="#7399ba"
+                            font-family="Space Mono"
+                            font-size="14"
+                        >
+
+                            <text
+                                x="100"
+                                y="115"
+                            >
+                                ENERGY
+                            </text>
+
+                            <text
+                                x="390"
+                                y="115"
+                            >
+                                CONTROL
+                            </text>
+
+                            <text
+                                x="690"
+                                y="115"
+                            >
+                                MOTION
+                            </text>
+
+                        </g>
+
+
+                        <g
+                            stroke="#345b7e"
+                            stroke-width="1"
+                            stroke-dasharray="5 6"
+                        >
+
+                            <line
+                                x1="140"
+                                y1="127"
+                                x2="140"
+                                y2="235"
+                            />
+
+                            <line
+                                x1="440"
+                                y1="127"
+                                x2="440"
+                                y2="235"
+                            />
+
+                            <line
+                                x1="730"
+                                y1="127"
+                                x2="730"
+                                y2="235"
+                            />
+
+                        </g>
+
+
+                    </svg>
+
+
+                </div>
 
 
                 <div class="telemetry-grid">
 
-                    <div>
 
-                        <span>
+                    <div
+                        data-build="panel"
+                        data-phase="0.36"
+                        data-cursor="0"
+                    >
+
+                        <span data-type>
                             PCB NETWORK
                         </span>
 
-                        <strong>
+                        <strong data-type>
                             05
                         </strong>
 
-                        <small>
-                            INTERCONNECTED BOARDS
+                        <small data-type>
+                            CUSTOM BOARDS
                         </small>
 
                     </div>
 
 
-                    <div>
+                    <div
+                        data-build="panel"
+                        data-phase="0.39"
+                        data-cursor="1"
+                    >
 
-                        <span>
-                            CONTROL
+                        <span data-type>
+                            VEHICLE BUS
                         </span>
 
-                        <strong>
+                        <strong data-type>
                             12V
                         </strong>
 
-                        <small>
-                            VEHICLE SUBSYSTEM
+                        <small data-type>
+                            CONTROL SYSTEM
                         </small>
 
                     </div>
 
 
-                    <div>
+                    <div
+                        data-build="panel"
+                        data-phase="0.42"
+                        data-cursor="2"
+                    >
 
-                        <span>
-                            RACE
+                        <span data-type>
+                            TARGET
                         </span>
 
-                        <strong>
+                        <strong data-type>
                             2027
                         </strong>
 
-                        <small>
-                            ADVANCED DIVISION
+                        <small data-type>
+                            ADVANCED CLASS
                         </small>
 
                     </div>
 
+
                 </div>
 
-            </div>
+
+            </article>
+
 
         </div>
 
 
         <div
-            class="hero-footer"
-            data-build
-            data-cursor="6"
-            data-build-phase="0.34"
+            class="hero-bottom-rule"
+            data-build="rule"
+            data-phase="0.46"
+            data-cursor="3"
         >
 
-            <span>
-                2025 + 2026 CRUISER DIVISION CHAMPIONS
+            <span data-type>
+                SOLAR CAR CHALLENGE
             </span>
 
-            <span>
-                SCROLL TO ASSEMBLE ↓
+            <span data-type>
+                DESIGN → BUILD → TEST → RACE
             </span>
 
         </div>
 
 
         <div
-            class="hero-word"
-            aria-hidden="true"
+            class="giant-background-word"
+            data-build="text"
+            data-type
+            data-phase="0.48"
+            data-cursor="4"
         >
             HELIOTECH
         </div>
@@ -361,31 +636,32 @@
 
     </div>
 
+
 </section>
 
 
 <section
     id="mission"
-    class="chapter paper-section section"
-    aria-labelledby="mission-title"
+    class="section chapter light-section"
 >
+
 
     <div
         class="section-index"
-        data-build
+        data-build="rule"
         data-cursor="0"
     >
 
-        <span>
+        <span data-type>
             /02
         </span>
 
-        <span>
-            WHY WE BUILD
+        <span data-type>
+            MISSION
         </span>
 
-        <span>
-            MISSION
+        <span data-type>
+            WHY WE BUILD
         </span>
 
     </div>
@@ -395,47 +671,57 @@
 
 
         <h2
-            id="mission-title"
-            data-build
-            data-cursor="2"
+            data-build="text"
+            data-type
+            data-cursor="1"
         >
-            Engineering is learned<br>
-
+            ENGINEERING<br>
+            BECOMES REAL<br>
             <span>
-                by making it real.
+                WHEN IT MOVES.
             </span>
         </h2>
 
 
-        <div
-            class="mission-copy"
-            data-build
-            data-cursor="4"
-        >
+        <div class="mission-copy">
 
-            <p class="lead">
-                A solar car is a full system problem:
-                electrical, mechanical, structural,
-                aerodynamic, operational, and human.
+
+            <p
+                class="lead"
+                data-build="text"
+                data-type
+                data-cursor="2"
+            >
+                A solar car turns theory into a system
+                that has to work outside the classroom.
             </p>
 
 
-            <p>
-                HelioTech gives students a place to
-                turn classroom ideas into hardware
-                that must survive testing,
-                integration, and competition.
+            <p
+                data-build="text"
+                data-type
+                data-cursor="3"
+            >
+                Electrical, mechanical, structural,
+                aerodynamic, software, manufacturing,
+                and race operations must all work
+                together.
             </p>
 
 
             <a
-                class="inline-link"
                 href="about.html"
+                class="text-link"
+                data-build="button"
+                data-cursor="4"
+                data-type
             >
                 More about HelioTech ↗
             </a>
 
+
         </div>
+
 
     </div>
 
@@ -444,66 +730,73 @@
 
 
         <article
-            data-build
-            data-cursor="1"
-        >
-
-            <span>
-                /01
-            </span>
-
-            <h3>
-                Design
-            </h3>
-
-            <p>
-                Translate requirements into circuits,
-                structures, interfaces, and
-                manufacturable parts.
-            </p>
-
-        </article>
-
-
-        <article
-            data-build
-            data-cursor="3"
-        >
-
-            <span>
-                /02
-            </span>
-
-            <h3>
-                Build
-            </h3>
-
-            <p>
-                Fabricate, solder, assemble, wire,
-                document, and integrate the vehicle
-                as a complete system.
-            </p>
-
-        </article>
-
-
-        <article
-            data-build
+            data-build="panel"
             data-cursor="5"
         >
 
-            <span>
+            <span
+                class="card-number"
+                data-type
+            >
+                /01
+            </span>
+
+            <h3 data-type>
+                DESIGN
+            </h3>
+
+            <p data-type>
+                Translate requirements into circuits,
+                structures, interfaces, and
+                manufacturable components.
+            </p>
+
+        </article>
+
+
+        <article
+            data-build="panel"
+            data-cursor="6"
+        >
+
+            <span
+                class="card-number"
+                data-type
+            >
+                /02
+            </span>
+
+            <h3 data-type>
+                BUILD
+            </h3>
+
+            <p data-type>
+                Fabricate, solder, wire, assemble,
+                integrate, and document real hardware.
+            </p>
+
+        </article>
+
+
+        <article
+            data-build="panel"
+            data-cursor="0"
+        >
+
+            <span
+                class="card-number"
+                data-type
+            >
                 /03
             </span>
 
-            <h3>
-                Validate
+            <h3 data-type>
+                VALIDATE
             </h3>
 
-            <p>
-                Test under real constraints, learn
-                from failures, and carry those
-                lessons into the next revision.
+            <p data-type>
+                Test under real constraints, find
+                failures, and improve every revision.
             </p>
 
         </article>
@@ -511,31 +804,32 @@
 
     </div>
 
+
 </section>
 
 
 <section
     id="systems"
-    class="chapter dark-section section systems"
-    aria-labelledby="systems-title"
+    class="section chapter dark-section"
 >
+
 
     <div
         class="section-index"
-        data-build
-        data-cursor="6"
+        data-build="rule"
+        data-cursor="1"
     >
 
-        <span>
+        <span data-type>
             /03
         </span>
 
-        <span>
+        <span data-type>
             ADVANCED CAR
         </span>
 
-        <span>
-            SYSTEMS MATRIX
+        <span data-type>
+            SYSTEM MATRIX
         </span>
 
     </div>
@@ -543,161 +837,176 @@
 
     <div class="section-heading">
 
+
         <h2
-            id="systems-title"
-            data-build
+            data-build="text"
+            data-type
             data-cursor="2"
         >
-            One vehicle.<br>
-            Many systems.
+            ONE VEHICLE.<br>
+            MANY SYSTEMS.
         </h2>
 
 
         <p
-            data-build
-            data-cursor="4"
+            data-build="text"
+            data-type
+            data-cursor="3"
         >
-            Every subsystem has to work independently
-            — and then work together when the car
-            is moving.
+            Every subsystem must work independently
+            and then operate as one machine when
+            the vehicle is moving.
         </p>
+
 
     </div>
 
 
-    <div class="system-matrix">
+    <div class="system-grid">
 
 
         <article
-            data-build
-            data-cursor="0"
+            data-build="panel"
+            data-cursor="4"
         >
 
-            <div class="card-meta">
+            <div class="system-meta">
 
-                <span>
+                <span data-type>
                     /0.1
                 </span>
 
-                <span>
+                <span data-type>
                     POWER
                 </span>
 
             </div>
 
-            <h3>
-                Solar + battery
+            <h3 data-type>
+                SOLAR + BATTERY
             </h3>
 
-            <p>
+            <p data-type>
                 Energy generation, MPPT integration,
-                storage, distribution, protection,
+                storage, protection, distribution,
                 and monitoring.
             </p>
 
-            <a href="Technical">
-                Explore technical systems ↗
+            <a
+                href="Technical"
+                data-type
+            >
+                Explore system ↗
             </a>
 
         </article>
 
 
         <article
-            data-build
-            data-cursor="1"
+            data-build="panel"
+            data-cursor="5"
         >
 
-            <div class="card-meta">
+            <div class="system-meta">
 
-                <span>
+                <span data-type>
                     /0.2
                 </span>
 
-                <span>
+                <span data-type>
                     CONTROL
                 </span>
 
             </div>
 
-            <h3>
-                PCB network
+            <h3 data-type>
+                PCB NETWORK
             </h3>
 
-            <p>
+            <p data-type>
                 Custom boards connect driver controls,
-                displays, telemetry, sensing, and
-                vehicle subsystems.
+                telemetry, sensing, displays, and
+                vehicle systems.
             </p>
 
-            <a href="Technical">
-                See the PCB system ↗
+            <a
+                href="Technical"
+                data-type
+            >
+                Explore electronics ↗
             </a>
 
         </article>
 
 
         <article
-            data-build
-            data-cursor="3"
+            data-build="panel"
+            data-cursor="6"
         >
 
-            <div class="card-meta">
+            <div class="system-meta">
 
-                <span>
+                <span data-type>
                     /0.3
                 </span>
 
-                <span>
+                <span data-type>
                     MECHANICAL
                 </span>
 
             </div>
 
-            <h3>
-                Structure + motion
+            <h3 data-type>
+                STRUCTURE + MOTION
             </h3>
 
-            <p>
+            <p data-type>
                 Chassis, suspension, steering,
-                braking, packaging, and the
-                interfaces between them.
+                braking, packaging, and structural
+                integration.
             </p>
 
-            <a href="our%20cars.html">
-                See the cars ↗
+            <a
+                href="our%20cars.html"
+                data-type
+            >
+                Explore vehicles ↗
             </a>
 
         </article>
 
 
         <article
-            data-build
-            data-cursor="5"
+            data-build="panel"
+            data-cursor="0"
         >
 
-            <div class="card-meta">
+            <div class="system-meta">
 
-                <span>
+                <span data-type>
                     /0.4
                 </span>
 
-                <span>
-                    SOFTWARE
+                <span data-type>
+                    DATA
                 </span>
 
             </div>
 
-            <h3>
-                Telemetry + data
+            <h3 data-type>
+                TELEMETRY
             </h3>
 
-            <p>
+            <p data-type>
                 Vehicle information moves from
-                sensors to controllers, displays,
-                and engineering analysis.
+                sensors to controllers, driver
+                displays, and engineering analysis.
             </p>
 
-            <a href="Technical">
+            <a
+                href="Technical"
+                data-type
+            >
                 Explore telemetry ↗
             </a>
 
@@ -706,30 +1015,31 @@
 
     </div>
 
+
 </section>
 
 
 <section
     id="cars"
-    class="chapter paper-section section cars"
-    aria-labelledby="cars-title"
+    class="section chapter light-section"
 >
+
 
     <div
         class="section-index"
-        data-build
-        data-cursor="0"
+        data-build="rule"
+        data-cursor="1"
     >
 
-        <span>
+        <span data-type>
             /04
         </span>
 
-        <span>
+        <span data-type>
             VEHICLES
         </span>
 
-        <span>
+        <span data-type>
             RACE PROGRAM
         </span>
 
@@ -738,113 +1048,140 @@
 
     <div class="section-heading">
 
+
         <h2
-            id="cars-title"
-            data-build
+            data-build="text"
+            data-type
             data-cursor="2"
         >
-            From the drawing board<br>
-            to the starting line.
+            FROM THE<br>
+            DRAWING BOARD<br>
+            TO THE TRACK.
         </h2>
 
 
         <p
-            data-build
-            data-cursor="4"
+            data-build="text"
+            data-type
+            data-cursor="3"
         >
-            Each car carries forward what the
-            team learned from the last one.
+            Every vehicle carries forward what
+            the team learned from the one before it.
         </p>
+
 
     </div>
 
 
     <article
         class="featured-build"
-        data-build
-        data-cursor="6"
+        data-build="panel"
+        data-cursor="4"
     >
 
 
         <div class="featured-copy">
 
-            <p class="kicker">
-                IN DEVELOPMENT / 2027
-            </p>
 
-            <h3>
-                Advanced single-seater
+            <span
+                class="kicker"
+                data-type
+            >
+                IN DEVELOPMENT / 2027
+            </span>
+
+
+            <h3 data-type>
+                ADVANCED
+                SINGLE-SEATER
             </h3>
 
-            <p>
-                The next HelioTech vehicle moves
-                into the Advanced Division with a
-                new architecture, custom electronics,
-                and a deeper level of student-designed
-                integration.
+
+            <p data-type>
+                The next HelioTech vehicle introduces
+                a new architecture, custom electronics,
+                distributed control, and deeper
+                student-designed integration.
             </p>
 
+
             <a
-                class="primary-button dark-button"
                 href="our%20cars.html"
+                class="dark-button"
+                data-type
             >
                 View the car program ↗
             </a>
 
+
         </div>
 
 
-        <div class="featured-diagram">
-
-            <div class="diagram-axis"></div>
+        <div class="architecture-diagram">
 
 
-            <div>
+            <div
+                class="architecture-line"
+                data-build="rule"
+                data-cursor="5"
+            ></div>
 
-                <span>
+
+            <div
+                data-build="panel"
+                data-cursor="5"
+            >
+
+                <span data-type>
                     01
                 </span>
 
-                <strong>
+                <strong data-type>
                     STRUCTURE
                 </strong>
 
-                <small>
-                    Carbon-fiber architecture
+                <small data-type>
+                    Vehicle architecture
                 </small>
 
             </div>
 
 
-            <div>
+            <div
+                data-build="panel"
+                data-cursor="6"
+            >
 
-                <span>
+                <span data-type>
                     02
                 </span>
 
-                <strong>
+                <strong data-type>
                     ELECTRICAL
                 </strong>
 
-                <small>
-                    Distributed PCB control
+                <small data-type>
+                    Distributed control
                 </small>
 
             </div>
 
 
-            <div>
+            <div
+                data-build="panel"
+                data-cursor="0"
+            >
 
-                <span>
+                <span data-type>
                     03
                 </span>
 
-                <strong>
+                <strong data-type>
                     MOTION
                 </strong>
 
-                <small>
-                    Driver + drivetrain systems
+                <small data-type>
+                    Driver + drivetrain
                 </small>
 
             </div>
@@ -860,53 +1197,52 @@
 
 
         <article
-            data-build
+            data-build="panel"
             data-cursor="1"
         >
 
-            <span>
+            <span data-type>
                 2026 / CRUISER
             </span>
 
-            <strong>
-                01<sup>ST</sup>
+            <strong data-type>
+                01
             </strong>
 
-            <h3>
-                Second consecutive title.
+            <h3 data-type>
+                SECOND CONSECUTIVE TITLE.
             </h3>
 
-            <p>
-                HelioTech returned to the Solar
-                Car Challenge and earned another
-                Cruiser Division championship.
+            <p data-type>
+                HelioTech returned to the Solar Car
+                Challenge and earned another Cruiser
+                Division championship.
             </p>
 
         </article>
 
 
         <article
-            data-build
-            data-cursor="3"
+            data-build="panel"
+            data-cursor="2"
         >
 
-            <span>
+            <span data-type>
                 2025 / CRUISER
             </span>
 
-            <strong>
-                01<sup>ST</sup>
+            <strong data-type>
+                01
             </strong>
 
-            <h3>
-                The first championship.
+            <h3 data-type>
+                THE FIRST CHAMPIONSHIP.
             </h3>
 
-            <p>
-                The team’s Cruiser program
-                established the platform for
-                the next generation of
-                HelioTech vehicles.
+            <p data-type>
+                The Cruiser program established
+                the platform for the next generation
+                of HelioTech vehicles.
             </p>
 
         </article>
@@ -914,30 +1250,31 @@
 
     </div>
 
+
 </section>
 
 
 <section
     id="team"
-    class="chapter dark-section section team"
-    aria-labelledby="team-title"
+    class="section chapter dark-section"
 >
+
 
     <div
         class="section-index"
-        data-build
-        data-cursor="5"
+        data-build="rule"
+        data-cursor="3"
     >
 
-        <span>
+        <span data-type>
             /05
         </span>
 
-        <span>
+        <span data-type>
             PEOPLE
         </span>
 
-        <span>
+        <span data-type>
             ONE TEAM
         </span>
 
@@ -946,22 +1283,27 @@
 
     <div class="section-heading">
 
+
         <h2
-            id="team-title"
-            data-build
-            data-cursor="2"
+            data-build="text"
+            data-type
+            data-cursor="4"
         >
-            Different disciplines.<br>
-            One machine.
+            DIFFERENT<br>
+            DISCIPLINES.<br>
+            ONE MACHINE.
         </h2>
 
 
         <p
-            data-build
-            data-cursor="4"
+            data-build="text"
+            data-type
+            data-cursor="5"
         >
-            The car only works when the team does.
+            The vehicle only works when
+            the entire team works together.
         </p>
+
 
     </div>
 
@@ -971,25 +1313,24 @@
 
         <a
             href="The%20team.html"
-            data-build
-            data-cursor="0"
+            data-build="panel"
+            data-cursor="6"
         >
 
-            <span>
+            <span data-type>
                 /01
             </span>
 
-            <h3>
-                Electrical + solar
+            <h3 data-type>
+                ELECTRICAL + SOLAR
             </h3>
 
-            <p>
-                PCBs, controls, wiring,
-                sensors, telemetry, solar,
-                and power.
+            <p data-type>
+                PCB design, controls, wiring,
+                sensing, telemetry, and power.
             </p>
 
-            <b>
+            <b data-type>
                 ↗
             </b>
 
@@ -998,25 +1339,24 @@
 
         <a
             href="The%20team.html"
-            data-build
-            data-cursor="1"
+            data-build="panel"
+            data-cursor="0"
         >
 
-            <span>
+            <span data-type>
                 /02
             </span>
 
-            <h3>
-                Mechanical
+            <h3 data-type>
+                MECHANICAL
             </h3>
 
-            <p>
-                Chassis, suspension,
-                steering, brakes,
-                and packaging.
+            <p data-type>
+                Chassis, suspension, steering,
+                brakes, and packaging.
             </p>
 
-            <b>
+            <b data-type>
                 ↗
             </b>
 
@@ -1025,24 +1365,24 @@
 
         <a
             href="The%20team.html"
-            data-build
-            data-cursor="3"
+            data-build="panel"
+            data-cursor="1"
         >
 
-            <span>
+            <span data-type>
                 /03
             </span>
 
-            <h3>
-                Composites
+            <h3 data-type>
+                COMPOSITES
             </h3>
 
-            <p>
+            <p data-type>
                 Molds, layups, bodywork,
                 and structural fabrication.
             </p>
 
-            <b>
+            <b data-type>
                 ↗
             </b>
 
@@ -1051,25 +1391,24 @@
 
         <a
             href="The%20team.html"
-            data-build
-            data-cursor="6"
+            data-build="panel"
+            data-cursor="2"
         >
 
-            <span>
+            <span data-type>
                 /04
             </span>
 
-            <h3>
-                Operations + outreach
+            <h3 data-type>
+                OPERATIONS
             </h3>
 
-            <p>
-                Sponsors, logistics,
-                media, documentation,
-                and race-week execution.
+            <p data-type>
+                Sponsors, logistics, media,
+                documentation, and race execution.
             </p>
 
-            <b>
+            <b data-type>
                 ↗
             </b>
 
@@ -1078,30 +1417,31 @@
 
     </div>
 
+
 </section>
 
 
 <section
     id="support"
-    class="chapter signal-section section"
-    aria-labelledby="support-title"
+    class="section chapter blue-section"
 >
+
 
     <div
         class="section-index"
-        data-build
-        data-cursor="0"
+        data-build="rule"
+        data-cursor="3"
     >
 
-        <span>
+        <span data-type>
             /06
         </span>
 
-        <span>
+        <span data-type>
             PARTNERSHIPS
         </span>
 
-        <span>
+        <span data-type>
             BUILD WITH US
         </span>
 
@@ -1110,39 +1450,50 @@
 
     <div class="support-layout">
 
+
         <h2
-            id="support-title"
-            data-build
-            data-cursor="2"
+            data-build="text"
+            data-type
+            data-cursor="4"
         >
-            Help build<br>
-            what comes next.
+            HELP BUILD<br>
+            WHAT COMES<br>
+            NEXT.
         </h2>
 
 
-        <div
-            data-build
-            data-cursor="4"
-        >
+        <div>
 
-            <p>
-                Support gives students access
-                to the materials, manufacturing,
-                tools, and testing needed to turn
-                an ambitious design into a
-                race-ready solar car.
+
+            <p
+                data-build="text"
+                data-type
+                data-cursor="5"
+            >
+                Support gives students access to
+                materials, manufacturing, tools,
+                electronics, and testing needed
+                to turn ambitious designs into
+                race-ready hardware.
             </p>
 
+
             <a
-                class="primary-button light-button"
                 href="Support%20us.html"
+                class="support-button"
+                data-build="button"
+                data-cursor="6"
+                data-type
             >
                 Support HelioTech ↗
             </a>
 
+
         </div>
 
+
     </div>
+
 
 </section>
 
@@ -1153,72 +1504,92 @@
 <footer class="site-footer">
 
 
-    <div>
-
-        <a
-            class="brand footer-brand"
-            href="#home"
-        >
-
-            <span
-                class="brand-mark"
-                aria-hidden="true"
-            ></span>
-
-            <span>
-                HELIO<strong>TECH</strong>
-            </span>
-
-        </a>
+    <div
+        class="footer-main"
+        data-build="panel"
+        data-cursor="0"
+    >
 
 
-        <p>
-            Temple City High School<br>
-            9501 Lemon Avenue<br>
-            Temple City, California 91780
-        </p>
+        <div>
+
+
+            <a
+                href="#home"
+                class="footer-brand"
+                data-type
+            >
+                HELIOTECH
+            </a>
+
+
+            <p data-type>
+                Temple City High School<br>
+                Temple City, California
+            </p>
+
+
+        </div>
+
+
+        <div class="footer-links">
+
+
+            <a
+                href="contact.html"
+                data-type
+            >
+                Contact ↗
+            </a>
+
+            <a
+                href="media.html"
+                data-type
+            >
+                Media ↗
+            </a>
+
+            <a
+                href="sponsors.html"
+                data-type
+            >
+                Sponsors ↗
+            </a>
+
+            <a
+                href="#home"
+                data-type
+            >
+                Back to top ↑
+            </a>
+
+
+        </div>
+
 
     </div>
 
 
-    <div class="footer-links">
-
-        <a href="contact.html">
-            Contact ↗
-        </a>
-
-        <a href="media.html">
-            Media ↗
-        </a>
-
-        <a href="sponsors.html">
-            Sponsors ↗
-        </a>
-
-        <a href="https://www.instagram.com/tchs.helio.tech/">
-            Instagram ↗
-        </a>
-
-    </div>
+    <div
+        class="footer-rule"
+        data-build="rule"
+        data-cursor="1"
+    ></div>
 
 
-    <div class="footer-bottom">
+    <div
+        class="footer-bottom"
+        data-build="text"
+        data-cursor="2"
+    >
 
-        <span>
-            ©
-            <span id="year">
-                2026
-            </span>
-            TCHS HELIOTECH
+        <span data-type>
+            © 2026 TCHS HELIOTECH
         </span>
 
-        <span>
+        <span data-type>
             STUDENT BUILT / SOLAR POWERED
         </span>
-
-        <a href="#home">
-            BACK TO TOP ↑
-        </a>
 
     </div>
 
@@ -1233,5 +1604,14 @@
 ></div>
 
 
+<div
+    id="autobuild-status"
+    class="autobuild-status"
+>
+    AUTOBUILD / ACTIVE
+</div>
+
+
 </body>
+
 </html>
