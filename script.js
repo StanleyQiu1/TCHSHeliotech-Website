@@ -3,13 +3,17 @@
     "use strict";
 
 
-    const clamp =
-        (
-            value,
-            min = 0,
-            max = 1
-        ) =>
-        Math.max(
+    /* =====================================================
+       HELPERS
+    ===================================================== */
+
+    const clamp = (
+        value,
+        min = 0,
+        max = 1
+    ) => {
+
+        return Math.max(
             min,
             Math.min(
                 max,
@@ -17,6 +21,81 @@
             )
         );
 
+    };
+
+
+    const lerp = (
+        a,
+        b,
+        t
+    ) => {
+
+        return (
+            a +
+            (
+                b -
+                a
+            ) *
+            t
+        );
+
+    };
+
+
+    const smoothstep = t => {
+
+        t = clamp(t);
+
+        return (
+            t *
+            t *
+            (
+                3 -
+                2 *
+                t
+            )
+        );
+
+    };
+
+
+    const mixTarget = (
+        a,
+        b,
+        t
+    ) => {
+
+        return {
+
+            x:
+                lerp(
+                    a.x,
+                    b.x,
+                    t
+                ),
+
+            y:
+                lerp(
+                    a.y,
+                    b.y,
+                    t
+                ),
+
+            z:
+                lerp(
+                    a.z,
+                    b.z,
+                    t
+                )
+
+        };
+
+    };
+
+
+    /* =====================================================
+       DOM
+    ===================================================== */
 
     const menu =
         document.querySelector(
@@ -99,6 +178,10 @@
         );
 
 
+    /* =====================================================
+       PAGE STATE
+    ===================================================== */
+
     let frame =
         0;
 
@@ -118,6 +201,40 @@
     let transitionTimer =
         0;
 
+
+    /* =====================================================
+       MODEL STATE
+    ===================================================== */
+
+    let modelLoaded =
+        false;
+
+
+    let modelCenter = {
+
+        x: 0,
+        y: 0,
+        z: 0
+
+    };
+
+
+    let modelSize = {
+
+        x: 1,
+        y: 1,
+        z: 1
+
+    };
+
+
+    /*
+        Automatically detected longest
+        direction of the vehicle.
+    */
+
+    let modelLongAxis =
+        "z";
 
 
     /* =====================================================
@@ -165,14 +282,12 @@
             () => {
 
                 const open =
-                    !nav.classList
-                    .contains(
+                    !nav.classList.contains(
                         "open"
                     );
 
 
-                nav.classList
-                .toggle(
+                nav.classList.toggle(
                     "open",
                     open
                 );
@@ -239,9 +354,9 @@
     }
 
 
-
     /* =====================================================
-       PAGE TRANSITION — PAGE ENTRY
+       PAGE TRANSITION
+       PAGE ENTRY
     ===================================================== */
 
     function revealPage() {
@@ -262,7 +377,6 @@
             transition.style.display =
                 "none";
 
-
             return;
 
         }
@@ -274,11 +388,11 @@
 
 
         /*
-            Reset to fully covered.
+            Start with page covered.
 
-            This lets the HelioTech logo
-            flicker briefly before the
-            diagonal panels sweep away.
+            Logo flickers while visible,
+            then diagonal transition
+            slides away.
         */
 
         transition.className =
@@ -290,7 +404,8 @@
 
                 () => {
 
-                    transition.classList
+                    transition
+                        .classList
                         .add(
                             "is-revealed"
                         );
@@ -304,9 +419,9 @@
     }
 
 
-
     /* =====================================================
-       PAGE TRANSITION — PAGE EXIT
+       PAGE TRANSITION
+       PAGE EXIT
     ===================================================== */
 
     function navigateWithTransition(
@@ -321,26 +436,19 @@
             window.location.href =
                 href;
 
-
             return;
 
         }
 
 
         /*
-            Put the diagonal transition
-            completely off-screen right.
+            Position transition on
+            right side of viewport.
         */
 
         transition.className =
             "page-transition is-preparing";
 
-
-        /*
-            Two animation frames ensure
-            the browser registers the
-            off-screen starting position.
-        */
 
         requestAnimationFrame(
 
@@ -351,10 +459,8 @@
                     () => {
 
                         /*
-                            Sweep onto the screen.
-
-                            The logo also performs
-                            the small flicker here.
+                            Slanted transition
+                            sweeps onto screen.
                         */
 
                         transition.className =
@@ -362,10 +468,8 @@
 
 
                         /*
-                            Load the new page after
-                            the transition has
-                            essentially covered
-                            the entire viewport.
+                            Navigate after screen
+                            is fully covered.
                         */
 
                         setTimeout(
@@ -392,9 +496,8 @@
     }
 
 
-
     /* =====================================================
-       INTERCEPT SAME-SITE PAGE LINKS
+       INTERCEPT SAME-SITE LINKS
     ===================================================== */
 
     document.addEventListener(
@@ -443,9 +546,8 @@
 
 
             /*
-                Preserve normal browser behavior
-                for Ctrl-click, Cmd-click,
-                Shift-click, etc.
+                Preserve normal behavior
+                for new-tab shortcuts.
             */
 
             if(
@@ -482,8 +584,8 @@
 
 
             /*
-                External websites do not
-                use our local transition.
+                External websites should
+                open normally.
             */
 
             if(
@@ -506,7 +608,6 @@
         }
 
     );
-
 
 
     /* =====================================================
@@ -538,7 +639,7 @@
                         const delay =
                             Number(
                                 element.dataset
-                                .flickerDelay ||
+                                    .flickerDelay ||
                                 0
                             );
 
@@ -573,8 +674,7 @@
 
             {
 
-                threshold:
-                    .18,
+                threshold: .18,
 
                 rootMargin:
                     "0px 0px -8% 0px"
@@ -584,38 +684,42 @@
         );
 
 
-    flickerElements
-        .forEach(
+    flickerElements.forEach(
 
-            (
-                element,
-                index
-            ) => {
+        (
+            element,
+            index
+        ) => {
 
-                element.dataset
-                    .flickerDelay =
-                        String(
-                            (
-                                index %
-                                3
-                            ) *
-                            75
-                        );
+            /*
+                Slightly stagger flicker
+                so everything doesn't
+                flicker simultaneously.
+            */
 
-
-                flickerObserver
-                    .observe(
-                        element
+            element.dataset
+                .flickerDelay =
+                    String(
+                        (
+                            index %
+                            3
+                        ) *
+                        75
                     );
 
-            }
 
-        );
+            flickerObserver
+                .observe(
+                    element
+                );
 
+        }
+
+    );
 
 
     /* =====================================================
-       3D MODEL LOAD
+       MODEL LOAD
     ===================================================== */
 
     if(
@@ -628,6 +732,107 @@
             "load",
 
             () => {
+
+                modelLoaded =
+                    true;
+
+
+                /*
+                    Get actual geometry bounds
+                    directly from the GLB.
+                */
+
+                const center =
+                    modelViewer
+                        .getBoundingBoxCenter();
+
+
+                const dimensions =
+                    modelViewer
+                        .getDimensions();
+
+
+                modelCenter = {
+
+                    x:
+                        center.x,
+
+                    y:
+                        center.y,
+
+                    z:
+                        center.z
+
+                };
+
+
+                modelSize = {
+
+                    x:
+                        dimensions.x,
+
+                    y:
+                        dimensions.y,
+
+                    z:
+                        dimensions.z
+
+                };
+
+
+                /*
+                    Determine which model axis
+                    represents the length of
+                    the solar car.
+                */
+
+                if(
+                    modelSize.x >=
+                        modelSize.y &&
+                    modelSize.x >=
+                        modelSize.z
+                ) {
+
+                    modelLongAxis =
+                        "x";
+
+                }
+                else if(
+                    modelSize.y >=
+                        modelSize.x &&
+                    modelSize.y >=
+                        modelSize.z
+                ) {
+
+                    modelLongAxis =
+                        "y";
+
+                }
+                else {
+
+                    modelLongAxis =
+                        "z";
+
+                }
+
+
+                /*
+                    Recalculate the camera
+                    after HTML orientation
+                    has been applied.
+                */
+
+                if(
+                    typeof modelViewer
+                        .updateFraming ===
+                    "function"
+                ) {
+
+                    modelViewer
+                        .updateFraming();
+
+                }
+
 
                 vehicleStory
                     .classList
@@ -648,6 +853,14 @@
 
                 }
 
+
+                /*
+                    Immediately put model
+                    into correct scroll state.
+                */
+
+                updateModel();
+
             }
 
         );
@@ -658,6 +871,10 @@
             "error",
 
             () => {
+
+                modelLoaded =
+                    false;
+
 
                 vehicleStory
                     .classList
@@ -670,7 +887,6 @@
         );
 
     }
-
 
 
     /* =====================================================
@@ -715,6 +931,443 @@
     }
 
 
+    /* =====================================================
+       TARGET POSITION ON CAR
+    ===================================================== */
+
+    function modelTarget(
+        position
+    ) {
+
+        const target = {
+
+            x:
+                modelCenter.x,
+
+            y:
+                modelCenter.y,
+
+            z:
+                modelCenter.z
+
+        };
+
+
+        /*
+            position:
+
+            -1.0 = one end
+             0.0 = center
+            +1.0 = opposite end
+        */
+
+        target[
+            modelLongAxis
+        ] +=
+
+            modelSize[
+                modelLongAxis
+            ] *
+
+            position *
+
+            .34;
+
+
+        return target;
+
+    }
+
+
+    /* =====================================================
+       CAMERA STORY
+    ===================================================== */
+
+    function cameraState(
+        progress
+    ) {
+
+        /*
+            FULL CAR
+        */
+
+        const fullStart = {
+
+            orbit:
+                88,
+
+            phi:
+                72,
+
+            radius:
+                115,
+
+            target:
+                modelTarget(
+                    0
+                )
+
+        };
+
+
+        /*
+            FRONT / SOLAR DETAIL
+        */
+
+        const solarDetail = {
+
+            orbit:
+                75,
+
+            phi:
+                67,
+
+            radius:
+                64,
+
+            target:
+                modelTarget(
+                    .70
+                )
+
+        };
+
+
+        /*
+            CENTER / ELECTRONICS
+            / DRIVER AREA
+        */
+
+        const centerDetail = {
+
+            orbit:
+                100,
+
+            phi:
+                63,
+
+            radius:
+                53,
+
+            target:
+                modelTarget(
+                    .06
+                )
+
+        };
+
+
+        /*
+            REAR / DRIVETRAIN
+        */
+
+        const rearDetail = {
+
+            orbit:
+                118,
+
+            phi:
+                69,
+
+            radius:
+                61,
+
+            target:
+                modelTarget(
+                    -.68
+                )
+
+        };
+
+
+        /*
+            FINAL FULL CAR
+        */
+
+        const fullEnd = {
+
+            orbit:
+                98,
+
+            phi:
+                74,
+
+            radius:
+                113,
+
+            target:
+                modelTarget(
+                    0
+                )
+
+        };
+
+
+        /* =============================================
+           FULL VEHICLE INTRO
+        ============================================= */
+
+        if(
+            progress <
+            .17
+        ) {
+
+            const t =
+                smoothstep(
+                    progress /
+                    .17
+                );
+
+
+            return {
+
+                orbit:
+                    lerp(
+                        82,
+                        fullStart.orbit,
+                        t
+                    ),
+
+                phi:
+                    lerp(
+                        75,
+                        fullStart.phi,
+                        t
+                    ),
+
+                radius:
+                    lerp(
+                        120,
+                        fullStart.radius,
+                        t
+                    ),
+
+                target:
+                    fullStart.target
+
+            };
+
+        }
+
+
+        /* =============================================
+           ZOOM TOWARD SOLAR / FRONT
+        ============================================= */
+
+        if(
+            progress <
+            .37
+        ) {
+
+            const t =
+                smoothstep(
+
+                    (
+                        progress -
+                        .17
+                    ) /
+                    .20
+
+                );
+
+
+            return {
+
+                orbit:
+                    lerp(
+                        fullStart.orbit,
+                        solarDetail.orbit,
+                        t
+                    ),
+
+                phi:
+                    lerp(
+                        fullStart.phi,
+                        solarDetail.phi,
+                        t
+                    ),
+
+                radius:
+                    lerp(
+                        fullStart.radius,
+                        solarDetail.radius,
+                        t
+                    ),
+
+                target:
+                    mixTarget(
+                        fullStart.target,
+                        solarDetail.target,
+                        t
+                    )
+
+            };
+
+        }
+
+
+        /* =============================================
+           MOVE TO ELECTRONICS / DRIVER
+        ============================================= */
+
+        if(
+            progress <
+            .59
+        ) {
+
+            const t =
+                smoothstep(
+
+                    (
+                        progress -
+                        .37
+                    ) /
+                    .22
+
+                );
+
+
+            return {
+
+                orbit:
+                    lerp(
+                        solarDetail.orbit,
+                        centerDetail.orbit,
+                        t
+                    ),
+
+                phi:
+                    lerp(
+                        solarDetail.phi,
+                        centerDetail.phi,
+                        t
+                    ),
+
+                radius:
+                    lerp(
+                        solarDetail.radius,
+                        centerDetail.radius,
+                        t
+                    ),
+
+                target:
+                    mixTarget(
+                        solarDetail.target,
+                        centerDetail.target,
+                        t
+                    )
+
+            };
+
+        }
+
+
+        /* =============================================
+           MOVE TO REAR / DRIVETRAIN
+        ============================================= */
+
+        if(
+            progress <
+            .80
+        ) {
+
+            const t =
+                smoothstep(
+
+                    (
+                        progress -
+                        .59
+                    ) /
+                    .21
+
+                );
+
+
+            return {
+
+                orbit:
+                    lerp(
+                        centerDetail.orbit,
+                        rearDetail.orbit,
+                        t
+                    ),
+
+                phi:
+                    lerp(
+                        centerDetail.phi,
+                        rearDetail.phi,
+                        t
+                    ),
+
+                radius:
+                    lerp(
+                        centerDetail.radius,
+                        rearDetail.radius,
+                        t
+                    ),
+
+                target:
+                    mixTarget(
+                        centerDetail.target,
+                        rearDetail.target,
+                        t
+                    )
+
+            };
+
+        }
+
+
+        /* =============================================
+           PULL BACK TO FULL VEHICLE
+        ============================================= */
+
+        const t =
+            smoothstep(
+
+                (
+                    progress -
+                    .80
+                ) /
+                .20
+
+            );
+
+
+        return {
+
+            orbit:
+                lerp(
+                    rearDetail.orbit,
+                    fullEnd.orbit,
+                    t
+                ),
+
+            phi:
+                lerp(
+                    rearDetail.phi,
+                    fullEnd.phi,
+                    t
+                ),
+
+            radius:
+                lerp(
+                    rearDetail.radius,
+                    fullEnd.radius,
+                    t
+                ),
+
+            target:
+                mixTarget(
+                    rearDetail.target,
+                    fullEnd.target,
+                    t
+                )
+
+        };
+
+    }
+
 
     /* =====================================================
        MODEL STORY TEXT
@@ -728,61 +1381,60 @@
             null;
 
 
-        modelSteps
-            .forEach(
+        modelSteps.forEach(
 
-                story => {
+            story => {
 
-                    const start =
-                        Number(
-                            story.dataset.start
-                        );
-
-
-                    const end =
-                        Number(
-                            story.dataset.end
-                        );
+                const start =
+                    Number(
+                        story.dataset
+                            .start
+                    );
 
 
-                    const active =
-                        progress >=
+                const end =
+                    Number(
+                        story.dataset
+                            .end
+                    );
+
+
+                const active =
+                    progress >=
                         start &&
-                        progress <=
+                    progress <=
                         end;
 
 
-                    story.classList
-                        .toggle(
-                            "is-active",
-                            active
-                        );
+                story.classList.toggle(
+                    "is-active",
+                    active
+                );
 
 
-                    if(
-                        active
-                    ) {
+                if(
+                    active
+                ) {
 
-                        current =
-                            story;
-
-                    }
+                    current =
+                        story;
 
                 }
 
-            );
+            }
+
+        );
 
 
         /*
-            When a new 3D story becomes
-            active, restart its subtle
-            reveal state.
+            Small re-trigger when
+            moving into new section.
         */
 
         if(
             current &&
             current !==
-            lastActiveStory
+                lastActiveStory
         ) {
 
             current.style.opacity =
@@ -817,9 +1469,8 @@
     }
 
 
-
     /* =====================================================
-       3D CAMERA
+       UPDATE 3D MODEL
     ===================================================== */
 
     function updateModel() {
@@ -838,81 +1489,89 @@
 
 
         /*
-            Approximately one full
-            scroll-driven rotation.
+            Story text should still work
+            even if model file hasn't
+            loaded yet.
         */
 
-        const theta =
-            -42 +
-            progress *
-            340;
-
-
-        /*
-            Camera moves vertically
-            slightly during the turn.
-        */
-
-        const phi =
-            72 -
-            Math.sin(
-                progress *
-                Math.PI
-            ) *
-            8;
-
-
-        /*
-            Slight cinematic zoom toward
-            the middle of the sequence.
-        */
-
-        const radius =
-            108 -
-            Math.sin(
-                progress *
-                Math.PI
-            ) *
-            10;
+        updateModelStories(
+            progress
+        );
 
 
         if(
-            modelViewer
+            !modelViewer ||
+            !modelLoaded
         ) {
 
-            modelViewer.cameraOrbit =
-                `${theta}deg ${phi}deg ${radius}%`;
+            return;
 
         }
 
 
-        const normalized =
-            (
-                (
-                    theta %
-                    360
-                ) +
-                360
-            ) %
-            360;
+        const state =
+            cameraState(
+                progress
+            );
 
+
+        /*
+            Camera orientation.
+
+            This moves around the car
+            instead of simply rotating
+            the object like a turntable.
+        */
+
+        modelViewer.cameraOrbit =
+
+            `${state.orbit}deg ` +
+            `${state.phi}deg ` +
+            `${state.radius}%`;
+
+
+        /*
+            Move focus point along
+            different sections of car.
+        */
+
+        modelViewer.cameraTarget =
+
+            `${state.target.x}m ` +
+            `${state.target.y}m ` +
+            `${state.target.z}m`;
+
+
+        /* =============================================
+           UI READOUT
+        ============================================= */
 
         if(
             orbitReadout
         ) {
 
+            const angle =
+                (
+                    (
+                        state.orbit %
+                        360
+                    ) +
+                    360
+                ) %
+                360;
+
+
             orbitReadout.textContent =
-                `${
-                    Math
-                        .round(
-                            normalized
-                        )
-                        .toString()
-                        .padStart(
-                            3,
-                            "0"
-                        )
-                }°`;
+
+                `${Math
+                    .round(
+                        angle
+                    )
+                    .toString()
+                    .padStart(
+                        3,
+                        "0"
+                    )}°`;
 
         }
 
@@ -921,62 +1580,56 @@
             viewReadout
         ) {
 
-            let view;
-
-
             if(
-                normalized <
-                45 ||
-                normalized >=
-                315
+                progress <
+                .17
             ) {
 
-                view =
-                    "FRONT";
+                viewReadout.textContent =
+                    "FULL VEHICLE";
 
             }
             else if(
-                normalized <
-                135
+                progress <
+                .37
             ) {
 
-                view =
-                    "RIGHT SIDE";
+                viewReadout.textContent =
+                    "SOLAR / FRONT";
 
             }
             else if(
-                normalized <
-                225
+                progress <
+                .59
             ) {
 
-                view =
-                    "REAR";
+                viewReadout.textContent =
+                    "CONTROL / DRIVER";
+
+            }
+            else if(
+                progress <
+                .80
+            ) {
+
+                viewReadout.textContent =
+                    "DRIVETRAIN";
 
             }
             else {
 
-                view =
-                    "LEFT SIDE";
+                viewReadout.textContent =
+                    "FULL VEHICLE";
 
             }
 
-
-            viewReadout.textContent =
-                view;
-
         }
-
-
-        updateModelStories(
-            progress
-        );
 
     }
 
 
-
     /* =====================================================
-       MEASURE PAGE
+       PAGE MEASUREMENT
     ===================================================== */
 
     function measure() {
@@ -1025,9 +1678,8 @@
     }
 
 
-
     /* =====================================================
-       ACTIVE NAVIGATION
+       ACTIVE NAV
     ===================================================== */
 
     function updateNavigation() {
@@ -1048,28 +1700,27 @@
             "home";
 
 
-        chapterData
-            .forEach(
+        chapterData.forEach(
 
-                item => {
+            item => {
 
-                    if(
-                        scrollY +
-                        innerHeight *
-                        .38 >=
-                        item.top
-                    ) {
+                if(
+                    scrollY +
+                    innerHeight *
+                    .38 >=
+                    item.top
+                ) {
 
-                        active =
-                            item
-                                .element
-                                .id;
-
-                    }
+                    active =
+                        item
+                            .element
+                            .id;
 
                 }
 
-            );
+            }
+
+        );
 
 
         nav
@@ -1106,9 +1757,8 @@
     }
 
 
-
     /* =====================================================
-       RENDER
+       MAIN RENDER LOOP
     ===================================================== */
 
     function render() {
@@ -1117,7 +1767,7 @@
             0;
 
 
-        const progress =
+        const pageProgress =
             clamp(
                 scrollY /
                 maxScroll
@@ -1130,7 +1780,7 @@
 
             progressBar.style
                 .transform =
-                    `scaleX(${progress})`;
+                    `scaleX(${pageProgress})`;
 
         }
 
@@ -1162,7 +1812,6 @@
     }
 
 
-
     /* =====================================================
        EVENTS
     ===================================================== */
@@ -1174,8 +1823,7 @@
         schedule,
 
         {
-            passive:
-                true
+            passive: true
         }
 
     );
@@ -1199,7 +1847,13 @@
             resizeTimer =
                 setTimeout(
 
-                    measure,
+                    () => {
+
+                        measure();
+
+                        updateModel();
+
+                    },
 
                     120
 
@@ -1211,13 +1865,8 @@
 
 
     /*
-        pageshow works for both:
-        - normal navigation
-        - browser Back/Forward cache
-
-        This prevents the transition
-        from remaining stuck after
-        pressing Back.
+        Handles normal navigation
+        and browser Back/Forward.
     */
 
     window.addEventListener(
@@ -1230,14 +1879,17 @@
 
             revealPage();
 
+            schedule();
+
         }
 
     );
 
 
     /*
-        Fallback in case script is
-        evaluated after pageshow.
+        Fallback if document was
+        already loaded before the
+        script finished.
     */
 
     if(
@@ -1248,6 +1900,8 @@
         measure();
 
         revealPage();
+
+        schedule();
 
     }
 
