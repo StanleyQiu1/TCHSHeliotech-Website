@@ -1,1 +1,109 @@
+<!doctype html>
+<html lang="en">
+<head>
+  <meta charset="utf-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1">
+  <meta name="description" content="Temple City High School HelioTech. Student-built solar cars, hands-on engineering, and a future powered by clean energy.">
+  <meta name="theme-color" content="#ffffff">
+  <title>HelioTech — Temple City High School</title>
+  <link rel="icon" href="data:image/svg+xml,%3Csvg xmlns='http://www.w3.org/2000/svg' viewBox='0 0 32 32'%3E%3Crect width='32' height='32' fill='%231e1f2b'/%3E%3Ctext x='7' y='24' fill='white' font-family='Arial' font-size='23'%3EH%3C/text%3E%3C/svg%3E">
+  <link rel="stylesheet" href="./styles.css">
+  <script src="./script.js" defer></script>
+</head>
+<body>
+  <a class="skip" href="#main">Skip to content</a>
+  <header class="site-header">
+    <a class="brand" href="#home" aria-label="HelioTech home">HELIO<span>TECH</span><small>TEMPLE CITY HIGH SCHOOL</small></a>
+    <button class="menu-toggle" aria-controls="navigation" aria-expanded="false" hidden>Menu +</button>
+    <nav id="navigation" aria-label="Main navigation">
+      <a href="#about">Our mission</a><a href="#cars">The cars</a><a href="#join">The team</a><a class="nav-cta" href="#support">Support the build <span aria-hidden="true">↗</span></a>
+    </nav>
+    <button id="motion-toggle" class="motion-toggle" aria-pressed="false" hidden>Motion: on</button>
+    <div class="scroll-progress" aria-hidden="true"></div>
+  </header>
+  <main id="main">
+    <section id="home" class="hero chapter" aria-labelledby="hero-title">
+      <div class="hero-panel">
+        <div class="eyebrow hero-top"><span>STUDENT ENGINEERING / SOLAR MOBILITY</span><span>TEMPLE CITY, CALIFORNIA</span></div>
+        <div class="hero-grid">
+          <div>
+            <p class="eyebrow">01 / IDEAS INTO MOTION</p>
+            <h1 id="hero-title">From sunlight<br>to the <span class="selection" data-target="title">starting line.</span></h1>
+            <p class="hero-copy">We are HelioTech. Temple City High School students designing, building, and racing solar-powered cars.</p>
+            <a class="button" href="#cars">Explore the cars <span aria-hidden="true">↘</span></a>
+          </div>
+          <figure class="car-figure construction" data-target="vehicle">
+            <div class="figure-top eyebrow"><span>ENERGY → MOTION</span><span>HT / 01</span></div>
+            <img src="./images/solar-car-placeholder.svg" width="900" height="620" alt="Original conceptual line drawing of a solar car with a solar array, cockpit, chassis, and wheels; not an actual HelioTech vehicle.">
+            <figcaption><span>SOLAR VEHICLE / CONCEPT SCHEMATIC</span><span>NOT FINAL VEHICLE GEOMETRY</span></figcaption>
+          </figure>
+        </div>
+        <div class="hero-bottom">
+          <p><strong>2025 + 2026</strong><span>Solar Car Challenge<br>Cruiser Division champions</span></p>
+          <p class="scroll-note">SCROLL TO ASSEMBLE <span aria-hidden="true">↓</span></p>
+        </div>
+        <div class="outline-word" aria-hidden="true">HELIOTECH</div>
+      </div>
+    </section>
 
+    <section id="about" class="section chapter mission" aria-labelledby="mission-title">
+      <div class="section-label"><span>02 / THE REASON WE BUILD</span><span>MISSION</span></div>
+      <h2 id="mission-title" class="statement reveal" data-target="mission">A cleaner future.<br><span>Built with our own hands.</span></h2>
+      <div class="mission-grid">
+        <p class="large-copy reveal">A solar car is more than a vehicle. It is a place to turn curiosity into practical experience.</p>
+        <div class="reveal"><p>HelioTech brings Temple City High School students together around solar mobility. Our work connects engineering, fabrication, business, and outreach through the challenge of building a car that runs on sunlight.</p><p>Students take on real responsibilities, from designing components and wiring systems to finding partners and preparing for competition.</p><a class="text-link" href="#join">Find your place on the team ↗</a></div>
+      </div>
+    </section>
+
+    <section id="cars" class="section chapter cars" aria-labelledby="cars-title">
+      <div class="section-label"><span>03 / FROM DRAWING TO DRIVING</span><span>THE CARS</span></div>
+      <div class="section-heading reveal"><h2 id="cars-title">The next chapter<br>takes shape.</h2><p>Experience from the race course.<br>Ambition for what comes next.</p></div>
+      <article id="next" class="build-card reveal construction">
+        <div class="build-intro"><p class="eyebrow">IN DEVELOPMENT / 2027</p><h3>Advanced single-seater</h3><p>HelioTech’s planned move into the Advanced Division brings a carbon fiber monocoque, student-designed suspension, and hub motors into one new vehicle.</p></div>
+        <div class="assembly" aria-label="Three planned engineering systems">
+          <div class="assembly-line" aria-hidden="true"></div>
+          <div class="assembly-part" data-target="chassis"><span class="part-number">01</span><div class="part-icon shell" aria-hidden="true"></div><h4>Carbon structure</h4><p>A monocoque chassis forms the vehicle’s core.</p></div>
+          <div class="assembly-part" data-target="suspension"><span class="part-number">02</span><div class="part-icon suspension" aria-hidden="true"></div><h4>Custom suspension</h4><p>Student-designed systems connect chassis and road.</p></div>
+          <div class="assembly-part" data-target="drive"><span class="part-number">03</span><div class="part-icon wheel" aria-hidden="true"></div><h4>Hub motors</h4><p>An efficient drivetrain turns stored energy into movement.</p></div>
+        </div>
+        <a class="text-link" href="#support">Help bring the next car to life ↗</a>
+      </article>
+      <div id="racing" class="race-history">
+        <div id="recap" class="race-row reveal" data-target="race"><span class="eyebrow">2026 / CRUISER</span><h3>Four seats.<br>A second title.</h3><p>The four-seat Cruiser earned HelioTech’s second consecutive Cruiser Division championship at the Solar Car Challenge.</p><span class="race-number" aria-label="First place">01<sup>ST</sup></span></div>
+        <div class="race-row reveal"><span class="eyebrow">2025 / CRUISER</span><h3>The first<br>championship.</h3><p>HelioTech’s 2025 Cruiser took the division title at Texas Motor Speedway, setting the foundation for the next season.</p><span class="race-number" aria-label="First place">01<sup>ST</sup></span></div>
+      </div>
+    </section>
+
+    <section id="join" class="section chapter team" aria-labelledby="team-title">
+      <div class="section-label"><span>04 / MANY DISCIPLINES. ONE TEAM.</span><span>PEOPLE</span></div>
+      <div class="section-heading reveal"><h2 id="team-title">Find your part<br>in the whole.</h2><p>Technical and operations teams.<br>A shared commitment to making it work.</p></div>
+      <div class="team-grid">
+        <article class="team-card reveal" data-target="mechanical"><span class="eyebrow">01 / TECHNICAL</span><h3>Mechanical</h3><p>Chassis, suspension, steering, and brakes. Translate a design into a working machine.</p></article>
+        <article class="team-card reveal"><span class="eyebrow">02 / TECHNICAL</span><h3>Composites</h3><p>Molds, carbon fiber layups, and bodywork. Build the surfaces that give the car its form.</p></article>
+        <article class="team-card reveal" data-target="electrical"><span class="eyebrow">03 / TECHNICAL</span><h3>Electrical + solar</h3><p>Battery systems, motor control, wiring, and solar arrays. Connect sunlight to the drivetrain.</p></article>
+        <article class="team-card reveal"><span class="eyebrow">04 / OPERATIONS</span><h3>Partnerships</h3><p>Sponsor outreach and grant writing. Build the relationships that support the team.</p></article>
+        <article class="team-card reveal" data-target="outreach"><span class="eyebrow">05 / OPERATIONS</span><h3>Story + outreach</h3><p>Photography, video, newsletters, and community events. Share the work beyond the workshop.</p></article>
+        <article class="team-card reveal"><span class="eyebrow">06 / OPERATIONS</span><h3>Race operations</h3><p>Finance, logistics, and race-week planning. Help every part of the program move together.</p></article>
+      </div>
+      <div class="join-note reveal"><p>Interested in joining? Temple City High School students can ask the team about the next recruitment window.</p><a class="button" href="mailto:tchsheliotech@tcusd.net?subject=Joining%20HelioTech">Ask about joining ↗</a></div>
+    </section>
+
+    <section id="support" class="section chapter support" aria-labelledby="support-title">
+      <span id="sponsors" class="anchor-alias"></span>
+      <div class="section-label"><span>05 / BUILD WHAT COMES NEXT</span><span>PARTNERSHIPS</span></div>
+      <p class="eyebrow reveal">SUPPORT STUDENT ENGINEERING</p>
+      <h2 id="support-title" class="reveal" data-target="support">The next mile<br>starts with <span>you.</span></h2>
+      <div class="support-bottom reveal"><p>Help students turn a new design into a race-ready solar car. Connect with HelioTech about sponsorship, materials, or community partnerships.</p><a class="button inverse" data-target="contact" href="mailto:tchsheliotech@tcusd.net?subject=Supporting%20HelioTech">Support the next build ↗</a></div>
+      <div class="support-links"><a href="https://drive.google.com/file/d/159L12r9osbfbzQgRAskpfb89U0qMg5M7/view">Read the sponsorship booklet ↗</a><a href="https://tchsheliotech.netlify.app/#sponsors">Meet our existing sponsors ↗</a></div>
+    </section>
+  </main>
+  <footer id="contact" class="section footer">
+    <div><a class="brand" href="#home">HELIO<span>TECH</span></a><p>Temple City High School<br>9501 Lemon Avenue, Temple City, CA 91780</p></div>
+    <div><a href="mailto:tchsheliotech@tcusd.net">tchsheliotech@tcusd.net ↗</a><div id="media"><a href="https://www.instagram.com/tchs.helio.tech/">Instagram ↗</a><a href="https://www.tchsheliotech.com/home">Team archive ↗</a></div></div>
+    <div class="footer-bottom"><span>© <span id="year">2026</span> TCHS HelioTech</span><a href="#home">Back to top ↑</a><span>BUILT BY CURIOSITY. POWERED BY SUNLIGHT.</span></div>
+  </footer>
+  <div class="demo-cursor" aria-hidden="true"><svg viewBox="0 0 28 34"><path d="M2 2 25 21 15 22 10 31Z"/></svg><span class="cursor-label">ASSEMBLE</span><i class="click-ring"></i></div>
+  <div class="cursor-echo echo-one" aria-hidden="true">↖</div><div class="cursor-echo echo-two" aria-hidden="true">↖</div>
+</body>
+</html>
+```
