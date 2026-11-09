@@ -17,7 +17,7 @@
 
     <meta
         name="theme-color"
-        content="#02070d"
+        content="#000000"
     >
 
     <title>
@@ -50,8 +50,9 @@
 
     <script
         type="module"
-        src="https://unpkg.com/@google/model-viewer@4.4.0/dist/model-viewer.min.js"
+        src="https://unpkg.com/@google/model-viewer/dist/model-viewer.min.js"
     ></script>
+
 
     <script
         src="script.js"
@@ -81,9 +82,14 @@
         href="#home"
     >
 
-        <span class="brand-mark"></span>
+        <span class="heliotech-mark">
 
-        <span>
+            <span></span>
+
+        </span>
+
+
+        <span class="brand-name">
             HELIO<span>TECH</span>
         </span>
 
@@ -116,10 +122,13 @@
         </a>
 
         <a
-            href="Support%20us.html"
             class="nav-support"
+            href="Support%20us.html"
         >
-            Support ↗
+            Support
+            <span class="link-icon">
+                ↗
+            </span>
         </a>
 
     </nav>
@@ -158,7 +167,7 @@
 >
 
 
-    <div class="hero-grid-lines"></div>
+    <div class="hero-background-grid"></div>
 
 
     <div class="hero-topline">
@@ -172,7 +181,7 @@
         </span>
 
         <span>
-            CALIFORNIA / USA
+            CALIFORNIA
         </span>
 
     </div>
@@ -181,14 +190,14 @@
     <div class="hero-content">
 
 
-        <div>
+        <div class="hero-title-block">
 
 
             <p
                 class="eyebrow"
                 data-flicker
             >
-                /01 — HELIOTECH
+                TCHS HELIOTECH
             </p>
 
 
@@ -208,26 +217,26 @@
 
 
             <p
-                class="hero-description"
                 data-flicker
             >
                 Temple City High School students
-                design, manufacture, integrate,
-                program, test, and race
+                design, manufacture, program,
+                integrate, test, and race
                 solar-powered vehicles.
             </p>
 
 
             <a
-                class="hero-button"
+                class="outline-button"
                 href="#vehicle"
-                data-flicker
             >
+
                 Explore the vehicle
 
-                <span>
+                <span class="link-icon">
                     ↓
                 </span>
+
             </a>
 
 
@@ -237,45 +246,45 @@
     </div>
 
 
-    <div class="hero-bottom">
+    <div class="hero-data">
 
 
-        <div
-            data-flicker
-        >
-            <span class="micro-label">
+        <div>
+
+            <span>
                 PROGRAM
             </span>
 
             <strong>
                 STUDENT BUILT
             </strong>
+
         </div>
 
 
-        <div
-            data-flicker
-        >
-            <span class="micro-label">
+        <div>
+
+            <span>
                 COMPETITION
             </span>
 
             <strong>
                 SOLAR CAR CHALLENGE
             </strong>
+
         </div>
 
 
-        <div
-            data-flicker
-        >
-            <span class="micro-label">
-                2025 + 2026
+        <div>
+
+            <span>
+                PERFORMANCE
             </span>
 
             <strong>
-                CRUISER CHAMPIONS
+                BACK-TO-BACK CHAMPIONS
             </strong>
+
         </div>
 
 
@@ -292,28 +301,27 @@
 
 <section
     id="about"
-    class="section chapter"
+    class="standard-section chapter"
 >
 
 
-    <div class="section-marker">
+    <div class="section-header">
 
-        <span>
-            /02
-        </span>
 
         <span>
             ABOUT
         </span>
 
+
         <span>
             ENGINEERING BY DOING
         </span>
 
+
     </div>
 
 
-    <div class="statement-grid">
+    <div class="statement-layout">
 
 
         <h2
@@ -328,32 +336,38 @@
 
 
             <p
-                class="large-copy"
+                class="statement-lead"
                 data-flicker
             >
                 We learn engineering by building
-                something that has to work in
-                the real world.
+                something that has to work outside
+                the classroom.
             </p>
 
 
             <p
-                class="muted-copy"
+                class="body-copy"
                 data-flicker
             >
-                Every subsystem brings constraints.
                 Electrical decisions affect packaging.
                 Mechanical decisions affect wiring.
-                Software affects what the driver sees.
-                Everything eventually meets at the car.
+                Software determines what the driver sees.
+                Every subsystem eventually meets
+                at the vehicle.
             </p>
 
 
             <a
-                class="text-link"
                 href="about.html"
+                class="text-link page-link"
             >
-                About HelioTech ↗
+
+                About HelioTech
+
+                <span class="link-icon">
+                    ↗
+                </span>
+
             </a>
 
 
@@ -368,174 +382,247 @@
 
 
 <!-- =====================================================
-     3D VEHICLE
+     FULL SCREEN 3D VEHICLE STORY
 ===================================================== -->
 
 <section
     id="vehicle"
-    class="model-scroll chapter"
+    class="vehicle-story chapter"
 >
 
 
-    <div class="model-sticky">
+    <div class="vehicle-sticky">
 
 
-        <div class="model-header">
+        <div class="vehicle-model-layer">
 
 
-            <div>
-
-                <span class="micro-label">
-                    /03
-                </span>
-
-                <span class="micro-label">
-                    VEHICLE PLATFORM
-                </span>
-
-            </div>
+            <div class="model-grid"></div>
 
 
-            <div class="model-scroll-label">
-                SCROLL TO ORBIT
+            <model-viewer
+                id="car-model"
+                src="./models/heliotech-car.glb"
+                alt="3D model of the TCHS HelioTech solar car"
+                camera-controls
+                disable-pan
+                disable-zoom
+                interaction-prompt="none"
+                touch-action="pan-y"
+                camera-orbit="-35deg 70deg 105%"
+                interpolation-decay="120"
+                shadow-intensity="0"
+                exposure="0.72"
+            >
+            </model-viewer>
+
+
+            <div
+                id="model-placeholder"
+                class="model-placeholder"
+            >
+
+
+                <div class="orbit-ring">
+
+                    <div class="orbit-ring-inner"></div>
+
+                </div>
+
+
+                <div class="placeholder-copy">
+
+                    <span>
+                        3D VEHICLE MODEL
+                    </span>
+
+
+                    <strong>
+                        MODEL PLACEHOLDER
+                    </strong>
+
+
+                    <p>
+                        Upload your GLB model later as:
+                    </p>
+
+
+                    <code>
+                        models/heliotech-car.glb
+                    </code>
+
+                </div>
+
+
             </div>
 
 
         </div>
 
 
-        <div class="model-layout">
+        <div class="vehicle-interface">
 
 
-            <div class="model-copy">
+            <div class="vehicle-topbar">
 
 
-                <p
-                    class="eyebrow"
-                    data-flicker
-                >
-                    ADVANCED CAR / DEVELOPMENT
-                </p>
+                <span>
+                    HELIOTECH / VEHICLE PLATFORM
+                </span>
 
 
-                <h2
-                    data-flicker
-                >
-                    VIEW THE<br>
-                    SYSTEM FROM<br>
-                    EVERY ANGLE.
-                </h2>
-
-
-                <p
-                    data-flicker
-                >
-                    This stage is reserved for the
-                    team's 3D vehicle model.
-                    As the page moves, the camera
-                    rotates around the vehicle.
-                </p>
-
-
-                <div class="model-readout">
-
-
-                    <div>
-
-                        <span>
-                            ROTATION
-                        </span>
-
-                        <strong id="rotation-value">
-                            000°
-                        </strong>
-
-                    </div>
-
-
-                    <div>
-
-                        <span>
-                            VIEW
-                        </span>
-
-                        <strong id="view-value">
-                            FRONT
-                        </strong>
-
-                    </div>
-
-
-                </div>
+                <span id="orbit-readout">
+                    000°
+                </span>
 
 
             </div>
 
 
-            <div
-                class="model-stage"
-                id="model-stage"
+
+            <!-- SOLAR STORY -->
+
+            <article
+                class="model-story model-story-left"
+                data-model-step
+                data-start="0.03"
+                data-end="0.23"
             >
 
 
-                <div class="model-grid"></div>
+                <span class="story-label">
+                    SOLAR + ENERGY
+                </span>
 
 
-                <model-viewer
-                    id="car-model"
-                    src="./models/heliotech-car.glb"
-                    alt="3D model of the TCHS HelioTech solar car"
-                    camera-controls
-                    disable-pan
-                    disable-zoom
-                    touch-action="pan-y"
-                    interaction-prompt="none"
-                    camera-orbit="-45deg 72deg 105%"
-                    min-camera-orbit="-Infinity 55deg 90%"
-                    max-camera-orbit="Infinity 88deg 125%"
-                    interpolation-decay="140"
-                    shadow-intensity="0"
-                    exposure="0.75"
-                >
-                </model-viewer>
+                <h2>
+                    POWER BEGINS<br>
+                    WITH THE SUN.
+                </h2>
 
 
-                <div class="model-placeholder">
+                <p>
+                    The solar array supplies energy
+                    to the vehicle while the electrical
+                    system manages generation,
+                    storage, protection, and distribution.
+                </p>
 
 
-                    <span class="placeholder-number">
-                        3D / 01
-                    </span>
+            </article>
 
 
-                    <div>
+
+            <!-- ELECTRONICS STORY -->
+
+            <article
+                class="model-story model-story-right"
+                data-model-step
+                data-start="0.27"
+                data-end="0.47"
+            >
 
 
-                        <strong>
-                            3D MODEL SLOT
-                        </strong>
+                <span class="story-label">
+                    DISTRIBUTED ELECTRONICS
+                </span>
 
 
-                        <p>
-                            Upload:
-                        </p>
+                <h2>
+                    CONTROL IS<br>
+                    DISTRIBUTED.
+                </h2>
 
 
-                        <code>
-                            models/heliotech-car.glb
-                        </code>
+                <p>
+                    Custom electronics connect
+                    vehicle controls, sensors,
+                    driver displays, power systems,
+                    and telemetry across the car.
+                </p>
 
 
-                    </div>
+            </article>
 
 
-                </div>
+
+            <!-- DRIVER STORY -->
+
+            <article
+                class="model-story model-story-left"
+                data-model-step
+                data-start="0.51"
+                data-end="0.71"
+            >
 
 
-                <div class="model-corner corner-a"></div>
-                <div class="model-corner corner-b"></div>
-                <div class="model-corner corner-c"></div>
-                <div class="model-corner corner-d"></div>
+                <span class="story-label">
+                    DRIVER INTERFACE
+                </span>
+
+
+                <h2>
+                    DATA REACHES<br>
+                    THE DRIVER.
+                </h2>
+
+
+                <p>
+                    Vehicle information is collected
+                    and presented to the driver so
+                    operating decisions can be made
+                    while the car is moving.
+                </p>
+
+
+            </article>
+
+
+
+            <!-- WHOLE VEHICLE STORY -->
+
+            <article
+                class="model-story model-story-right"
+                data-model-step
+                data-start="0.75"
+                data-end="0.96"
+            >
+
+
+                <span class="story-label">
+                    INTEGRATED VEHICLE
+                </span>
+
+
+                <h2>
+                    EVERY SYSTEM<br>
+                    MEETS HERE.
+                </h2>
+
+
+                <p>
+                    Electrical, mechanical, structural,
+                    software, and race operations
+                    become one system when the
+                    vehicle reaches the road.
+                </p>
+
+
+            </article>
+
+
+
+            <div class="vehicle-bottom">
+
+
+                <span id="view-readout">
+                    FRONT / LEFT
+                </span>
+
+
+                <span>
+                    SCROLL TO ORBIT
+                </span>
 
 
             </div>
@@ -557,15 +644,11 @@
 
 <section
     id="systems"
-    class="section chapter systems-section"
+    class="standard-section systems-section chapter"
 >
 
 
-    <div class="section-marker">
-
-        <span>
-            /04
-        </span>
+    <div class="section-header">
 
         <span>
             SYSTEMS
@@ -578,7 +661,7 @@
     </div>
 
 
-    <div class="systems-heading">
+    <div class="systems-intro">
 
 
         <h2
@@ -592,51 +675,48 @@
         <p
             data-flicker
         >
-            Independent engineering disciplines
-            connected into one vehicle.
+            Different engineering disciplines
+            connected through one vehicle.
         </p>
 
 
     </div>
 
 
+
     <div class="systems-list">
 
 
         <a
-            class="system-row"
+            class="system-row page-link"
             href="Technical"
         >
 
 
-            <span class="system-index">
-                /0.1
-            </span>
-
-
             <div>
+
 
                 <span class="system-label">
                     POWER + SOLAR
                 </span>
 
-                <h3
-                    data-flicker
-                >
+
+                <h3>
                     ENERGY SYSTEM
                 </h3>
+
 
             </div>
 
 
             <p>
                 Solar generation, battery storage,
-                monitoring, protection,
+                protection, monitoring,
                 and power distribution.
             </p>
 
 
-            <span class="system-arrow">
+            <span class="system-arrow link-icon">
                 ↗
             </span>
 
@@ -644,28 +724,25 @@
         </a>
 
 
+
         <a
-            class="system-row"
+            class="system-row page-link"
             href="Technical"
         >
 
 
-            <span class="system-index">
-                /0.2
-            </span>
-
-
             <div>
+
 
                 <span class="system-label">
                     EMBEDDED ELECTRONICS
                 </span>
 
-                <h3
-                    data-flicker
-                >
+
+                <h3>
                     PCB NETWORK
                 </h3>
+
 
             </div>
 
@@ -678,7 +755,7 @@
             </p>
 
 
-            <span class="system-arrow">
+            <span class="system-arrow link-icon">
                 ↗
             </span>
 
@@ -686,40 +763,37 @@
         </a>
 
 
+
         <a
-            class="system-row"
+            class="system-row page-link"
             href="our%20cars.html"
         >
 
 
-            <span class="system-index">
-                /0.3
-            </span>
-
-
             <div>
+
 
                 <span class="system-label">
                     MECHANICAL
                 </span>
 
-                <h3
-                    data-flicker
-                >
+
+                <h3>
                     STRUCTURE + MOTION
                 </h3>
+
 
             </div>
 
 
             <p>
-                Chassis, suspension,
-                steering, braking,
-                packaging, and integration.
+                Chassis, steering,
+                suspension, braking,
+                packaging, and physical integration.
             </p>
 
 
-            <span class="system-arrow">
+            <span class="system-arrow link-icon">
                 ↗
             </span>
 
@@ -727,28 +801,25 @@
         </a>
 
 
+
         <a
-            class="system-row"
+            class="system-row page-link"
             href="Technical"
         >
 
 
-            <span class="system-index">
-                /0.4
-            </span>
-
-
             <div>
+
 
                 <span class="system-label">
                     SOFTWARE + DATA
                 </span>
 
-                <h3
-                    data-flicker
-                >
+
+                <h3>
                     TELEMETRY
                 </h3>
+
 
             </div>
 
@@ -760,7 +831,7 @@
             </p>
 
 
-            <span class="system-arrow">
+            <span class="system-arrow link-icon">
                 ↗
             </span>
 
@@ -781,15 +852,11 @@
 
 <section
     id="results"
-    class="section chapter results-section"
+    class="standard-section chapter"
 >
 
 
-    <div class="section-marker">
-
-        <span>
-            /05
-        </span>
+    <div class="section-header">
 
         <span>
             RESULTS
@@ -802,7 +869,7 @@
     </div>
 
 
-    <div class="results-heading">
+    <div class="results-title">
 
 
         <h2
@@ -822,28 +889,20 @@
         <article>
 
 
-            <div class="result-top">
-
-                <span>
-                    2026
-                </span>
-
-                <span>
-                    CRUISER DIVISION
-                </span>
-
+            <div class="result-year">
+                2026
             </div>
 
 
-            <div class="result-number">
-                01
-            </div>
+            <span>
+                CRUISER DIVISION
+            </span>
 
 
             <h3
                 data-flicker
             >
-                CHAMPIONS
+                FIRST PLACE
             </h3>
 
 
@@ -857,38 +916,31 @@
         </article>
 
 
+
         <article>
 
 
-            <div class="result-top">
-
-                <span>
-                    2025
-                </span>
-
-                <span>
-                    CRUISER DIVISION
-                </span>
-
+            <div class="result-year">
+                2025
             </div>
 
 
-            <div class="result-number">
-                01
-            </div>
+            <span>
+                CRUISER DIVISION
+            </span>
 
 
             <h3
                 data-flicker
             >
-                CHAMPIONS
+                FIRST PLACE
             </h3>
 
 
             <p>
-                The first division title
-                established the foundation
-                for the next generation.
+                The team's first division title
+                established the foundation for
+                the next generation of vehicles.
             </p>
 
 
@@ -908,15 +960,11 @@
 
 <section
     id="team"
-    class="section chapter team-section"
+    class="standard-section chapter"
 >
 
 
-    <div class="section-marker">
-
-        <span>
-            /06
-        </span>
+    <div class="section-header">
 
         <span>
             TEAM
@@ -929,7 +977,7 @@
     </div>
 
 
-    <div class="team-heading">
+    <div class="team-title">
 
 
         <h2
@@ -949,56 +997,54 @@
 
         <a
             href="The%20team.html"
-            class="team-card"
+            class="team-card page-link"
         >
-
-            <span>
-                /01
-            </span>
 
             <h3>
                 ELECTRICAL
             </h3>
 
             <p>
-                PCBs, solar, power,
-                wiring, sensing,
-                and control.
+                PCB design, solar,
+                power, wiring,
+                sensing, and control.
             </p>
+
+            <span class="link-icon">
+                ↗
+            </span>
 
         </a>
 
 
+
         <a
             href="The%20team.html"
-            class="team-card"
+            class="team-card page-link"
         >
-
-            <span>
-                /02
-            </span>
 
             <h3>
                 MECHANICAL
             </h3>
 
             <p>
-                Chassis, steering,
+                Structure, steering,
                 suspension, braking,
                 and packaging.
             </p>
 
+            <span class="link-icon">
+                ↗
+            </span>
+
         </a>
+
 
 
         <a
             href="The%20team.html"
-            class="team-card"
+            class="team-card page-link"
         >
-
-            <span>
-                /03
-            </span>
 
             <h3>
                 COMPOSITES
@@ -1010,17 +1056,18 @@
                 structural fabrication.
             </p>
 
+            <span class="link-icon">
+                ↗
+            </span>
+
         </a>
+
 
 
         <a
             href="The%20team.html"
-            class="team-card"
+            class="team-card page-link"
         >
-
-            <span>
-                /04
-            </span>
 
             <h3>
                 OPERATIONS
@@ -1031,6 +1078,10 @@
                 documentation,
                 and race execution.
             </p>
+
+            <span class="link-icon">
+                ↗
+            </span>
 
         </a>
 
@@ -1055,8 +1106,8 @@
     <div>
 
 
-        <span class="micro-label">
-            /07 — PARTNERSHIPS
+        <span class="support-label">
+            PARTNERSHIPS
         </span>
 
 
@@ -1087,10 +1138,16 @@
 
 
         <a
-            class="support-button"
+            class="support-button page-link"
             href="Support%20us.html"
         >
-            Support HelioTech ↗
+
+            Support HelioTech
+
+            <span class="link-icon">
+                ↗
+            </span>
+
         </a>
 
 
@@ -1112,8 +1169,8 @@
 
 
         <a
-            href="#home"
             class="footer-brand"
+            href="#home"
         >
             HELIOTECH
         </a>
@@ -1130,21 +1187,39 @@
 
     <div class="footer-links">
 
-        <a href="contact.html">
-            Contact ↗
+
+        <a
+            class="page-link"
+            href="contact.html"
+        >
+            Contact
+            <span class="link-icon">↗</span>
         </a>
 
-        <a href="media.html">
-            Media ↗
+
+        <a
+            class="page-link"
+            href="media.html"
+        >
+            Media
+            <span class="link-icon">↗</span>
         </a>
 
-        <a href="sponsors.html">
-            Sponsors ↗
+
+        <a
+            class="page-link"
+            href="sponsors.html"
+        >
+            Sponsors
+            <span class="link-icon">↗</span>
         </a>
+
 
         <a href="#home">
-            Back to top ↑
+            Back to top
+            <span class="link-icon">↑</span>
         </a>
+
 
     </div>
 
@@ -1163,6 +1238,50 @@
 
 
 </footer>
+
+
+
+<!-- =====================================================
+     PAGE TRANSITION
+===================================================== -->
+
+<div
+    id="page-transition"
+    class="page-transition"
+    aria-hidden="true"
+>
+
+
+    <div class="transition-grid"></div>
+
+
+    <div class="transition-brand">
+
+
+        <div class="transition-logo">
+
+            <span class="transition-circle"></span>
+
+            <span class="transition-leg left"></span>
+
+            <span class="transition-leg right"></span>
+
+        </div>
+
+
+        <div class="transition-wordmark">
+            HELIO<span>TECH</span>
+        </div>
+
+
+    </div>
+
+
+    <div class="transition-line"></div>
+
+
+</div>
+
 
 
 </body>
