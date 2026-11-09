@@ -40,69 +40,63 @@
 }
 
 
+/* =====================================================
+   RESET
+===================================================== */
+
 * {
-    box-sizing:
-        border-box;
+    box-sizing: border-box;
 }
 
 
 html {
 
-    background:
-        black;
+    background: black;
 
-    scroll-behavior:
-        smooth;
+    scroll-behavior: smooth;
 
 }
 
 
 body {
 
-    margin:
-        0;
+    margin: 0;
 
-    background:
-        black;
+    background: black;
 
-    color:
-        var(--text);
+    color: var(--text);
 
     font-family:
         "Inter",
         system-ui,
+        -apple-system,
+        BlinkMacSystemFont,
+        "Segoe UI",
         sans-serif;
 
-    font-weight:
-        500;
+    font-weight: 500;
 
-    line-height:
-        1.5;
+    line-height: 1.5;
 
-    overflow-x:
-        hidden;
+    overflow-x: hidden;
 
 }
 
 
 a {
 
-    color:
-        inherit;
+    color: inherit;
 
-    text-decoration:
-        none;
+    text-decoration: none;
 
 }
 
 
 button {
 
-    font:
-        inherit;
+    font: inherit;
 
-    color:
-        inherit;
+    color: inherit;
 
 }
 
@@ -112,8 +106,7 @@ h2,
 h3,
 p {
 
-    margin:
-        0;
+    margin: 0;
 
 }
 
@@ -122,31 +115,24 @@ h1,
 h2,
 h3 {
 
-    color:
-        var(--text-heading);
+    color: var(--text-heading);
 
-    font-weight:
-        700;
+    font-weight: 700;
 
-    letter-spacing:
-        -.055em;
+    letter-spacing: -.055em;
 
-    line-height:
-        .94;
+    line-height: .94;
 
 }
 
 
 ::selection {
 
-    background:
-        #183b57;
+    background: #183b57;
 
-    color:
-        white;
+    color: white;
 
 }
-
 
 
 /* =====================================================
@@ -155,38 +141,30 @@ h3 {
 
 .skip-link {
 
-    position:
-        fixed;
+    position: fixed;
 
-    left:
-        18px;
+    left: 18px;
 
-    top:
-        -90px;
+    top: -90px;
 
-    z-index:
-        10000;
+    z-index: 10000;
 
     padding:
         12px
         15px;
 
-    background:
-        white;
+    background: white;
 
-    color:
-        black;
+    color: black;
 
 }
 
 
 .skip-link:focus {
 
-    top:
-        18px;
+    top: 18px;
 
 }
-
 
 
 /* =====================================================
@@ -195,29 +173,21 @@ h3 {
 
 .site-header {
 
-    position:
-        fixed;
+    position: fixed;
 
-    top:
-        0;
+    top: 0;
 
-    left:
-        0;
+    left: 0;
 
-    right:
-        0;
+    right: 0;
 
-    z-index:
-        1000;
+    z-index: 1000;
 
-    height:
-        var(--header);
+    height: var(--header);
 
-    display:
-        flex;
+    display: flex;
 
-    align-items:
-        center;
+    align-items: center;
 
     padding:
         0
@@ -235,78 +205,62 @@ h3 {
         1px solid
         var(--navy-line);
 
-    backdrop-filter:
-        blur(16px);
+    backdrop-filter: blur(16px);
 
 }
 
 
 .brand {
 
-    display:
-        flex;
+    display: flex;
 
-    align-items:
-        center;
+    align-items: center;
 
-    gap:
-        11px;
+    gap: 11px;
 
 }
 
 
 .brand-name {
 
-    color:
-        #9ca6ae;
+    color: #9ca6ae;
 
-    font-size:
-        16px;
+    font-size: 16px;
 
-    font-weight:
-        700;
+    font-weight: 700;
 
-    letter-spacing:
-        -.04em;
+    letter-spacing: -.04em;
 
 }
 
 
 .brand-name span {
 
-    color:
-        #626f79;
+    color: #626f79;
 
-    font-weight:
-        500;
+    font-weight: 500;
 
 }
 
 
 .heliotech-mark {
 
-    position:
-        relative;
+    position: relative;
 
-    width:
-        19px;
+    width: 19px;
 
-    height:
-        19px;
+    height: 19px;
 
-    display:
-        inline-block;
+    display: inline-block;
 
     border:
         1.5px solid
         #7b8994;
 
-    border-radius:
-        50%;
+    border-radius: 50%;
 
     transition:
-        border-color
-        .2s;
+        border-color .2s;
 
 }
 
@@ -314,35 +268,27 @@ h3 {
 .heliotech-mark::before,
 .heliotech-mark::after {
 
-    content:
-        "";
+    content: "";
 
-    position:
-        absolute;
+    position: absolute;
 
-    bottom:
-        -5px;
+    bottom: -5px;
 
-    width:
-        7px;
+    width: 7px;
 
-    height:
-        1px;
+    height: 1px;
 
-    background:
-        #7b8994;
+    background: #7b8994;
 
     transition:
-        background
-        .2s;
+        background .2s;
 
 }
 
 
 .heliotech-mark::before {
 
-    left:
-        0;
+    left: 0;
 
     transform:
         rotate(-28deg);
@@ -352,8 +298,7 @@ h3 {
 
 .heliotech-mark::after {
 
-    right:
-        0;
+    right: 0;
 
     transform:
         rotate(28deg);
@@ -364,8 +309,7 @@ h3 {
 .brand:hover
 .heliotech-mark {
 
-    border-color:
-        white;
+    border-color: white;
 
 }
 
@@ -376,8 +320,7 @@ h3 {
 .brand:hover
 .heliotech-mark::after {
 
-    background:
-        white;
+    background: white;
 
 }
 
@@ -388,11 +331,9 @@ h3 {
 .brand:hover
 .brand-name span {
 
-    color:
-        white;
+    color: white;
 
 }
-
 
 
 /* =====================================================
@@ -401,41 +342,32 @@ h3 {
 
 nav {
 
-    margin-left:
-        auto;
+    margin-left: auto;
 
-    height:
-        100%;
+    height: 100%;
 
-    display:
-        flex;
+    display: flex;
 
-    align-items:
-        center;
+    align-items: center;
 
 }
 
 
 nav a {
 
-    height:
-        100%;
+    height: 100%;
 
-    display:
-        flex;
+    display: flex;
 
-    align-items:
-        center;
+    align-items: center;
 
-    gap:
-        8px;
+    gap: 8px;
 
     padding:
         0
         17px;
 
-    color:
-        #68747e;
+    color: #68747e;
 
     border-left:
         1px solid
@@ -446,17 +378,13 @@ nav a {
             .04
         );
 
-    font-size:
-        11px;
+    font-size: 11px;
 
-    font-weight:
-        600;
+    font-weight: 600;
 
     transition:
-        color
-        .2s,
-        background
-        .2s;
+        color .2s,
+        background .2s;
 
 }
 
@@ -464,33 +392,27 @@ nav a {
 nav a:hover,
 nav a[aria-current="location"] {
 
-    color:
-        white;
+    color: white;
 
-    background:
-        #03070b;
+    background: #03070b;
 
 }
 
 
 .nav-support {
 
-    background:
-        #02070c;
+    background: #02070c;
 
 }
 
 
 .link-icon {
 
-    color:
-        #596875;
+    color: #596875;
 
     transition:
-        color
-        .2s,
-        transform
-        .2s;
+        color .2s,
+        transform .2s;
 
 }
 
@@ -498,8 +420,7 @@ nav a[aria-current="location"] {
 a:hover
 .link-icon {
 
-    color:
-        white;
+    color: white;
 
     transform:
         translate(
@@ -512,18 +433,15 @@ a:hover
 
 .menu-toggle {
 
-    display:
-        none;
+    display: none;
 
-    margin-left:
-        auto;
+    margin-left: auto;
 
     padding:
         8px
         11px;
 
-    background:
-        transparent;
+    background: transparent;
 
     border:
         1px solid
@@ -534,42 +452,33 @@ a:hover
 
 .scroll-progress {
 
-    position:
-        absolute;
+    position: absolute;
 
-    left:
-        0;
+    left: 0;
 
-    bottom:
-        -1px;
+    bottom: -1px;
 
-    width:
-        100%;
+    width: 100%;
 
-    height:
-        1px;
+    height: 1px;
 
-    background:
-        #39556b;
+    background: #39556b;
 
     transform:
         scaleX(0);
 
-    transform-origin:
-        left;
+    transform-origin: left;
 
 }
 
 
-
 /* =====================================================
-   FLICKER
+   TEXT FLICKER
 ===================================================== */
 
 [data-flicker] {
 
-    opacity:
-        0;
+    opacity: 0;
 
 }
 
@@ -626,18 +535,15 @@ a:hover
 }
 
 
-
 /* =====================================================
    HERO
 ===================================================== */
 
 .hero {
 
-    position:
-        relative;
+    position: relative;
 
-    min-height:
-        100vh;
+    min-height: 100vh;
 
     padding:
         calc(
@@ -647,33 +553,27 @@ a:hover
         var(--gutter)
         32px;
 
-    display:
-        flex;
+    display: flex;
 
-    flex-direction:
-        column;
+    flex-direction: column;
 
-    overflow:
-        hidden;
+    overflow: hidden;
 
-    background:
-        black;
+    background: black;
 
 }
 
 
 .hero-background-grid {
 
-    position:
-        absolute;
+    position: absolute;
 
     inset:
         var(--header)
         0
         0;
 
-    pointer-events:
-        none;
+    pointer-events: none;
 
     background:
 
@@ -718,28 +618,22 @@ a:hover
 
 .hero-topline {
 
-    position:
-        relative;
+    position: relative;
 
-    z-index:
-        2;
+    z-index: 2;
 
-    display:
-        grid;
+    display: grid;
 
     grid-template-columns:
         1fr
         1fr
         auto;
 
-    gap:
-        20px;
+    gap: 20px;
 
-    padding-bottom:
-        14px;
+    padding-bottom: 14px;
 
-    color:
-        #42515d;
+    color: #42515d;
 
     border-bottom:
         1px solid
@@ -749,28 +643,22 @@ a:hover
         "Space Mono",
         monospace;
 
-    font-size:
-        8px;
+    font-size: 8px;
 
-    letter-spacing:
-        .08em;
+    letter-spacing: .08em;
 
 }
 
 
 .hero-content {
 
-    position:
-        relative;
+    position: relative;
 
-    z-index:
-        2;
+    z-index: 2;
 
-    flex:
-        1;
+    flex: 1;
 
-    display:
-        grid;
+    display: grid;
 
     grid-template-columns:
         minmax(
@@ -782,11 +670,9 @@ a:hover
             .65fr
         );
 
-    align-items:
-        end;
+    align-items: end;
 
-    gap:
-        8vw;
+    gap: 8vw;
 
     padding:
         80px
@@ -798,32 +684,26 @@ a:hover
 
 .eyebrow {
 
-    color:
-        #536574;
+    color: #536574;
 
     font-family:
         "Space Mono",
         monospace;
 
-    font-size:
-        9px;
+    font-size: 9px;
 
-    font-weight:
-        700;
+    font-weight: 700;
 
-    letter-spacing:
-        .09em;
+    letter-spacing: .09em;
 
 }
 
 
 .hero h1 {
 
-    margin-top:
-        20px;
+    margin-top: 20px;
 
-    max-width:
-        1100px;
+    max-width: 1100px;
 
     font-size:
         clamp(
@@ -837,47 +717,38 @@ a:hover
 
 .hero h1 span {
 
-    color:
-        #68747e;
+    color: #68747e;
 
 }
 
 
 .hero-side {
 
-    align-self:
-        end;
+    align-self: end;
 
 }
 
 
 .hero-side p {
 
-    max-width:
-        430px;
+    max-width: 430px;
 
-    color:
-        #67737d;
+    color: #67737d;
 
-    font-size:
-        14px;
+    font-size: 14px;
 
-    line-height:
-        1.65;
+    line-height: 1.65;
 
 }
 
 
 .outline-button {
 
-    display:
-        flex;
+    display: flex;
 
-    justify-content:
-        space-between;
+    justify-content: space-between;
 
-    align-items:
-        center;
+    align-items: center;
 
     width:
         min(
@@ -885,61 +756,48 @@ a:hover
             300px
         );
 
-    margin-top:
-        30px;
+    margin-top: 30px;
 
     padding:
         13px
         15px;
 
-    color:
-        #7d8992;
+    color: #7d8992;
 
     border:
         1px solid
         var(--navy-line-bright);
 
-    background:
-        #010305;
+    background: #010305;
 
-    font-size:
-        11px;
+    font-size: 11px;
 
     transition:
-        color
-        .2s,
-        border-color
-        .2s,
-        background
-        .2s;
+        color .2s,
+        border-color .2s,
+        background .2s;
 
 }
 
 
 .outline-button:hover {
 
-    color:
-        white;
+    color: white;
 
-    border-color:
-        white;
+    border-color: white;
 
-    background:
-        #03070a;
+    background: #03070a;
 
 }
 
 
 .hero-data {
 
-    position:
-        relative;
+    position: relative;
 
-    z-index:
-        2;
+    z-index: 2;
 
-    display:
-        grid;
+    display: grid;
 
     grid-template-columns:
         repeat(
@@ -970,52 +828,41 @@ a:hover
 
 .hero-data > div:last-child {
 
-    border-right:
-        0;
+    border-right: 0;
 
 }
 
 
 .hero-data span {
 
-    display:
-        block;
+    display: block;
 
-    color:
-        #394b59;
+    color: #394b59;
 
     font-family:
         "Space Mono",
         monospace;
 
-    font-size:
-        8px;
+    font-size: 8px;
 
-    letter-spacing:
-        .08em;
+    letter-spacing: .08em;
 
 }
 
 
 .hero-data strong {
 
-    display:
-        block;
+    display: block;
 
-    margin-top:
-        7px;
+    margin-top: 7px;
 
-    color:
-        #667580;
+    color: #667580;
 
-    font-size:
-        11px;
+    font-size: 11px;
 
-    font-weight:
-        600;
+    font-weight: 600;
 
 }
-
 
 
 /* =====================================================
@@ -1028,8 +875,7 @@ a:hover
         110px
         var(--gutter);
 
-    background:
-        black;
+    background: black;
 
     border-top:
         1px solid
@@ -1040,20 +886,15 @@ a:hover
 
 .section-header {
 
-    display:
-        flex;
+    display: flex;
 
-    justify-content:
-        space-between;
+    justify-content: space-between;
 
-    gap:
-        20px;
+    gap: 20px;
 
-    padding-bottom:
-        15px;
+    padding-bottom: 15px;
 
-    color:
-        #40515e;
+    color: #40515e;
 
     border-bottom:
         1px solid
@@ -1063,35 +904,28 @@ a:hover
         "Space Mono",
         monospace;
 
-    font-size:
-        8px;
+    font-size: 8px;
 
-    font-weight:
-        700;
+    font-weight: 700;
 
-    letter-spacing:
-        .08em;
+    letter-spacing: .08em;
 
 }
 
 
 .statement-layout {
 
-    display:
-        grid;
+    display: grid;
 
     grid-template-columns:
         1.35fr
         .65fr;
 
-    gap:
-        8vw;
+    gap: 8vw;
 
-    align-items:
-        end;
+    align-items: end;
 
-    padding-top:
-        85px;
+    padding-top: 85px;
 
 }
 
@@ -1110,8 +944,7 @@ a:hover
 
 .statement-lead {
 
-    color:
-        #8a969f;
+    color: #8a969f;
 
     font-size:
         clamp(
@@ -1120,72 +953,56 @@ a:hover
             28px
         );
 
-    font-weight:
-        600;
+    font-weight: 600;
 
-    line-height:
-        1.25;
+    line-height: 1.25;
 
-    letter-spacing:
-        -.025em;
+    letter-spacing: -.025em;
 
 }
 
 
 .body-copy {
 
-    margin-top:
-        27px;
+    margin-top: 27px;
 
-    color:
-        #5f6c76;
+    color: #5f6c76;
 
-    font-size:
-        14px;
+    font-size: 14px;
 
 }
 
 
 .text-link {
 
-    display:
-        inline-flex;
+    display: inline-flex;
 
-    align-items:
-        center;
+    align-items: center;
 
-    gap:
-        8px;
+    gap: 8px;
 
-    margin-top:
-        28px;
+    margin-top: 28px;
 
-    padding-bottom:
-        4px;
+    padding-bottom: 4px;
 
-    color:
-        #71808a;
+    color: #71808a;
 
     border-bottom:
         1px solid
         #203548;
 
-    font-size:
-        11px;
+    font-size: 11px;
 
 }
 
 
 .text-link:hover {
 
-    color:
-        white;
+    color: white;
 
-    border-color:
-        white;
+    border-color: white;
 
 }
-
 
 
 /* =====================================================
@@ -1194,62 +1011,54 @@ a:hover
 
 .vehicle-story {
 
-    height:
-        470vh;
+    /*
+        JS also forces this to 700vh.
+        Keeping it here gives the same
+        layout before JS starts.
+    */
 
-    background:
-        black;
+    height: 700vh;
+
+    background: black;
 
 }
 
 
 .vehicle-sticky {
 
-    position:
-        sticky;
+    position: sticky;
 
-    top:
-        0;
+    top: 0;
 
-    width:
-        100%;
+    width: 100%;
 
-    height:
-        100vh;
+    height: 100vh;
 
-    overflow:
-        hidden;
+    overflow: hidden;
 
-    background:
-        black;
+    background: black;
 
 }
 
 
 .vehicle-model-layer {
 
-    position:
-        absolute;
+    position: absolute;
 
-    inset:
-        0;
+    inset: 0;
 
-    background:
-        black;
+    background: black;
 
 }
 
 
 .model-grid {
 
-    position:
-        absolute;
+    position: absolute;
 
-    inset:
-        0;
+    inset: 0;
 
-    z-index:
-        1;
+    z-index: 1;
 
     background:
 
@@ -1294,33 +1103,26 @@ a:hover
 
 #car-model {
 
-    position:
-        absolute;
+    position: absolute;
 
-    inset:
-        0;
+    inset: 0;
 
-    z-index:
-        5;
+    z-index: 5;
 
-    width:
-        100%;
+    display: block;
 
-    height:
-        100%;
+    width: 100%;
 
-    opacity:
-        0;
+    height: 100%;
 
-    background:
-        transparent;
+    opacity: 0;
 
-    --poster-color:
-        transparent;
+    background: transparent;
+
+    --poster-color: transparent;
 
     transition:
-        opacity
-        .6s;
+        opacity .6s;
 
 }
 
@@ -1328,38 +1130,29 @@ a:hover
 .model-loaded
 #car-model {
 
-    opacity:
-        1;
+    opacity: 1;
 
 }
 
 
 .model-placeholder {
 
-    position:
-        absolute;
+    position: absolute;
 
-    inset:
-        0;
+    inset: 0;
 
-    z-index:
-        4;
+    z-index: 4;
 
-    display:
-        flex;
+    display: flex;
 
-    align-items:
-        center;
+    align-items: center;
 
-    justify-content:
-        center;
+    justify-content: center;
 
-    gap:
-        45px;
+    gap: 45px;
 
     transition:
-        opacity
-        .6s;
+        opacity .6s;
 
 }
 
@@ -1367,19 +1160,16 @@ a:hover
 .model-loaded
 .model-placeholder {
 
-    opacity:
-        0;
+    opacity: 0;
 
-    pointer-events:
-        none;
+    pointer-events: none;
 
 }
 
 
 .orbit-ring {
 
-    position:
-        relative;
+    position: relative;
 
     width:
         clamp(
@@ -1388,64 +1178,49 @@ a:hover
             300px
         );
 
-    aspect-ratio:
-        1;
+    aspect-ratio: 1;
 
     border:
         1px solid
         #14314a;
 
-    border-radius:
-        50%;
+    border-radius: 50%;
 
     transform:
-        rotateX(
-            68deg
-        )
-        rotateZ(
-            20deg
-        );
+        rotateX(68deg)
+        rotateZ(20deg);
 
 }
 
 
 .orbit-ring::before {
 
-    content:
-        "";
+    content: "";
 
-    position:
-        absolute;
+    position: absolute;
 
-    inset:
-        16%;
+    inset: 16%;
 
     border:
         1px solid
         #0e263a;
 
-    border-radius:
-        50%;
+    border-radius: 50%;
 
 }
 
 
 .orbit-ring-inner {
 
-    position:
-        absolute;
+    position: absolute;
 
-    left:
-        50%;
+    left: 50%;
 
-    top:
-        50%;
+    top: 50%;
 
-    width:
-        10px;
+    width: 10px;
 
-    height:
-        10px;
+    height: 10px;
 
     transform:
         translate(
@@ -1453,11 +1228,9 @@ a:hover
             -50%
         );
 
-    border-radius:
-        50%;
+    border-radius: 50%;
 
-    background:
-        #39556b;
+    background: #39556b;
 
     box-shadow:
         0
@@ -1470,73 +1243,58 @@ a:hover
 
 .placeholder-copy span {
 
-    color:
-        #3d5262;
+    color: #3d5262;
 
     font-family:
         "Space Mono",
         monospace;
 
-    font-size:
-        8px;
+    font-size: 8px;
 
-    letter-spacing:
-        .08em;
+    letter-spacing: .08em;
 
 }
 
 
 .placeholder-copy strong {
 
-    display:
-        block;
+    display: block;
 
-    margin-top:
-        12px;
+    margin-top: 12px;
 
-    color:
-        #687985;
+    color: #687985;
 
-    font-size:
-        18px;
+    font-size: 18px;
 
-    font-weight:
-        600;
+    font-weight: 600;
 
 }
 
 
 .placeholder-copy p {
 
-    margin-top:
-        16px;
+    margin-top: 16px;
 
-    color:
-        #42535f;
+    color: #42535f;
 
-    font-size:
-        11px;
+    font-size: 11px;
 
 }
 
 
 .placeholder-copy code {
 
-    display:
-        inline-block;
+    display: inline-block;
 
-    margin-top:
-        6px;
+    margin-top: 6px;
 
     padding:
         5px
         7px;
 
-    color:
-        #637887;
+    color: #637887;
 
-    background:
-        #02070b;
+    background: #02070b;
 
     border:
         1px solid
@@ -1546,11 +1304,9 @@ a:hover
         "Space Mono",
         monospace;
 
-    font-size:
-        10px;
+    font-size: 10px;
 
 }
-
 
 
 /* =====================================================
@@ -1559,50 +1315,38 @@ a:hover
 
 .vehicle-interface {
 
-    position:
-        absolute;
+    position: absolute;
 
-    inset:
-        0;
+    inset: 0;
 
-    z-index:
-        15;
+    z-index: 15;
 
-    pointer-events:
-        none;
+    pointer-events: none;
 
 }
 
 
 .vehicle-topbar {
 
-    position:
-        absolute;
+    position: absolute;
 
     top:
         calc(
-            var(--header)
-            +
+            var(--header) +
             18px
         );
 
-    left:
-        var(--gutter);
+    left: var(--gutter);
 
-    right:
-        var(--gutter);
+    right: var(--gutter);
 
-    display:
-        flex;
+    display: flex;
 
-    justify-content:
-        space-between;
+    justify-content: space-between;
 
-    padding-bottom:
-        13px;
+    padding-bottom: 13px;
 
-    color:
-        #40515e;
+    color: #40515e;
 
     border-bottom:
         1px solid
@@ -1612,19 +1356,16 @@ a:hover
         "Space Mono",
         monospace;
 
-    font-size:
-        8px;
+    font-size: 8px;
 
-    letter-spacing:
-        .08em;
+    letter-spacing: .08em;
 
 }
 
 
 .model-story {
 
-    position:
-        absolute;
+    position: absolute;
 
     width:
         min(
@@ -1632,8 +1373,7 @@ a:hover
             40vw
         );
 
-    opacity:
-        0;
+    opacity: 0;
 
     transform:
         translateY(
@@ -1641,66 +1381,53 @@ a:hover
         );
 
     transition:
-        opacity
-        .45s,
-        transform
-        .6s;
+        opacity .45s,
+        transform .6s;
 
 }
 
 
 .model-story-left {
 
-    left:
-        var(--gutter);
+    left: var(--gutter);
 
-    bottom:
-        12vh;
+    bottom: 12vh;
 
 }
 
 
 .model-story-right {
 
-    right:
-        var(--gutter);
+    right: var(--gutter);
 
-    top:
-        24vh;
+    top: 24vh;
 
 }
 
 
 .model-story.is-active {
 
-    opacity:
-        1;
+    opacity: 1;
 
     transform:
-        translateY(
-            0
-        );
+        translateY(0);
 
 }
 
 
 .story-label {
 
-    color:
-        #43596a;
+    color: #43596a;
 
     font-family:
         "Space Mono",
         monospace;
 
-    font-size:
-        8px;
+    font-size: 8px;
 
-    font-weight:
-        700;
+    font-weight: 700;
 
-    letter-spacing:
-        .09em;
+    letter-spacing: .09em;
 
 }
 
@@ -1712,8 +1439,7 @@ a:hover
         0
         21px;
 
-    color:
-        #9ba7b0;
+    color: #9ba7b0;
 
     font-size:
         clamp(
@@ -1727,46 +1453,34 @@ a:hover
 
 .model-story p {
 
-    max-width:
-        410px;
+    max-width: 410px;
 
-    color:
-        #596975;
+    color: #596975;
 
-    font-size:
-        13px;
+    font-size: 13px;
 
-    line-height:
-        1.6;
+    line-height: 1.6;
 
 }
 
 
 .vehicle-bottom {
 
-    position:
-        absolute;
+    position: absolute;
 
-    left:
-        var(--gutter);
+    left: var(--gutter);
 
-    right:
-        var(--gutter);
+    right: var(--gutter);
 
-    bottom:
-        24px;
+    bottom: 24px;
 
-    display:
-        flex;
+    display: flex;
 
-    justify-content:
-        space-between;
+    justify-content: space-between;
 
-    padding-top:
-        13px;
+    padding-top: 13px;
 
-    color:
-        #394d5d;
+    color: #394d5d;
 
     border-top:
         1px solid
@@ -1776,11 +1490,9 @@ a:hover
         "Space Mono",
         monospace;
 
-    font-size:
-        8px;
+    font-size: 8px;
 
 }
-
 
 
 /* =====================================================
@@ -1789,18 +1501,15 @@ a:hover
 
 .systems-intro {
 
-    display:
-        grid;
+    display: grid;
 
     grid-template-columns:
         1.3fr
         .7fr;
 
-    gap:
-        8vw;
+    gap: 8vw;
 
-    align-items:
-        end;
+    align-items: end;
 
     padding:
         80px
@@ -1826,14 +1535,11 @@ a:hover
 
 .systems-intro p {
 
-    max-width:
-        390px;
+    max-width: 390px;
 
-    color:
-        #5b6974;
+    color: #5b6974;
 
-    font-size:
-        14px;
+    font-size: 14px;
 
 }
 
@@ -1849,22 +1555,18 @@ a:hover
 
 .system-row {
 
-    display:
-        grid;
+    display: grid;
 
     grid-template-columns:
         1.15fr
         1fr
         30px;
 
-    gap:
-        40px;
+    gap: 40px;
 
-    align-items:
-        center;
+    align-items: center;
 
-    min-height:
-        170px;
+    min-height: 170px;
 
     padding:
         26px
@@ -1875,51 +1577,42 @@ a:hover
         var(--navy-line);
 
     transition:
-        background
-        .2s;
+        background .2s;
 
 }
 
 
 .system-row:hover {
 
-    background:
-        #010407;
+    background: #010407;
 
 }
 
 
 .system-label {
 
-    display:
-        block;
+    display: block;
 
-    margin-bottom:
-        9px;
+    margin-bottom: 9px;
 
-    color:
-        #415666;
+    color: #415666;
 
     font-family:
         "Space Mono",
         monospace;
 
-    font-size:
-        8px;
+    font-size: 8px;
 
-    font-weight:
-        700;
+    font-weight: 700;
 
-    letter-spacing:
-        .08em;
+    letter-spacing: .08em;
 
 }
 
 
 .system-row h3 {
 
-    color:
-        #909ca5;
+    color: #909ca5;
 
     font-size:
         clamp(
@@ -1929,56 +1622,46 @@ a:hover
         );
 
     transition:
-        color
-        .2s;
+        color .2s;
 
 }
 
 
 .system-row:hover h3 {
 
-    color:
-        white;
+    color: white;
 
 }
 
 
 .system-row p {
 
-    max-width:
-        480px;
+    max-width: 480px;
 
-    color:
-        #56646e;
+    color: #56646e;
 
-    font-size:
-        13px;
+    font-size: 13px;
 
     transition:
-        color
-        .2s;
+        color .2s;
 
 }
 
 
 .system-row:hover p {
 
-    color:
-        #8a969f;
+    color: #8a969f;
 
 }
 
 
 .system-arrow {
 
-    color:
-        #415565;
+    color: #415565;
 
-    text-align:
-        right;
+    text-align: right;
 
-    font-size:
-        18px;
+    font-size: 18px;
 
 }
 
@@ -1986,11 +1669,9 @@ a:hover
 .system-row:hover
 .system-arrow {
 
-    color:
-        white;
+    color: white;
 
 }
-
 
 
 /* =====================================================
@@ -2009,8 +1690,7 @@ a:hover
 
 .results-grid {
 
-    display:
-        grid;
+    display: grid;
 
     grid-template-columns:
         1fr
@@ -2029,11 +1709,9 @@ a:hover
 
 .results-grid article {
 
-    min-height:
-        320px;
+    min-height: 320px;
 
-    padding:
-        30px;
+    padding: 30px;
 
     border-right:
         1px solid
@@ -2048,72 +1726,56 @@ a:hover
 
 .result-year {
 
-    color:
-        #566775;
+    color: #566775;
 
-    font-size:
-        52px;
+    font-size: 52px;
 
-    font-weight:
-        500;
+    font-weight: 500;
 
-    letter-spacing:
-        -.05em;
+    letter-spacing: -.05em;
 
 }
 
 
 .results-grid article > span {
 
-    display:
-        block;
+    display: block;
 
-    margin-top:
-        8px;
+    margin-top: 8px;
 
-    color:
-        #3e5362;
+    color: #3e5362;
 
     font-family:
         "Space Mono",
         monospace;
 
-    font-size:
-        8px;
+    font-size: 8px;
 
 }
 
 
 .results-grid h3 {
 
-    margin-top:
-        72px;
+    margin-top: 72px;
 
-    color:
-        #929ea7;
+    color: #929ea7;
 
-    font-size:
-        29px;
+    font-size: 29px;
 
 }
 
 
 .results-grid p {
 
-    max-width:
-        420px;
+    max-width: 420px;
 
-    margin-top:
-        15px;
+    margin-top: 15px;
 
-    color:
-        #56646e;
+    color: #56646e;
 
-    font-size:
-        13px;
+    font-size: 13px;
 
 }
-
 
 
 /* =====================================================
@@ -2132,8 +1794,7 @@ a:hover
 
 .team-grid {
 
-    display:
-        grid;
+    display: grid;
 
     grid-template-columns:
         repeat(
@@ -2154,14 +1815,11 @@ a:hover
 
 .team-card {
 
-    position:
-        relative;
+    position: relative;
 
-    min-height:
-        280px;
+    min-height: 280px;
 
-    padding:
-        27px;
+    padding: 27px;
 
     border-right:
         1px solid
@@ -2172,70 +1830,57 @@ a:hover
         var(--navy-line);
 
     transition:
-        background
-        .2s;
+        background .2s;
 
 }
 
 
 .team-card:hover {
 
-    background:
-        #010407;
+    background: #010407;
 
 }
 
 
 .team-card h3 {
 
-    margin-top:
-        55px;
+    margin-top: 55px;
 
-    color:
-        #89959e;
+    color: #89959e;
 
-    font-size:
-        25px;
+    font-size: 25px;
 
     transition:
-        color
-        .2s;
+        color .2s;
 
 }
 
 
 .team-card:hover h3 {
 
-    color:
-        white;
+    color: white;
 
 }
 
 
 .team-card p {
 
-    margin-top:
-        15px;
+    margin-top: 15px;
 
-    color:
-        #53616b;
+    color: #53616b;
 
-    font-size:
-        13px;
+    font-size: 13px;
 
 }
 
 
 .team-card .link-icon {
 
-    position:
-        absolute;
+    position: absolute;
 
-    right:
-        26px;
+    right: 26px;
 
-    bottom:
-        25px;
+    bottom: 25px;
 
 }
 
@@ -2243,11 +1888,9 @@ a:hover
 .team-card:hover
 .link-icon {
 
-    color:
-        white;
+    color: white;
 
 }
-
 
 
 /* =====================================================
@@ -2256,25 +1899,21 @@ a:hover
 
 .support-section {
 
-    display:
-        grid;
+    display: grid;
 
     grid-template-columns:
         1.2fr
         .8fr;
 
-    gap:
-        9vw;
+    gap: 9vw;
 
-    align-items:
-        end;
+    align-items: end;
 
     padding:
         110px
         var(--gutter);
 
-    background:
-        black;
+    background: black;
 
     border-top:
         1px solid
@@ -2285,29 +1924,24 @@ a:hover
 
 .support-label {
 
-    color:
-        #3e5362;
+    color: #3e5362;
 
     font-family:
         "Space Mono",
         monospace;
 
-    font-size:
-        8px;
+    font-size: 8px;
 
-    letter-spacing:
-        .09em;
+    letter-spacing: .09em;
 
 }
 
 
 .support-section h2 {
 
-    margin-top:
-        20px;
+    margin-top: 20px;
 
-    color:
-        #9da8b0;
+    color: #9da8b0;
 
     font-size:
         clamp(
@@ -2321,68 +1955,53 @@ a:hover
 
 .support-section p {
 
-    max-width:
-        490px;
+    max-width: 490px;
 
-    color:
-        #5c6a74;
+    color: #5c6a74;
 
-    font-size:
-        14px;
+    font-size: 14px;
 
 }
 
 
 .support-button {
 
-    display:
-        inline-flex;
+    display: inline-flex;
 
-    align-items:
-        center;
+    align-items: center;
 
-    gap:
-        12px;
+    gap: 12px;
 
-    margin-top:
-        28px;
+    margin-top: 28px;
 
     padding:
         13px
         15px;
 
-    color:
-        #778691;
+    color: #778691;
 
     border:
         1px solid
         #17354b;
 
-    background:
-        #010407;
+    background: #010407;
 
-    font-size:
-        11px;
+    font-size: 11px;
 
     transition:
-        color
-        .2s,
-        border-color
-        .2s;
+        color .2s,
+        border-color .2s;
 
 }
 
 
 .support-button:hover {
 
-    color:
-        white;
+    color: white;
 
-    border-color:
-        white;
+    border-color: white;
 
 }
-
 
 
 /* =====================================================
@@ -2391,23 +2010,20 @@ a:hover
 
 .site-footer {
 
-    display:
-        grid;
+    display: grid;
 
     grid-template-columns:
         1fr
         1fr;
 
-    gap:
-        50px;
+    gap: 50px;
 
     padding:
         60px
         var(--gutter)
         28px;
 
-    background:
-        black;
+    background: black;
 
     border-top:
         1px solid
@@ -2418,47 +2034,38 @@ a:hover
 
 .footer-brand {
 
-    color:
-        #74828c;
+    color: #74828c;
 
-    font-size:
-        20px;
+    font-size: 20px;
 
-    font-weight:
-        700;
+    font-weight: 700;
 
 }
 
 
 .footer-brand:hover {
 
-    color:
-        white;
+    color: white;
 
 }
 
 
 .site-footer p {
 
-    margin-top:
-        18px;
+    margin-top: 18px;
 
-    color:
-        #43515b;
+    color: #43515b;
 
-    font-size:
-        11px;
+    font-size: 11px;
 
 }
 
 
 .footer-links {
 
-    justify-self:
-        end;
+    justify-self: end;
 
-    display:
-        grid;
+    display: grid;
 
     grid-template-columns:
         1fr
@@ -2468,33 +2075,27 @@ a:hover
         14px
         30px;
 
-    color:
-        #596771;
+    color: #596771;
 
-    font-size:
-        11px;
+    font-size: 11px;
 
 }
 
 
 .footer-links a {
 
-    display:
-        flex;
+    display: flex;
 
-    align-items:
-        center;
+    align-items: center;
 
-    gap:
-        7px;
+    gap: 7px;
 
 }
 
 
 .footer-links a:hover {
 
-    color:
-        white;
+    color: white;
 
 }
 
@@ -2504,20 +2105,15 @@ a:hover
     grid-column:
         1 / -1;
 
-    display:
-        flex;
+    display: flex;
 
-    justify-content:
-        space-between;
+    justify-content: space-between;
 
-    margin-top:
-        45px;
+    margin-top: 45px;
 
-    padding-top:
-        17px;
+    padding-top: 17px;
 
-    color:
-        #364752;
+    color: #364752;
 
     border-top:
         1px solid
@@ -2527,11 +2123,9 @@ a:hover
         "Space Mono",
         monospace;
 
-    font-size:
-        8px;
+    font-size: 8px;
 
 }
-
 
 
 /* =====================================================
@@ -2540,69 +2134,50 @@ a:hover
 
 .page-transition {
 
-    position:
-        fixed;
+    position: fixed;
 
-    inset:
-        0;
+    inset: 0;
 
-    z-index:
-        99999;
+    z-index: 99999;
 
-    display:
-        grid;
+    display: grid;
 
-    place-items:
-        center;
+    place-items: center;
 
-    overflow:
-        hidden;
+    overflow: hidden;
 
-    background:
-        transparent;
+    background: transparent;
 
-    pointer-events:
-        auto;
+    pointer-events: auto;
 
 }
 
 
-/*
-    Main black diagonal panel.
-*/
+/* BLACK FRONT PANEL */
 
 .page-transition::before {
 
-    content:
-        "";
+    content: "";
 
-    position:
-        absolute;
+    position: absolute;
 
-    z-index:
-        2;
+    z-index: 2;
 
-    top:
-        -22vh;
+    top: -22vh;
 
-    left:
-        -20vw;
+    left: -20vw;
 
-    width:
-        145vw;
+    width: 145vw;
 
-    height:
-        145vh;
+    height: 145vh;
 
-    background:
-        #000000;
+    background: #000000;
 
     transform:
         translateX(0)
         skewX(-10deg);
 
-    transform-origin:
-        center;
+    transform-origin: center;
 
     transition:
         transform
@@ -2617,44 +2192,31 @@ a:hover
 }
 
 
-/*
-    Dark navy panel underneath.
-    It arrives slightly later,
-    creating a layered sweep.
-*/
+/* DARK BLUE TRAILING PANEL */
 
 .page-transition::after {
 
-    content:
-        "";
+    content: "";
 
-    position:
-        absolute;
+    position: absolute;
 
-    z-index:
-        1;
+    z-index: 1;
 
-    top:
-        -22vh;
+    top: -22vh;
 
-    left:
-        -26vw;
+    left: -26vw;
 
-    width:
-        145vw;
+    width: 145vw;
 
-    height:
-        145vh;
+    height: 145vh;
 
-    background:
-        #071522;
+    background: #071522;
 
     transform:
         translateX(0)
         skewX(-10deg);
 
-    transform-origin:
-        center;
+    transform-origin: center;
 
     transition:
         transform
@@ -2669,15 +2231,74 @@ a:hover
 }
 
 
+/* =====================================================
+   FRESH ENTRY
+===================================================== */
+
+.page-transition.is-entering {
+
+    pointer-events: auto;
+
+}
+
+
+.page-transition.is-entering::before {
+
+    transform:
+        translateX(0)
+        skewX(-10deg);
+
+}
+
+
+.page-transition.is-entering::after {
+
+    transform:
+        translateX(0)
+        skewX(-10deg);
+
+}
+
 
 /* =====================================================
-   TRANSITION REVEAL
+   ARRIVAL FROM ANOTHER PAGE
+
+   LOGO IS ALREADY SOLID.
+   NO SECOND FLICKER.
+===================================================== */
+
+.page-transition.is-arriving {
+
+    pointer-events: auto;
+
+}
+
+
+.page-transition.is-arriving::before {
+
+    transform:
+        translateX(0)
+        skewX(-10deg);
+
+}
+
+
+.page-transition.is-arriving::after {
+
+    transform:
+        translateX(0)
+        skewX(-10deg);
+
+}
+
+
+/* =====================================================
+   REVEAL
 ===================================================== */
 
 .page-transition.is-revealed {
 
-    pointer-events:
-        none;
+    pointer-events: none;
 
 }
 
@@ -2700,23 +2321,20 @@ a:hover
 }
 
 
-
 /* =====================================================
-   PREPARE NEW PAGE TRANSITION
+   PREPARE OUTGOING
 ===================================================== */
 
 .page-transition.is-preparing {
 
-    pointer-events:
-        none;
+    pointer-events: none;
 
 }
 
 
 .page-transition.is-preparing::before {
 
-    transition:
-        none;
+    transition: none;
 
     transform:
         translateX(140vw)
@@ -2727,8 +2345,7 @@ a:hover
 
 .page-transition.is-preparing::after {
 
-    transition:
-        none;
+    transition: none;
 
     transform:
         translateX(147vw)
@@ -2737,15 +2354,13 @@ a:hover
 }
 
 
-
 /* =====================================================
-   COVER SCREEN
+   COVER
 ===================================================== */
 
 .page-transition.is-covering {
 
-    pointer-events:
-        auto;
+    pointer-events: auto;
 
 }
 
@@ -2768,21 +2383,17 @@ a:hover
 }
 
 
-
 /* =====================================================
    TRANSITION GRID
 ===================================================== */
 
 .transition-grid {
 
-    position:
-        absolute;
+    position: absolute;
 
-    z-index:
-        3;
+    z-index: 3;
 
-    inset:
-        -20%;
+    inset: -20%;
 
     background:
 
@@ -2815,17 +2426,14 @@ a:hover
         84px
         84px;
 
-    opacity:
-        .4;
+    opacity: .4;
 
     transform:
         skewX(-10deg);
 
-    pointer-events:
-        none;
+    pointer-events: none;
 
 }
-
 
 
 /* =====================================================
@@ -2834,63 +2442,55 @@ a:hover
 
 .transition-brand {
 
-    position:
-        relative;
+    position: relative;
 
-    z-index:
-        5;
+    z-index: 5;
 
-    display:
-        flex;
+    display: flex;
 
-    flex-direction:
-        column;
+    flex-direction: column;
 
-    align-items:
-        center;
+    align-items: center;
 
-    gap:
-        18px;
+    gap: 18px;
 
-    opacity:
-        1;
+    opacity: 0;
 
 }
-
-
-.page-transition.is-preparing
-.transition-brand {
-
-    opacity:
-        0;
-
-}
-
-
-.page-transition.is-revealed
-.transition-brand {
-
-    opacity:
-        0;
-
-}
-
 
 
 /*
-    Logo flickers briefly while
-    the transition covers the screen.
+    Fresh browser visit:
+    flicker once.
+*/
+
+.page-transition.is-entering
+.transition-brand {
+
+    opacity: 1;
+
+    animation:
+        transition-logo-single-flicker
+        .55s
+        linear
+        both;
+
+}
+
+
+/*
+    Leaving current page:
+    flicker once.
 */
 
 .page-transition.is-covering
 .transition-brand {
 
-    opacity:
-        1;
+    opacity: 1;
 
     animation:
-        transition-logo-flicker
-        .72s
+        transition-logo-single-flicker
+        .55s
         linear
         both;
 
@@ -2898,95 +2498,73 @@ a:hover
 
 
 /*
-    Initial page opening flicker.
+    New destination page:
+
+    Do not flicker again.
 */
 
-.page-transition:not(.is-revealed):not(.is-preparing):not(.is-covering)
+.page-transition.is-arriving
 .transition-brand {
 
-    animation:
-        transition-logo-flicker
-        .68s
-        linear
-        both;
+    opacity: 1;
+
+    animation: none;
 
 }
 
 
-@keyframes transition-logo-flicker {
+.page-transition.is-preparing
+.transition-brand,
+
+.page-transition.is-revealed
+.transition-brand {
+
+    opacity: 0;
+
+    animation: none;
+
+}
+
+
+/* =====================================================
+   SINGLE LOGO FLICKER
+===================================================== */
+
+@keyframes transition-logo-single-flicker {
 
     0% {
 
-        opacity:
-            0;
+        opacity: 0;
+
+    }
+
+    18% {
+
+        opacity: 1;
 
         filter:
-            brightness(.7);
+            brightness(1.25);
 
     }
 
-    12% {
+    32% {
 
-        opacity:
-            .72;
-
-        filter:
-            brightness(1.35);
+        opacity: .12;
 
     }
 
-    21% {
+    47% {
 
-        opacity:
-            .18;
-
-    }
-
-    34% {
-
-        opacity:
-            .95;
-
-        filter:
-            brightness(1.2);
-
-    }
-
-    43% {
-
-        opacity:
-            .42;
-
-    }
-
-    56% {
-
-        opacity:
-            1;
+        opacity: 1;
 
         filter:
             brightness(1.12);
 
     }
 
-    64% {
-
-        opacity:
-            .67;
-
-    }
-
-    76% {
-
-        opacity:
-            1;
-
-    }
-
     100% {
 
-        opacity:
-            1;
+        opacity: 1;
 
         filter:
             brightness(1);
@@ -2996,41 +2574,32 @@ a:hover
 }
 
 
-
 /* =====================================================
    TRANSITION LOGO
 ===================================================== */
 
 .transition-logo {
 
-    position:
-        relative;
+    position: relative;
 
-    width:
-        54px;
+    width: 54px;
 
-    height:
-        48px;
+    height: 48px;
 
 }
 
 
 .transition-circle {
 
-    position:
-        absolute;
+    position: absolute;
 
-    left:
-        50%;
+    left: 50%;
 
-    top:
-        0;
+    top: 0;
 
-    width:
-        38px;
+    width: 38px;
 
-    height:
-        38px;
+    height: 38px;
 
     transform:
         translateX(-50%);
@@ -3039,25 +2608,20 @@ a:hover
         2px solid
         #c6cdd2;
 
-    border-radius:
-        50%;
+    border-radius: 50%;
 
 }
 
 
 .transition-leg {
 
-    position:
-        absolute;
+    position: absolute;
 
-    bottom:
-        2px;
+    bottom: 2px;
 
-    width:
-        21px;
+    width: 21px;
 
-    height:
-        2px;
+    height: 2px;
 
     background:
         #c6cdd2;
@@ -3067,8 +2631,7 @@ a:hover
 
 .transition-leg.left {
 
-    left:
-        4px;
+    left: 4px;
 
     transform:
         rotate(-28deg);
@@ -3078,8 +2641,7 @@ a:hover
 
 .transition-leg.right {
 
-    right:
-        4px;
+    right: 4px;
 
     transform:
         rotate(28deg);
@@ -3089,65 +2651,50 @@ a:hover
 
 .transition-wordmark {
 
-    color:
-        #c0c8ce;
+    color: #c0c8ce;
 
-    font-size:
-        18px;
+    font-size: 18px;
 
-    font-weight:
-        700;
+    font-weight: 700;
 
-    letter-spacing:
-        -.04em;
+    letter-spacing: -.04em;
 
 }
 
 
 .transition-wordmark span {
 
-    color:
-        #66737d;
+    color: #66737d;
 
-    font-weight:
-        500;
+    font-weight: 500;
 
 }
 
 
-
 /* =====================================================
-   TRANSITION PROGRESS LINE
+   TRANSITION BOTTOM LINE
 ===================================================== */
 
 .transition-line {
 
-    position:
-        absolute;
+    position: absolute;
 
-    z-index:
-        6;
+    z-index: 6;
 
-    left:
-        0;
+    left: 0;
 
-    bottom:
-        0;
+    bottom: 0;
 
-    width:
-        100%;
+    width: 100%;
 
-    height:
-        2px;
+    height: 2px;
 
-    background:
-        #173c57;
+    background: #173c57;
 
     transform:
         scaleX(0);
 
-    transform-origin:
-        left;
+    transform-origin: left;
 
 }
 
@@ -3183,7 +2730,6 @@ a:hover
 }
 
 
-
 /* =====================================================
    RESPONSIVE
 ===================================================== */
@@ -3192,36 +2738,27 @@ a:hover
 
     nav {
 
-        display:
-            none;
+        display: none;
 
-        position:
-            absolute;
+        position: absolute;
 
-        top:
-            var(--header);
+        top: var(--header);
 
-        left:
-            0;
+        left: 0;
 
-        right:
-            0;
+        right: 0;
 
-        height:
-            auto;
+        height: auto;
 
         padding:
             10px
             var(--gutter);
 
-        flex-direction:
-            column;
+        flex-direction: column;
 
-        align-items:
-            stretch;
+        align-items: stretch;
 
-        background:
-            black;
+        background: black;
 
         border-bottom:
             1px solid
@@ -3232,23 +2769,20 @@ a:hover
 
     nav.open {
 
-        display:
-            flex;
+        display: flex;
 
     }
 
 
     nav a {
 
-        height:
-            auto;
+        height: auto;
 
         padding:
             14px
             0;
 
-        border-left:
-            0;
+        border-left: 0;
 
         border-bottom:
             1px solid
@@ -3259,8 +2793,7 @@ a:hover
 
     .menu-toggle {
 
-        display:
-            block;
+        display: block;
 
     }
 
@@ -3273,16 +2806,14 @@ a:hover
         grid-template-columns:
             1fr;
 
-        gap:
-            40px;
+        gap: 40px;
 
     }
 
 
     .hero-side {
 
-        align-self:
-            auto;
+        align-self: auto;
 
     }
 
@@ -3304,17 +2835,13 @@ a:hover
     .model-story-left,
     .model-story-right {
 
-        left:
-            20px;
+        left: 20px;
 
-        right:
-            auto;
+        right: auto;
 
-        top:
-            auto;
+        top: auto;
 
-        bottom:
-            12vh;
+        bottom: 12vh;
 
     }
 
@@ -3328,7 +2855,6 @@ a:hover
     }
 
 }
-
 
 
 @media(max-width:650px) {
@@ -3346,8 +2872,7 @@ a:hover
 
     .hero {
 
-        min-height:
-            auto;
+        min-height: auto;
 
     }
 
@@ -3364,8 +2889,7 @@ a:hover
     .hero-topline
     span:nth-child(2) {
 
-        display:
-            none;
+        display: none;
 
     }
 
@@ -3401,8 +2925,7 @@ a:hover
 
     .hero-data > div {
 
-        border-right:
-            0;
+        border-right: 0;
 
         border-bottom:
             1px solid
@@ -3437,8 +2960,7 @@ a:hover
 
     .vehicle-story {
 
-        height:
-            430vh;
+        height: 600vh;
 
     }
 
@@ -3447,8 +2969,7 @@ a:hover
 
         top:
             calc(
-                var(--header)
-                +
+                var(--header) +
                 14px
             );
 
@@ -3469,22 +2990,18 @@ a:hover
 
     .model-placeholder {
 
-        flex-direction:
-            column;
+        flex-direction: column;
 
-        gap:
-            20px;
+        gap: 20px;
 
-        text-align:
-            center;
+        text-align: center;
 
     }
 
 
     .orbit-ring {
 
-        width:
-            160px;
+        width: 160px;
 
     }
 
@@ -3495,30 +3012,26 @@ a:hover
             1fr
             25px;
 
-        gap:
-            16px;
+        gap: 16px;
 
     }
 
 
     .system-row p {
 
-        grid-column:
-            1;
+        grid-column: 1;
 
     }
 
 
     .system-arrow {
 
-        grid-column:
-            2;
+        grid-column: 2;
 
         grid-row:
             1 / 3;
 
-        align-self:
-            center;
+        align-self: center;
 
     }
 
@@ -3570,33 +3083,44 @@ a:hover
 
     .footer-links {
 
-        justify-self:
-            start;
+        justify-self: start;
 
     }
 
 
     .footer-bottom {
 
-        grid-column:
-            1;
+        grid-column: 1;
 
-        flex-direction:
-            column;
+        flex-direction: column;
 
-        gap:
-            8px;
+        gap: 8px;
 
     }
 
 
     /*
-        Slightly less aggressive angle
-        on narrow screens.
+        Smaller angle on phones.
     */
 
-    .page-transition::before,
-    .page-transition::after,
+    .page-transition::before {
+
+        transform:
+            translateX(0)
+            skewX(-7deg);
+
+    }
+
+
+    .page-transition::after {
+
+        transform:
+            translateX(0)
+            skewX(-7deg);
+
+    }
+
+
     .transition-grid {
 
         transform:
@@ -3642,7 +3166,19 @@ a:hover
 
 
     .page-transition.is-covering::before,
-    .page-transition.is-covering::after {
+    .page-transition.is-arriving::before,
+    .page-transition.is-entering::before {
+
+        transform:
+            translateX(0)
+            skewX(-7deg);
+
+    }
+
+
+    .page-transition.is-covering::after,
+    .page-transition.is-arriving::after,
+    .page-transition.is-entering::after {
 
         transform:
             translateX(0)
@@ -3653,13 +3189,11 @@ a:hover
 }
 
 
-
 @media(prefers-reduced-motion:reduce) {
 
     html {
 
-        scroll-behavior:
-            auto;
+        scroll-behavior: auto;
 
     }
 
@@ -3687,8 +3221,7 @@ a:hover
 
     .page-transition {
 
-        display:
-            none;
+        display: none;
 
     }
 
