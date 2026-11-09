@@ -4,7 +4,41 @@
 
 
     /* =====================================================
-       BASIC HELPERS
+       HELIOTECH SETTINGS
+    ===================================================== */
+
+    const VEHICLE_SCROLL_HEIGHT =
+        "700vh";
+
+
+    /*
+        Fusion correction:
+
+        90deg = lays car horizontally
+        180deg = flips upside-down car upright
+    */
+
+    const MODEL_ORIENTATION =
+        "180deg 90deg 0deg";
+
+
+    /*
+        Larger = farther from car.
+
+        150 gives the full car plenty
+        of room on screen.
+    */
+
+    const FULL_VIEW_DISTANCE =
+        150;
+
+
+    const TRANSITION_FLAG =
+        "heliotech-transition-incoming";
+
+
+    /* =====================================================
+       HELPERS
     ===================================================== */
 
     const clamp = (
@@ -198,12 +232,20 @@
         [];
 
 
+    let lastActiveStory =
+        null;
+
+
     let transitionTimer =
         0;
 
 
-    let lastActiveStory =
-        null;
+    let initialized =
+        false;
+
+
+    let pageRevealStarted =
+        false;
 
 
     /* =====================================================
@@ -240,13 +282,9 @@
         "z";
 
 
-    /*
-        The FIRST path should be the real file.
-
-        The others are fallbacks in case you
-        accidentally uploaded the model using
-        one of the previous names.
-    */
+    /* =====================================================
+       POSSIBLE MODEL FILENAMES
+    ===================================================== */
 
     const MODEL_CANDIDATES = [
 
@@ -267,6 +305,20 @@
         "./Full Assembly.glb"
 
     ];
+
+
+    /* =====================================================
+       EXTEND 3D SCROLL
+    ===================================================== */
+
+    if(
+        vehicleStory
+    ) {
+
+        vehicleStory.style.height =
+            VEHICLE_SCROLL_HEIGHT;
+
+    }
 
 
     /* =====================================================
@@ -387,10 +439,77 @@
 
 
     /* =====================================================
+       CHECK IF WE CAME FROM ANOTHER HELIOTECH PAGE
+    ===================================================== */
+
+    function isIncomingTransition() {
+
+        try {
+
+            const incoming =
+                sessionStorage.getItem(
+                    TRANSITION_FLAG
+                );
+
+
+            if(
+                incoming ===
+                "1"
+            ) {
+
+                sessionStorage.removeItem(
+                    TRANSITION_FLAG
+                );
+
+
+                return true;
+
+            }
+
+        }
+        catch(
+            error
+        ) {
+
+            console.warn(
+                "Transition storage unavailable.",
+                error
+            );
+
+        }
+
+
+        return false;
+
+    }
+
+
+    /* =====================================================
        PAGE ENTRY TRANSITION
     ===================================================== */
 
-    function revealPage() {
+    function revealPageOnce() {
+
+        /*
+            Prevent pageshow + initialization
+            from restarting the logo animation.
+
+            This was one cause of the
+            double flicker.
+        */
+
+        if(
+            pageRevealStarted
+        ) {
+
+            return;
+
+        }
+
+
+        pageRevealStarted =
+            true;
+
 
         if(
             !transition
@@ -419,8 +538,60 @@
         );
 
 
+        const incoming =
+            isIncomingTransition();
+
+
+        /*
+            IMPORTANT:
+
+            If we came from another page,
+            the logo ALREADY flickered once
+            during the outgoing transition.
+
+            Therefore DO NOT flicker again.
+
+            Just show it solid for a moment
+            and slide the panel away.
+        */
+
+        if(
+            incoming
+        ) {
+
+            transition.className =
+                "page-transition is-arriving";
+
+
+            transitionTimer =
+                window.setTimeout(
+
+                    () => {
+
+                        transition.className =
+                            "page-transition is-revealed";
+
+                    },
+
+                    180
+
+                );
+
+
+            return;
+
+        }
+
+
+        /*
+            Fresh website visit:
+
+            Let the logo flicker exactly
+            ONE time before revealing page.
+        */
+
         transition.className =
-            "page-transition";
+            "page-transition is-entering";
 
 
         transitionTimer =
@@ -428,15 +599,12 @@
 
                 () => {
 
-                    transition
-                        .classList
-                        .add(
-                            "is-revealed"
-                        );
+                    transition.className =
+                        "page-transition is-revealed";
 
                 },
 
-                520
+                650
 
             );
 
@@ -465,6 +633,11 @@
         }
 
 
+        /*
+            Reset panel off-screen right.
+            Logo hidden.
+        */
+
         transition.className =
             "page-transition is-preparing";
 
@@ -477,6 +650,13 @@
 
                     () => {
 
+                        /*
+                            Slanted panel enters.
+
+                            Logo flickers exactly
+                            ONE time here.
+                        */
+
                         transition.className =
                             "page-transition is-covering";
 
@@ -484,6 +664,32 @@
                         window.setTimeout(
 
                             () => {
+
+                                /*
+                                    Tell destination page:
+
+                                    "The logo already flickered.
+                                    Do not flicker again."
+                                */
+
+                                try {
+
+                                    sessionStorage.setItem(
+                                        TRANSITION_FLAG,
+                                        "1"
+                                    );
+
+                                }
+                                catch(
+                                    error
+                                ) {
+
+                                    console.warn(
+                                        error
+                                    );
+
+                                }
+
 
                                 window.location.href =
                                     href;
@@ -506,7 +712,7 @@
 
 
     /* =====================================================
-       SAME-SITE LINK TRANSITION
+       INTERCEPT SAME-SITE PAGE LINKS
     ===================================================== */
 
     document.addEventListener(
@@ -536,6 +742,11 @@
                 );
 
 
+            /*
+                Hash links stay on same page
+                and should NOT trigger transition.
+            */
+
             if(
                 !href ||
                 href.startsWith(
@@ -553,6 +764,10 @@
 
             }
 
+
+            /*
+                Preserve Ctrl/Cmd click etc.
+            */
 
             if(
                 event.metaKey ||
@@ -586,6 +801,10 @@
 
             }
 
+
+            /*
+                External sites behave normally.
+            */
 
             if(
                 targetURL.origin !==
@@ -660,10 +879,9 @@
                         );
 
 
-                        flickerObserver
-                            .unobserve(
-                                element
-                            );
+                        flickerObserver.unobserve(
+                            element
+                        );
 
                     }
 
@@ -691,21 +909,19 @@
             index
         ) => {
 
-            element.dataset
-                .flickerDelay =
-                    String(
-                        (
-                            index %
-                            3
-                        ) *
-                        75
-                    );
-
-
-            flickerObserver
-                .observe(
-                    element
+            element.dataset.flickerDelay =
+                String(
+                    (
+                        index %
+                        3
+                    ) *
+                    75
                 );
+
+
+            flickerObserver.observe(
+                element
+            );
 
         }
 
@@ -713,7 +929,7 @@
 
 
     /* =====================================================
-       MODEL PLACEHOLDER STATUS
+       MODEL PLACEHOLDER
     ===================================================== */
 
     function setPlaceholderStatus(
@@ -731,24 +947,21 @@
 
 
         const strong =
-            modelPlaceholder
-                .querySelector(
-                    "strong"
-                );
+            modelPlaceholder.querySelector(
+                "strong"
+            );
 
 
         const paragraph =
-            modelPlaceholder
-                .querySelector(
-                    "p"
-                );
+            modelPlaceholder.querySelector(
+                "p"
+            );
 
 
         const code =
-            modelPlaceholder
-                .querySelector(
-                    "code"
-                );
+            modelPlaceholder.querySelector(
+                "code"
+            );
 
 
         if(
@@ -775,14 +988,10 @@
             code
         ) {
 
-            const path =
+            code.textContent =
                 MODEL_CANDIDATES[
                     currentModelCandidate
-                ];
-
-
-            code.textContent =
-                path ||
+                ] ||
                 "";
 
         }
@@ -791,7 +1000,7 @@
 
 
     /* =====================================================
-       MODEL FILE LOADING
+       LOAD MODEL CANDIDATE
     ===================================================== */
 
     function tryModelCandidate(
@@ -813,7 +1022,7 @@
         ) {
 
             console.error(
-                "HelioTech: no GLB model path could be loaded."
+                "HelioTech: no 3D model could be loaded."
             );
 
 
@@ -821,28 +1030,26 @@
                 false;
 
 
+            modelViewer.style.opacity =
+                "0";
+
+
             if(
                 vehicleStory
             ) {
 
-                vehicleStory
-                    .classList
-                    .remove(
-                        "model-loaded"
-                    );
+                vehicleStory.classList.remove(
+                    "model-loaded"
+                );
 
             }
-
-
-            modelViewer.style.opacity =
-                "0";
 
 
             setPlaceholderStatus(
 
                 "MODEL FILE NOT FOUND",
 
-                "Make sure the GLB is committed to the models folder on the main branch."
+                "Make sure the GLB file is inside the models folder."
 
             );
 
@@ -860,21 +1067,19 @@
             false;
 
 
+        modelViewer.style.opacity =
+            "0";
+
+
         if(
             vehicleStory
         ) {
 
-            vehicleStory
-                .classList
-                .remove(
-                    "model-loaded"
-                );
+            vehicleStory.classList.remove(
+                "model-loaded"
+            );
 
         }
-
-
-        modelViewer.style.opacity =
-            "0";
 
 
         const src =
@@ -884,7 +1089,7 @@
 
 
         console.log(
-            "HelioTech: trying 3D model:",
+            "HelioTech loading model:",
             src
         );
 
@@ -898,13 +1103,6 @@
         );
 
 
-        /*
-            Critical:
-
-            The source is assigned only AFTER
-            the load/error listeners exist.
-        */
-
         modelViewer.src =
             src;
 
@@ -912,22 +1110,13 @@
 
 
     /* =====================================================
-       MODEL LOAD SUCCESS
+       MODEL LOADED
     ===================================================== */
 
     function handleModelLoaded() {
 
-        if(
-            !modelViewer
-        ) {
-
-            return;
-
-        }
-
-
         console.log(
-            "HelioTech: 3D model loaded:",
+            "HelioTech model loaded:",
             modelViewer.src
         );
 
@@ -937,12 +1126,15 @@
 
 
         /*
-            Do NOT depend only on CSS for this.
+            Correct Fusion orientation.
 
-            Setting opacity inline prevents the
-            model from remaining invisible if
-            older CSS still says opacity: 0.
+            90° lays the vehicle horizontal.
+            180° flips it upright.
         */
+
+        modelViewer.orientation =
+            MODEL_ORIENTATION;
+
 
         modelViewer.style.opacity =
             "1";
@@ -952,11 +1144,9 @@
             vehicleStory
         ) {
 
-            vehicleStory
-                .classList
-                .add(
-                    "model-loaded"
-                );
+            vehicleStory.classList.add(
+                "model-loaded"
+            );
 
         }
 
@@ -981,23 +1171,28 @@
         }
 
 
-        /*
-            Read actual model dimensions.
-
-            If anything fails here, the model
-            STILL stays visible.
-        */
-
         try {
 
+            /*
+                Reframe after orientation.
+            */
+
+            if(
+                typeof modelViewer.updateFraming ===
+                "function"
+            ) {
+
+                modelViewer.updateFraming();
+
+            }
+
+
             const center =
-                modelViewer
-                    .getBoundingBoxCenter();
+                modelViewer.getBoundingBoxCenter();
 
 
             const dimensions =
-                modelViewer
-                    .getDimensions();
+                modelViewer.getDimensions();
 
 
             modelCenter = {
@@ -1028,11 +1223,15 @@
             };
 
 
+            /*
+                Find the longest car axis.
+            */
+
             if(
                 modelSize.x >=
-                    modelSize.y &&
+                modelSize.y &&
                 modelSize.x >=
-                    modelSize.z
+                modelSize.z
             ) {
 
                 modelLongAxis =
@@ -1041,9 +1240,9 @@
             }
             else if(
                 modelSize.y >=
-                    modelSize.x &&
+                modelSize.x &&
                 modelSize.y >=
-                    modelSize.z
+                modelSize.z
             ) {
 
                 modelLongAxis =
@@ -1059,19 +1258,19 @@
 
 
             console.log(
-                "HelioTech model dimensions:",
-                modelSize
-            );
-
-
-            console.log(
-                "HelioTech model center:",
+                "Model center:",
                 modelCenter
             );
 
 
             console.log(
-                "HelioTech model long axis:",
+                "Model dimensions:",
+                modelSize
+            );
+
+
+            console.log(
+                "Model long axis:",
                 modelLongAxis
             );
 
@@ -1081,55 +1280,51 @@
         ) {
 
             console.warn(
-                "HelioTech: could not read model dimensions.",
+                "Unable to read model dimensions.",
                 error
             );
 
         }
 
 
-        /*
-            Orientation exists in HTML before
-            the model loads, so model-viewer
-            normally frames it automatically.
+        requestAnimationFrame(
 
-            Calling updateFraming again is safe
-            and ensures the final frame is correct.
-        */
+            () => {
 
-        try {
+                try {
 
-            if(
-                typeof modelViewer
-                    .updateFraming ===
-                "function"
-            ) {
+                    if(
+                        typeof modelViewer.updateFraming ===
+                        "function"
+                    ) {
 
-                modelViewer
-                    .updateFraming();
+                        modelViewer.updateFraming();
+
+                    }
+
+                }
+                catch(
+                    error
+                ) {
+
+                    console.warn(
+                        error
+                    );
+
+                }
+
+
+                updateModel();
 
             }
 
-        }
-        catch(
-            error
-        ) {
-
-            console.warn(
-                "HelioTech: updateFraming failed.",
-                error
-            );
-
-        }
-
-
-        updateModel();
+        );
 
     }
 
 
     /* =====================================================
-       MODEL LOAD FAILURE
+       MODEL ERROR
     ===================================================== */
 
     function handleModelError(
@@ -1137,21 +1332,16 @@
     ) {
 
         console.warn(
-            "HelioTech: model failed:",
+
+            "Model failed:",
+
             MODEL_CANDIDATES[
                 currentModelCandidate
             ],
+
             event
+
         );
-
-
-        /*
-            Try next possible filename.
-        */
-
-        const next =
-            currentModelCandidate +
-            1;
 
 
         window.setTimeout(
@@ -1159,12 +1349,15 @@
             () => {
 
                 tryModelCandidate(
-                    next
+
+                    currentModelCandidate +
+                    1
+
                 );
 
             },
 
-            100
+            120
 
         );
 
@@ -1172,7 +1365,7 @@
 
 
     /* =====================================================
-       INITIALIZE MODEL-VIEWER
+       INITIALIZE MODEL
     ===================================================== */
 
     function initializeModel() {
@@ -1182,7 +1375,7 @@
         ) {
 
             console.error(
-                "HelioTech: #car-model element was not found."
+                "#car-model not found."
             );
 
 
@@ -1192,9 +1385,32 @@
 
 
         /*
-            Guarantee visible styles independent
-            of older CSS.
+            Grab existing HTML source before
+            removing it.
+
+            This prevents model-viewer from
+            loading before our listeners exist.
         */
+
+        const htmlSource =
+            modelViewer.dataset.modelSrc ||
+            modelViewer.getAttribute(
+                "src"
+            );
+
+
+        if(
+            modelViewer.hasAttribute(
+                "src"
+            )
+        ) {
+
+            modelViewer.removeAttribute(
+                "src"
+            );
+
+        }
+
 
         modelViewer.style.display =
             "block";
@@ -1208,10 +1424,9 @@
             "100%";
 
 
-        /*
-            Important:
-            listeners are installed BEFORE src.
-        */
+        modelViewer.orientation =
+            MODEL_ORIENTATION;
+
 
         modelViewer.addEventListener(
 
@@ -1232,9 +1447,49 @@
 
 
         /*
-            Wait until the custom element library
-            has actually registered <model-viewer>.
+            Put HTML's preferred filename
+            at the top of candidate list.
         */
+
+        if(
+            htmlSource
+        ) {
+
+            const existingIndex =
+                MODEL_CANDIDATES.indexOf(
+                    htmlSource
+                );
+
+
+            if(
+                existingIndex >
+                0
+            ) {
+
+                MODEL_CANDIDATES.splice(
+                    existingIndex,
+                    1
+                );
+
+
+                MODEL_CANDIDATES.unshift(
+                    htmlSource
+                );
+
+            }
+            else if(
+                existingIndex ===
+                -1
+            ) {
+
+                MODEL_CANDIDATES.unshift(
+                    htmlSource
+                );
+
+            }
+
+        }
+
 
         if(
             window.customElements &&
@@ -1249,60 +1504,6 @@
 
                     () => {
 
-                        /*
-                            First use the path written
-                            in data-model-src.
-                        */
-
-                        const preferred =
-                            modelViewer.dataset
-                                .modelSrc;
-
-
-                        if(
-                            preferred
-                        ) {
-
-                            const existingIndex =
-                                MODEL_CANDIDATES
-                                    .indexOf(
-                                        preferred
-                                    );
-
-
-                            if(
-                                existingIndex >
-                                0
-                            ) {
-
-                                MODEL_CANDIDATES
-                                    .splice(
-                                        existingIndex,
-                                        1
-                                    );
-
-
-                                MODEL_CANDIDATES
-                                    .unshift(
-                                        preferred
-                                    );
-
-                            }
-                            else if(
-                                existingIndex ===
-                                -1
-                            ) {
-
-                                MODEL_CANDIDATES
-                                    .unshift(
-                                        preferred
-                                    );
-
-                            }
-
-                        }
-
-
                         tryModelCandidate(
                             0
                         );
@@ -1315,7 +1516,7 @@
                     error => {
 
                         console.error(
-                            "HelioTech: model-viewer library failed to initialize.",
+                            "model-viewer failed:",
                             error
                         );
 
@@ -1324,7 +1525,7 @@
 
                             "3D VIEWER FAILED",
 
-                            "The model-viewer library did not load."
+                            "The 3D viewer library could not load."
 
                         );
 
@@ -1360,8 +1561,7 @@
 
 
         const rect =
-            vehicleStory
-                .getBoundingClientRect();
+            vehicleStory.getBoundingClientRect();
 
 
         const travel =
@@ -1369,8 +1569,7 @@
 
                 1,
 
-                vehicleStory
-                    .offsetHeight -
+                vehicleStory.offsetHeight -
                 window.innerHeight
 
             );
@@ -1387,7 +1586,7 @@
 
 
     /* =====================================================
-       TARGET POINT ALONG CAR
+       TARGET POINT ALONG VEHICLE
     ===================================================== */
 
     function modelTarget(
@@ -1418,7 +1617,7 @@
 
             position *
 
-            0.34;
+            0.33;
 
 
         return target;
@@ -1427,23 +1626,30 @@
 
 
     /* =====================================================
-       SCROLL CAMERA STATES
+       CAMERA STORY
     ===================================================== */
 
     function cameraState(
         progress
     ) {
 
-        const fullStart = {
+        /*
+            FULL VEHICLE
+
+            Very far back so the entire
+            solar car is visible.
+        */
+
+        const fullIntro = {
 
             orbit:
-                88,
+                90,
 
             phi:
-                72,
+                71,
 
             radius:
-                115,
+                FULL_VIEW_DISTANCE,
 
             target:
                 modelTarget(
@@ -1453,62 +1659,80 @@
         };
 
 
+        /*
+            FRONT / SOLAR ARRAY
+        */
+
         const solarDetail = {
 
             orbit:
-                75,
+                76,
+
+            phi:
+                66,
+
+            radius:
+                56,
+
+            target:
+                modelTarget(
+                    0.68
+                )
+
+        };
+
+
+        /*
+            CENTER / DRIVER / ELECTRONICS
+
+            Closest camera position.
+        */
+
+        const centerDetail = {
+
+            orbit:
+                96,
+
+            phi:
+                62,
+
+            radius:
+                43,
+
+            target:
+                modelTarget(
+                    0.04
+                )
+
+        };
+
+
+        /*
+            REAR / DRIVETRAIN
+        */
+
+        const rearDetail = {
+
+            orbit:
+                115,
 
             phi:
                 67,
 
             radius:
-                64,
+                52,
 
             target:
                 modelTarget(
-                    0.70
+                    -0.66
                 )
 
         };
 
 
-        const centerDetail = {
-
-            orbit:
-                100,
-
-            phi:
-                63,
-
-            radius:
-                53,
-
-            target:
-                modelTarget(
-                    0.06
-                )
-
-        };
-
-
-        const rearDetail = {
-
-            orbit:
-                118,
-
-            phi:
-                69,
-
-            radius:
-                61,
-
-            target:
-                modelTarget(
-                    -0.68
-                )
-
-        };
-
+        /*
+            FINAL FULL VEHICLE
+        */
 
         const fullEnd = {
 
@@ -1516,10 +1740,10 @@
                 98,
 
             phi:
-                74,
+                72,
 
             radius:
-                113,
+                FULL_VIEW_DISTANCE,
 
             target:
                 modelTarget(
@@ -1529,17 +1753,22 @@
         };
 
 
-        /* FULL CAR */
+        /* =================================================
+           0 → 20%
+           FULL VEHICLE
+        ================================================= */
 
         if(
             progress <
-            0.17
+            0.20
         ) {
 
             const t =
                 smoothstep(
+
                     progress /
-                    0.17
+                    0.20
+
                 );
 
 
@@ -1547,38 +1776,41 @@
 
                 orbit:
                     lerp(
-                        82,
-                        fullStart.orbit,
+                        84,
+                        fullIntro.orbit,
                         t
                     ),
 
                 phi:
                     lerp(
-                        75,
-                        fullStart.phi,
+                        74,
+                        fullIntro.phi,
                         t
                     ),
 
                 radius:
                     lerp(
-                        122,
-                        fullStart.radius,
+                        165,
+                        fullIntro.radius,
                         t
                     ),
 
                 target:
-                    fullStart.target
+                    fullIntro.target
 
             };
 
         }
 
 
-        /* SOLAR / FRONT */
+        /* =================================================
+           20 → 40%
+           FULL → SOLAR
+        ================================================= */
 
         if(
             progress <
-            0.37
+            0.40
         ) {
 
             const t =
@@ -1586,7 +1818,7 @@
 
                     (
                         progress -
-                        0.17
+                        0.20
                     ) /
                     0.20
 
@@ -1597,28 +1829,28 @@
 
                 orbit:
                     lerp(
-                        fullStart.orbit,
+                        fullIntro.orbit,
                         solarDetail.orbit,
                         t
                     ),
 
                 phi:
                     lerp(
-                        fullStart.phi,
+                        fullIntro.phi,
                         solarDetail.phi,
                         t
                     ),
 
                 radius:
                     lerp(
-                        fullStart.radius,
+                        fullIntro.radius,
                         solarDetail.radius,
                         t
                     ),
 
                 target:
                     mixTarget(
-                        fullStart.target,
+                        fullIntro.target,
                         solarDetail.target,
                         t
                     )
@@ -1628,11 +1860,14 @@
         }
 
 
-        /* DRIVER / ELECTRONICS */
+        /* =================================================
+           40 → 60%
+           SOLAR → DRIVER / CONTROL
+        ================================================= */
 
         if(
             progress <
-            0.59
+            0.60
         ) {
 
             const t =
@@ -1640,9 +1875,9 @@
 
                     (
                         progress -
-                        0.37
+                        0.40
                     ) /
-                    0.22
+                    0.20
 
                 );
 
@@ -1682,7 +1917,10 @@
         }
 
 
-        /* DRIVETRAIN */
+        /* =================================================
+           60 → 80%
+           CENTER → DRIVETRAIN
+        ================================================= */
 
         if(
             progress <
@@ -1694,9 +1932,9 @@
 
                     (
                         progress -
-                        0.59
+                        0.60
                     ) /
-                    0.21
+                    0.20
 
                 );
 
@@ -1736,7 +1974,10 @@
         }
 
 
-        /* PULL BACK */
+        /* =================================================
+           80 → 100%
+           DRIVETRAIN → FULL VEHICLE
+        ================================================= */
 
         const t =
             smoothstep(
@@ -1786,7 +2027,7 @@
 
 
     /* =====================================================
-       3D STORY TEXT
+       MODEL STORY TEXT
     ===================================================== */
 
     function updateModelStories(
@@ -1803,23 +2044,21 @@
 
                 const start =
                     Number(
-                        story.dataset
-                            .start
+                        story.dataset.start
                     );
 
 
                 const end =
                     Number(
-                        story.dataset
-                            .end
+                        story.dataset.end
                     );
 
 
                 const active =
                     progress >=
-                        start &&
+                    start &&
                     progress <=
-                        end;
+                    end;
 
 
                 story.classList.toggle(
@@ -1845,7 +2084,7 @@
         if(
             current &&
             current !==
-                lastActiveStory
+            lastActiveStory
         ) {
 
             current.style.opacity =
@@ -1881,7 +2120,7 @@
 
 
     /* =====================================================
-       UPDATE MODEL DURING SCROLL
+       UPDATE MODEL
     ===================================================== */
 
     function updateModel() {
@@ -1898,11 +2137,6 @@
         const progress =
             modelProgress();
 
-
-        /*
-            Text still changes even if the
-            actual GLB is not loaded yet.
-        */
 
         updateModelStories(
             progress
@@ -1939,7 +2173,9 @@
             `${state.target.z}m`;
 
 
-        /* UI */
+        /* =================================================
+           ORBIT READOUT
+        ================================================= */
 
         if(
             orbitReadout
@@ -1971,13 +2207,17 @@
         }
 
 
+        /* =================================================
+           VIEW NAME
+        ================================================= */
+
         if(
             viewReadout
         ) {
 
             if(
                 progress <
-                0.17
+                0.20
             ) {
 
                 viewReadout.textContent =
@@ -1986,7 +2226,7 @@
             }
             else if(
                 progress <
-                0.37
+                0.40
             ) {
 
                 viewReadout.textContent =
@@ -1995,7 +2235,7 @@
             }
             else if(
                 progress <
-                0.59
+                0.60
             ) {
 
                 viewReadout.textContent =
@@ -2048,8 +2288,7 @@
                 chapter => {
 
                     const rect =
-                        chapter
-                            .getBoundingClientRect();
+                        chapter.getBoundingClientRect();
 
 
                     return {
@@ -2074,7 +2313,7 @@
 
 
     /* =====================================================
-       NAVIGATION ACTIVE STATE
+       ACTIVE NAV
     ===================================================== */
 
     function updateNavigation() {
@@ -2107,9 +2346,7 @@
                 ) {
 
                     active =
-                        item
-                            .element
-                            .id;
+                        item.element.id;
 
                 }
 
@@ -2153,7 +2390,7 @@
 
 
     /* =====================================================
-       MAIN RENDER
+       RENDER
     ===================================================== */
 
     function render() {
@@ -2265,18 +2502,31 @@
 
 
     /* =====================================================
-       START
+       INITIALIZE
     ===================================================== */
 
     function initialize() {
 
-        measure();
+        if(
+            initialized
+        ) {
+
+            return;
+
+        }
 
 
-        revealPage();
+        initialized =
+            true;
 
 
         initializeModel();
+
+
+        measure();
+
+
+        revealPageOnce();
 
 
         schedule();
@@ -2284,26 +2534,49 @@
     }
 
 
+    /*
+        Because script.js is loaded with
+        defer, the DOM already exists here.
+    */
+
+    initialize();
+
+
+    /*
+        Browser Back / Forward cache.
+
+        Do NOT replay the logo flicker.
+    */
+
     window.addEventListener(
 
         "pageshow",
 
-        () => {
+        event => {
 
-            initialize();
+            if(
+                event.persisted
+            ) {
+
+                if(
+                    transition
+                ) {
+
+                    transition.className =
+                        "page-transition is-revealed";
+
+                }
+
+
+                measure();
+
+
+                schedule();
+
+            }
 
         }
 
     );
-
-
-    if(
-        document.readyState ===
-        "complete"
-    ) {
-
-        initialize();
-
-    }
 
 })();
