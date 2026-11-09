@@ -1,0 +1,1052 @@
+/* =====================================================
+   TEAM PAGE
+===================================================== */
+
+.page-team {
+
+    background:
+        #000000;
+
+}
+
+
+/* =====================================================
+   TEAM HERO
+===================================================== */
+
+.team-hero {
+
+    position:
+        relative;
+
+    min-height:
+        92vh;
+
+    padding:
+        calc(
+            var(--header) +
+            44px
+        )
+        var(--gutter)
+        72px;
+
+    display:
+        flex;
+
+    flex-direction:
+        column;
+
+    justify-content:
+        space-between;
+
+    overflow:
+        hidden;
+
+    background:
+        #000000;
+
+    border-bottom:
+        1px solid
+        var(--navy-line);
+
+}
+
+
+.team-hero
+.hero-background-grid {
+
+    position:
+        absolute;
+
+    inset:
+        0;
+
+    z-index:
+        0;
+
+}
+
+
+.team-hero-topline {
+
+    position:
+        relative;
+
+    z-index:
+        2;
+
+    display:
+        grid;
+
+    grid-template-columns:
+        1fr
+        1fr
+        auto;
+
+    gap:
+        30px;
+
+    padding-bottom:
+        16px;
+
+    color:
+        #415360;
+
+    border-bottom:
+        1px solid
+        #10283c;
+
+    font-family:
+        "Space Mono",
+        monospace;
+
+    font-size:
+        8px;
+
+    font-weight:
+        700;
+
+    letter-spacing:
+        .12em;
+
+}
+
+
+.team-hero-content {
+
+    position:
+        relative;
+
+    z-index:
+        2;
+
+    display:
+        grid;
+
+    grid-template-columns:
+        minmax(
+            0,
+            1.3fr
+        )
+        minmax(
+            300px,
+            .7fr
+        );
+
+    gap:
+        clamp(
+            50px,
+            9vw,
+            150px
+        );
+
+    align-items:
+        end;
+
+    padding-top:
+        clamp(
+            90px,
+            13vh,
+            160px
+        );
+
+}
+
+
+.team-hero h1 {
+
+    margin-top:
+        22px;
+
+    color:
+        #c1c8ce;
+
+    font-size:
+        clamp(
+            64px,
+            7.6vw,
+            128px
+        );
+
+    line-height:
+        .91;
+
+    letter-spacing:
+        -.065em;
+
+}
+
+
+.team-hero h1 span {
+
+    color:
+        #65737e;
+
+}
+
+
+.team-hero-copy {
+
+    padding-bottom:
+        10px;
+
+}
+
+
+.team-hero-lead {
+
+    max-width:
+        480px;
+
+    color:
+        #7a8791;
+
+    font-size:
+        clamp(
+            17px,
+            1.45vw,
+            23px
+        );
+
+    font-weight:
+        500;
+
+    line-height:
+        1.5;
+
+    letter-spacing:
+        -.018em;
+
+}
+
+
+.team-hero-stats {
+
+    display:
+        grid;
+
+    grid-template-columns:
+        1fr
+        1fr;
+
+    margin-top:
+        45px;
+
+    border-top:
+        1px solid
+        #10283c;
+
+    border-bottom:
+        1px solid
+        #10283c;
+
+}
+
+
+.team-hero-stats > div {
+
+    padding:
+        17px
+        10px;
+
+}
+
+
+.team-hero-stats > div:first-child {
+
+    border-right:
+        1px solid
+        #10283c;
+
+}
+
+
+.team-hero-stats span {
+
+    display:
+        block;
+
+    color:
+        #405360;
+
+    font-family:
+        "Space Mono",
+        monospace;
+
+    font-size:
+        8px;
+
+    letter-spacing:
+        .1em;
+
+}
+
+
+.team-hero-stats strong {
+
+    display:
+        block;
+
+    margin-top:
+        8px;
+
+    color:
+        #7e8c96;
+
+    font-size:
+        11px;
+
+    font-weight:
+        600;
+
+}
+
+
+/* =====================================================
+   DEPARTMENT SECTIONS
+===================================================== */
+
+.team-department {
+
+    position:
+        relative;
+
+    padding:
+        105px
+        var(--gutter)
+        120px;
+
+    background:
+        #000000;
+
+    border-bottom:
+        1px solid
+        #0a1b28;
+
+}
+
+
+.team-section-header {
+
+    display:
+        flex;
+
+    justify-content:
+        space-between;
+
+    align-items:
+        center;
+
+    padding-bottom:
+        14px;
+
+    color:
+        #405667;
+
+    border-bottom:
+        1px solid
+        #133249;
+
+    font-family:
+        "Space Mono",
+        monospace;
+
+    font-size:
+        8px;
+
+    font-weight:
+        700;
+
+    letter-spacing:
+        .12em;
+
+}
+
+
+.team-department-layout {
+
+    display:
+        grid;
+
+    grid-template-columns:
+        minmax(
+            260px,
+            .72fr
+        )
+        minmax(
+            0,
+            1.28fr
+        );
+
+    gap:
+        clamp(
+            60px,
+            9vw,
+            155px
+        );
+
+    align-items:
+        start;
+
+    padding-top:
+        65px;
+
+}
+
+
+.team-department-intro {
+
+    position:
+        sticky;
+
+    top:
+        calc(
+            var(--header) +
+            38px
+        );
+
+}
+
+
+.team-department-index {
+
+    display:
+        block;
+
+    margin-bottom:
+        20px;
+
+    color:
+        #3f5668;
+
+    font-family:
+        "Space Mono",
+        monospace;
+
+    font-size:
+        8px;
+
+    font-weight:
+        700;
+
+    letter-spacing:
+        .12em;
+
+}
+
+
+.team-department-intro h2 {
+
+    color:
+        #aab4bc;
+
+    font-size:
+        clamp(
+            42px,
+            4.5vw,
+            78px
+        );
+
+    line-height:
+        .94;
+
+}
+
+
+.team-department-intro p {
+
+    max-width:
+        430px;
+
+    margin-top:
+        25px;
+
+    color:
+        #61707a;
+
+    font-size:
+        14px;
+
+    line-height:
+        1.7;
+
+}
+
+
+/* =====================================================
+   MEMBER CARDS
+===================================================== */
+
+.roster-grid {
+
+    display:
+        grid;
+
+    grid-template-columns:
+        repeat(
+            2,
+            minmax(
+                0,
+                1fr
+            )
+        );
+
+    gap:
+        1px;
+
+    padding:
+        1px;
+
+    background:
+        #10283a;
+
+}
+
+
+.member-card {
+
+    position:
+        relative;
+
+    min-height:
+        210px;
+
+    padding:
+        24px;
+
+    display:
+        flex;
+
+    flex-direction:
+        column;
+
+    justify-content:
+        space-between;
+
+    background:
+        #010305;
+
+    transition:
+        background .22s,
+        transform .22s;
+
+}
+
+
+.member-card:hover {
+
+    z-index:
+        2;
+
+    background:
+        #04101a;
+
+    transform:
+        translateY(-2px);
+
+}
+
+
+.member-top {
+
+    display:
+        flex;
+
+    justify-content:
+        space-between;
+
+    align-items:
+        flex-start;
+
+    gap:
+        20px;
+
+}
+
+
+.member-avatar {
+
+    width:
+        50px;
+
+    height:
+        50px;
+
+    display:
+        grid;
+
+    place-items:
+        center;
+
+    flex:
+        0
+        0
+        50px;
+
+    color:
+        #82909a;
+
+    border:
+        1px solid
+        #25445b;
+
+    border-radius:
+        50%;
+
+    background:
+        #030b12;
+
+    font-family:
+        "Space Mono",
+        monospace;
+
+    font-size:
+        9px;
+
+    font-weight:
+        700;
+
+    letter-spacing:
+        .06em;
+
+    transition:
+        color .2s,
+        border-color .2s,
+        background .2s;
+
+}
+
+
+.member-card:hover
+.member-avatar {
+
+    color:
+        #ffffff;
+
+    border-color:
+        #6b8293;
+
+    background:
+        #091a28;
+
+}
+
+
+.member-role {
+
+    padding:
+        5px
+        7px;
+
+    color:
+        #4c6272;
+
+    border:
+        1px solid
+        #173348;
+
+    font-family:
+        "Space Mono",
+        monospace;
+
+    font-size:
+        7px;
+
+    font-weight:
+        700;
+
+    letter-spacing:
+        .1em;
+
+}
+
+
+.member-lead
+.member-role {
+
+    color:
+        #8194a3;
+
+    border-color:
+        #35536a;
+
+}
+
+
+.member-info h3 {
+
+    color:
+        #8997a1;
+
+    font-size:
+        clamp(
+            22px,
+            2vw,
+            30px
+        );
+
+    line-height:
+        1;
+
+    transition:
+        color .2s;
+
+}
+
+
+.member-card:hover
+.member-info h3 {
+
+    color:
+        #ffffff;
+
+}
+
+
+.member-info p {
+
+    margin-top:
+        11px;
+
+    color:
+        #465965;
+
+    font-size:
+        11px;
+
+}
+
+
+/* =====================================================
+   LEAD CARD
+===================================================== */
+
+.member-lead {
+
+    background:
+        linear-gradient(
+            145deg,
+            #030b12,
+            #010305 70%
+        );
+
+}
+
+
+.member-lead::before {
+
+    content:
+        "";
+
+    position:
+        absolute;
+
+    left:
+        0;
+
+    top:
+        0;
+
+    width:
+        2px;
+
+    height:
+        100%;
+
+    background:
+        #31546c;
+
+}
+
+
+/* =====================================================
+   JOIN SECTION
+===================================================== */
+
+.team-join {
+
+    display:
+        grid;
+
+    grid-template-columns:
+        1.15fr
+        .85fr;
+
+    gap:
+        clamp(
+            50px,
+            9vw,
+            150px
+        );
+
+    align-items:
+        end;
+
+    padding:
+        120px
+        var(--gutter);
+
+    background:
+        #000000;
+
+    border-bottom:
+        1px solid
+        var(--navy-line);
+
+}
+
+
+.team-join h2 {
+
+    margin-top:
+        20px;
+
+    color:
+        #a7b1b9;
+
+    font-size:
+        clamp(
+            60px,
+            7.3vw,
+            118px
+        );
+
+    line-height:
+        .91;
+
+}
+
+
+.team-join-copy p {
+
+    max-width:
+        430px;
+
+    color:
+        #63717b;
+
+    font-size:
+        14px;
+
+    line-height:
+        1.7;
+
+}
+
+
+/* =====================================================
+   TABLET
+===================================================== */
+
+@media(max-width: 1000px) {
+
+    .team-hero {
+
+        min-height:
+            auto;
+
+    }
+
+
+    .team-hero-content {
+
+        grid-template-columns:
+            1fr;
+
+        gap:
+            55px;
+
+        padding-top:
+            100px;
+
+    }
+
+
+    .team-department-layout {
+
+        grid-template-columns:
+            1fr;
+
+        gap:
+            55px;
+
+    }
+
+
+    .team-department-intro {
+
+        position:
+            relative;
+
+        top:
+            auto;
+
+    }
+
+
+    .team-department-intro p {
+
+        max-width:
+            620px;
+
+    }
+
+
+    .team-join {
+
+        grid-template-columns:
+            1fr;
+
+        gap:
+            45px;
+
+    }
+
+}
+
+
+/* =====================================================
+   MOBILE
+===================================================== */
+
+@media(max-width: 650px) {
+
+    .team-hero {
+
+        min-height:
+            auto;
+
+        padding:
+            calc(
+                var(--header) +
+                30px
+            )
+            var(--gutter)
+            65px;
+
+    }
+
+
+    .team-hero-topline {
+
+        grid-template-columns:
+            1fr
+            auto;
+
+    }
+
+
+    .team-hero-topline span:nth-child(2) {
+
+        display:
+            none;
+
+    }
+
+
+    .team-hero-content {
+
+        padding-top:
+            75px;
+
+    }
+
+
+    .team-hero h1 {
+
+        font-size:
+            clamp(
+                50px,
+                14vw,
+                72px
+            );
+
+    }
+
+
+    .team-hero-stats {
+
+        grid-template-columns:
+            1fr;
+
+    }
+
+
+    .team-hero-stats > div:first-child {
+
+        border-right:
+            0;
+
+        border-bottom:
+            1px solid
+            #10283c;
+
+    }
+
+
+    .team-department {
+
+        padding:
+            75px
+            var(--gutter);
+
+    }
+
+
+    .team-department-layout {
+
+        padding-top:
+            45px;
+
+    }
+
+
+    .team-department-intro h2 {
+
+        font-size:
+            clamp(
+                38px,
+                12vw,
+                56px
+            );
+
+    }
+
+
+    .roster-grid {
+
+        grid-template-columns:
+            1fr;
+
+    }
+
+
+    .member-card {
+
+        min-height:
+            180px;
+
+    }
+
+
+    .team-join {
+
+        padding:
+            80px
+            var(--gutter);
+
+    }
+
+
+    .team-join h2 {
+
+        font-size:
+            clamp(
+                52px,
+                14vw,
+                76px
+            );
+
+    }
+
+}
