@@ -3,9 +3,6 @@
     --black:
         #000000;
 
-    --black-soft:
-        #020305;
-
     --navy:
         #030a11;
 
@@ -23,9 +20,6 @@
 
     --text:
         #77838d;
-
-    --text-light:
-        #9aa5ae;
 
     --text-heading:
         #b5bec6;
@@ -46,10 +40,6 @@
 }
 
 
-/* =====================================================
-   RESET
-===================================================== */
-
 * {
     box-sizing:
         border-box;
@@ -59,7 +49,7 @@
 html {
 
     background:
-        var(--black);
+        black;
 
     scroll-behavior:
         smooth;
@@ -73,7 +63,7 @@ body {
         0;
 
     background:
-        var(--black);
+        black;
 
     color:
         var(--text);
@@ -238,7 +228,7 @@ h3 {
             0,
             0,
             0,
-            .90
+            .92
         );
 
     border-bottom:
@@ -393,13 +383,7 @@ h3 {
 
 
 .brand:hover
-.brand-name {
-
-    color:
-        white;
-
-}
-
+.brand-name,
 
 .brand:hover
 .brand-name span {
@@ -517,12 +501,6 @@ a:hover
     color:
         white;
 
-}
-
-
-a:hover
-.link-icon {
-
     transform:
         translate(
             2px,
@@ -610,48 +588,39 @@ a:hover
 @keyframes flicker-in {
 
     0% {
-        opacity:
-            0;
+        opacity: 0;
     }
 
     12% {
-        opacity:
-            .40;
+        opacity: .40;
     }
 
     21% {
-        opacity:
-            .08;
+        opacity: .08;
     }
 
     35% {
-        opacity:
-            .65;
+        opacity: .65;
     }
 
     45% {
-        opacity:
-            .18;
+        opacity: .18;
     }
 
     58% {
-        opacity:
-            .86;
+        opacity: .86;
     }
 
     67% {
-        opacity:
-            .43;
+        opacity: .43;
     }
 
     79% {
-        opacity:
-            .95;
+        opacity: .95;
     }
 
     100% {
-        opacity:
-            1;
+        opacity: 1;
     }
 
 }
@@ -953,7 +922,7 @@ a:hover
         white;
 
     border-color:
-        #516a7c;
+        white;
 
     background:
         #03070a;
@@ -1050,7 +1019,7 @@ a:hover
 
 
 /* =====================================================
-   STANDARD SECTION
+   STANDARD SECTIONS
 ===================================================== */
 
 .standard-section {
@@ -1220,7 +1189,7 @@ a:hover
 
 
 /* =====================================================
-   FULL SCREEN 3D
+   FULL SCREEN 3D MODEL STORY
 ===================================================== */
 
 .vehicle-story {
@@ -2566,7 +2535,7 @@ a:hover
 
 
 /* =====================================================
-   PAGE TRANSITION
+   SLANTED PAGE TRANSITION
 ===================================================== */
 
 .page-transition {
@@ -2590,18 +2559,56 @@ a:hover
         hidden;
 
     background:
-        black;
+        transparent;
+
+    pointer-events:
+        auto;
+
+}
+
+
+/*
+    Main black diagonal panel.
+*/
+
+.page-transition::before {
+
+    content:
+        "";
+
+    position:
+        absolute;
+
+    z-index:
+        2;
+
+    top:
+        -22vh;
+
+    left:
+        -20vw;
+
+    width:
+        145vw;
+
+    height:
+        145vh;
+
+    background:
+        #000000;
 
     transform:
-        translateX(
-            0
-        );
+        translateX(0)
+        skewX(-10deg);
+
+    transform-origin:
+        center;
 
     transition:
         transform
-        .82s
+        .92s
         cubic-bezier(
-            .77,
+            .76,
             0,
             .18,
             1
@@ -2610,52 +2617,178 @@ a:hover
 }
 
 
-.page-transition.is-revealed {
+/*
+    Dark navy panel underneath.
+    It arrives slightly later,
+    creating a layered sweep.
+*/
+
+.page-transition::after {
+
+    content:
+        "";
+
+    position:
+        absolute;
+
+    z-index:
+        1;
+
+    top:
+        -22vh;
+
+    left:
+        -26vw;
+
+    width:
+        145vw;
+
+    height:
+        145vh;
+
+    background:
+        #071522;
 
     transform:
-        translateX(
-            -100%
+        translateX(0)
+        skewX(-10deg);
+
+    transform-origin:
+        center;
+
+    transition:
+        transform
+        1.04s
+        cubic-bezier(
+            .76,
+            0,
+            .18,
+            1
         );
 
 }
 
 
+
+/* =====================================================
+   TRANSITION REVEAL
+===================================================== */
+
+.page-transition.is-revealed {
+
+    pointer-events:
+        none;
+
+}
+
+
+.page-transition.is-revealed::before {
+
+    transform:
+        translateX(-140vw)
+        skewX(-10deg);
+
+}
+
+
+.page-transition.is-revealed::after {
+
+    transform:
+        translateX(-147vw)
+        skewX(-10deg);
+
+}
+
+
+
+/* =====================================================
+   PREPARE NEW PAGE TRANSITION
+===================================================== */
+
 .page-transition.is-preparing {
+
+    pointer-events:
+        none;
+
+}
+
+
+.page-transition.is-preparing::before {
 
     transition:
         none;
 
     transform:
-        translateX(
-            100%
-        );
+        translateX(140vw)
+        skewX(-10deg);
 
 }
 
+
+.page-transition.is-preparing::after {
+
+    transition:
+        none;
+
+    transform:
+        translateX(147vw)
+        skewX(-10deg);
+
+}
+
+
+
+/* =====================================================
+   COVER SCREEN
+===================================================== */
 
 .page-transition.is-covering {
 
-    transform:
-        translateX(
-            0
-        );
+    pointer-events:
+        auto;
 
 }
 
+
+.page-transition.is-covering::before {
+
+    transform:
+        translateX(0)
+        skewX(-10deg);
+
+}
+
+
+.page-transition.is-covering::after {
+
+    transform:
+        translateX(0)
+        skewX(-10deg);
+
+}
+
+
+
+/* =====================================================
+   TRANSITION GRID
+===================================================== */
 
 .transition-grid {
 
     position:
         absolute;
 
+    z-index:
+        3;
+
     inset:
-        0;
+        -20%;
 
     background:
 
         linear-gradient(
             rgba(
-                25,
+                28,
                 69,
                 99,
                 .13
@@ -2668,7 +2801,7 @@ a:hover
         linear-gradient(
             90deg,
             rgba(
-                25,
+                28,
                 69,
                 99,
                 .13
@@ -2682,15 +2815,22 @@ a:hover
         84px
         84px;
 
-    mask-image:
-        radial-gradient(
-            circle at center,
-            black,
-            transparent 80%
-        );
+    opacity:
+        .4;
+
+    transform:
+        skewX(-10deg);
+
+    pointer-events:
+        none;
 
 }
 
+
+
+/* =====================================================
+   TRANSITION BRAND
+===================================================== */
 
 .transition-brand {
 
@@ -2715,12 +2855,151 @@ a:hover
     opacity:
         1;
 
-    transition:
-        opacity
-        .25s;
+}
+
+
+.page-transition.is-preparing
+.transition-brand {
+
+    opacity:
+        0;
 
 }
 
+
+.page-transition.is-revealed
+.transition-brand {
+
+    opacity:
+        0;
+
+}
+
+
+
+/*
+    Logo flickers briefly while
+    the transition covers the screen.
+*/
+
+.page-transition.is-covering
+.transition-brand {
+
+    opacity:
+        1;
+
+    animation:
+        transition-logo-flicker
+        .72s
+        linear
+        both;
+
+}
+
+
+/*
+    Initial page opening flicker.
+*/
+
+.page-transition:not(.is-revealed):not(.is-preparing):not(.is-covering)
+.transition-brand {
+
+    animation:
+        transition-logo-flicker
+        .68s
+        linear
+        both;
+
+}
+
+
+@keyframes transition-logo-flicker {
+
+    0% {
+
+        opacity:
+            0;
+
+        filter:
+            brightness(.7);
+
+    }
+
+    12% {
+
+        opacity:
+            .72;
+
+        filter:
+            brightness(1.35);
+
+    }
+
+    21% {
+
+        opacity:
+            .18;
+
+    }
+
+    34% {
+
+        opacity:
+            .95;
+
+        filter:
+            brightness(1.2);
+
+    }
+
+    43% {
+
+        opacity:
+            .42;
+
+    }
+
+    56% {
+
+        opacity:
+            1;
+
+        filter:
+            brightness(1.12);
+
+    }
+
+    64% {
+
+        opacity:
+            .67;
+
+    }
+
+    76% {
+
+        opacity:
+            1;
+
+    }
+
+    100% {
+
+        opacity:
+            1;
+
+        filter:
+            brightness(1);
+
+    }
+
+}
+
+
+
+/* =====================================================
+   TRANSITION LOGO
+===================================================== */
 
 .transition-logo {
 
@@ -2754,9 +3033,7 @@ a:hover
         38px;
 
     transform:
-        translateX(
-            -50%
-        );
+        translateX(-50%);
 
     border:
         2px solid
@@ -2794,9 +3071,7 @@ a:hover
         4px;
 
     transform:
-        rotate(
-            -28deg
-        );
+        rotate(-28deg);
 
 }
 
@@ -2807,9 +3082,7 @@ a:hover
         4px;
 
     transform:
-        rotate(
-            28deg
-        );
+        rotate(28deg);
 
 }
 
@@ -2842,10 +3115,18 @@ a:hover
 }
 
 
+
+/* =====================================================
+   TRANSITION PROGRESS LINE
+===================================================== */
+
 .transition-line {
 
     position:
         absolute;
+
+    z-index:
+        6;
 
     left:
         0;
@@ -2863,9 +3144,7 @@ a:hover
         #173c57;
 
     transform:
-        scaleX(
-            0
-        );
+        scaleX(0);
 
     transform-origin:
         left;
@@ -2878,7 +3157,7 @@ a:hover
 
     animation:
         transition-progress
-        .75s
+        .82s
         ease
         forwards;
 
@@ -2890,18 +3169,14 @@ a:hover
     from {
 
         transform:
-            scaleX(
-                0
-            );
+            scaleX(0);
 
     }
 
     to {
 
         transform:
-            scaleX(
-                1
-            );
+            scaleX(1);
 
     }
 
@@ -3311,6 +3586,67 @@ a:hover
 
         gap:
             8px;
+
+    }
+
+
+    /*
+        Slightly less aggressive angle
+        on narrow screens.
+    */
+
+    .page-transition::before,
+    .page-transition::after,
+    .transition-grid {
+
+        transform:
+            skewX(-7deg);
+
+    }
+
+
+    .page-transition.is-revealed::before {
+
+        transform:
+            translateX(-150vw)
+            skewX(-7deg);
+
+    }
+
+
+    .page-transition.is-revealed::after {
+
+        transform:
+            translateX(-157vw)
+            skewX(-7deg);
+
+    }
+
+
+    .page-transition.is-preparing::before {
+
+        transform:
+            translateX(150vw)
+            skewX(-7deg);
+
+    }
+
+
+    .page-transition.is-preparing::after {
+
+        transform:
+            translateX(157vw)
+            skewX(-7deg);
+
+    }
+
+
+    .page-transition.is-covering::before,
+    .page-transition.is-covering::after {
+
+        transform:
+            translateX(0)
+            skewX(-7deg);
 
     }
 
