@@ -361,16 +361,16 @@
             <div class="model-grid"></div>
 
 
-                    <model-viewer
+                   <model-viewer
                         id="car-model"
                     
-                        src="./models/heliotech-car-fixed.glb"
+                        data-model-src="./models/heliotech-car-fixed.glb"
                     
                         alt="3D model of the TCHS HelioTech solar car"
                     
                         orientation="0deg 90deg 0deg"
                     
-                        camera-orbit="90deg 72deg 115%"
+                        camera-orbit="88deg 72deg 115%"
                     
                         camera-target="auto auto auto"
                     
@@ -382,7 +382,6 @@
                         camera-controls
                         disable-pan
                         disable-zoom
-                        disable-tap
                     
                         interaction-prompt="none"
                     
@@ -395,6 +394,8 @@
                         exposure="1.05"
                     
                         environment-image="neutral"
+                    
+                        loading="eager"
                     >
                     </model-viewer>
 
