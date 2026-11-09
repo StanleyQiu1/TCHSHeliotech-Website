@@ -393,65 +393,30 @@
 
             <model-viewer
                 id="car-model"
-
                 data-model-src="./models/heliotech-car-fixed.glb"
-
                 alt="3D model of the TCHS HelioTech solar car"
-
                 orientation="0deg -90deg 0deg"
-
                 camera-orbit="90deg 72deg 150%"
-
                 camera-target="auto auto auto"
-
                 field-of-view="38deg"
-
                 min-field-of-view="18deg"
                 max-field-of-view="50deg"
-
                 camera-controls
                 disable-pan
                 disable-zoom
-
                 interaction-prompt="none"
-
                 touch-action="pan-y"
-
                 interpolation-decay="180"
-
                 shadow-intensity="0"
-
-                exposure="1.08"
-
+                exposure="1.35"
                 environment-image="neutral"
-
                 loading="eager"
             >
-
-
-                <!-- =====================================
-                     REAL 3D MESH OUTLINE
-                ====================================== -->
-
-                <effect-composer
-                    render-mode="performance"
-                >
-
-                    <outline-effect
-                        color="#60798b"
-                    ></outline-effect>
-
-
-                    <smaa-effect>
-                    </smaa-effect>
-
-
-                    <color-grade-effect>
-                    </color-grade-effect>
-
+                <effect-composer render-mode="performance">
+                    <outline-effect color="#60798b"></outline-effect>
+                    <smaa-effect></smaa-effect>
+                    <color-grade-effect></color-grade-effect>
                 </effect-composer>
-
-
             </model-viewer>
 
 
