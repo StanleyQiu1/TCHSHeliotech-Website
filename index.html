@@ -45,10 +45,37 @@
         href="styles.css"
     >
 
+
+    <!-- =================================================
+         MODEL VIEWER + OUTLINE EFFECTS
+    ================================================== -->
+
+    <script
+        async
+        src="https://ga.jspm.io/npm:es-module-shims@1.7.1/dist/es-module-shims.js"
+    ></script>
+
+
+    <script type="importmap">
+    {
+        "imports": {
+            "three": "https://cdn.jsdelivr.net/npm/three@0.183.0/build/three.module.min.js"
+        }
+    }
+    </script>
+
+
     <script
         type="module"
-        src="https://unpkg.com/@google/model-viewer/dist/model-viewer.min.js"
+        src="https://cdn.jsdelivr.net/npm/@google/model-viewer/dist/model-viewer-module.min.js"
     ></script>
+
+
+    <script
+        type="module"
+        src="https://cdn.jsdelivr.net/npm/@google/model-viewer-effects/dist/model-viewer-effects.min.js"
+    ></script>
+
 
     <script
         src="script.js"
@@ -67,6 +94,7 @@
 >
     Skip to content
 </a>
+
 
 
 <header class="site-header">
@@ -90,28 +118,24 @@
         aria-label="Main navigation"
     >
 
-        <a href="about.html">
+        <a href="#about">
             About
         </a>
 
-        <a href="our%20cars.html">
-            Our Cars
+        <a href="#vehicle">
+            Vehicle
         </a>
 
-        <a href="The%20team.html">
+        <a href="#systems">
+            Systems
+        </a>
+
+        <a href="#results">
+            Results
+        </a>
+
+        <a href="#team">
             Team
-        </a>
-
-        <a href="media.html">
-            Media
-        </a>
-
-        <a href="sponsors.html">
-            Sponsors
-        </a>
-
-        <a href="contact.html">
-            Contact
         </a>
 
         <a
@@ -145,8 +169,13 @@
 </header>
 
 
+
 <main id="main">
 
+
+<!-- =====================================================
+     HERO
+===================================================== -->
 
 <section
     id="home"
@@ -276,6 +305,10 @@
 
 
 
+<!-- =====================================================
+     ABOUT
+===================================================== -->
+
 <section
     id="about"
     class="standard-section chapter"
@@ -351,6 +384,10 @@
 
 
 
+<!-- =====================================================
+     3D VEHICLE
+===================================================== -->
+
 <section
     id="vehicle"
     class="vehicle-story chapter"
@@ -372,9 +409,9 @@
 
                 alt="3D model of the TCHS HelioTech solar car"
 
-                orientation="0deg 90deg 0deg"
+                orientation="0deg -90deg 0deg"
 
-                camera-orbit="88deg 72deg 115%"
+                camera-orbit="90deg 72deg 150%"
 
                 camera-target="auto auto auto"
 
@@ -395,13 +432,39 @@
 
                 shadow-intensity="0"
 
-                exposure="1.05"
+                exposure="1.08"
 
                 environment-image="neutral"
 
                 loading="eager"
             >
+
+
+                <!-- =====================================
+                     REAL 3D MESH OUTLINE
+                ====================================== -->
+
+                <effect-composer
+                    render-mode="performance"
+                >
+
+                    <outline-effect
+                        color="#60798b"
+                    ></outline-effect>
+
+
+                    <smaa-effect>
+                    </smaa-effect>
+
+
+                    <color-grade-effect>
+                    </color-grade-effect>
+
+                </effect-composer>
+
+
             </model-viewer>
+
 
 
             <div
@@ -423,15 +486,15 @@
                     </span>
 
                     <strong>
-                        MODEL PLACEHOLDER
+                        LOADING VEHICLE
                     </strong>
 
                     <p>
-                        Upload your GLB model later as:
+                        Loading full HelioTech assembly.
                     </p>
 
                     <code>
-                        models/heliotech-car.glb
+                        models/heliotech-car-fixed.glb
                     </code>
 
                 </div>
@@ -440,6 +503,7 @@
 
 
         </div>
+
 
 
         <div class="vehicle-interface">
@@ -456,6 +520,7 @@
                 </span>
 
             </div>
+
 
 
             <article
@@ -484,6 +549,7 @@
             </article>
 
 
+
             <article
                 class="model-story model-story-right"
                 data-model-step
@@ -508,6 +574,7 @@
                 </p>
 
             </article>
+
 
 
             <article
@@ -536,6 +603,7 @@
             </article>
 
 
+
             <article
                 class="model-story model-story-right"
                 data-model-step
@@ -562,14 +630,15 @@
             </article>
 
 
+
             <div class="vehicle-bottom">
 
                 <span id="view-readout">
-                    FRONT / LEFT
+                    FULL VEHICLE
                 </span>
 
                 <span>
-                    SCROLL TO ORBIT
+                    SCROLL TO EXPLORE
                 </span>
 
             </div>
@@ -583,6 +652,10 @@
 </section>
 
 
+
+<!-- =====================================================
+     SYSTEMS
+===================================================== -->
 
 <section
     id="systems"
@@ -627,7 +700,7 @@
 
         <a
             class="system-row page-link"
-            href="technical.html#energy"
+            href="Technical"
         >
 
             <div>
@@ -657,9 +730,10 @@
         </a>
 
 
+
         <a
             class="system-row page-link"
-            href="technical.html#pcb"
+            href="Technical"
         >
 
             <div>
@@ -688,6 +762,7 @@
             </span>
 
         </a>
+
 
 
         <a
@@ -722,9 +797,10 @@
         </a>
 
 
+
         <a
             class="system-row page-link"
-            href="technical.html#telemetry"
+            href="Technical"
         >
 
             <div>
@@ -759,6 +835,10 @@
 </section>
 
 
+
+<!-- =====================================================
+     RESULTS
+===================================================== -->
 
 <section
     id="results"
@@ -818,6 +898,7 @@
         </article>
 
 
+
         <article>
 
             <div class="result-year">
@@ -848,6 +929,10 @@
 </section>
 
 
+
+<!-- =====================================================
+     TEAM
+===================================================== -->
 
 <section
     id="team"
@@ -905,6 +990,7 @@
         </a>
 
 
+
         <a
             href="The%20team.html"
             class="team-card page-link"
@@ -927,6 +1013,7 @@
         </a>
 
 
+
         <a
             href="The%20team.html"
             class="team-card page-link"
@@ -947,6 +1034,7 @@
             </span>
 
         </a>
+
 
 
         <a
@@ -976,6 +1064,10 @@
 </section>
 
 
+
+<!-- =====================================================
+     SUPPORT
+===================================================== -->
 
 <section
     id="support"
@@ -1033,6 +1125,10 @@
 </main>
 
 
+
+<!-- =====================================================
+     FOOTER
+===================================================== -->
 
 <footer class="site-footer">
 
@@ -1104,6 +1200,10 @@
 </footer>
 
 
+
+<!-- =====================================================
+     PAGE TRANSITION
+===================================================== -->
 
 <div
     id="page-transition"
