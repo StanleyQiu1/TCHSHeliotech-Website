@@ -1,1 +1,88 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+<meta charset="UTF-8">
+<meta name="viewport" content="width=device-width, initial-scale=1.0">
+<meta name="description" content="Contact TCHS HelioTech.">
+<meta name="theme-color" content="#000000">
+<title>Contact — TCHS HelioTech</title>
+<link rel="preconnect" href="https://fonts.googleapis.com">
+<link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+<link href="https://fonts.googleapis.com/css2?family=Inter:wght@400;500;600;700;800&family=Space+Mono:wght@400;700&display=swap" rel="stylesheet">
+<link rel="stylesheet" href="styles.css">
+<link rel="stylesheet" href="pages.css">
+<script src="script.js" defer></script>
+</head>
+<body class="inner-page page-contact">
+<a class="skip-link" href="#main">Skip to content</a>
+<header class="site-header">
+  <a class="brand" href="index.html">
+    <span class="heliotech-mark"><span></span></span>
+    <span class="brand-name">HELIO<span>TECH</span></span>
+  </a>
+  <nav id="navigation" aria-label="Main navigation">
+    <a href="about.html">About</a>
+    <a href="our%20cars.html">Our Cars</a>
+    <a href="The%20team.html">Team</a>
+    <a href="media.html">Media</a>
+    <a href="sponsors.html">Sponsors</a>
+    <a href="contact.html" aria-current="page">Contact</a>
+    <a class="nav-support" href="Support%20us.html">Support <span class="link-icon">↗</span></a>
+  </nav>
+  <button class="menu-toggle" type="button" aria-controls="navigation" aria-expanded="false">Menu +</button>
+  <div class="scroll-progress" aria-hidden="true"></div>
+</header>
+<main id="main">
+<section id="top" class="page-hero chapter">
+  <div class="hero-background-grid"></div>
+  <div class="hero-topline"><span>TEMPLE CITY HIGH SCHOOL</span><span>CONTACT</span><span>GET IN TOUCH</span></div>
+  <div class="page-hero-body">
+    <p class="eyebrow" data-flicker>TCHS HELIOTECH</p>
+    <h1 data-flicker>SAY<br><span>HELLO.</span></h1>
+    <p class="page-lead" data-flicker>Sponsors, students, press, and curious neighbors are all welcome.</p>
+  </div>
+</section>
 
+<section class="standard-section chapter contact-layout">
+  <div class="contact-info" data-flicker>
+    <div><span class="system-label">EMAIL</span><a href="mailto:you@example.com">you@example.com</a></div>
+    <div><span class="system-label">ADDRESS</span><p>Temple City High School<br>Temple City, California</p></div>
+    <div><span class="system-label">SOCIAL</span><p><a href="#">Instagram</a> · <a href="#">YouTube</a></p></div>
+  </div>
+  <form class="contact-form" action="https://formspree.io/f/YOUR_ID" method="POST">
+    <label>Name<input type="text" name="name" required></label>
+    <label>Email<input type="email" name="email" required></label>
+    <label>Topic
+      <select name="topic"><option>Sponsorship</option><option>Joining the team</option><option>Press / media</option><option>Other</option></select>
+    </label>
+    <label>Message<textarea name="message" rows="6" required></textarea></label>
+    <button class="support-button" type="submit">Send message <span class="link-icon">↗</span></button>
+  </form>
+</section>
+</main>
+<footer class="site-footer">
+  <div>
+    <a class="footer-brand" href="index.html">HELIOTECH</a>
+    <p>Temple City High School<br>Temple City, California</p>
+  </div>
+  <div class="footer-links">
+    <a class="page-link" href="contact.html">Contact <span class="link-icon">↗</span></a>
+    <a class="page-link" href="media.html">Media <span class="link-icon">↗</span></a>
+    <a class="page-link" href="sponsors.html">Sponsors <span class="link-icon">↗</span></a>
+    <a href="#top">Back to top <span class="link-icon">↑</span></a>
+  </div>
+  <div class="footer-bottom">
+    <span>© 2026 TCHS HELIOTECH</span>
+    <span>STUDENT BUILT / SOLAR POWERED</span>
+  </div>
+</footer>
+<div id="page-transition" class="page-transition" aria-hidden="true">
+  <div class="transition-grid"></div>
+  <div class="transition-brand">
+    <div class="transition-logo"><span class="transition-circle"></span><span class="transition-leg left"></span><span class="transition-leg right"></span></div>
+    <div class="transition-wordmark">HELIO<span>TECH</span></div>
+  </div>
+  <div class="transition-line"></div>
+</div>
+</body>
+</html>
