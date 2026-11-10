@@ -37,16 +37,13 @@
 
 .team-hero .hero-background-grid {
     position: absolute;
-
     inset: 0;
-
     z-index: 0;
 }
 
 
 .team-hero-topline {
     position: relative;
-
     z-index: 2;
 
     display: grid;
@@ -79,7 +76,6 @@
 
 .team-hero-content {
     position: relative;
-
     z-index: 2;
 
     display: grid;
@@ -236,7 +232,6 @@
     display: flex;
 
     justify-content: space-between;
-
     align-items: center;
 
     padding-bottom: 15px;
@@ -381,7 +376,7 @@
 
 .leader-card:hover {
     transform:
-        translateY(-4px);
+        translateY(-3px);
 
     background:
         #030b12;
@@ -391,8 +386,32 @@
 }
 
 
+.leader-card::before {
+    content: "";
+
+    position: absolute;
+
+    left: 0;
+    top: 0;
+
+    z-index: 4;
+
+    width: 2px;
+    height: 100%;
+
+    background: #284d65;
+
+    opacity: .65;
+}
+
+
+.leader-card:hover::before {
+    background: #6d8799;
+}
+
+
 /* =====================================================
-   LARGE PHOTO PLACEHOLDER
+   PHOTO PLACEHOLDER
 ===================================================== */
 
 .leader-photo-placeholder {
@@ -410,11 +429,28 @@
     overflow: hidden;
 
     background:
+
+        linear-gradient(
+            rgba(28, 68, 96, .10) 1px,
+            transparent 1px
+        ),
+
+        linear-gradient(
+            90deg,
+            rgba(28, 68, 96, .10) 1px,
+            transparent 1px
+        ),
+
         radial-gradient(
             circle at 50% 42%,
             #091825,
             #020609 65%
         );
+
+    background-size:
+        45px 45px,
+        45px 45px,
+        auto;
 
     border-bottom:
         1px solid
@@ -486,7 +522,7 @@
 /* =====================================================
    REAL PHOTO SUPPORT
 
-   Later replace:
+   Replace:
 
    <div class="leader-photo-placeholder">
        <span>PHOTO</span>
@@ -517,6 +553,8 @@
     width: 100%;
     height: 100%;
 
+    display: block;
+
     object-fit: cover;
 
     object-position: center;
@@ -534,11 +572,16 @@
 
     align-items: flex-end;
 
-    gap: 30px;
+    gap: 28px;
 
-    min-height: 145px;
+    min-height: 185px;
 
     padding: 25px;
+}
+
+
+.leader-card-bottom > div {
+    min-width: 0;
 }
 
 
@@ -561,6 +604,8 @@
 
 
 .leader-card h3 {
+    margin: 0;
+
     color: #8e9ca6;
 
     font-size:
@@ -583,6 +628,8 @@
 
 
 .leader-index {
+    flex-shrink: 0;
+
     color: #2c4353;
 
     font-family:
@@ -596,30 +643,111 @@
 
 
 /* =====================================================
-   SUBTLE LEADERSHIP ACCENT
+   SOCIAL / PERSONAL LINK BUBBLES
 ===================================================== */
 
-.leader-card::before {
-    content: "";
+.leader-socials {
+    display: flex;
 
-    position: absolute;
+    flex-wrap: wrap;
 
-    left: 0;
-    top: 0;
+    gap: 7px;
 
-    z-index: 4;
-
-    width: 2px;
-    height: 100%;
-
-    background: #284d65;
-
-    opacity: .65;
+    margin-top: 18px;
 }
 
 
-.leader-card:hover::before {
-    background: #6d8799;
+.leader-social {
+    display: inline-flex;
+
+    align-items: center;
+
+    gap: 7px;
+
+    padding:
+        7px
+        10px;
+
+    color: #607481;
+
+    border:
+        1px solid
+        #1c394d;
+
+    border-radius: 999px;
+
+    background: #02070b;
+
+    font-family:
+        "Space Mono",
+        monospace;
+
+    font-size: 7px;
+
+    font-weight: 700;
+
+    line-height: 1;
+
+    letter-spacing: .07em;
+
+    text-transform: uppercase;
+
+    white-space: nowrap;
+
+    transition:
+        color .18s,
+        border-color .18s,
+        background .18s;
+}
+
+
+.leader-social span {
+    color: #40596a;
+
+    font-size: 9px;
+
+    line-height: 1;
+
+    transition:
+        color .18s,
+        transform .18s;
+}
+
+
+.leader-social:hover {
+    color: #ffffff;
+
+    border-color: #617b8d;
+
+    background: #08151e;
+}
+
+
+.leader-social:hover span {
+    color: #ffffff;
+
+    transform:
+        translate(
+            1px,
+            -1px
+        );
+}
+
+
+/* =====================================================
+   KEYBOARD ACCESSIBILITY
+===================================================== */
+
+.leader-social:focus-visible {
+    color: #ffffff;
+
+    border-color: #8aa2b3;
+
+    outline:
+        1px solid
+        #8aa2b3;
+
+    outline-offset: 3px;
 }
 
 
@@ -822,9 +950,25 @@
 
 
     .leader-card-bottom {
-        min-height: 125px;
+        min-height: 165px;
 
         padding: 21px;
+    }
+
+
+    .leader-socials {
+        gap: 6px;
+
+        margin-top: 15px;
+    }
+
+
+    .leader-social {
+        padding:
+            6px
+            9px;
+
+        font-size: 6px;
     }
 
 
@@ -847,6 +991,55 @@
                 14vw,
                 76px
             );
+    }
+
+}
+
+
+/* =====================================================
+   VERY SMALL MOBILE
+===================================================== */
+
+@media(max-width: 430px) {
+
+    .leader-card-bottom {
+        align-items: flex-start;
+    }
+
+
+    .leader-index {
+        padding-top: 3px;
+    }
+
+
+    .leader-social {
+        font-size: 6px;
+
+        padding:
+            6px
+            8px;
+    }
+
+}
+
+
+/* =====================================================
+   REDUCED MOTION
+===================================================== */
+
+@media(prefers-reduced-motion: reduce) {
+
+    .leader-card,
+    .leader-card h3,
+    .leader-social,
+    .leader-social span {
+        transition: none;
+    }
+
+
+    .leader-card:hover,
+    .leader-social:hover span {
+        transform: none;
     }
 
 }
