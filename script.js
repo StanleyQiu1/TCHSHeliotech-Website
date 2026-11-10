@@ -467,31 +467,38 @@
             }
         }
 
-        function update() {
+       function update() {
 
-            const progress = progressOf();
+    const progress = progressOf();
 
-            updateStories(progress);
+    updateStories(progress);
 
-            if (!modelLoaded) return;
+    if (!modelLoaded) return;
 
-            const state = cameraState(progress);
+    /* Skip camera work when this section is far off-screen */
+    const rect = story.getBoundingClientRect();
+    const nearScreen =
+        rect.bottom > -window.innerHeight &&
+        rect.top < window.innerHeight * 2;
 
-            viewer.cameraOrbit =
-                `${state.orbit}deg ${state.phi}deg ${state.radius}%`;
+    if (!nearScreen) return;
 
-            viewer.cameraTarget =
-                `${state.target.x}m ${state.target.y}m ${state.target.z}m`;
+    const state = cameraState(progress);
 
-            if (orbitReadout) {
-                const angle = ((state.orbit % 360) + 360) % 360;
-                orbitReadout.textContent =
-                    `${Math.round(angle).toString().padStart(3, "0")}°`;
-            }
+    viewer.cameraOrbit =
+        `${state.orbit}deg ${state.phi}deg ${state.radius}%`;
 
-            if (viewReadout) viewReadout.textContent = state.label;
-        }
+    viewer.cameraTarget =
+        `${state.target.x}m ${state.target.y}m ${state.target.z}m`;
 
+    if (orbitReadout) {
+        const angle = ((state.orbit % 360) + 360) % 360;
+        orbitReadout.textContent =
+            `${Math.round(angle).toString().padStart(3, "0")}°`;
+    }
+
+    if (viewReadout) viewReadout.textContent = state.label;
+}
         initializeModel();
 
         return { update };
