@@ -1,19 +1,14 @@
 /* =====================================================
    sponsors.css
-   Sponsors page only.
+   Matches the CURRENT sponsors.html exactly.
 
-   Keeps the original page composition:
-   - Title: 2 columns
-   - Gold: 4 columns
-   - Silver: 6 columns
-
-   Changes:
+   Design:
    - square corners
    - no gradients
-   - no shadows
-   - no floating / lifting cards
+   - no glow
+   - no floating cards
    - restrained hover
-   - cleaner typography
+   - strong grid / editorial layout
 ===================================================== */
 
 
@@ -27,14 +22,12 @@
 
 
 /* =====================================================
-   SQUARE CORNERS
+   REMOVE ROUNDED CORNERS
 ===================================================== */
 
-.page-sponsors .s-logo,
-.page-sponsors .s-logo-img,
-.page-sponsors .s-benefit,
-.page-sponsors .support-button,
-.page-sponsors .outline-button {
+.page-sponsors *,
+.page-sponsors *::before,
+.page-sponsors *::after {
     border-radius: 0;
 }
 
@@ -43,39 +36,48 @@
    HERO
 ===================================================== */
 
-.page-sponsors .page-hero {
+.sponsors-hero {
     position: relative;
+
+    min-height: 88vh;
+
+    padding:
+        calc(var(--header) + 34px)
+        var(--gutter)
+        34px;
 
     display: flex;
     flex-direction: column;
-
-    min-height: 86vh;
+    justify-content: space-between;
 
     overflow: hidden;
 
-    padding:
-        calc(var(--header) + 28px)
-        var(--gutter)
-        64px;
-
     background: #000000;
+
+    border-bottom:
+        1px solid
+        var(--navy-line);
 }
 
 
-.page-sponsors
-.page-hero
-.hero-background-grid {
+.sponsors-hero .hero-background-grid {
     position: absolute;
 
     inset: 0;
 
+    z-index: 0;
+
     pointer-events: none;
+
+    opacity: .55;
 }
 
 
-.page-sponsors
-.page-hero
-.hero-topline {
+/* =====================================================
+   HERO TOP LINE
+===================================================== */
+
+.sponsors-hero-topline {
     position: relative;
 
     z-index: 2;
@@ -87,15 +89,15 @@
         1fr
         auto;
 
-    gap: 20px;
+    gap: 25px;
 
     padding-bottom: 14px;
 
-    color: #42515d;
+    color: #415360;
 
     border-bottom:
         1px solid
-        var(--navy-line);
+        #10283c;
 
     font-family:
         "Space Mono",
@@ -103,46 +105,49 @@
 
     font-size: 8px;
 
-    letter-spacing: .08em;
+    font-weight: 700;
+
+    letter-spacing: .1em;
 }
 
 
-.page-sponsors
-.page-hero-body {
+/* =====================================================
+   HERO CONTENT
+===================================================== */
+
+.sponsors-hero-content {
     position: relative;
 
     z-index: 2;
 
-    flex: 1;
-
     display: grid;
 
     grid-template-columns:
-        minmax(0, 1fr)
-        minmax(260px, 400px);
+        minmax(0, 1.25fr)
+        minmax(300px, .75fr);
 
-    grid-template-areas:
-        "eyebrow eyebrow"
-        "title lead";
-
-    column-gap: 6vw;
-
-    row-gap: 26px;
-
-    align-content: end;
+    gap:
+        clamp(
+            60px,
+            9vw,
+            150px
+        );
 
     align-items: end;
 
-    padding-top: 90px;
+    padding:
+        clamp(
+            100px,
+            14vh,
+            180px
+        )
+        0
+        75px;
 }
 
 
-.page-sponsors
-.page-hero
-.eyebrow {
-    grid-area: eyebrow;
-
-    margin: 0;
+.sponsors-hero .eyebrow {
+    margin: 0 0 22px;
 
     color: #52646f;
 
@@ -150,72 +155,71 @@
         "Space Mono",
         monospace;
 
-    font-size: 10px;
+    font-size: 9px;
 
-    letter-spacing: .14em;
+    font-weight: 700;
+
+    letter-spacing: .13em;
 }
 
 
-.page-sponsors
-.page-hero h1 {
-    grid-area: title;
-
+.sponsors-hero h1 {
     margin: 0;
 
-    color: #c3c9ce;
+    color: #c0c8ce;
 
     font-size:
         clamp(
-            56px,
-            9.5vw,
-            156px
+            68px,
+            8.3vw,
+            136px
         );
 
-    line-height: .92;
+    line-height: .9;
 
-    letter-spacing: -.055em;
+    letter-spacing: -.065em;
 }
 
 
-.page-sponsors
-.page-hero h1 span {
-    display: block;
-
-    color: #68747e;
+.sponsors-hero h1 span {
+    color: #687681;
 }
 
 
-.page-sponsors
-.page-hero
-.page-lead {
-    grid-area: lead;
+.sponsors-hero-copy {
+    padding-bottom: 8px;
+}
 
-    max-width: none;
 
-    margin:
-        0
-        0
-        .6vw;
+.sponsors-hero-copy p {
+    max-width: 500px;
 
-    padding-left: 22px;
+    margin: 0;
 
-    color: #74818b;
+    color: #74818a;
 
-    border-left:
-        1px solid
-        var(--navy-line-bright);
+    font-size:
+        clamp(
+            16px,
+            1.35vw,
+            21px
+        );
 
-    font-size: 15px;
+    line-height: 1.6;
 
-    line-height: 1.7;
+    letter-spacing: -.015em;
 }
 
 
 /* =====================================================
-   STATS
+   HERO SUMMARY
 ===================================================== */
 
-.s-stats {
+.sponsors-summary {
+    position: relative;
+
+    z-index: 2;
+
     display: grid;
 
     grid-template-columns:
@@ -224,45 +228,22 @@
             1fr
         );
 
-    background: #000000;
-
     border-top:
         1px solid
-        var(--navy-line);
-
-    border-bottom:
-        1px solid
-        var(--navy-line);
+        #10283c;
 }
 
 
-.s-stats > div {
+.sponsors-summary span {
     padding:
-        27px
-        22px
-        26px;
+        15px
+        16px;
+
+    color: #435663;
 
     border-right:
         1px solid
-        var(--navy-line);
-}
-
-
-.s-stats > div:first-child {
-    padding-left:
-        var(--gutter);
-}
-
-
-.s-stats > div:last-child {
-    border-right: 0;
-}
-
-
-.s-stats span {
-    display: block;
-
-    color: #394b59;
+        #10283c;
 
     font-family:
         "Space Mono",
@@ -270,71 +251,317 @@
 
     font-size: 8px;
 
-    letter-spacing: .08em;
+    font-weight: 700;
+
+    letter-spacing: .09em;
 }
 
 
-.s-stats strong {
-    display: block;
+.sponsors-summary span:first-child {
+    padding-left: 0;
+}
 
-    margin-top: 11px;
 
-    color: #89959e;
-
-    font-size:
-        clamp(
-            28px,
-            3.2vw,
-            50px
-        );
-
-    font-weight: 500;
-
-    letter-spacing: -.05em;
+.sponsors-summary span:last-child {
+    border-right: 0;
 }
 
 
 /* =====================================================
-   TIER HEADER
+   GENERAL SPONSOR TIER
 ===================================================== */
 
-.s-tier-head {
+.sponsor-tier {
+    padding:
+        110px
+        var(--gutter)
+        125px;
+
+    background: #000000;
+
+    border-bottom:
+        1px solid
+        #0b1c29;
+}
+
+
+/* =====================================================
+   SECTION BAR
+===================================================== */
+
+.sponsor-tier-bar {
     display: flex;
-
-    flex-wrap: wrap;
-
-    align-items: flex-end;
 
     justify-content: space-between;
 
-    gap:
-        20px
-        6vw;
+    align-items: center;
 
-    margin-top: 56px;
+    padding-bottom: 14px;
+
+    color: #405667;
+
+    border-bottom:
+        1px solid
+        #133249;
+
+    font-family:
+        "Space Mono",
+        monospace;
+
+    font-size: 8px;
+
+    font-weight: 700;
+
+    letter-spacing: .1em;
 }
 
 
-.s-tier-head h2 {
-    color: #aab2b8;
+/* =====================================================
+   TIER HEADING
+===================================================== */
+
+.sponsor-tier-heading {
+    display: grid;
+
+    grid-template-columns:
+        minmax(0, 1.15fr)
+        minmax(300px, .85fr);
+
+    gap:
+        clamp(
+            55px,
+            9vw,
+            150px
+        );
+
+    align-items: end;
+
+    padding:
+        65px
+        0;
+}
+
+
+.sponsor-tier-heading-small {
+    padding-bottom: 50px;
+}
+
+
+.sponsor-kicker {
+    display: block;
+
+    margin-bottom: 18px;
+
+    color: #40596a;
+
+    font-family:
+        "Space Mono",
+        monospace;
+
+    font-size: 8px;
+
+    font-weight: 700;
+
+    letter-spacing: .11em;
+}
+
+
+.sponsor-tier-heading h2 {
+    margin: 0;
+
+    color: #aab5bd;
 
     font-size:
         clamp(
-            40px,
-            5.5vw,
-            88px
+            52px,
+            6vw,
+            100px
         );
 
-    line-height: .94;
+    line-height: .92;
 
-    letter-spacing: -.05em;
+    letter-spacing: -.055em;
 }
 
 
-.s-tier-intro {
-    max-width: 380px;
+.sponsor-tier-heading-small h2 {
+    font-size:
+        clamp(
+            48px,
+            5vw,
+            78px
+        );
+}
 
-    color: #5a6872;
+
+.sponsor-tier-heading > p {
+    max-width: 470px;
+
+    margin: 0;
+
+    color: #63717b;
+
+    font-size: 14px;
+
+    line-height: 1.7;
+}
+
+
+/* =====================================================
+   TITLE PARTNERS
+===================================================== */
+
+.title-partner-list {
+    border-top:
+        1px solid
+        #163044;
+}
+
+
+.title-partner {
+    display: grid;
+
+    grid-template-columns:
+        minmax(220px, .72fr)
+        minmax(0, 1.28fr)
+        28px;
+
+    gap:
+        clamp(
+            35px,
+            5vw,
+            80px
+        );
+
+    align-items: center;
+
+    min-height: 225px;
+
+    padding:
+        30px
+        8px;
+
+    border-bottom:
+        1px solid
+        #163044;
+
+    background: transparent;
+
+    transition:
+        background .18s;
+}
+
+
+.title-partner:hover {
+    background: #02070b;
+}
+
+
+/* =====================================================
+   TITLE PARTNER LOGO
+===================================================== */
+
+.title-partner-logo {
+    height: 155px;
+
+    display: grid;
+
+    place-items: center;
+
+    overflow: hidden;
+
+    background: #010305;
+
+    border:
+        1px solid
+        #173248;
+
+    color: #40586a;
+
+    font-family:
+        "Space Mono",
+        monospace;
+
+    font-size: 8px;
+
+    letter-spacing: .12em;
+}
+
+
+.title-partner-logo img {
+    display: block;
+
+    width: 78%;
+    height: 110px;
+
+    object-fit: contain;
+}
+
+
+/* =====================================================
+   TITLE PARTNER TEXT
+===================================================== */
+
+.title-partner-copy {
+    max-width: 650px;
+}
+
+
+.partner-level {
+    display: block;
+
+    color: #40596a;
+
+    font-family:
+        "Space Mono",
+        monospace;
+
+    font-size: 8px;
+
+    font-weight: 700;
+
+    letter-spacing: .1em;
+}
+
+
+.title-partner h3 {
+    margin:
+        13px
+        0
+        0;
+
+    color: #929fa8;
+
+    font-size:
+        clamp(
+            28px,
+            3vw,
+            44px
+        );
+
+    font-weight: 600;
+
+    letter-spacing: -.045em;
+
+    transition:
+        color .18s;
+}
+
+
+.title-partner:hover h3 {
+    color: #ffffff;
+}
+
+
+.title-partner-copy p {
+    max-width: 550px;
+
+    margin:
+        15px
+        0
+        0;
+
+    color: #586873;
 
     font-size: 13px;
 
@@ -342,43 +569,51 @@
 }
 
 
-/* =====================================================
-   SPONSOR GRIDS
-===================================================== */
+.partner-arrow {
+    justify-self: end;
 
-.s-grid {
-    display: grid;
+    color: #40586a;
 
-    gap: 0;
+    font-size: 17px;
 
-    margin-top: 40px;
-
-    border-top:
-        1px solid
-        var(--navy-line);
-
-    border-left:
-        1px solid
-        var(--navy-line);
+    transition:
+        color .18s,
+        transform .18s;
 }
 
 
-/* TITLE */
+.title-partner:hover
+.partner-arrow {
+    color: #ffffff;
 
-.s-tier-title
-.s-grid {
-    grid-template-columns:
-        repeat(
-            2,
-            minmax(0, 1fr)
+    transform:
+        translate(
+            2px,
+            -2px
         );
 }
 
 
-/* GOLD */
+/* =====================================================
+   GOLD / SILVER GRIDS
+===================================================== */
 
-.s-tier-gold
-.s-grid {
+.partner-grid {
+    display: grid;
+
+    border-top:
+        1px solid
+        #163044;
+
+    border-left:
+        1px solid
+        #163044;
+}
+
+
+/* GOLD = 4 */
+
+.partner-grid-gold {
     grid-template-columns:
         repeat(
             4,
@@ -387,10 +622,9 @@
 }
 
 
-/* SILVER */
+/* SILVER = 6 */
 
-.s-tier-silver
-.s-grid {
+.partner-grid-silver {
     grid-template-columns:
         repeat(
             6,
@@ -400,58 +634,59 @@
 
 
 /* =====================================================
-   SPONSOR CELL
+   PARTNER CELL
 ===================================================== */
 
-.s-logo {
-    display: flex;
-
-    flex-direction: column;
-
+.partner-cell {
     min-width: 0;
 
-    overflow: hidden;
+    min-height: 215px;
 
-    background: #010305;
+    padding: 22px;
+
+    display: flex;
+    flex-direction: column;
+    justify-content: space-between;
+
+    background: #000000;
 
     border-right:
         1px solid
-        var(--navy-line);
+        #163044;
 
     border-bottom:
         1px solid
-        var(--navy-line);
+        #163044;
 
     transition:
         background .18s;
 }
 
 
-.s-logo:hover {
-    background: #03080c;
+.partner-cell:hover {
+    background: #02070b;
 }
 
 
 /* =====================================================
-   LOGO AREA
+   LOGO
 ===================================================== */
 
-.s-logo-img {
-    position: relative;
+.partner-logo {
+    flex: 1;
+
+    min-height: 130px;
 
     display: grid;
 
     place-items: center;
 
     overflow: hidden;
+}
 
-    color: #344956;
 
-    background: #020609;
-
-    border-bottom:
-        1px solid
-        var(--navy-line);
+.partner-logo span {
+    color: #3e5564;
 
     font-family:
         "Space Mono",
@@ -459,326 +694,355 @@
 
     font-size: 8px;
 
-    letter-spacing: .1em;
+    letter-spacing: .12em;
 }
 
 
-.s-logo-img span {
-    color: #344956;
-}
-
-
-/* REAL LOGOS */
-
-.s-logo-img img {
+.partner-logo img {
     display: block;
 
-    max-width: 72%;
-    max-height: 64%;
+    width: 75%;
+    max-height: 110px;
 
     object-fit: contain;
 
-    filter:
-        grayscale(.15);
-
-    opacity: .85;
+    opacity: .88;
 
     transition:
-        opacity .18s,
-        filter .18s;
+        opacity .18s;
 }
 
 
-.s-logo:hover
-.s-logo-img img {
-    filter: none;
-
+.partner-cell:hover
+.partner-logo img {
     opacity: 1;
 }
 
 
 /* =====================================================
-   LIGHT LOGO BACKGROUND
+   PARTNER NAME
 ===================================================== */
 
-.s-on-light
-.s-logo-img {
-    background: #e8ecee;
-}
+.partner-name {
+    display: block;
 
+    padding-top: 16px;
 
-.s-on-light
-.s-logo-img img {
-    filter: none;
+    color: #687781;
 
-    opacity: .9;
-}
+    border-top:
+        1px solid
+        #10283c;
 
-
-/* =====================================================
-   SPONSOR TEXT
-===================================================== */
-
-.s-logo-info {
-    display: grid;
-
-    gap: 8px;
-
-    padding:
-        16px
-        18px
-        18px;
-}
-
-
-.s-logo-info strong {
-    color: #84909a;
-
-    font-size: 13px;
+    font-size: 11px;
 
     font-weight: 600;
 
-    letter-spacing: -.02em;
+    line-height: 1.35;
 
     transition:
         color .18s;
 }
 
 
-.s-logo:hover
-.s-logo-info strong {
+.partner-cell:hover
+.partner-name {
     color: #ffffff;
 }
 
 
-.s-logo-info p {
-    color: #56646e;
+/* =====================================================
+   SILVER CELLS SLIGHTLY SMALLER
+===================================================== */
 
-    font-size: 13px;
+.partner-grid-silver
+.partner-cell {
+    min-height: 165px;
 
-    line-height: 1.55;
+    padding: 16px;
+}
+
+
+.partner-grid-silver
+.partner-logo {
+    min-height: 95px;
+}
+
+
+.partner-grid-silver
+.partner-logo img {
+    max-height: 75px;
+
+    width: 78%;
+}
+
+
+.partner-grid-silver
+.partner-name {
+    font-size: 9px;
 }
 
 
 /* =====================================================
-   TITLE PARTNERS
+   LIGHT BACKGROUND LOGO SUPPORT
 ===================================================== */
 
-.s-title
-.s-logo-img {
-    height: 250px;
-}
-
-
-.s-title
-.s-logo-info {
-    min-height: 120px;
-
-    padding:
-        21px
-        24px
-        24px;
-}
-
-
-.s-title
-.s-logo-info strong {
-    color: #929da5;
-
-    font-size: 21px;
-
-    font-weight: 500;
-
-    letter-spacing: -.04em;
+.title-partner.s-on-light
+.title-partner-logo,
+.partner-cell.s-on-light
+.partner-logo {
+    background: #e8ecee;
 }
 
 
 /* =====================================================
-   GOLD PARTNERS
+   DEVELOPMENT INSTRUCTIONS
+
+   Hide this on the live website.
 ===================================================== */
 
-.s-gold
-.s-logo-img {
-    height: 150px;
-}
-
-
-.s-gold
-.s-logo-info {
-    min-height: 62px;
-
-    padding:
-        14px
-        16px
-        16px;
+.sponsor-instructions {
+    display: none;
 }
 
 
 /* =====================================================
-   SILVER PARTNERS
+   WHY PARTNER
 ===================================================== */
 
-.s-silver
-.s-logo-img {
-    height: 95px;
-}
+.partnership-section {
+    display: grid;
 
+    grid-template-columns:
+        minmax(280px, .7fr)
+        minmax(0, 1.3fr);
 
-.s-silver
-.s-logo-info {
-    min-height: 52px;
+    gap:
+        clamp(
+            60px,
+            10vw,
+            170px
+        );
 
     padding:
-        11px
-        12px
-        13px;
-}
+        120px
+        var(--gutter);
 
+    background: #000000;
 
-.s-silver
-.s-logo-info strong {
-    font-size: 10px;
-
-    line-height: 1.35;
+    border-bottom:
+        1px solid
+        #10283c;
 }
 
 
 /* =====================================================
-   NOTE
+   PARTNERSHIP HEADING
 ===================================================== */
 
-.s-note {
-    margin: 0;
+.partnership-heading {
+    position: sticky;
 
-    padding:
-        30px
-        var(--gutter)
+    top:
+        calc(
+            var(--header) +
+            40px
+        );
+
+    align-self: start;
+}
+
+
+.partnership-heading h2 {
+    margin:
+        18px
+        0
         0;
 
-    color: #42535f;
+    color: #aab5bd;
 
-    font-family:
-        "Space Mono",
-        monospace;
+    font-size:
+        clamp(
+            54px,
+            6vw,
+            100px
+        );
 
-    font-size: 9px;
+    line-height: .92;
+
+    letter-spacing: -.055em;
+}
+
+
+/* =====================================================
+   PARTNERSHIP LIST
+===================================================== */
+
+.partnership-list {
+    border-top:
+        1px solid
+        #173248;
+}
+
+
+.partnership-item {
+    padding:
+        34px
+        0
+        40px;
+
+    border-bottom:
+        1px solid
+        #173248;
+}
+
+
+.partnership-item h3 {
+    margin: 0;
+
+    color: #8997a1;
+
+    font-size:
+        clamp(
+            22px,
+            2.1vw,
+            30px
+        );
+
+    font-weight: 600;
+
+    letter-spacing: -.035em;
+}
+
+
+.partnership-item p {
+    max-width: 620px;
+
+    margin:
+        15px
+        0
+        0;
+
+    color: #5d6c76;
+
+    font-size: 13px;
 
     line-height: 1.7;
 }
 
 
-.s-note code {
-    color: #647987;
-}
-
-
 /* =====================================================
-   BENEFITS
+   FINAL CTA
 ===================================================== */
 
-.s-benefits {
+.sponsor-cta {
     display: grid;
 
     grid-template-columns:
-        repeat(
-            3,
-            1fr
+        minmax(0, 1.15fr)
+        minmax(280px, .85fr);
+
+    gap:
+        clamp(
+            55px,
+            9vw,
+            150px
         );
 
-    gap: 0;
+    align-items: end;
 
-    margin-top: 56px;
+    padding:
+        120px
+        var(--gutter);
 
-    border-top:
-        1px solid
-        var(--navy-line);
-
-    border-left:
-        1px solid
-        var(--navy-line);
-}
-
-
-.s-benefit {
-    display: flex;
-
-    flex-direction: column;
-
-    min-height: 275px;
-
-    padding: 28px;
-
-    background: #010305;
-
-    border-right:
-        1px solid
-        var(--navy-line);
+    background: #000000;
 
     border-bottom:
         1px solid
-        var(--navy-line);
+        #10283c;
 }
 
 
-.s-benefit-n {
-    color: #3e5362;
+.sponsor-cta h2 {
+    margin:
+        20px
+        0
+        0;
 
-    font-family:
-        "Space Mono",
-        monospace;
-
-    font-size: 8px;
-
-    letter-spacing: .09em;
-}
-
-
-.s-benefit h3 {
-    margin-top: auto;
-
-    color: #919ca5;
+    color: #aab4bc;
 
     font-size:
         clamp(
-            23px,
-            2vw,
-            28px
+            62px,
+            7.4vw,
+            120px
         );
 
-    font-weight: 600;
+    line-height: .9;
 
-    letter-spacing: -.04em;
-
-    transition:
-        color .18s;
+    letter-spacing: -.06em;
 }
 
 
-.s-benefit:hover h3 {
-    color: #ffffff;
-}
+.sponsor-cta-copy p {
+    max-width: 450px;
 
+    margin: 0;
 
-.s-benefit p {
-    max-width: 390px;
+    color: #64727c;
 
-    margin-top: 14px;
+    font-size: 14px;
 
-    color: #56646e;
-
-    font-size: 13px;
-
-    line-height: 1.6;
+    line-height: 1.7;
 }
 
 
 /* =====================================================
-   SUPPORT CTA
+   CTA LINK
 ===================================================== */
 
-.page-sponsors
-.support-button {
-    border-radius: 0;
+.sponsor-cta-link {
+    display: flex;
+
+    justify-content: space-between;
+
+    align-items: center;
+
+    max-width: 430px;
+
+    margin-top: 32px;
+
+    padding:
+        14px
+        0;
+
+    color: #7d8992;
+
+    border-top:
+        1px solid
+        #29485e;
+
+    border-bottom:
+        1px solid
+        #29485e;
+
+    font-size: 12px;
+
+    transition:
+        color .18s,
+        border-color .18s;
+}
+
+
+.sponsor-cta-link:hover {
+    color: #ffffff;
+
+    border-color: #718795;
+}
+
+
+.sponsor-cta-link span {
+    font-size: 16px;
 }
 
 
@@ -788,8 +1052,7 @@
 
 @media(max-width: 1100px) {
 
-    .s-tier-gold
-    .s-grid {
+    .partner-grid-gold {
         grid-template-columns:
             repeat(
                 2,
@@ -798,8 +1061,7 @@
     }
 
 
-    .s-tier-silver
-    .s-grid {
+    .partner-grid-silver {
         grid-template-columns:
             repeat(
                 3,
@@ -816,57 +1078,83 @@
 
 @media(max-width: 900px) {
 
-    .page-sponsors
-    .page-hero-body {
-        grid-template-columns:
-            1fr;
-
-        grid-template-areas:
-            "eyebrow"
-            "title"
-            "lead";
+    .sponsors-hero {
+        min-height: auto;
     }
 
 
-    .page-sponsors
-    .page-hero
-    .page-lead {
-        max-width: 460px;
+    .sponsors-hero-content {
+        grid-template-columns: 1fr;
 
-        margin-top: 10px;
+        gap: 45px;
+
+        padding:
+            100px
+            0
+            70px;
     }
 
 
-    .s-stats {
+    .sponsors-hero-copy p {
+        max-width: 560px;
+    }
+
+
+    .sponsors-summary {
         grid-template-columns:
             1fr
             1fr;
     }
 
 
-    .s-stats > div {
-        border-bottom:
-            1px solid
-            var(--navy-line);
-    }
-
-
-    .s-stats > div:nth-child(2n) {
+    .sponsors-summary span:nth-child(2) {
         border-right: 0;
     }
 
 
-    .s-benefits {
-        grid-template-columns: 1fr;
+    .sponsors-summary span:nth-child(1),
+    .sponsors-summary span:nth-child(2) {
+        border-bottom:
+            1px solid
+            #10283c;
     }
 
 
-    .s-benefit {
-        min-height: 200px;
+    .sponsor-tier-heading {
+        grid-template-columns: 1fr;
 
-        border-right:
-            1px solid
-            var(--navy-line);
+        gap: 30px;
+    }
+
+
+    .title-partner {
+        grid-template-columns:
+            210px
+            1fr
+            25px;
+
+        gap: 30px;
+    }
+
+
+    .partnership-section {
+        grid-template-columns: 1fr;
+
+        gap: 55px;
+    }
+
+
+    .partnership-heading {
+        position: relative;
+
+        top: auto;
+    }
+
+
+    .sponsor-cta {
+        grid-template-columns: 1fr;
+
+        gap: 45px;
     }
 
 }
@@ -878,92 +1166,132 @@
 
 @media(max-width: 650px) {
 
-    .page-sponsors
-    .page-hero {
+    .sponsors-hero {
         min-height: auto;
+
+        padding:
+            calc(var(--header) + 30px)
+            var(--gutter)
+            25px;
     }
 
 
-    .page-sponsors
-    .page-hero
-    .hero-topline {
+    .sponsors-hero-topline {
         grid-template-columns:
             1fr
             auto;
     }
 
 
-    .page-sponsors
-    .page-hero
-    .hero-topline
+    .sponsors-hero-topline
     span:nth-child(2) {
         display: none;
     }
 
 
-    .page-sponsors
-    .page-hero h1 {
+    .sponsors-hero-content {
+        padding:
+            75px
+            0
+            55px;
+    }
+
+
+    .sponsors-hero h1 {
         font-size:
             clamp(
-                46px,
+                52px,
                 15vw,
-                78px
+                76px
             );
     }
 
 
-    /* STATS */
+    /* SUMMARY */
 
-    .s-stats {
-        grid-template-columns:
-            1fr
-            1fr;
-    }
-
-
-    .s-stats > div {
-        padding:
-            20px
-            var(--gutter);
-    }
-
-
-    .s-stats > div:first-child {
-        padding-left:
-            var(--gutter);
-    }
-
-
-    /* TITLE */
-
-    .s-tier-title
-    .s-grid {
+    .sponsors-summary {
         grid-template-columns: 1fr;
     }
 
 
-    .s-title
-    .s-logo-img {
-        height: 200px;
+    .sponsors-summary span {
+        padding:
+            12px
+            0;
+
+        border-right: 0;
+
+        border-bottom:
+            1px solid
+            #10283c;
+    }
+
+
+    .sponsors-summary span:last-child {
+        border-bottom: 0;
+    }
+
+
+    /* SECTIONS */
+
+    .sponsor-tier {
+        padding:
+            75px
+            var(--gutter);
+    }
+
+
+    .sponsor-tier-heading {
+        padding:
+            45px
+            0;
+    }
+
+
+    .sponsor-tier-heading h2 {
+        font-size:
+            clamp(
+                46px,
+                13vw,
+                66px
+            );
+    }
+
+
+    /* TITLE PARTNER */
+
+    .title-partner {
+        grid-template-columns: 1fr;
+
+        gap: 22px;
+
+        padding:
+            28px
+            0;
+    }
+
+
+    .title-partner-logo {
+        height: 165px;
+    }
+
+
+    .partner-arrow {
+        display: none;
     }
 
 
     /* GOLD */
 
-    .s-tier-gold
-    .s-grid {
+    .partner-grid-gold {
         grid-template-columns:
-            repeat(
-                2,
-                1fr
-            );
+            1fr;
     }
 
 
     /* SILVER */
 
-    .s-tier-silver
-    .s-grid {
+    .partner-grid-silver {
         grid-template-columns:
             repeat(
                 2,
@@ -972,19 +1300,47 @@
     }
 
 
-    .s-silver
-    .s-logo-img {
-        height: 100px;
+    .partner-grid-silver
+    .partner-cell {
+        min-height: 150px;
     }
 
 
-    /* BENEFITS */
+    /* WHY PARTNER */
 
-    .s-benefit {
-        min-height: 180px;
-
+    .partnership-section {
         padding:
-            25px;
+            80px
+            var(--gutter);
+    }
+
+
+    .partnership-heading h2 {
+        font-size:
+            clamp(
+                48px,
+                13vw,
+                68px
+            );
+    }
+
+
+    /* CTA */
+
+    .sponsor-cta {
+        padding:
+            80px
+            var(--gutter);
+    }
+
+
+    .sponsor-cta h2 {
+        font-size:
+            clamp(
+                52px,
+                14vw,
+                76px
+            );
     }
 
 }
@@ -996,29 +1352,8 @@
 
 @media(max-width: 430px) {
 
-    .s-stats {
+    .partner-grid-silver {
         grid-template-columns: 1fr;
-    }
-
-
-    .s-stats > div {
-        border-right: 0;
-    }
-
-
-    .s-tier-gold
-    .s-grid {
-        grid-template-columns: 1fr;
-    }
-
-
-    .s-tier-silver
-    .s-grid {
-        grid-template-columns:
-            repeat(
-                2,
-                1fr
-            );
     }
 
 }
@@ -1030,10 +1365,12 @@
 
 @media(prefers-reduced-motion: reduce) {
 
-    .s-logo,
-    .s-logo-img img,
-    .s-logo-info strong,
-    .s-benefit h3 {
+    .title-partner,
+    .partner-arrow,
+    .partner-cell,
+    .partner-logo img,
+    .partner-name,
+    .sponsor-cta-link {
         transition: none;
     }
 
