@@ -11,6 +11,7 @@
 <link href="https://fonts.googleapis.com/css2?family=Inter:wght@400;500;600;700;800&family=Space+Mono:wght@400;700&display=swap" rel="stylesheet">
 <link rel="stylesheet" href="styles.css">
 <link rel="stylesheet" href="pages.css">
+<link rel="stylesheet" href="sponsors.css">
 <script src="script.js" defer></script>
 </head>
 <body class="inner-page page-sponsors">
@@ -42,18 +43,94 @@
     <p class="page-lead" data-flicker>Every sponsor here turns student engineering into a real vehicle.</p>
   </div>
 </section>
-<section class="standard-section chapter tier tier-1">
+
+<section class="s-stats chapter" aria-label="Sponsorship at a glance">
+  <div data-flicker><span>PARTNERS</span><strong>—</strong></div>
+  <div data-flicker><span>STUDENTS SUPPORTED</span><strong>—</strong></div>
+  <div data-flicker><span>YEARS RACING</span><strong>—</strong></div>
+  <div data-flicker><span>CHAMPIONSHIPS</span><strong>2</strong></div>
+</section>
+
+<section class="standard-section chapter s-tier s-tier-title">
   <div class="section-header"><span>TITLE PARTNERS</span><span>LEADING SUPPORT</span></div>
-  <div class="logo-grid"><div class="logo-slot" data-flicker>LOGO</div><div class="logo-slot" data-flicker>LOGO</div></div>
+  <div class="s-tier-head"><h2 data-flicker>TITLE PARTNERS</h2><p class="s-tier-intro" data-flicker>Our largest supporters, whose commitment makes each new vehicle possible.</p></div>
+  <div class="s-grid">
+      <a class="s-logo s-title" href="#" data-flicker>
+        <div class="s-logo-img"><span>LOGO</span></div>
+        <div class="s-logo-info"><strong>Sponsor name</strong><p>One sentence about this partner and how they help the team.</p></div>
+      </a>
+      <a class="s-logo s-title" href="#" data-flicker>
+        <div class="s-logo-img"><span>LOGO</span></div>
+        <div class="s-logo-info"><strong>Sponsor name</strong><p>One sentence about this partner and how they help the team.</p></div>
+      </a>
+      </div>
 </section>
-<section class="standard-section chapter tier tier-2">
+
+<section class="standard-section chapter s-tier s-tier-gold">
   <div class="section-header"><span>GOLD</span><span>MAJOR SUPPORT</span></div>
-  <div class="logo-grid"><div class="logo-slot" data-flicker>LOGO</div><div class="logo-slot" data-flicker>LOGO</div><div class="logo-slot" data-flicker>LOGO</div><div class="logo-slot" data-flicker>LOGO</div></div>
+  <div class="s-tier-head"><h2 data-flicker>GOLD</h2><p class="s-tier-intro" data-flicker>Major contributors to materials, tools, and race operations.</p></div>
+  <div class="s-grid">
+      <a class="s-logo s-gold" href="#" data-flicker>
+        <div class="s-logo-img"><span>LOGO</span></div>
+        <div class="s-logo-info"><strong>Sponsor name</strong></div>
+      </a>
+      <a class="s-logo s-gold" href="#" data-flicker>
+        <div class="s-logo-img"><span>LOGO</span></div>
+        <div class="s-logo-info"><strong>Sponsor name</strong></div>
+      </a>
+      <a class="s-logo s-gold" href="#" data-flicker>
+        <div class="s-logo-img"><span>LOGO</span></div>
+        <div class="s-logo-info"><strong>Sponsor name</strong></div>
+      </a>
+      <a class="s-logo s-gold" href="#" data-flicker>
+        <div class="s-logo-img"><span>LOGO</span></div>
+        <div class="s-logo-info"><strong>Sponsor name</strong></div>
+      </a>
+      </div>
 </section>
-<section class="standard-section chapter tier tier-3">
+
+<section class="standard-section chapter s-tier s-tier-silver">
   <div class="section-header"><span>SILVER</span><span>SUPPORT</span></div>
-  <div class="logo-grid"><div class="logo-slot" data-flicker>LOGO</div><div class="logo-slot" data-flicker>LOGO</div><div class="logo-slot" data-flicker>LOGO</div><div class="logo-slot" data-flicker>LOGO</div><div class="logo-slot" data-flicker>LOGO</div><div class="logo-slot" data-flicker>LOGO</div></div>
+  <div class="s-tier-head"><h2 data-flicker>SILVER</h2><p class="s-tier-intro" data-flicker>Partners who keep the team building all year.</p></div>
+  <div class="s-grid">
+      <a class="s-logo s-silver" href="#" data-flicker>
+        <div class="s-logo-img"><span>LOGO</span></div>
+        <div class="s-logo-info"><strong>Sponsor name</strong></div>
+      </a>
+      <a class="s-logo s-silver" href="#" data-flicker>
+        <div class="s-logo-img"><span>LOGO</span></div>
+        <div class="s-logo-info"><strong>Sponsor name</strong></div>
+      </a>
+      <a class="s-logo s-silver" href="#" data-flicker>
+        <div class="s-logo-img"><span>LOGO</span></div>
+        <div class="s-logo-info"><strong>Sponsor name</strong></div>
+      </a>
+      <a class="s-logo s-silver" href="#" data-flicker>
+        <div class="s-logo-img"><span>LOGO</span></div>
+        <div class="s-logo-info"><strong>Sponsor name</strong></div>
+      </a>
+      <a class="s-logo s-silver" href="#" data-flicker>
+        <div class="s-logo-img"><span>LOGO</span></div>
+        <div class="s-logo-info"><strong>Sponsor name</strong></div>
+      </a>
+      <a class="s-logo s-silver" href="#" data-flicker>
+        <div class="s-logo-img"><span>LOGO</span></div>
+        <div class="s-logo-info"><strong>Sponsor name</strong></div>
+      </a>
+      </div>
 </section>
+
+<p class="s-note chapter">To add a logo, replace the <code>&lt;span&gt;LOGO&lt;/span&gt;</code> inside <code>.s-logo-img</code> with <code>&lt;img src="images/sponsor.png" alt="Sponsor name"&gt;</code>. Add <code>s-on-light</code> to the <code>&lt;a&gt;</code> for logos that need a light background.</p>
+
+<section class="standard-section chapter">
+  <div class="section-header"><span>WHY PARTNER</span><span>WHAT YOU GET</span></div>
+  <div class="s-benefits">
+    <article class="s-benefit" data-flicker><span class="s-benefit-n">01</span><h3>REAL IMPACT</h3><p>Your support goes directly into materials, electronics, tools, and testing for a student-built vehicle.</p></article>
+    <article class="s-benefit" data-flicker><span class="s-benefit-n">02</span><h3>VISIBILITY</h3><p>Partner logos appear on our website, our vehicle, and at race events.</p></article>
+    <article class="s-benefit" data-flicker><span class="s-benefit-n">03</span><h3>NEXT GENERATION</h3><p>You help students gain hands-on engineering experience before they graduate.</p></article>
+    </div>
+</section>
+
 <section class="support-section chapter">
   <div><span class="support-label">NEXT</span><h2 data-flicker>BECOME<br>A PARTNER.</h2></div>
   <div><p>See what sponsorship supports and how to get involved.</p><a class="support-button page-link" href="Support%20us.html">Support HelioTech <span class="link-icon">↗</span></a></div>
