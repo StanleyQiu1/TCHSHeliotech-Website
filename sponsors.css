@@ -1,14 +1,19 @@
 /* =====================================================
    sponsors.css
    Sponsors page only.
-   Load after styles.css and pages.css.
 
-   Design direction:
+   Keeps the original page composition:
+   - Title: 2 columns
+   - Gold: 4 columns
+   - Silver: 6 columns
+
+   Changes:
    - square corners
-   - restrained motion
-   - simple borders
-   - typography + spacing over effects
-   - no gradients or card shadows
+   - no gradients
+   - no shadows
+   - no floating / lifting cards
+   - restrained hover
+   - cleaner typography
 ===================================================== */
 
 
@@ -21,10 +26,9 @@
 }
 
 
-/*
-   Explicitly remove rounded corners from
-   sponsor-specific components.
-*/
+/* =====================================================
+   SQUARE CORNERS
+===================================================== */
 
 .page-sponsors .s-logo,
 .page-sponsors .s-logo-img,
@@ -50,15 +54,11 @@
     overflow: hidden;
 
     padding:
-        calc(var(--header) + 34px)
+        calc(var(--header) + 28px)
         var(--gutter)
-        56px;
+        64px;
 
     background: #000000;
-
-    border-bottom:
-        1px solid
-        var(--navy-line);
 }
 
 
@@ -70,8 +70,6 @@
     inset: 0;
 
     pointer-events: none;
-
-    opacity: .55;
 }
 
 
@@ -120,19 +118,14 @@
     display: grid;
 
     grid-template-columns:
-        minmax(0, 1.2fr)
-        minmax(280px, .8fr);
+        minmax(0, 1fr)
+        minmax(260px, 400px);
 
     grid-template-areas:
         "eyebrow eyebrow"
         "title lead";
 
-    column-gap:
-        clamp(
-            55px,
-            8vw,
-            135px
-        );
+    column-gap: 6vw;
 
     row-gap: 26px;
 
@@ -140,12 +133,7 @@
 
     align-items: end;
 
-    padding-top:
-        clamp(
-            80px,
-            12vh,
-            145px
-        );
+    padding-top: 90px;
 }
 
 
@@ -162,9 +150,9 @@
         "Space Mono",
         monospace;
 
-    font-size: 9px;
+    font-size: 10px;
 
-    letter-spacing: .12em;
+    letter-spacing: .14em;
 }
 
 
@@ -174,18 +162,18 @@
 
     margin: 0;
 
-    color: #b9c2c9;
+    color: #c3c9ce;
 
     font-size:
         clamp(
-            58px,
-            8.8vw,
-            145px
+            56px,
+            9.5vw,
+            156px
         );
 
-    line-height: .91;
+    line-height: .92;
 
-    letter-spacing: -.06em;
+    letter-spacing: -.055em;
 }
 
 
@@ -193,7 +181,7 @@
 .page-hero h1 span {
     display: block;
 
-    color: #66737d;
+    color: #68747e;
 }
 
 
@@ -202,9 +190,12 @@
 .page-lead {
     grid-area: lead;
 
-    max-width: 470px;
+    max-width: none;
 
-    margin: 0;
+    margin:
+        0
+        0
+        .6vw;
 
     padding-left: 22px;
 
@@ -214,12 +205,7 @@
         1px solid
         var(--navy-line-bright);
 
-    font-size:
-        clamp(
-            14px,
-            1.15vw,
-            17px
-        );
+    font-size: 15px;
 
     line-height: 1.7;
 }
@@ -227,9 +213,6 @@
 
 /* =====================================================
    STATS
-
-   Simple information strip.
-   No cards, no lift animation.
 ===================================================== */
 
 .s-stats {
@@ -241,11 +224,11 @@
             1fr
         );
 
-    padding:
-        0
-        var(--gutter);
-
     background: #000000;
+
+    border-top:
+        1px solid
+        var(--navy-line);
 
     border-bottom:
         1px solid
@@ -254,15 +237,10 @@
 
 
 .s-stats > div {
-    min-height: 125px;
-
     padding:
-        25px
-        22px;
-
-    display: flex;
-    flex-direction: column;
-    justify-content: center;
+        27px
+        22px
+        26px;
 
     border-right:
         1px solid
@@ -271,7 +249,8 @@
 
 
 .s-stats > div:first-child {
-    padding-left: 0;
+    padding-left:
+        var(--gutter);
 }
 
 
@@ -298,78 +277,73 @@
 .s-stats strong {
     display: block;
 
-    margin-top: 10px;
+    margin-top: 11px;
 
-    color: #83909a;
+    color: #89959e;
 
     font-size:
         clamp(
-            25px,
-            2.8vw,
-            43px
+            28px,
+            3.2vw,
+            50px
         );
 
     font-weight: 500;
 
-    letter-spacing: -.045em;
+    letter-spacing: -.05em;
 }
 
 
 /* =====================================================
-   SPONSOR TIER HEADER
+   TIER HEADER
 ===================================================== */
 
 .s-tier-head {
-    display: grid;
+    display: flex;
 
-    grid-template-columns:
-        minmax(0, 1.2fr)
-        minmax(280px, .8fr);
+    flex-wrap: wrap;
+
+    align-items: flex-end;
+
+    justify-content: space-between;
 
     gap:
-        clamp(
-            45px,
-            8vw,
-            130px
-        );
+        20px
+        6vw;
 
-    align-items: end;
-
-    margin-top: 60px;
+    margin-top: 56px;
 }
 
 
 .s-tier-head h2 {
-    color: #a3adb5;
+    color: #aab2b8;
 
     font-size:
         clamp(
-            44px,
+            40px,
             5.5vw,
             88px
         );
 
-    line-height: .93;
+    line-height: .94;
 
-    letter-spacing: -.055em;
+    letter-spacing: -.05em;
 }
 
 
 .s-tier-intro {
-    max-width: 430px;
+    max-width: 380px;
 
-    margin-left: auto;
-
-    color: #5d6b75;
+    color: #5a6872;
 
     font-size: 13px;
 
-    line-height: 1.7;
+    line-height: 1.65;
 }
 
 
 /* =====================================================
-   SPONSOR GRID
+   SPONSOR GRIDS
 ===================================================== */
 
 .s-grid {
@@ -377,7 +351,7 @@
 
     gap: 0;
 
-    margin-top: 48px;
+    margin-top: 40px;
 
     border-top:
         1px solid
@@ -389,7 +363,10 @@
 }
 
 
-.s-tier-title .s-grid {
+/* TITLE */
+
+.s-tier-title
+.s-grid {
     grid-template-columns:
         repeat(
             2,
@@ -398,7 +375,10 @@
 }
 
 
-.s-tier-gold .s-grid {
+/* GOLD */
+
+.s-tier-gold
+.s-grid {
     grid-template-columns:
         repeat(
             4,
@@ -407,30 +387,32 @@
 }
 
 
-.s-tier-silver .s-grid {
+/* SILVER */
+
+.s-tier-silver
+.s-grid {
     grid-template-columns:
         repeat(
-            3,
+            6,
             minmax(0, 1fr)
         );
 }
 
 
 /* =====================================================
-   SPONSOR ITEMS
-
-   Flat bordered cells instead of floating cards.
+   SPONSOR CELL
 ===================================================== */
 
 .s-logo {
     display: flex;
+
     flex-direction: column;
 
     min-width: 0;
 
     overflow: hidden;
 
-    background: #000000;
+    background: #010305;
 
     border-right:
         1px solid
@@ -446,7 +428,7 @@
 
 
 .s-logo:hover {
-    background: #020609;
+    background: #03080c;
 }
 
 
@@ -463,13 +445,13 @@
 
     overflow: hidden;
 
-    color: #354b5b;
+    color: #344956;
 
-    background: #010305;
+    background: #020609;
 
     border-bottom:
         1px solid
-        #0e2232;
+        var(--navy-line);
 
     font-family:
         "Space Mono",
@@ -477,50 +459,51 @@
 
     font-size: 8px;
 
-    letter-spacing: .11em;
+    letter-spacing: .1em;
 }
 
 
 .s-logo-img span {
-    color: #354b5b;
+    color: #344956;
 }
 
 
-/*
-   Real sponsor logos.
-   Show actual logo colors by default.
-*/
+/* REAL LOGOS */
 
 .s-logo-img img {
     display: block;
 
     max-width: 72%;
-    max-height: 62%;
+    max-height: 64%;
 
     object-fit: contain;
 
-    filter: none;
+    filter:
+        grayscale(.15);
 
-    opacity: .88;
+    opacity: .85;
 
     transition:
-        opacity .18s;
+        opacity .18s,
+        filter .18s;
 }
 
 
 .s-logo:hover
 .s-logo-img img {
+    filter: none;
+
     opacity: 1;
 }
 
 
 /* =====================================================
-   LIGHT BACKGROUND LOGOS
+   LIGHT LOGO BACKGROUND
 ===================================================== */
 
 .s-on-light
 .s-logo-img {
-    background: #e7e9ea;
+    background: #e8ecee;
 }
 
 
@@ -533,7 +516,7 @@
 
 
 /* =====================================================
-   SPONSOR INFORMATION
+   SPONSOR TEXT
 ===================================================== */
 
 .s-logo-info {
@@ -542,14 +525,14 @@
     gap: 8px;
 
     padding:
+        16px
         18px
-        18px
-        20px;
+        18px;
 }
 
 
 .s-logo-info strong {
-    color: #77848e;
+    color: #84909a;
 
     font-size: 13px;
 
@@ -569,13 +552,11 @@
 
 
 .s-logo-info p {
-    max-width: 420px;
+    color: #56646e;
 
-    color: #52616b;
+    font-size: 13px;
 
-    font-size: 12px;
-
-    line-height: 1.6;
+    line-height: 1.55;
 }
 
 
@@ -591,24 +572,24 @@
 
 .s-title
 .s-logo-info {
-    min-height: 125px;
+    min-height: 120px;
 
     padding:
-        22px
+        21px
         24px
-        25px;
+        24px;
 }
 
 
 .s-title
 .s-logo-info strong {
-    color: #89969f;
+    color: #929da5;
 
     font-size: 21px;
 
     font-weight: 500;
 
-    letter-spacing: -.035em;
+    letter-spacing: -.04em;
 }
 
 
@@ -618,13 +599,18 @@
 
 .s-gold
 .s-logo-img {
-    height: 160px;
+    height: 150px;
 }
 
 
 .s-gold
 .s-logo-info {
-    min-height: 70px;
+    min-height: 62px;
+
+    padding:
+        14px
+        16px
+        16px;
 }
 
 
@@ -634,29 +620,31 @@
 
 .s-silver
 .s-logo-img {
-    height: 125px;
+    height: 95px;
 }
 
 
 .s-silver
 .s-logo-info {
-    min-height: 60px;
+    min-height: 52px;
 
     padding:
-        14px
-        15px
-        16px;
+        11px
+        12px
+        13px;
 }
 
 
 .s-silver
 .s-logo-info strong {
-    font-size: 11px;
+    font-size: 10px;
+
+    line-height: 1.35;
 }
 
 
 /* =====================================================
-   SPONSOR NOTE
+   NOTE
 ===================================================== */
 
 .s-note {
@@ -680,14 +668,12 @@
 
 
 .s-note code {
-    color: #71818b;
+    color: #647987;
 }
 
 
 /* =====================================================
    BENEFITS
-
-   Editorial columns instead of card components.
 ===================================================== */
 
 .s-benefits {
@@ -701,9 +687,30 @@
 
     gap: 0;
 
-    margin-top: 58px;
+    margin-top: 56px;
 
     border-top:
+        1px solid
+        var(--navy-line);
+
+    border-left:
+        1px solid
+        var(--navy-line);
+}
+
+
+.s-benefit {
+    display: flex;
+
+    flex-direction: column;
+
+    min-height: 275px;
+
+    padding: 28px;
+
+    background: #010305;
+
+    border-right:
         1px solid
         var(--navy-line);
 
@@ -713,32 +720,8 @@
 }
 
 
-.s-benefit {
-    min-height: 260px;
-
-    padding:
-        28px
-        30px
-        30px;
-
-    display: flex;
-    flex-direction: column;
-
-    background: transparent;
-
-    border-right:
-        1px solid
-        var(--navy-line);
-}
-
-
-.s-benefit:last-child {
-    border-right: 0;
-}
-
-
 .s-benefit-n {
-    color: #334957;
+    color: #3e5362;
 
     font-family:
         "Space Mono",
@@ -746,25 +729,25 @@
 
     font-size: 8px;
 
-    letter-spacing: .1em;
+    letter-spacing: .09em;
 }
 
 
 .s-benefit h3 {
     margin-top: auto;
 
-    color: #89969f;
+    color: #919ca5;
 
     font-size:
         clamp(
-            22px,
+            23px,
             2vw,
-            29px
+            28px
         );
 
     font-weight: 600;
 
-    letter-spacing: -.035em;
+    letter-spacing: -.04em;
 
     transition:
         color .18s;
@@ -781,36 +764,26 @@
 
     margin-top: 14px;
 
-    color: #55646e;
+    color: #56646e;
 
     font-size: 13px;
 
-    line-height: 1.65;
+    line-height: 1.6;
 }
 
 
 /* =====================================================
    SUPPORT CTA
-
-   Keep shared structure, but remove rounded UI feel.
 ===================================================== */
-
-.page-sponsors
-.support-section {
-    border-top: 0;
-}
-
 
 .page-sponsors
 .support-button {
     border-radius: 0;
-
-    background: transparent;
 }
 
 
 /* =====================================================
-   RESPONSIVE — LARGE TABLET
+   TABLET
 ===================================================== */
 
 @media(max-width: 1100px) {
@@ -838,7 +811,7 @@
 
 
 /* =====================================================
-   RESPONSIVE — TABLET
+   TABLET
 ===================================================== */
 
 @media(max-width: 900px) {
@@ -852,15 +825,13 @@
             "eyebrow"
             "title"
             "lead";
-
-        gap: 30px;
     }
 
 
     .page-sponsors
     .page-hero
     .page-lead {
-        max-width: 520px;
+        max-width: 460px;
 
         margin-top: 10px;
     }
@@ -885,54 +856,24 @@
     }
 
 
-    .s-stats > div:first-child {
-        padding-left: 22px;
-    }
-
-
-    .s-tier-head {
-        grid-template-columns: 1fr;
-
-        gap: 25px;
-    }
-
-
-    .s-tier-intro {
-        margin-left: 0;
-    }
-
-
-    .s-tier-title
-    .s-grid {
-        grid-template-columns: 1fr;
-    }
-
-
     .s-benefits {
         grid-template-columns: 1fr;
     }
 
 
     .s-benefit {
-        min-height: 180px;
+        min-height: 200px;
 
-        border-right: 0;
-
-        border-bottom:
+        border-right:
             1px solid
             var(--navy-line);
-    }
-
-
-    .s-benefit:last-child {
-        border-bottom: 0;
     }
 
 }
 
 
 /* =====================================================
-   RESPONSIVE — MOBILE
+   MOBILE
 ===================================================== */
 
 @media(max-width: 650px) {
@@ -940,11 +881,6 @@
     .page-sponsors
     .page-hero {
         min-height: auto;
-
-        padding:
-            calc(var(--header) + 30px)
-            var(--gutter)
-            45px;
     }
 
 
@@ -969,58 +905,36 @@
     .page-hero h1 {
         font-size:
             clamp(
-                48px,
+                46px,
                 15vw,
-                76px
+                78px
             );
-    }
-
-
-    .page-sponsors
-    .page-hero
-    .page-lead {
-        padding-left: 17px;
     }
 
 
     /* STATS */
 
     .s-stats {
-        grid-template-columns: 1fr;
+        grid-template-columns:
+            1fr
+            1fr;
     }
 
 
     .s-stats > div {
-        min-height: auto;
-
         padding:
             20px
-            0;
-
-        border-right: 0;
-
-        border-bottom:
-            1px solid
-            var(--navy-line);
+            var(--gutter);
     }
 
 
     .s-stats > div:first-child {
-        padding-left: 0;
-    }
-
-
-    .s-stats > div:last-child {
-        border-bottom: 0;
+        padding-left:
+            var(--gutter);
     }
 
 
     /* TITLE */
-
-    .s-tier-head {
-        margin-top: 42px;
-    }
-
 
     .s-tier-title
     .s-grid {
@@ -1030,7 +944,7 @@
 
     .s-title
     .s-logo-img {
-        height: 190px;
+        height: 200px;
     }
 
 
@@ -1038,7 +952,11 @@
 
     .s-tier-gold
     .s-grid {
-        grid-template-columns: 1fr;
+        grid-template-columns:
+            repeat(
+                2,
+                1fr
+            );
     }
 
 
@@ -1056,37 +974,51 @@
 
     .s-silver
     .s-logo-img {
-        height: 105px;
+        height: 100px;
     }
 
 
     /* BENEFITS */
 
     .s-benefit {
+        min-height: 180px;
+
         padding:
-            25px
-            0
-            28px;
+            25px;
     }
 
 }
 
 
 /* =====================================================
-   VERY SMALL SCREENS
+   VERY SMALL MOBILE
 ===================================================== */
 
 @media(max-width: 430px) {
 
-    .s-tier-silver
+    .s-stats {
+        grid-template-columns: 1fr;
+    }
+
+
+    .s-stats > div {
+        border-right: 0;
+    }
+
+
+    .s-tier-gold
     .s-grid {
         grid-template-columns: 1fr;
     }
 
 
-    .s-silver
-    .s-logo-img {
-        height: 125px;
+    .s-tier-silver
+    .s-grid {
+        grid-template-columns:
+            repeat(
+                2,
+                1fr
+            );
     }
 
 }
