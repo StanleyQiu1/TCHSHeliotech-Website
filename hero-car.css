@@ -1,9 +1,18 @@
 /* =====================================================
-   HOMEPAGE HERO CAR IMAGE
-   Loaded after styles.css.
+   HOMEPAGE HERO CAR PHOTO
 
-   Keeps the image in the unused upper-right portion of
-   the homepage hero and fades it into the black page.
+   Cruizer_Dark.JPG
+
+   Goal:
+   - show most/all of the car
+   - position it in upper-right empty space
+   - fade smoothly into black
+   - avoid unnecessary image requests
+===================================================== */
+
+
+/* =====================================================
+   HERO
 ===================================================== */
 
 .hero {
@@ -13,8 +22,15 @@
 
 
 /* =====================================================
-   KEEP NORMAL HERO CONTENT ABOVE IMAGE
+   KEEP HERO CONTENT ABOVE PHOTO
 ===================================================== */
+
+.hero-background-grid {
+    position: absolute;
+    inset: 0;
+    z-index: 0;
+}
+
 
 .hero-topline,
 .hero-content,
@@ -31,25 +47,25 @@
 .hero-car-fade {
     position: absolute;
 
-    top:
-        calc(
-            var(--header) +
-            62px
-        );
+    /*
+       Starts below the top information line.
+    */
+
+    top: calc(var(--header) + 72px);
 
     right: 0;
 
-    width:
-        min(
-            48vw,
-            820px
-        );
 
-    height:
-        min(
-            33vw,
-            470px
-        );
+    /*
+       Size of the photo area.
+       Wide, but not so tall that it reaches
+       into the bottom statistics.
+    */
+
+    width: min(53vw, 900px);
+
+    height: min(31vw, 475px);
+
 
     z-index: 1;
 
@@ -57,130 +73,61 @@
 
     pointer-events: none;
 
-    opacity: .9;
+    opacity: .88;
 
 
     /*
-       The image is strongest in the upper-right corner.
+       ONE IMAGE ONLY.
 
-       It gradually disappears toward the left and bottom,
-       so it should not look like a rectangular photograph.
+       This assumes Cruizer_Dark.JPG is in
+       the same folder as index.html.
     */
 
-    -webkit-mask-image:
-        radial-gradient(
-            ellipse 95% 90% at 100% 0%,
-
-            #000 0%,
-
-            #000 28%,
-
-            rgba(
-                0,
-                0,
-                0,
-                .96
-            ) 42%,
-
-            rgba(
-                0,
-                0,
-                0,
-                .76
-            ) 56%,
-
-            rgba(
-                0,
-                0,
-                0,
-                .44
-            ) 70%,
-
-            rgba(
-                0,
-                0,
-                0,
-                .16
-            ) 84%,
-
-            transparent 100%
-        );
+    background-image:
+        url("Cruizer_Dark.JPG");
 
 
-    mask-image:
-        radial-gradient(
-            ellipse 95% 90% at 100% 0%,
+    background-repeat: no-repeat;
 
-            #000 0%,
 
-            #000 28%,
+    /*
+       IMPORTANT:
 
-            rgba(
-                0,
-                0,
-                0,
-                .96
-            ) 42%,
+       CONTAIN shows the full car instead
+       of chopping it with "cover".
+    */
 
-            rgba(
-                0,
-                0,
-                0,
-                .76
-            ) 56%,
+    background-size: contain;
 
-            rgba(
-                0,
-                0,
-                0,
-                .44
-            ) 70%,
 
-            rgba(
-                0,
-                0,
-                0,
-                .16
-            ) 84%,
+    /*
+       Place the vehicle toward the right.
 
-            transparent 100%
-        );
+       Change first number if needed:
+       50% = center
+       60% = move right
+       70% = move further right
+    */
+
+    background-position:
+        68% 42%;
 }
 
 
 /* =====================================================
-   IMAGE
+   EXISTING HTML IMAGE NOT USED
 ===================================================== */
 
 .hero-car-fade img {
-    display: block;
-
-    width: 100%;
-    height: 100%;
-
-    object-fit: cover;
-
-    /*
-       Move this if the car needs slightly different
-       positioning inside the window.
-    */
-
-    object-position:
-        68%
-        46%;
-
-    filter:
-        brightness(.72)
-        contrast(1.08)
-        saturate(.82);
+    display: none;
 }
 
 
 /* =====================================================
-   EXTRA BLACK FADE
+   FADE INTO BLACK
 
-   This removes the visible left and lower edges of
-   the photograph.
+   Fade the LEFT and BOTTOM edges,
+   keeping the top-right portion strongest.
 ===================================================== */
 
 .hero-car-fade::after {
@@ -192,77 +139,48 @@
 
     pointer-events: none;
 
+
     background:
+
+        /*
+           LEFT EDGE FADE
+        */
 
         linear-gradient(
             to right,
 
-            rgba(
-                0,
-                0,
-                0,
-                .90
-            ) 0%,
+            #000000 0%,
 
-            rgba(
-                0,
-                0,
-                0,
-                .62
-            ) 18%,
+            rgba(0, 0, 0, .93) 8%,
 
-            rgba(
-                0,
-                0,
-                0,
-                .24
-            ) 40%,
+            rgba(0, 0, 0, .72) 18%,
 
-            rgba(
-                0,
-                0,
-                0,
-                .04
-            ) 64%,
+            rgba(0, 0, 0, .42) 30%,
 
-            rgba(
-                0,
-                0,
-                0,
-                0
-            ) 100%
+            rgba(0, 0, 0, .16) 43%,
+
+            rgba(0, 0, 0, 0) 58%
         ),
+
+
+        /*
+           BOTTOM EDGE FADE
+        */
 
         linear-gradient(
             to bottom,
 
-            rgba(
-                0,
-                0,
-                0,
-                0
-            ) 0%,
+            rgba(0, 0, 0, 0) 0%,
 
-            rgba(
-                0,
-                0,
-                0,
-                .04
-            ) 40%,
+            rgba(0, 0, 0, 0) 48%,
 
-            rgba(
-                0,
-                0,
-                0,
-                .26
-            ) 68%,
+            rgba(0, 0, 0, .10) 61%,
 
-            rgba(
-                0,
-                0,
-                0,
-                .72
-            ) 100%
+            rgba(0, 0, 0, .30) 74%,
+
+            rgba(0, 0, 0, .62) 87%,
+
+            #000000 100%
         );
 }
 
@@ -274,25 +192,14 @@
 @media(min-width: 1500px) {
 
     .hero-car-fade {
+        width: min(51vw, 940px);
 
-        width:
-            min(
-                46vw,
-                900px
-            );
+        height: min(30vw, 500px);
 
-        height:
-            min(
-                30vw,
-                500px
-            );
+        top: calc(var(--header) + 68px);
 
-        top:
-            calc(
-                var(--header) +
-                58px
-            );
-
+        background-position:
+            70% 40%;
     }
 
 }
@@ -302,42 +209,28 @@
    LAPTOP
 ===================================================== */
 
-@media(max-width: 1200px) {
+@media(max-width: 1300px) {
 
     .hero-car-fade {
+        width: 48vw;
 
-        width:
-            min(
-                46vw,
-                650px
-            );
+        height: 34vw;
 
-        height:
-            min(
-                35vw,
-                430px
-            );
+        max-height: 450px;
 
-        top:
-            calc(
-                var(--header) +
-                72px
-            );
+        top: calc(var(--header) + 80px);
 
-        opacity:
-            .78;
+        background-position:
+            70% 42%;
 
+        opacity: .78;
     }
 
 }
 
 
 /* =====================================================
-   TABLET
-
-   Your hero changes to a single-column layout around
-   this size, so hiding the decorative photo avoids
-   collisions with the headline and description.
+   TABLET / MOBILE
 ===================================================== */
 
 @media(max-width: 1000px) {
@@ -355,7 +248,8 @@
 
 @media(prefers-reduced-motion: reduce) {
 
-    .hero-car-fade {
+    .hero-car-fade,
+    .hero-car-fade::after {
         transition: none;
     }
 
