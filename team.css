@@ -410,28 +410,11 @@
     overflow: hidden;
 
     background:
-
-        linear-gradient(
-            rgba(28, 68, 96, .10) 1px,
-            transparent 1px
-        ),
-
-        linear-gradient(
-            90deg,
-            rgba(28, 68, 96, .10) 1px,
-            transparent 1px
-        ),
-
         radial-gradient(
             circle at 50% 42%,
             #091825,
             #020609 65%
         );
-
-    background-size:
-        45px 45px,
-        45px 45px,
-        auto;
 
     border-bottom:
         1px solid
