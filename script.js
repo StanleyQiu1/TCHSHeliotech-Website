@@ -43,7 +43,7 @@
                 "./models/cruiser-chassis-frame.glb",
                 "./Cruizer Chassis Frame.glb"
             ],
-            orientation: "0deg -90deg 0deg",
+            orientation: "0deg 0deg 0deg",
             labels: {
                 "FULL VEHICLE / FRONT": "FULL CHASSIS / FRONT",
                 "FULL VEHICLE": "FULL CHASSIS",
