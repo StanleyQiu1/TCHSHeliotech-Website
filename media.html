@@ -11,6 +11,7 @@
 <link href="https://fonts.googleapis.com/css2?family=Inter:wght@400;500;600;700;800&family=Space+Mono:wght@400;700&display=swap" rel="stylesheet">
 <link rel="stylesheet" href="styles.css">
 <link rel="stylesheet" href="pages.css">
+<link rel="stylesheet" href="media.css">
 <script src="script.js" defer></script>
 </head>
 <body class="inner-page page-media">
@@ -35,30 +36,139 @@
 <main id="main">
 <section id="top" class="page-hero chapter">
   <div class="hero-background-grid"></div>
-  <div class="hero-topline"><span>TEMPLE CITY HIGH SCHOOL</span><span>MEDIA</span><span>GALLERY</span></div>
+  <div class="hero-topline"><span>TEMPLE CITY HIGH SCHOOL</span><span>MEDIA</span><span>GALLERY + PRESS</span></div>
   <div class="page-hero-body">
     <p class="eyebrow" data-flicker>TCHS HELIOTECH</p>
     <h1 data-flicker>SEEN<br><span>ON THE ROAD.</span></h1>
-    <p class="page-lead" data-flicker>Race days, build nights, and press coverage.</p>
+    <p class="page-lead" data-flicker>Race days, build nights, and press coverage from the HelioTech solar car team.</p>
   </div>
 </section>
 
-<section class="standard-section chapter">
+<section class="standard-section chapter m-section">
   <div class="section-header"><span>GALLERY</span><span>PHOTOS</span></div>
-  <div class="media-grid"><figure class="media-tile t1" data-flicker><div class="media-ph">IMAGE 1</div><figcaption>Caption 1</figcaption></figure><figure class="media-tile t2" data-flicker><div class="media-ph">IMAGE 2</div><figcaption>Caption 2</figcaption></figure><figure class="media-tile t3" data-flicker><div class="media-ph">IMAGE 3</div><figcaption>Caption 3</figcaption></figure><figure class="media-tile t4" data-flicker><div class="media-ph">IMAGE 4</div><figcaption>Caption 4</figcaption></figure><figure class="media-tile t5" data-flicker><div class="media-ph">IMAGE 5</div><figcaption>Caption 5</figcaption></figure><figure class="media-tile t6" data-flicker><div class="media-ph">IMAGE 6</div><figcaption>Caption 6</figcaption></figure><figure class="media-tile t7" data-flicker><div class="media-ph">IMAGE 7</div><figcaption>Caption 7</figcaption></figure><figure class="media-tile t8" data-flicker><div class="media-ph">IMAGE 8</div><figcaption>Caption 8</figcaption></figure></div>
-  <p class="note">Swap each <code>.media-ph</code> div for <code>&lt;img src="images/photo.jpg" alt="…"&gt;</code>.</p>
+  <div class="m-toolbar">
+    <h2 data-flicker>THE TEAM<br>IN FRAME.</h2>
+    <div class="m-filter" role="group" aria-label="Filter photos">
+      <button type="button" data-filter="all" aria-pressed="true">All</button>
+      <button type="button" data-filter="race" aria-pressed="false">Race day</button>
+      <button type="button" data-filter="build" aria-pressed="false">Build</button>
+      <button type="button" data-filter="team" aria-pressed="false">Team</button>
+    </div>
+  </div>
+  <div class="m-gallery">
+    <figure class="m-tile m-lg" data-cat="race" data-flicker>
+      <div class="m-img"><span>IMAGE 1</span></div>
+      <figcaption><span class="m-tag">RACE DAY</span><strong>Photo caption 1</strong></figcaption>
+    </figure>
+    <figure class="m-tile m-md" data-cat="build" data-flicker>
+      <div class="m-img"><span>IMAGE 2</span></div>
+      <figcaption><span class="m-tag">BUILD</span><strong>Photo caption 2</strong></figcaption>
+    </figure>
+    <figure class="m-tile m-sm" data-cat="team" data-flicker>
+      <div class="m-img"><span>IMAGE 3</span></div>
+      <figcaption><span class="m-tag">TEAM</span><strong>Photo caption 3</strong></figcaption>
+    </figure>
+    <figure class="m-tile m-sm" data-cat="race" data-flicker>
+      <div class="m-img"><span>IMAGE 4</span></div>
+      <figcaption><span class="m-tag">RACE DAY</span><strong>Photo caption 4</strong></figcaption>
+    </figure>
+    <figure class="m-tile m-md" data-cat="build" data-flicker>
+      <div class="m-img"><span>IMAGE 5</span></div>
+      <figcaption><span class="m-tag">BUILD</span><strong>Photo caption 5</strong></figcaption>
+    </figure>
+    <figure class="m-tile m-lg" data-cat="team" data-flicker>
+      <div class="m-img"><span>IMAGE 6</span></div>
+      <figcaption><span class="m-tag">TEAM</span><strong>Photo caption 6</strong></figcaption>
+    </figure>
+    <figure class="m-tile m-sm" data-cat="race" data-flicker>
+      <div class="m-img"><span>IMAGE 7</span></div>
+      <figcaption><span class="m-tag">RACE DAY</span><strong>Photo caption 7</strong></figcaption>
+    </figure>
+    <figure class="m-tile m-sm" data-cat="build" data-flicker>
+      <div class="m-img"><span>IMAGE 8</span></div>
+      <figcaption><span class="m-tag">BUILD</span><strong>Photo caption 8</strong></figcaption>
+    </figure>
+    </div>
+  <p class="note">To add a photo, replace the <code>&lt;span&gt;</code> inside <code>.m-img</code> with <code>&lt;img src="images/photo.jpg" alt="…"&gt;</code>.</p>
 </section>
-<section class="standard-section chapter">
+
+<section class="standard-section chapter m-section">
   <div class="section-header"><span>VIDEO</span><span>FEATURED</span></div>
-  <div class="video-frame" data-flicker><span>EMBED YOUR VIDEO HERE</span></div>
-</section>
-<section class="standard-section chapter">
-  <div class="section-header"><span>PRESS</span><span>IN THE NEWS</span></div>
-  <div class="press-list">
-    <a class="system-row" href="#"><div><span class="system-label">OUTLET · DATE</span><h3 data-flicker>ARTICLE HEADLINE</h3></div><p>One-line summary of the coverage.</p><span class="system-arrow link-icon">↗</span></a>
-    <a class="system-row" href="#"><div><span class="system-label">OUTLET · DATE</span><h3 data-flicker>ARTICLE HEADLINE</h3></div><p>One-line summary of the coverage.</p><span class="system-arrow link-icon">↗</span></a>
+  <div class="m-video">
+    <div class="m-player" data-flicker>
+      <button class="m-play" type="button" aria-label="Play video"><span></span></button>
+      <span class="m-player-label">EMBED YOUR VIDEO HERE</span>
+    </div>
+    <div class="m-video-info">
+      <span class="story-label">FEATURED FILM</span>
+      <h3 data-flicker>Video title goes here</h3>
+      <p>A short description of the video: what happens, where it was filmed, and why it matters to the team.</p>
+      <dl class="m-video-meta">
+        <div><dt>Runtime</dt><dd>— : —</dd></div>
+        <div><dt>Filmed</dt><dd>— 2026</dd></div>
+      </dl>
+      <a class="outline-button" href="#">Watch on YouTube <span class="link-icon">↗</span></a>
+    </div>
   </div>
 </section>
+
+<section class="standard-section chapter m-section">
+  <div class="section-header"><span>PRESS</span><span>IN THE NEWS</span></div>
+  <h2 class="m-title" data-flicker>COVERAGE.</h2>
+  <div class="m-press">
+    <a class="m-press-card" href="#" data-flicker>
+      <div class="m-press-meta"><span>OUTLET NAME</span><span>MONTH 2026</span></div>
+      <h3>Article headline goes here</h3>
+      <p>One or two sentences summarizing the coverage and what it says about the team.</p>
+      <span class="m-press-link">Read article <span class="link-icon">↗</span></span>
+    </a>
+    <a class="m-press-card" href="#" data-flicker>
+      <div class="m-press-meta"><span>OUTLET NAME</span><span>MONTH 2026</span></div>
+      <h3>Article headline goes here</h3>
+      <p>One or two sentences summarizing the coverage and what it says about the team.</p>
+      <span class="m-press-link">Read article <span class="link-icon">↗</span></span>
+    </a>
+    <a class="m-press-card" href="#" data-flicker>
+      <div class="m-press-meta"><span>OUTLET NAME</span><span>MONTH 2026</span></div>
+      <h3>Article headline goes here</h3>
+      <p>One or two sentences summarizing the coverage and what it says about the team.</p>
+      <span class="m-press-link">Read article <span class="link-icon">↗</span></span>
+    </a>
+    <a class="m-press-card" href="#" data-flicker>
+      <div class="m-press-meta"><span>OUTLET NAME</span><span>MONTH 2026</span></div>
+      <h3>Article headline goes here</h3>
+      <p>One or two sentences summarizing the coverage and what it says about the team.</p>
+      <span class="m-press-link">Read article <span class="link-icon">↗</span></span>
+    </a>
+    </div>
+</section>
+
+<section class="standard-section chapter m-section">
+  <div class="section-header"><span>PRESS KIT</span><span>FOR MEDIA USE</span></div>
+  <h2 class="m-title" data-flicker>TELL OUR<br>STORY.</h2>
+  <div class="m-kit">
+    <a class="m-kit-card" href="#" data-flicker>
+      <span class="m-kit-type">ZIP</span>
+      <h3>Logo pack</h3>
+      <p>HelioTech logos in light and dark versions.</p>
+      <span class="m-kit-dl">Download <span class="link-icon">↓</span></span>
+    </a>
+    <a class="m-kit-card" href="#" data-flicker>
+      <span class="m-kit-type">ZIP</span>
+      <h3>Photo pack</h3>
+      <p>Approved high-resolution team and car photos.</p>
+      <span class="m-kit-dl">Download <span class="link-icon">↓</span></span>
+    </a>
+    <a class="m-kit-card" href="#" data-flicker>
+      <span class="m-kit-type">PDF</span>
+      <h3>Fact sheet</h3>
+      <p>Team facts, results, and key vehicle figures.</p>
+      <span class="m-kit-dl">Download <span class="link-icon">↓</span></span>
+    </a>
+    </div>
+  <p class="m-contact">Press inquiries and interview requests: <a class="page-link" href="contact.html">contact the team</a>.</p>
+</section>
+
 <section class="support-section chapter">
   <div><span class="support-label">NEXT</span><h2 data-flicker>WORK WITH<br>US.</h2></div>
   <div><p>Press inquiries and media requests are welcome.</p><a class="support-button page-link" href="contact.html">Contact us <span class="link-icon">↗</span></a></div>
@@ -88,5 +198,19 @@
   </div>
   <div class="transition-line"></div>
 </div>
+<script>
+(function(){
+  var bar=document.querySelector('.m-filter');
+  if(!bar)return;
+  var tiles=[].slice.call(document.querySelectorAll('.m-tile'));
+  bar.addEventListener('click',function(e){
+    var b=e.target.closest('button');
+    if(!b)return;
+    [].forEach.call(bar.querySelectorAll('button'),function(x){x.setAttribute('aria-pressed',x===b)});
+    var f=b.getAttribute('data-filter');
+    tiles.forEach(function(t){t.hidden=!(f==='all'||t.getAttribute('data-cat')===f)});
+  });
+})();
+</script>
 </body>
 </html>
