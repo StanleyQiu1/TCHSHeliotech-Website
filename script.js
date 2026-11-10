@@ -38,6 +38,7 @@
 
         "chassis-model": {
             candidates: [
+                "./models/Cruizer Chassis Frame-compressed.compressed.glb",
                 "./models/Cruizer Chassis Frame.glb",
                 "./models/Cruiser Chassis Frame.glb",
                 "./models/cruiser-chassis-frame.glb",
