@@ -347,6 +347,8 @@ a:hover .link-icon {
 }
 
 .hero-background-grid {
+    display: none;
+
     position: absolute;
 
     inset:
@@ -730,6 +732,8 @@ a:hover .link-icon {
 }
 
 .model-grid {
+    display: none;
+
     position: absolute;
 
     inset: 0;
@@ -1847,6 +1851,8 @@ effect-composer {
 ===================================================== */
 
 .transition-grid {
+    display: none;
+
     position: absolute;
 
     z-index: 3;
