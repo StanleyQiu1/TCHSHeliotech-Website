@@ -1,0 +1,66 @@
+/* =====================================================
+   cars.css — our cars.html only. Load after styles.css.
+   Self-contained: hero, nav highlight, fleet cards.
+===================================================== */
+
+/* current page in the nav */
+.page-cars nav a[aria-current="page"]{color:white;background:#03070b}
+
+/* ---------- hero ---------- */
+.page-cars .page-hero{position:relative;display:flex;flex-direction:column;min-height:86vh;overflow:hidden;
+  padding:calc(var(--header) + 28px) var(--gutter) 64px;background:black}
+.page-cars .page-hero .hero-background-grid{position:absolute;inset:0;pointer-events:none}
+.page-cars .page-hero .hero-topline{position:relative;z-index:2;display:grid;grid-template-columns:1fr 1fr auto;gap:20px;
+  padding-bottom:14px;color:#42515d;border-bottom:1px solid var(--navy-line);
+  font-family:"Space Mono",monospace;font-size:8px;letter-spacing:.08em}
+.page-cars .page-hero-body{position:relative;z-index:2;flex:1;display:grid;
+  grid-template-columns:minmax(0,1fr) minmax(260px,400px);grid-template-areas:"eyebrow eyebrow" "title lead";
+  column-gap:6vw;row-gap:26px;align-content:end;align-items:end;padding-top:90px}
+.page-cars .page-hero .eyebrow{grid-area:eyebrow;margin:0;color:#52646f;font-family:"Space Mono",monospace;font-size:10px;letter-spacing:.14em}
+.page-cars .page-hero h1{grid-area:title;margin:0;font-size:clamp(56px,9.5vw,156px);line-height:.92;letter-spacing:-.055em;color:white}
+.page-cars .page-hero h1 span{display:block;color:#68747e}
+.page-cars .page-hero .page-lead{grid-area:lead;max-width:none;margin:0 0 .6vw;padding-left:22px;
+  border-left:1px solid var(--navy-line-bright);color:#74818b;font-size:15px;line-height:1.7}
+
+/* ---------- fleet cards ---------- */
+.page-cars .car-list{display:grid;gap:18px;margin-top:56px}
+.page-cars .car-card{display:grid;grid-template-columns:1.15fr 1fr;overflow:hidden;border:1px solid var(--navy-line);border-radius:14px;
+  background:linear-gradient(180deg,#040d15 0%,#010407 100%);
+  transition:border-color .25s,transform .35s cubic-bezier(.2,.7,.2,1),box-shadow .35s}
+.page-cars .car-card:hover{transform:translateY(-4px);border-color:var(--navy-line-bright);box-shadow:0 22px 50px -26px rgba(27,59,84,.7)}
+.page-cars .car-card:nth-child(even){grid-template-columns:1fr 1.15fr}
+.page-cars .car-card:nth-child(even) .car-visual{order:2;border-right:0;border-left:1px solid var(--navy-line)}
+.page-cars .car-visual{position:relative;min-height:380px;display:grid;place-items:center;border-right:1px solid var(--navy-line);
+  background:radial-gradient(circle at 50% 40%,#0a1b2a 0%,#02070b 72%);
+  color:#2f4352;font-family:"Space Mono",monospace;font-size:8px;letter-spacing:.1em}
+.page-cars .car-visual::before{content:"";position:absolute;inset:0;opacity:.45;
+  background-image:linear-gradient(rgba(20,61,90,.14) 1px,transparent 1px),linear-gradient(90deg,rgba(20,61,90,.14) 1px,transparent 1px);
+  background-size:48px 48px}
+.page-cars .car-visual span{position:relative}
+.page-cars .car-visual img{position:absolute;inset:0;width:100%;height:100%;object-fit:cover}
+.page-cars .car-visual em{position:absolute;z-index:2;top:18px;left:18px;color:#43596a;font-style:normal}
+.page-cars .car-info{padding:clamp(24px,3vw,40px)}
+.page-cars .car-info h3{margin:16px 0 30px;color:#98a4ad;font-size:clamp(34px,4vw,60px);letter-spacing:-.05em}
+.page-cars .spec-table{width:100%;border-collapse:collapse}
+.page-cars .spec-table th,.page-cars .spec-table td{padding:14px 0;border-bottom:1px solid var(--navy-line);text-align:left;font-size:13px}
+.page-cars .spec-table th{color:#415666;font-family:"Space Mono",monospace;font-size:8px;font-weight:700;letter-spacing:.08em;text-transform:uppercase}
+.page-cars .spec-table td{color:#8a969f}
+
+/* ---------- responsive ---------- */
+@media(max-width:900px){
+  .page-cars .page-hero-body{grid-template-columns:1fr;grid-template-areas:"eyebrow" "title" "lead"}
+  .page-cars .page-hero .page-lead{margin-top:10px;max-width:460px}
+  .page-cars .car-card,.page-cars .car-card:nth-child(even){grid-template-columns:1fr}
+  .page-cars .car-card:nth-child(even) .car-visual{order:0;border-left:0}
+  .page-cars .car-visual{border-right:0;border-bottom:1px solid var(--navy-line);min-height:260px}
+}
+@media(max-width:650px){
+  .page-cars .page-hero{min-height:auto}
+  .page-cars .page-hero .hero-topline{grid-template-columns:1fr auto}
+  .page-cars .page-hero .hero-topline span:nth-child(2){display:none}
+  .page-cars .page-hero h1{font-size:clamp(46px,15vw,78px)}
+}
+@media(prefers-reduced-motion:reduce){
+  .page-cars .car-card{transition:none}
+  .page-cars .car-card:hover{transform:none}
+}
