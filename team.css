@@ -22,7 +22,9 @@
         78px;
 
     display: flex;
+
     flex-direction: column;
+
     justify-content: space-between;
 
     overflow: hidden;
@@ -37,13 +39,16 @@
 
 .team-hero .hero-background-grid {
     position: absolute;
+
     inset: 0;
+
     z-index: 0;
 }
 
 
 .team-hero-topline {
     position: relative;
+
     z-index: 2;
 
     display: grid;
@@ -68,6 +73,7 @@
         monospace;
 
     font-size: 8px;
+
     font-weight: 700;
 
     letter-spacing: .12em;
@@ -76,6 +82,7 @@
 
 .team-hero-content {
     position: relative;
+
     z-index: 2;
 
     display: grid;
@@ -206,6 +213,7 @@
     color: #81909b;
 
     font-size: 11px;
+
     font-weight: 600;
 }
 
@@ -232,6 +240,7 @@
     display: flex;
 
     justify-content: space-between;
+
     align-items: center;
 
     padding-bottom: 15px;
@@ -247,6 +256,7 @@
         monospace;
 
     font-size: 8px;
+
     font-weight: 700;
 
     letter-spacing: .12em;
@@ -300,6 +310,7 @@
         monospace;
 
     font-size: 8px;
+
     font-weight: 700;
 
     letter-spacing: .12em;
@@ -334,7 +345,7 @@
 
 
 /* =====================================================
-   TWO LARGE LEADERSHIP CARDS
+   LEADERSHIP GRID
 ===================================================== */
 
 .leadership-grid {
@@ -392,11 +403,13 @@
     position: absolute;
 
     left: 0;
+
     top: 0;
 
     z-index: 4;
 
     width: 2px;
+
     height: 100%;
 
     background: #284d65;
@@ -412,6 +425,7 @@
 
 /* =====================================================
    PHOTO PLACEHOLDER
+   NO GRIDLINES
 ===================================================== */
 
 .leader-photo-placeholder {
@@ -429,28 +443,11 @@
     overflow: hidden;
 
     background:
-
         linear-gradient(
-            rgba(28, 68, 96, .10) 1px,
-            transparent 1px
-        ),
-
-        linear-gradient(
-            90deg,
-            rgba(28, 68, 96, .10) 1px,
-            transparent 1px
-        ),
-
-        radial-gradient(
-            circle at 50% 42%,
-            #091825,
-            #020609 65%
+            180deg,
+            #05090d 0%,
+            #020406 100%
         );
-
-    background-size:
-        45px 45px,
-        45px 45px,
-        auto;
 
     border-bottom:
         1px solid
@@ -458,10 +455,16 @@
 }
 
 
+/* HEAD */
+
 .leader-photo-placeholder::before {
     content: "";
 
     position: absolute;
+
+    top: 14%;
+
+    left: 50%;
 
     width: 34%;
 
@@ -469,53 +472,71 @@
 
     border:
         1px solid
-        #23445b;
+        #173247;
 
     border-radius: 50%;
+
+    transform:
+        translateX(-50%);
 
     opacity: .7;
 }
 
+
+/* SHOULDERS */
 
 .leader-photo-placeholder::after {
     content: "";
 
     position: absolute;
 
-    top: 58%;
+    left: 50%;
 
-    width: 56%;
+    bottom: 26%;
 
-    height: 26%;
+    width: 58%;
+
+    height: 34%;
 
     border:
         1px solid
-        #1c394e;
+        #173247;
+
+    border-bottom: none;
 
     border-radius:
-        50% 50% 0 0;
+        999px
+        999px
+        0
+        0;
 
-    opacity: .65;
+    transform:
+        translateX(-50%);
+
+    opacity: .7;
 }
 
 
 .leader-photo-placeholder span {
     position: absolute;
 
+    bottom: 18px;
+
     z-index: 2;
 
-    bottom: 22px;
-
-    color: #3f5869;
+    color: #3d5566;
 
     font-family:
         "Space Mono",
         monospace;
 
     font-size: 8px;
+
     font-weight: 700;
 
     letter-spacing: .14em;
+
+    text-transform: uppercase;
 }
 
 
@@ -531,7 +552,7 @@
    with:
 
    <div class="leader-photo">
-       <img src="images/person.jpg" alt="Name">
+       <img src="images/person.jpg" alt="Person Name">
    </div>
 ===================================================== */
 
@@ -543,6 +564,8 @@
 
     overflow: hidden;
 
+    background: #020406;
+
     border-bottom:
         1px solid
         #10283a;
@@ -550,10 +573,11 @@
 
 
 .leader-photo img {
-    width: 100%;
-    height: 100%;
-
     display: block;
+
+    width: 100%;
+
+    height: 100%;
 
     object-fit: cover;
 
@@ -572,11 +596,14 @@
 
     align-items: flex-end;
 
-    gap: 28px;
+    gap: 20px;
 
     min-height: 185px;
 
-    padding: 25px;
+    padding:
+        25px
+        28px
+        27px;
 }
 
 
@@ -597,6 +624,7 @@
         monospace;
 
     font-size: 8px;
+
     font-weight: 700;
 
     letter-spacing: .1em;
@@ -630,6 +658,8 @@
 .leader-index {
     flex-shrink: 0;
 
+    padding-bottom: 5px;
+
     color: #2c4353;
 
     font-family:
@@ -643,7 +673,7 @@
 
 
 /* =====================================================
-   SOCIAL / PERSONAL LINK BUBBLES
+   CIRCULAR SOCIAL ICONS
 ===================================================== */
 
 .leader-socials {
@@ -651,101 +681,92 @@
 
     flex-wrap: wrap;
 
-    gap: 7px;
+    gap: 12px;
 
-    margin-top: 18px;
+    margin-top: 19px;
 }
 
 
 .leader-social {
+    width: 46px;
+
+    height: 46px;
+
     display: inline-flex;
 
     align-items: center;
 
-    gap: 7px;
+    justify-content: center;
 
-    padding:
-        7px
-        10px;
+    flex-shrink: 0;
 
-    color: #607481;
+    padding: 0;
+
+    color: #647c8c;
+
+    background: #02060a;
 
     border:
         1px solid
-        #1c394d;
+        #173247;
 
-    border-radius: 999px;
+    border-radius: 50%;
 
-    background: #02070b;
-
-    font-family:
-        "Space Mono",
-        monospace;
-
-    font-size: 7px;
-
-    font-weight: 700;
-
-    line-height: 1;
-
-    letter-spacing: .07em;
-
-    text-transform: uppercase;
-
-    white-space: nowrap;
+    text-decoration: none;
 
     transition:
         color .18s,
         border-color .18s,
-        background .18s;
-}
-
-
-.leader-social span {
-    color: #40596a;
-
-    font-size: 9px;
-
-    line-height: 1;
-
-    transition:
-        color .18s,
+        background .18s,
         transform .18s;
 }
 
 
-.leader-social:hover {
-    color: #ffffff;
+/* =====================================================
+   ICON SVG
+===================================================== */
 
-    border-color: #617b8d;
+.leader-social svg {
+    display: block;
 
-    background: #08151e;
-}
+    width: 18px;
 
+    height: 18px;
 
-.leader-social:hover span {
-    color: #ffffff;
+    fill: currentColor;
 
-    transform:
-        translate(
-            1px,
-            -1px
-        );
+    pointer-events: none;
 }
 
 
 /* =====================================================
-   KEYBOARD ACCESSIBILITY
+   SOCIAL HOVER
+===================================================== */
+
+.leader-social:hover {
+    color: #ffffff;
+
+    background: #0a1218;
+
+    border-color: #6a8392;
+
+    transform:
+        translateY(-2px);
+}
+
+
+/* =====================================================
+   ACCESSIBILITY
 ===================================================== */
 
 .leader-social:focus-visible {
     color: #ffffff;
 
-    border-color: #8aa2b3;
+    border-color: #91a8b7;
 
     outline:
         1px solid
-        #8aa2b3;
+        #91a8b7;
 
     outline-offset: 3px;
 }
@@ -866,6 +887,22 @@
             16 / 11;
     }
 
+
+    .leader-photo-placeholder::before {
+        width: 18%;
+
+        top: 10%;
+    }
+
+
+    .leader-photo-placeholder::after {
+        width: 34%;
+
+        height: 37%;
+
+        bottom: 19%;
+    }
+
 }
 
 
@@ -950,25 +987,33 @@
 
 
     .leader-card-bottom {
-        min-height: 165px;
+        min-height: 170px;
 
-        padding: 21px;
+        padding:
+            22px
+            22px
+            24px;
     }
 
 
     .leader-socials {
-        gap: 6px;
+        gap: 10px;
 
-        margin-top: 15px;
+        margin-top: 16px;
     }
 
 
     .leader-social {
-        padding:
-            6px
-            9px;
+        width: 42px;
 
-        font-size: 6px;
+        height: 42px;
+    }
+
+
+    .leader-social svg {
+        width: 16px;
+
+        height: 16px;
     }
 
 
@@ -1003,21 +1048,21 @@
 @media(max-width: 430px) {
 
     .leader-card-bottom {
-        align-items: flex-start;
-    }
-
-
-    .leader-index {
-        padding-top: 3px;
+        align-items: flex-end;
     }
 
 
     .leader-social {
-        font-size: 6px;
+        width: 40px;
 
-        padding:
-            6px
-            8px;
+        height: 40px;
+    }
+
+
+    .leader-social svg {
+        width: 15px;
+
+        height: 15px;
     }
 
 }
@@ -1031,14 +1076,13 @@
 
     .leader-card,
     .leader-card h3,
-    .leader-social,
-    .leader-social span {
+    .leader-social {
         transition: none;
     }
 
 
     .leader-card:hover,
-    .leader-social:hover span {
+    .leader-social:hover {
         transform: none;
     }
 
