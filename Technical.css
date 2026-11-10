@@ -1,0 +1,1429 @@
+/* =====================================================
+   TECHNICAL PAGE
+   Engineering / documentation layout.
+
+   Design principles:
+   - square corners
+   - no gradients
+   - no shadows
+   - no floating cards
+   - limited animation
+   - information first
+===================================================== */
+
+
+/* =====================================================
+   PAGE
+===================================================== */
+
+.page-technical {
+    background: #000000;
+}
+
+
+/* =====================================================
+   SQUARE CORNERS
+===================================================== */
+
+.page-technical *,
+.page-technical *::before,
+.page-technical *::after {
+    border-radius: 0;
+}
+
+
+/* =====================================================
+   HERO
+===================================================== */
+
+.technical-hero {
+    position: relative;
+
+    min-height: 88vh;
+
+    padding:
+        calc(var(--header) + 34px)
+        var(--gutter)
+        70px;
+
+    display: flex;
+    flex-direction: column;
+    justify-content: space-between;
+
+    overflow: hidden;
+
+    background: #000000;
+
+    border-bottom:
+        1px solid
+        var(--navy-line);
+}
+
+
+.technical-hero .hero-background-grid {
+    position: absolute;
+    inset: 0;
+
+    z-index: 0;
+
+    pointer-events: none;
+
+    opacity: .5;
+}
+
+
+/* =====================================================
+   HERO TOPLINE
+===================================================== */
+
+.technical-hero-topline {
+    position: relative;
+
+    z-index: 2;
+
+    display: grid;
+
+    grid-template-columns:
+        1fr
+        1fr
+        auto;
+
+    gap: 24px;
+
+    padding-bottom: 14px;
+
+    color: #415360;
+
+    border-bottom:
+        1px solid
+        #10283c;
+
+    font-family:
+        "Space Mono",
+        monospace;
+
+    font-size: 8px;
+    font-weight: 700;
+
+    letter-spacing: .1em;
+}
+
+
+/* =====================================================
+   HERO CONTENT
+===================================================== */
+
+.technical-hero-content {
+    position: relative;
+
+    z-index: 2;
+
+    display: grid;
+
+    grid-template-columns:
+        minmax(0, 1.3fr)
+        minmax(300px, .7fr);
+
+    gap:
+        clamp(
+            60px,
+            9vw,
+            150px
+        );
+
+    align-items: end;
+
+    padding-top:
+        clamp(
+            100px,
+            14vh,
+            170px
+        );
+}
+
+
+.technical-hero .eyebrow {
+    margin-bottom: 20px;
+}
+
+
+.technical-hero h1 {
+    margin: 0;
+
+    color: #c0c8ce;
+
+    font-size:
+        clamp(
+            64px,
+            7.8vw,
+            130px
+        );
+
+    line-height: .9;
+
+    letter-spacing: -.065em;
+}
+
+
+.technical-hero h1 span {
+    color: #66747e;
+}
+
+
+.technical-hero-copy {
+    padding-bottom: 8px;
+}
+
+
+.technical-hero-copy p {
+    max-width: 480px;
+
+    margin: 0;
+
+    color: #74818a;
+
+    font-size:
+        clamp(
+            16px,
+            1.3vw,
+            20px
+        );
+
+    line-height: 1.65;
+
+    letter-spacing: -.015em;
+}
+
+
+/* =====================================================
+   COMMON SECTION LINE
+===================================================== */
+
+.technical-section-line {
+    display: flex;
+
+    justify-content: space-between;
+    align-items: center;
+
+    padding-bottom: 14px;
+
+    color: #405667;
+
+    border-bottom:
+        1px solid
+        #133249;
+
+    font-family:
+        "Space Mono",
+        monospace;
+
+    font-size: 8px;
+    font-weight: 700;
+
+    letter-spacing: .1em;
+}
+
+
+/* =====================================================
+   SUMMARY
+===================================================== */
+
+.technical-summary {
+    padding:
+        88px
+        var(--gutter)
+        105px;
+
+    background: #000000;
+
+    border-bottom:
+        1px solid
+        #0a1b28;
+}
+
+
+/* =====================================================
+   SUMMARY GRID
+===================================================== */
+
+.summary-grid {
+    display: grid;
+
+    grid-template-columns:
+        repeat(
+            6,
+            minmax(0, 1fr)
+        );
+
+    margin:
+        52px
+        0
+        0;
+
+    padding: 0;
+
+    border-top:
+        1px solid
+        #163044;
+
+    border-left:
+        1px solid
+        #163044;
+}
+
+
+.summary-grid > div {
+    min-width: 0;
+
+    min-height: 150px;
+
+    padding:
+        22px
+        18px;
+
+    display: flex;
+    flex-direction: column;
+    justify-content: space-between;
+
+    border-right:
+        1px solid
+        #163044;
+
+    border-bottom:
+        1px solid
+        #163044;
+}
+
+
+.summary-grid dt {
+    color: #40596a;
+
+    font-family:
+        "Space Mono",
+        monospace;
+
+    font-size: 8px;
+    font-weight: 700;
+
+    letter-spacing: .08em;
+}
+
+
+.summary-grid dd {
+    margin: 0;
+
+    color: #8d9aa3;
+
+    font-size:
+        clamp(
+            28px,
+            2.8vw,
+            43px
+        );
+
+    font-weight: 500;
+
+    letter-spacing: -.05em;
+}
+
+
+.summary-grid dd span {
+    margin-left: 4px;
+
+    color: #415765;
+
+    font-family:
+        "Space Mono",
+        monospace;
+
+    font-size: 8px;
+
+    letter-spacing: .06em;
+}
+
+
+/* =====================================================
+   ARCHITECTURE
+===================================================== */
+
+.technical-architecture {
+    padding:
+        105px
+        var(--gutter)
+        120px;
+
+    background: #000000;
+
+    border-bottom:
+        1px solid
+        #0a1b28;
+}
+
+
+.architecture-heading {
+    display: grid;
+
+    grid-template-columns:
+        minmax(0, 1.15fr)
+        minmax(280px, .85fr);
+
+    gap:
+        clamp(
+            55px,
+            9vw,
+            145px
+        );
+
+    align-items: end;
+
+    padding:
+        65px
+        0
+        58px;
+}
+
+
+.technical-kicker {
+    display: block;
+
+    margin-bottom: 18px;
+
+    color: #40596a;
+
+    font-family:
+        "Space Mono",
+        monospace;
+
+    font-size: 8px;
+    font-weight: 700;
+
+    letter-spacing: .11em;
+}
+
+
+.architecture-heading h2 {
+    margin: 0;
+
+    color: #aab4bc;
+
+    font-size:
+        clamp(
+            52px,
+            6vw,
+            100px
+        );
+
+    line-height: .91;
+
+    letter-spacing: -.055em;
+}
+
+
+.architecture-heading > p {
+    max-width: 450px;
+
+    margin: 0;
+
+    color: #61707a;
+
+    font-size: 14px;
+
+    line-height: 1.7;
+}
+
+
+/* =====================================================
+   POWER PATH
+===================================================== */
+
+.power-path {
+    display: grid;
+
+    grid-template-columns:
+        repeat(
+            5,
+            minmax(0, 1fr)
+        );
+
+    margin: 0;
+
+    padding: 0;
+
+    list-style: none;
+
+    border-top:
+        1px solid
+        #173248;
+
+    border-left:
+        1px solid
+        #173248;
+}
+
+
+.power-path li {
+    position: relative;
+
+    min-height: 190px;
+
+    padding:
+        22px
+        18px;
+
+    display: flex;
+    flex-direction: column;
+
+    border-right:
+        1px solid
+        #173248;
+
+    border-bottom:
+        1px solid
+        #173248;
+}
+
+
+.power-path li:not(:last-child)::after {
+    content: "→";
+
+    position: absolute;
+
+    z-index: 3;
+
+    top: 50%;
+    right: -8px;
+
+    transform:
+        translateY(-50%);
+
+    width: 15px;
+
+    color: #496476;
+
+    background: #000000;
+
+    font-family:
+        "Space Mono",
+        monospace;
+
+    font-size: 12px;
+
+    text-align: center;
+}
+
+
+.power-path-index {
+    color: #40596a;
+
+    font-family:
+        "Space Mono",
+        monospace;
+
+    font-size: 8px;
+
+    letter-spacing: .1em;
+}
+
+
+.power-path strong {
+    margin-top: auto;
+
+    color: #89969f;
+
+    font-size: 15px;
+    font-weight: 600;
+
+    line-height: 1.3;
+}
+
+
+.power-path p {
+    margin:
+        8px
+        0
+        0;
+
+    color: #4f606b;
+
+    font-size: 11px;
+
+    line-height: 1.5;
+}
+
+
+/* =====================================================
+   SYSTEM SPECIFICATIONS
+===================================================== */
+
+.technical-systems {
+    padding:
+        105px
+        var(--gutter)
+        130px;
+
+    background: #000000;
+
+    border-bottom:
+        1px solid
+        #0a1b28;
+}
+
+
+.technical-systems-layout {
+    display: grid;
+
+    grid-template-columns:
+        minmax(190px, .32fr)
+        minmax(0, 1.68fr);
+
+    gap:
+        clamp(
+            60px,
+            8vw,
+            130px
+        );
+
+    align-items: start;
+
+    padding-top: 65px;
+}
+
+
+/* =====================================================
+   STICKY INDEX
+===================================================== */
+
+.technical-index {
+    position: sticky;
+
+    top:
+        calc(
+            var(--header) +
+            32px
+        );
+}
+
+
+.technical-index-label {
+    display: block;
+
+    padding-bottom: 13px;
+
+    color: #40596a;
+
+    border-bottom:
+        1px solid
+        #173248;
+
+    font-family:
+        "Space Mono",
+        monospace;
+
+    font-size: 8px;
+    font-weight: 700;
+
+    letter-spacing: .1em;
+}
+
+
+.technical-index nav {
+    display: block;
+}
+
+
+.technical-index a {
+    display: grid;
+
+    grid-template-columns:
+        30px
+        1fr;
+
+    gap: 8px;
+
+    padding:
+        13px
+        0;
+
+    color: #596a75;
+
+    border-bottom:
+        1px solid
+        #102536;
+
+    font-size: 11px;
+
+    line-height: 1.35;
+
+    transition:
+        color .18s,
+        border-color .18s;
+}
+
+
+.technical-index a span {
+    color: #304959;
+
+    font-family:
+        "Space Mono",
+        monospace;
+
+    font-size: 8px;
+}
+
+
+.technical-index a:hover {
+    color: #ffffff;
+
+    border-color: #496679;
+}
+
+
+/* =====================================================
+   GROUPS
+===================================================== */
+
+.technical-groups {
+    min-width: 0;
+}
+
+
+.technical-group {
+    scroll-margin-top:
+        calc(
+            var(--header) +
+            30px
+        );
+
+    padding:
+        0
+        0
+        105px;
+
+    margin-bottom: 105px;
+
+    border-bottom:
+        1px solid
+        #173248;
+}
+
+
+.technical-group:last-child {
+    margin-bottom: 0;
+}
+
+
+/* =====================================================
+   GROUP HEADING
+===================================================== */
+
+.technical-group-heading {
+    display: grid;
+
+    grid-template-columns:
+        minmax(0, 1.1fr)
+        minmax(250px, .9fr);
+
+    gap:
+        clamp(
+            40px,
+            6vw,
+            90px
+        );
+
+    align-items: end;
+
+    padding-bottom: 42px;
+}
+
+
+.technical-group-number {
+    display: block;
+
+    margin-bottom: 16px;
+
+    color: #40596a;
+
+    font-family:
+        "Space Mono",
+        monospace;
+
+    font-size: 8px;
+    font-weight: 700;
+
+    letter-spacing: .1em;
+}
+
+
+.technical-group-heading h2 {
+    margin: 0;
+
+    color: #9eabb4;
+
+    font-size:
+        clamp(
+            44px,
+            5vw,
+            80px
+        );
+
+    line-height: .92;
+
+    letter-spacing: -.055em;
+}
+
+
+.technical-group-heading p {
+    max-width: 430px;
+
+    margin: 0;
+
+    color: #5e6d77;
+
+    font-size: 13px;
+
+    line-height: 1.7;
+}
+
+
+/* =====================================================
+   SPECIFICATION TABLE
+===================================================== */
+
+.spec-table {
+    width: 100%;
+
+    border-collapse: collapse;
+
+    border-top:
+        1px solid
+        #173248;
+}
+
+
+.spec-table tr {
+    border-bottom:
+        1px solid
+        #102536;
+}
+
+
+.spec-table th,
+.spec-table td {
+    padding:
+        15px
+        5px;
+
+    vertical-align: top;
+
+    text-align: left;
+}
+
+
+.spec-table th {
+    width: 50%;
+
+    color: #596a75;
+
+    font-size: 12px;
+    font-weight: 500;
+}
+
+
+.spec-table td {
+    color: #8a969f;
+
+    font-family:
+        "Space Mono",
+        monospace;
+
+    font-size: 11px;
+
+    text-align: right;
+}
+
+
+.spec-table tr:hover th {
+    color: #8f9ca5;
+}
+
+
+.spec-table tr:hover td {
+    color: #ffffff;
+}
+
+
+/* =====================================================
+   DOCUMENTS
+===================================================== */
+
+.technical-documents {
+    padding:
+        105px
+        var(--gutter)
+        120px;
+
+    background: #000000;
+
+    border-bottom:
+        1px solid
+        #0a1b28;
+}
+
+
+.document-list {
+    margin-top: 58px;
+
+    border-top:
+        1px solid
+        #173248;
+}
+
+
+.document-row {
+    display: grid;
+
+    grid-template-columns:
+        80px
+        minmax(0, 1fr)
+        30px;
+
+    gap: 30px;
+
+    align-items: center;
+
+    padding:
+        26px
+        5px;
+
+    border-bottom:
+        1px solid
+        #173248;
+
+    transition:
+        background .18s;
+}
+
+
+.document-row:hover {
+    background: #020609;
+}
+
+
+.document-type {
+    color: #40596a;
+
+    font-family:
+        "Space Mono",
+        monospace;
+
+    font-size: 8px;
+    font-weight: 700;
+
+    letter-spacing: .1em;
+}
+
+
+.document-row h3 {
+    margin: 0;
+
+    color: #85939d;
+
+    font-size:
+        clamp(
+            18px,
+            1.8vw,
+            25px
+        );
+
+    font-weight: 600;
+
+    letter-spacing: -.03em;
+
+    transition:
+        color .18s;
+}
+
+
+.document-row:hover h3 {
+    color: #ffffff;
+}
+
+
+.document-row p {
+    margin:
+        7px
+        0
+        0;
+
+    color: #4f606b;
+
+    font-size: 12px;
+}
+
+
+.document-arrow {
+    justify-self: end;
+
+    color: #40586a;
+
+    font-size: 16px;
+}
+
+
+/* =====================================================
+   NEXT
+===================================================== */
+
+.technical-next {
+    display: grid;
+
+    grid-template-columns:
+        minmax(0, 1.15fr)
+        minmax(280px, .85fr);
+
+    gap:
+        clamp(
+            55px,
+            9vw,
+            150px
+        );
+
+    align-items: end;
+
+    padding:
+        120px
+        var(--gutter);
+
+    background: #000000;
+
+    border-bottom:
+        1px solid
+        var(--navy-line);
+}
+
+
+.technical-next h2 {
+    margin:
+        20px
+        0
+        0;
+
+    color: #aab4bc;
+
+    font-size:
+        clamp(
+            62px,
+            7.3vw,
+            118px
+        );
+
+    line-height: .9;
+
+    letter-spacing: -.06em;
+}
+
+
+.technical-next-copy p {
+    max-width: 440px;
+
+    margin: 0;
+
+    color: #61707a;
+
+    font-size: 14px;
+
+    line-height: 1.7;
+}
+
+
+/* =====================================================
+   NEXT LINK
+===================================================== */
+
+.technical-next-link {
+    display: flex;
+
+    justify-content: space-between;
+    align-items: center;
+
+    max-width: 420px;
+
+    margin-top: 32px;
+
+    padding:
+        14px
+        0;
+
+    color: #798791;
+
+    border-top:
+        1px solid
+        #29485e;
+
+    border-bottom:
+        1px solid
+        #29485e;
+
+    font-size: 12px;
+
+    transition:
+        color .18s,
+        border-color .18s;
+}
+
+
+.technical-next-link:hover {
+    color: #ffffff;
+
+    border-color: #718795;
+}
+
+
+.technical-next-link span {
+    font-size: 16px;
+}
+
+
+/* =====================================================
+   TABLET
+===================================================== */
+
+@media(max-width: 1100px) {
+
+    .summary-grid {
+        grid-template-columns:
+            repeat(
+                3,
+                1fr
+            );
+    }
+
+
+    .power-path {
+        grid-template-columns:
+            repeat(
+                5,
+                minmax(140px, 1fr)
+            );
+
+        overflow-x: auto;
+    }
+
+}
+
+
+/* =====================================================
+   TABLET
+===================================================== */
+
+@media(max-width: 900px) {
+
+    .technical-hero {
+        min-height: auto;
+    }
+
+
+    .technical-hero-content {
+        grid-template-columns:
+            1fr;
+
+        gap: 45px;
+
+        padding-top: 100px;
+    }
+
+
+    .architecture-heading {
+        grid-template-columns: 1fr;
+
+        gap: 30px;
+    }
+
+
+    .technical-systems-layout {
+        grid-template-columns: 1fr;
+
+        gap: 55px;
+    }
+
+
+    .technical-index {
+        position: relative;
+
+        top: auto;
+    }
+
+
+    .technical-index nav {
+        display: grid;
+
+        grid-template-columns:
+            repeat(
+                2,
+                1fr
+            );
+    }
+
+
+    .technical-index a:nth-child(odd) {
+        border-right:
+            1px solid
+            #102536;
+
+        padding-right: 15px;
+    }
+
+
+    .technical-index a:nth-child(even) {
+        padding-left: 15px;
+    }
+
+
+    .technical-group-heading {
+        grid-template-columns: 1fr;
+
+        gap: 30px;
+    }
+
+
+    .technical-next {
+        grid-template-columns: 1fr;
+
+        gap: 45px;
+    }
+
+}
+
+
+/* =====================================================
+   MOBILE
+===================================================== */
+
+@media(max-width: 650px) {
+
+    .technical-hero {
+        padding:
+            calc(var(--header) + 30px)
+            var(--gutter)
+            60px;
+    }
+
+
+    .technical-hero-topline {
+        grid-template-columns:
+            1fr
+            auto;
+    }
+
+
+    .technical-hero-topline span:nth-child(2) {
+        display: none;
+    }
+
+
+    .technical-hero-content {
+        padding-top: 75px;
+    }
+
+
+    .technical-hero h1 {
+        font-size:
+            clamp(
+                50px,
+                14vw,
+                74px
+            );
+    }
+
+
+    /* SUMMARY */
+
+    .technical-summary,
+    .technical-architecture,
+    .technical-systems,
+    .technical-documents {
+        padding:
+            75px
+            var(--gutter);
+    }
+
+
+    .summary-grid {
+        grid-template-columns:
+            repeat(
+                2,
+                1fr
+            );
+    }
+
+
+    .summary-grid > div {
+        min-height: 125px;
+    }
+
+
+    /* ARCHITECTURE */
+
+    .architecture-heading {
+        padding:
+            45px
+            0;
+    }
+
+
+    .architecture-heading h2 {
+        font-size:
+            clamp(
+                46px,
+                12vw,
+                66px
+            );
+    }
+
+
+    .power-path {
+        grid-template-columns:
+            1fr;
+
+        overflow: visible;
+    }
+
+
+    .power-path li {
+        min-height: 120px;
+    }
+
+
+    .power-path li:not(:last-child)::after {
+        content: "↓";
+
+        top: auto;
+        right: auto;
+
+        bottom: -8px;
+        left: 20px;
+
+        transform: none;
+    }
+
+
+    /* INDEX */
+
+    .technical-systems-layout {
+        padding-top: 45px;
+    }
+
+
+    .technical-index nav {
+        grid-template-columns: 1fr;
+    }
+
+
+    .technical-index a:nth-child(odd),
+    .technical-index a:nth-child(even) {
+        padding-left: 0;
+        padding-right: 0;
+
+        border-right: 0;
+    }
+
+
+    /* GROUP */
+
+    .technical-group {
+        padding-bottom: 75px;
+
+        margin-bottom: 75px;
+    }
+
+
+    .technical-group-heading h2 {
+        font-size:
+            clamp(
+                42px,
+                12vw,
+                60px
+            );
+    }
+
+
+    /* TABLE */
+
+    .spec-table th {
+        width: 62%;
+    }
+
+
+    .spec-table th,
+    .spec-table td {
+        padding:
+            13px
+            3px;
+    }
+
+
+    /* DOCUMENTS */
+
+    .document-list {
+        margin-top: 45px;
+    }
+
+
+    .document-row {
+        grid-template-columns:
+            48px
+            1fr
+            20px;
+
+        gap: 15px;
+    }
+
+
+    /* NEXT */
+
+    .technical-next {
+        padding:
+            80px
+            var(--gutter);
+    }
+
+
+    .technical-next h2 {
+        font-size:
+            clamp(
+                52px,
+                14vw,
+                76px
+            );
+    }
+
+}
+
+
+/* =====================================================
+   VERY SMALL MOBILE
+===================================================== */
+
+@media(max-width: 420px) {
+
+    .summary-grid {
+        grid-template-columns: 1fr;
+    }
+
+}
+
+
+/* =====================================================
+   REDUCED MOTION
+===================================================== */
+
+@media(prefers-reduced-motion: reduce) {
+
+    .technical-index a,
+    .document-row,
+    .document-row h3,
+    .technical-next-link {
+        transition: none;
+    }
+
+}
