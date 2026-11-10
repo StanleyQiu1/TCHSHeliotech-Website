@@ -2,93 +2,37 @@
 <html lang="en">
 
 <head>
-
     <meta charset="UTF-8">
-
-    <meta
-        name="viewport"
-        content="width=device-width, initial-scale=1.0"
-    >
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
 
     <meta
         name="description"
         content="TCHS HelioTech Solar Car Team — student engineering, solar racing, PCB design, embedded systems, fabrication, and vehicle development."
     >
 
-    <meta
-        name="theme-color"
-        content="#000000"
-    >
+    <meta name="theme-color" content="#000000">
 
-    <title>
-        TCHS HelioTech — Solar Car Engineering
-    </title>
+    <title>TCHS HelioTech — Solar Car Engineering</title>
 
+    <!-- FAVICON -->
+    <link rel="icon" type="image/png" sizes="512x512" href="images/favicon.png?v=4">
+    <link rel="shortcut icon" href="images/favicon.ico?v=4">
+    <link rel="apple-touch-icon" href="images/favicon.png?v=4">
 
-    <!-- =================================================
-         FAVICON
-
-         Use your circular favicon here.
-    ================================================== -->
-
-    <link
-        rel="icon"
-        type="image/png"
-        sizes="512x512"
-        href="images/favicon.png?v=4"
-    >
-
-    <link
-        rel="shortcut icon"
-        href="images/favicon.ico?v=4"
-    >
-
-    <link
-        rel="apple-touch-icon"
-        href="images/favicon.png?v=4"
-    >
-
-
-    <!-- =================================================
-         FONTS
-    ================================================== -->
-
-    <link
-        rel="preconnect"
-        href="https://fonts.googleapis.com"
-    >
-
-    <link
-        rel="preconnect"
-        href="https://fonts.gstatic.com"
-        crossorigin
-    >
+    <!-- FONTS -->
+    <link rel="preconnect" href="https://fonts.googleapis.com">
+    <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
 
     <link
         href="https://fonts.googleapis.com/css2?family=Inter:wght@400;500;600;700;800&family=Space+Mono:wght@400;700&display=swap"
         rel="stylesheet"
     >
 
+    <!-- MAIN CSS -->
+    <link rel="stylesheet" href="styles.css">
 
-    <!-- =================================================
-         MAIN CSS
-    ================================================== -->
-
-    <link
-        rel="stylesheet"
-        href="styles.css"
-    >
-
-
-    <!-- =================================================
-         MODEL VIEWER + OUTLINE EFFECTS
-    ================================================== -->
-
-    <script
-        async
-        src="https://ga.jspm.io/npm:es-module-shims@1.7.1/dist/es-module-shims.js"
-    ></script>
-
+    <!-- MODEL VIEWER + OUTLINE EFFECTS -->
+    <script async src="https://ga.jspm.io/npm:es-module-shims@1.7.1/dist/es-module-shims.js"></script>
 
     <script type="importmap">
     {
@@ -98,118 +42,53 @@
     }
     </script>
 
+    <script type="module" src="https://cdn.jsdelivr.net/npm/@google/model-viewer/dist/model-viewer-module.min.js"></script>
+    <script type="module" src="https://cdn.jsdelivr.net/npm/@google/model-viewer-effects/dist/model-viewer-effects.min.js"></script>
 
-    <script
-        type="module"
-        src="https://cdn.jsdelivr.net/npm/@google/model-viewer/dist/model-viewer-module.min.js"
-    ></script>
-
-
-    <script
-        type="module"
-        src="https://cdn.jsdelivr.net/npm/@google/model-viewer-effects/dist/model-viewer-effects.min.js"
-    ></script>
-
-
-    <!-- =================================================
-         MAIN JAVASCRIPT
-    ================================================== -->
-
-    <script
-        src="script.js"
-        defer
-    ></script>
-
+    <!-- MAIN JAVASCRIPT -->
+    <script src="script.js" defer></script>
 </head>
-
 
 <body>
 
-
-<!-- =====================================================
-     SKIP LINK
-===================================================== -->
-
-<a
-    class="skip-link"
-    href="#main"
->
+<a class="skip-link" href="#main">
     Skip to content
 </a>
 
-
-
-<!-- =====================================================
-     HEADER
-===================================================== -->
-
+<!-- HEADER -->
 <header class="site-header">
 
-    <a
-        class="brand"
-        href="index.html"
-        aria-label="HelioTech Home"
-    >
-
+    <a class="brand" href="index.html" aria-label="HelioTech Home">
         <img
             class="brand-logo"
             src="images/Heliotech-nobg.png"
             alt="TCHS HelioTech"
         >
-
     </a>
 
+    <nav id="navigation" aria-label="Main navigation">
 
-    <nav
-        id="navigation"
-        aria-label="Main navigation"
-    >
+        <a href="about.html">About</a>
 
-        <a href="about.html">
-            About
-        </a>
+        <a href="our%20cars.html">Our Cars</a>
 
+        <!-- NEW TECHNICAL PAGE LINK -->
+        <a href="technical.html">Technical</a>
 
-        <a href="our%20cars.html">
-            Our Cars
-        </a>
+        <a href="The%20team.html">Team</a>
 
+        <a href="media.html">Media</a>
 
-        <a href="The%20team.html">
-            Team
-        </a>
+        <a href="sponsors.html">Sponsors</a>
 
+        <a href="contact.html">Contact</a>
 
-        <a href="media.html">
-            Media
-        </a>
-
-
-        <a href="sponsors.html">
-            Sponsors
-        </a>
-
-
-        <a href="contact.html">
-            Contact
-        </a>
-
-
-        <a
-            class="nav-support"
-            href="Support%20us.html"
-        >
-
+        <a class="nav-support" href="Support%20us.html">
             Support
-
-            <span class="link-icon">
-                ↗
-            </span>
-
+            <span class="link-icon">↗</span>
         </a>
 
     </nav>
-
 
     <button
         class="menu-toggle"
@@ -220,1088 +99,562 @@
         Menu +
     </button>
 
-
-    <div
-        class="scroll-progress"
-        aria-hidden="true"
-    ></div>
+    <div class="scroll-progress" aria-hidden="true"></div>
 
 </header>
 
-
-
-<!-- =====================================================
-     MAIN
-===================================================== -->
-
+<!-- MAIN -->
 <main id="main">
 
+    <!-- HERO -->
+    <section id="home" class="hero chapter">
 
-<!-- =====================================================
-     HERO
-===================================================== -->
+        <div class="hero-background-grid"></div>
 
-<section
-    id="home"
-    class="hero chapter"
->
+        <div class="hero-topline">
+            <span>TEMPLE CITY HIGH SCHOOL</span>
+            <span>SOLAR CAR TEAM</span>
+            <span>CALIFORNIA</span>
+        </div>
 
-    <div class="hero-background-grid"></div>
+        <div class="hero-content">
 
+            <div class="hero-title-block">
 
-    <div class="hero-topline">
+                <p class="eyebrow" data-flicker>
+                    TCHS HELIOTECH
+                </p>
 
-        <span>
-            TEMPLE CITY HIGH SCHOOL
-        </span>
+                <h1 data-flicker>
+                    DRIVING<br>
+                    INNOVATION<br>
+                    <span>ON SUNSHINE</span>
+                </h1>
 
-        <span>
-            SOLAR CAR TEAM
-        </span>
+            </div>
 
-        <span>
-            CALIFORNIA
-        </span>
+            <div class="hero-side">
 
-    </div>
+                <p data-flicker>
+                    Temple City High School students
+                    design, manufacture, program,
+                    integrate, test, and race
+                    solar-powered vehicles.
+                </p>
 
+                <a class="outline-button" href="#vehicle">
+                    Explore our new vehicle
+                    <span class="link-icon">↓</span>
+                </a>
 
-    <div class="hero-content">
-
-
-        <div class="hero-title-block">
-
-            <p
-                class="eyebrow"
-                data-flicker
-            >
-                TCHS HELIOTECH
-            </p>
-
-
-            <h1
-                data-flicker
-            >
-                DRIVING<br>
-                INNOVATION<br>
-                <span>ON SUNSHINE</span>
-            </h1>
+            </div>
 
         </div>
 
+        <div class="hero-data">
 
-        <div class="hero-side">
+            <div>
+                <span>PROGRAM</span>
+                <strong>STUDENT BUILT</strong>
+            </div>
 
-            <p
-                data-flicker
-            >
-                Temple City High School students
-                design, manufacture, program,
-                integrate, test, and race
-                solar-powered vehicles.
-            </p>
+            <div>
+                <span>COMPETITION</span>
+                <strong>SOLAR CAR CHALLENGE</strong>
+            </div>
 
-
-            <a
-                class="outline-button"
-                href="#vehicle"
-            >
-
-                Explore our new vehicle
-
-                <span class="link-icon">
-                    ↓
-                </span>
-
-            </a>
+            <div>
+                <span>PERFORMANCE</span>
+                <strong>NATIONAL CHAMPIONS</strong>
+            </div>
 
         </div>
 
+    </section>
 
-    </div>
+    <!-- ABOUT -->
+    <section id="about" class="standard-section chapter">
 
+        <div class="section-header">
+            <span>ABOUT</span>
+            <span>ENGINEERING BY DOING</span>
+        </div>
 
-    <div class="hero-data">
+        <div class="statement-layout">
 
+            <h2 data-flicker>
+                LIFELONG<br>
+                SKILLS.
+            </h2>
 
-        <div>
+            <div>
 
-            <span>
-                PROGRAM
-            </span>
+                <p class="statement-lead" data-flicker>
+                    We learn engineering by building
+                    something that has to work outside
+                    the classroom.
+                </p>
 
-            <strong>
-                STUDENT BUILT
-            </strong>
+                <p class="body-copy" data-flicker>
+                    Electrical decisions affect packaging.
+                    Mechanical decisions affect wiring.
+                    Software determines what the driver sees.
+                    Every subsystem eventually meets
+                    at the vehicle.
+                </p>
+
+                <a href="about.html" class="text-link page-link">
+                    About HelioTech
+                    <span class="link-icon">↗</span>
+                </a>
+
+            </div>
 
         </div>
 
-
-        <div>
-
-            <span>
-                COMPETITION
-            </span>
-
-            <strong>
-                SOLAR CAR CHALLENGE
-            </strong>
-
-        </div>
-
-
-        <div>
-
-            <span>
-                PERFORMANCE
-            </span>
-
-            <strong>
-                NATIONAL CHAMPIONS
-            </strong>
-
-        </div>
-
-
-    </div>
-
-</section>
-
-
-
-<!-- =====================================================
-     ABOUT
-===================================================== -->
-
-<section
-    id="about"
-    class="standard-section chapter"
->
-
-    <div class="section-header">
-
-        <span>
-            ABOUT
-        </span>
-
-        <span>
-            ENGINEERING BY DOING
-        </span>
-
-    </div>
-
-
-    <div class="statement-layout">
-
-
-        <h2
-            data-flicker
-        >
-            LIFELONG<br>
-            SKILLS.
-        </h2>
-
-
-        <div>
-
-            <p
-                class="statement-lead"
-                data-flicker
-            >
-                We learn engineering by building
-                something that has to work outside
-                the classroom.
-            </p>
-
-
-            <p
-                class="body-copy"
-                data-flicker
-            >
-                Electrical decisions affect packaging.
-                Mechanical decisions affect wiring.
-                Software determines what the driver sees.
-                Every subsystem eventually meets
-                at the vehicle.
-            </p>
-
-
-            <a
-                href="about.html"
-                class="text-link page-link"
-            >
-
-                About HelioTech
-
-                <span class="link-icon">
-                    ↗
-                </span>
-
-            </a>
-
-        </div>
-
-
-    </div>
-
-</section>
-
-
-
-<!-- =====================================================
-     3D VEHICLE
-===================================================== -->
-
-<section
-    id="vehicle"
-    class="vehicle-story chapter"
->
-
-    <div class="vehicle-sticky">
-
-
-        <div class="vehicle-model-layer">
-
-
-            <div class="model-grid"></div>
-
-
-            <model-viewer
-                id="car-model"
-
-                data-model-src="./models/heliotech-car-fixed.glb"
-
-                alt="3D model of the TCHS HelioTech solar car"
-
-                orientation="0deg -90deg 0deg"
-
-                camera-orbit="90deg 72deg 150%"
-
-                camera-target="auto auto auto"
-
-                field-of-view="38deg"
-
-                min-field-of-view="18deg"
-                max-field-of-view="50deg"
-
-                camera-controls
-
-                disable-pan
-                disable-zoom
-
-                interaction-prompt="none"
-
-                touch-action="pan-y"
-
-                interpolation-decay="180"
-
-                shadow-intensity="0"
-
-                exposure="1.18"
-
-                environment-image="neutral"
-
-                tone-mapping="neutral"
-
-                loading="eager"
-            >
-
-
-                <effect-composer
-                    render-mode="performance"
+    </section>
+
+    <!-- 3D VEHICLE -->
+    <section id="vehicle" class="vehicle-story chapter">
+
+        <div class="vehicle-sticky">
+
+            <div class="vehicle-model-layer">
+
+                <div class="model-grid"></div>
+
+                <model-viewer
+                    id="car-model"
+                    data-model-src="./models/heliotech-car-fixed.glb"
+                    alt="3D model of the TCHS HelioTech solar car"
+                    orientation="0deg -90deg 0deg"
+                    camera-orbit="90deg 72deg 150%"
+                    camera-target="auto auto auto"
+                    field-of-view="38deg"
+                    min-field-of-view="18deg"
+                    max-field-of-view="50deg"
+                    camera-controls
+                    disable-pan
+                    disable-zoom
+                    interaction-prompt="none"
+                    touch-action="pan-y"
+                    interpolation-decay="180"
+                    shadow-intensity="0"
+                    exposure="1.18"
+                    environment-image="neutral"
+                    tone-mapping="neutral"
+                    loading="eager"
                 >
 
-                    <outline-effect
-                        color="#60798b"
-                    ></outline-effect>
+                    <effect-composer render-mode="performance">
+                        <outline-effect color="#60798b"></outline-effect>
+                        <smaa-effect></smaa-effect>
+                        <color-grade-effect></color-grade-effect>
+                    </effect-composer>
 
+                </model-viewer>
 
-                    <smaa-effect>
-                    </smaa-effect>
+                <div id="model-placeholder" class="model-placeholder">
 
+                    <div class="orbit-ring">
+                        <div class="orbit-ring-inner"></div>
+                    </div>
 
-                    <color-grade-effect>
-                    </color-grade-effect>
-
-                </effect-composer>
-
-
-            </model-viewer>
-
-
-
-            <div
-                id="model-placeholder"
-                class="model-placeholder"
-            >
-
-                <div class="orbit-ring">
-
-                    <div class="orbit-ring-inner"></div>
+                    <div class="placeholder-copy">
+                        <span>3D VEHICLE MODEL</span>
+                        <strong>LOADING VEHICLE</strong>
+                        <p>Loading full HelioTech assembly.</p>
+                        <code>models/heliotech-car-fixed.glb</code>
+                    </div>
 
                 </div>
 
+            </div>
 
-                <div class="placeholder-copy">
+            <!-- VEHICLE STORY UI -->
+            <div class="vehicle-interface">
 
-                    <span>
-                        3D VEHICLE MODEL
-                    </span>
+                <div class="vehicle-topbar">
+                    <span>HELIOTECH / VEHICLE PLATFORM</span>
+                    <span id="orbit-readout">000°</span>
+                </div>
 
+                <article
+                    class="model-story model-story-left"
+                    data-model-step
+                    data-start="0.03"
+                    data-end="0.23"
+                >
+                    <span class="story-label">SOLAR + ENERGY</span>
 
-                    <strong>
-                        LOADING VEHICLE
-                    </strong>
-
+                    <h2>
+                        POWER FROM<br>
+                        THE SUN.
+                    </h2>
 
                     <p>
-                        Loading full HelioTech assembly.
+                        Our solar array manufactured by XXR Solar Energy
+                        provides us over 1700W of power to keep our car
+                        driving. This power is then transfered to the MPPT
+                        which optimizes the power input for all the 72V systems.
                     </p>
+                </article>
 
+                <article
+                    class="model-story model-story-right"
+                    data-model-step
+                    data-start="0.27"
+                    data-end="0.47"
+                >
+                    <span class="story-label">ELECTRICAL</span>
 
-                    <code>
-                        models/heliotech-car-fixed.glb
-                    </code>
+                    <h2>
+                        CONTROL IS<br>
+                        DISTRIBUTED.
+                    </h2>
 
+                    <p>
+                        Custom electronics connect
+                        vehicle controls, sensors,
+                        driver displays, power systems,
+                        and telemetry across the car.
+                    </p>
+                </article>
+
+                <article
+                    class="model-story model-story-left"
+                    data-model-step
+                    data-start="0.51"
+                    data-end="0.71"
+                >
+                    <span class="story-label">MECHANICAL</span>
+
+                    <h2>
+                        CARBON FIBER<br>
+                        BULKHEADS.
+                    </h2>
+
+                    <p>
+                        Instead of using a tubular aluminum chassis
+                        as we did for the rest of our cars, we decided
+                        to use carbon fiber bulkheads because it
+                        reduces a significant amount of weight.
+                    </p>
+                </article>
+
+                <article
+                    class="model-story model-story-right"
+                    data-model-step
+                    data-start="0.75"
+                    data-end="0.96"
+                >
+                    <span class="story-label">COMPOSITES</span>
+
+                    <h2>
+                        FULL CARBON<br>
+                        FIBER AERO SHELL.
+                    </h2>
+
+                    <p>
+                        The entire shell of this car is made
+                        of carbon fiber and was designed and
+                        fabricated solely by students amount
+                        the composites subteam.
+                    </p>
+                </article>
+
+                <div class="vehicle-bottom">
+                    <span id="view-readout">FULL VEHICLE</span>
+                    <span>SCROLL TO EXPLORE</span>
                 </div>
 
             </div>
 
+        </div>
+
+    </section>
+
+    <!-- SYSTEMS -->
+    <section id="systems" class="standard-section systems-section chapter">
+
+        <div class="section-header">
+            <span>SYSTEMS</span>
+            <span>VEHICLE ARCHITECTURE</span>
+        </div>
+
+        <div class="systems-intro">
+
+            <h2 data-flicker>
+                OUR<br>
+                SYSTEMS
+            </h2>
+
+            <p data-flicker>
+                Different engineering disciplines
+                connected through one vehicle.
+            </p>
 
         </div>
 
+        <div class="systems-list">
 
+            <a class="system-row page-link" href="technical.html#energy">
 
-        <!-- =================================================
-             VEHICLE STORY UI
-        ================================================== -->
-
-        <div class="vehicle-interface">
-
-
-            <div class="vehicle-topbar">
-
-                <span>
-                    HELIOTECH / VEHICLE PLATFORM
-                </span>
-
-                <span id="orbit-readout">
-                    000°
-                </span>
-
-            </div>
-
-
-
-            <article
-                class="model-story model-story-left"
-                data-model-step
-                data-start="0.03"
-                data-end="0.23"
-            >
-
-                <span class="story-label">
-                    SOLAR + ENERGY
-                </span>
-
-
-                <h2>
-                    POWER FROM<br>
-                    THE SUN.
-                </h2>
-
+                <div>
+                    <span class="system-label">POWER + SOLAR</span>
+                    <h3>ENERGY SYSTEM</h3>
+                </div>
 
                 <p>
-                    Our solar array manufactured by XXR Solar Energy
-                    provides us over 1700W of power to keep our car
-                    driving. This power is then transfered to the MPPT
-                    which optimizes the power input for all the 72V systems.
+                    Solar generation, battery storage,
+                    protection, monitoring,
+                    and power distribution.
                 </p>
 
-            </article>
+                <span class="system-arrow link-icon">↗</span>
 
+            </a>
 
+            <a class="system-row page-link" href="technical.html#pcb">
 
-            <article
-                class="model-story model-story-right"
-                data-model-step
-                data-start="0.27"
-                data-end="0.47"
-            >
-
-                <span class="story-label">
-                    ELECTRICAL
-                </span>
-
-
-                <h2>
-                    CONTROL IS<br>
-                    DISTRIBUTED.
-                </h2>
-
+                <div>
+                    <span class="system-label">EMBEDDED ELECTRONICS</span>
+                    <h3>PCB NETWORK</h3>
+                </div>
 
                 <p>
-                    Custom electronics connect
-                    vehicle controls, sensors,
-                    driver displays, power systems,
-                    and telemetry across the car.
+                    Custom control boards,
+                    sensors, communications,
+                    driver interfaces,
+                    and telemetry.
                 </p>
 
-            </article>
+                <span class="system-arrow link-icon">↗</span>
 
+            </a>
 
+            <a class="system-row page-link" href="our%20cars.html">
 
-            <article
-                class="model-story model-story-left"
-                data-model-step
-                data-start="0.51"
-                data-end="0.71"
-            >
-
-                <span class="story-label">
-                    MECHANICAL
-                </span>
-
-
-                <h2>
-                    CARBON FIBER<br>
-                    BULKHEADS.
-                </h2>
-
+                <div>
+                    <span class="system-label">MECHANICAL</span>
+                    <h3>STRUCTURE + MOTION</h3>
+                </div>
 
                 <p>
-                    Instead of using a tubular aluminum chassis
-                    as we did for the rest of our cars, we decided
-                    to use carbon fiber bulkheads because it
-                    reduces a significant amount of weight.
+                    Chassis, steering,
+                    suspension, braking,
+                    packaging, and physical integration.
                 </p>
 
-            </article>
+                <span class="system-arrow link-icon">↗</span>
 
+            </a>
 
+            <a class="system-row page-link" href="technical.html#telemetry">
 
-            <article
-                class="model-story model-story-right"
-                data-model-step
-                data-start="0.75"
-                data-end="0.96"
-            >
-
-                <span class="story-label">
-                    COMPOSITES
-                </span>
-
-
-                <h2>
-                    FULL CARBON<br>
-                    FIBER AERO SHELL.
-                </h2>
-
+                <div>
+                    <span class="system-label">SOFTWARE + DATA</span>
+                    <h3>TELEMETRY</h3>
+                </div>
 
                 <p>
-                    The entire shell of this car is made
-                    of carbon fiber and was designed and
-                    fabricated solely by students amount
-                    the composites subteam.
+                    Vehicle information moves
+                    from sensors to controllers,
+                    displays, and engineering analysis.
                 </p>
 
-            </article>
+                <span class="system-arrow link-icon">↗</span>
 
-
-
-            <div class="vehicle-bottom">
-
-                <span id="view-readout">
-                    FULL VEHICLE
-                </span>
-
-
-                <span>
-                    SCROLL TO EXPLORE
-                </span>
-
-            </div>
-
+            </a>
 
         </div>
 
+    </section>
 
-    </div>
+    <!-- RESULTS -->
+    <section id="results" class="standard-section chapter">
 
-</section>
+        <div class="section-header">
+            <span>RESULTS</span>
+            <span>SOLAR CAR CHALLENGE</span>
+        </div>
 
+        <div class="results-title">
+            <h2 data-flicker>
+                PROVEN<br>
+                ON THE ROAD.
+            </h2>
+        </div>
 
+        <div class="results-grid">
 
-<!-- =====================================================
-     SYSTEMS
-===================================================== -->
+            <article>
+                <div class="result-year">2026</div>
+                <span>CRUISER DIVISION</span>
 
-<section
-    id="systems"
-    class="standard-section systems-section chapter"
->
+                <h3 data-flicker>FIRST PLACE</h3>
 
-    <div class="section-header">
+                <p>
+                    HelioTech earned its second
+                    consecutive Cruiser Division
+                    championship.
+                </p>
+            </article>
 
-        <span>
-            SYSTEMS
-        </span>
+            <article>
+                <div class="result-year">2025</div>
+                <span>CRUISER DIVISION</span>
 
-        <span>
-            VEHICLE ARCHITECTURE
-        </span>
+                <h3 data-flicker>FIRST PLACE</h3>
 
-    </div>
+                <p>
+                    The team's first division title
+                    established the foundation for
+                    the next generation of vehicles.
+                </p>
+            </article>
 
+            <article>
+                <div class="result-year">2024</div>
+                <span>CLASSIC DIVISION</span>
 
-    <div class="systems-intro">
+                <h3 data-flicker>SECOND PLACE</h3>
 
-        <h2
-            data-flicker
-        >
-            OUR<br>
-            SYSTEMS
-        </h2>
+                <p>
+                    The first race HelioTech
+                    participated in and we were
+                    able to win a title.
+                </p>
+            </article>
 
+            <article>
+                <div class="result-year">2025</div>
+                <span>CLASSIC DIVISION</span>
 
-        <p
-            data-flicker
-        >
-            Different engineering disciplines
-            connected through one vehicle.
-        </p>
+                <h3 data-flicker>SECOND PLACE</h3>
 
-    </div>
+                <p>
+                    HelioTech earned its second
+                    consecutive Classic Division
+                    title at second place.
+                </p>
+            </article>
 
+        </div>
 
-    <div class="systems-list">
+    </section>
 
+    <!-- TEAM -->
+    <section id="team" class="standard-section chapter">
 
-        <a
-            class="system-row page-link"
-            href="technical.html#energy"
-        >
+        <div class="section-header">
+            <span>TEAM</span>
+            <span>ONE VEHICLE</span>
+        </div>
 
-            <div>
+        <div class="team-title">
 
-                <span class="system-label">
-                    POWER + SOLAR
-                </span>
+            <h2 data-flicker>
+                DIFFERENT<br>
+                DISCIPLINES.<br>
+                ONE MACHINE.
+            </h2>
 
+        </div>
 
-                <h3>
-                    ENERGY SYSTEM
-                </h3>
+        <div class="team-grid">
 
-            </div>
+            <a href="The%20team.html" class="team-card page-link">
+                <h3>ELECTRICAL</h3>
+                <p>
+                    PCB design, solar,
+                    power, wiring,
+                    sensing, and control.
+                </p>
+                <span class="link-icon">↗</span>
+            </a>
 
+            <a href="The%20team.html" class="team-card page-link">
+                <h3>MECHANICAL</h3>
+                <p>
+                    Structure, steering,
+                    suspension, and braking.
+                </p>
+                <span class="link-icon">↗</span>
+            </a>
 
-            <p>
-                Solar generation, battery storage,
-                protection, monitoring,
-                and power distribution.
+            <a href="The%20team.html" class="team-card page-link">
+                <h3>COMPOSITES</h3>
+                <p>
+                    Molds, layups,
+                    bodywork, and
+                    structural fabrication.
+                </p>
+                <span class="link-icon">↗</span>
+            </a>
+
+            <a href="The%20team.html" class="team-card page-link">
+                <h3>OPERATIONS</h3>
+                <p>
+                    Logistics, sponsors,
+                    documentation,
+                    and race execution.
+                </p>
+                <span class="link-icon">↗</span>
+            </a>
+
+        </div>
+
+    </section>
+
+    <!-- SUPPORT -->
+    <section id="support" class="support-section chapter">
+
+        <div>
+
+            <span class="support-label">PARTNERSHIPS</span>
+
+            <h2 data-flicker>
+                THERE IS<br>
+                MORE LEFT<br>
+                TO BUILD.
+            </h2>
+
+        </div>
+
+        <div>
+
+            <p data-flicker>
+                Support gives students access to
+                manufacturing, electronics,
+                materials, testing, and tools
+                needed to turn engineering
+                into a real vehicle.
             </p>
 
+            <a class="support-button page-link" href="Support%20us.html">
+                Support HelioTech
+                <span class="link-icon">↗</span>
+            </a>
 
-            <span class="system-arrow link-icon">
-                ↗
-            </span>
+        </div>
 
-        </a>
-
-
-
-        <a
-            class="system-row page-link"
-            href="technical.html#pcb"
-        >
-
-            <div>
-
-                <span class="system-label">
-                    EMBEDDED ELECTRONICS
-                </span>
-
-
-                <h3>
-                    PCB NETWORK
-                </h3>
-
-            </div>
-
-
-            <p>
-                Custom control boards,
-                sensors, communications,
-                driver interfaces,
-                and telemetry.
-            </p>
-
-
-            <span class="system-arrow link-icon">
-                ↗
-            </span>
-
-        </a>
-
-
-
-        <a
-            class="system-row page-link"
-            href="our%20cars.html"
-        >
-
-            <div>
-
-                <span class="system-label">
-                    MECHANICAL
-                </span>
-
-
-                <h3>
-                    STRUCTURE + MOTION
-                </h3>
-
-            </div>
-
-
-            <p>
-                Chassis, steering,
-                suspension, braking,
-                packaging, and physical integration.
-            </p>
-
-
-            <span class="system-arrow link-icon">
-                ↗
-            </span>
-
-        </a>
-
-
-
-        <a
-            class="system-row page-link"
-            href="technical.html#telemetry"
-        >
-
-            <div>
-
-                <span class="system-label">
-                    SOFTWARE + DATA
-                </span>
-
-
-                <h3>
-                    TELEMETRY
-                </h3>
-
-            </div>
-
-
-            <p>
-                Vehicle information moves
-                from sensors to controllers,
-                displays, and engineering analysis.
-            </p>
-
-
-            <span class="system-arrow link-icon">
-                ↗
-            </span>
-
-        </a>
-
-
-    </div>
-
-</section>
-
-
-
-<!-- =====================================================
-     RESULTS
-===================================================== -->
-
-<section
-    id="results"
-    class="standard-section chapter"
->
-
-    <div class="section-header">
-
-        <span>
-            RESULTS
-        </span>
-
-        <span>
-            SOLAR CAR CHALLENGE
-        </span>
-
-    </div>
-
-
-    <div class="results-title">
-
-        <h2
-            data-flicker
-        >
-            PROVEN<br>
-            ON THE ROAD.
-        </h2>
-
-    </div>
-
-
-    <div class="results-grid">
-
-
-        <article>
-
-            <div class="result-year">
-                2026
-            </div>
-
-
-            <span>
-                CRUISER DIVISION
-            </span>
-
-
-            <h3
-                data-flicker
-            >
-                FIRST PLACE
-            </h3>
-
-
-            <p>
-                HelioTech earned its second
-                consecutive Cruiser Division
-                championship.
-            </p>
-
-        </article>
-
-
-
-        <article>
-
-            <div class="result-year">
-                2025
-            </div>
-
-
-            <span>
-                CRUISER DIVISION
-            </span>
-
-
-            <h3
-                data-flicker
-            >
-                FIRST PLACE
-            </h3>
-
-
-            <p>
-                The team's first division title
-                established the foundation for
-                the next generation of vehicles.
-            </p>
-
-        </article>
-
-        <article>
-
-            <div class="result-year">
-                2024
-            </div>
-
-
-            <span>
-                CLASSIC DIVISION
-            </span>
-
-
-            <h3
-                data-flicker
-            >
-                SECOND PLACE
-            </h3>
-
-
-            <p>
-               The first race HelioTech
-                participated in and we were
-                able to win a title.
-            </p>
-
-        </article>
-
-        <article>
-
-            <div class="result-year">
-                2025
-            </div>
-
-
-            <span>
-                CLASSIC DIVISION
-            </span>
-
-
-            <h3
-                data-flicker
-            >
-                SECOND PLACE
-            </h3>
-
-
-            <p>
-                HelioTech earned its second
-                consecutive Classic Division
-                title at second place.
-            </p>
-
-        </article>
-
-
-
-
-    </div>
-
-</section>
-
-
-
-<!-- =====================================================
-     TEAM
-===================================================== -->
-
-<section
-    id="team"
-    class="standard-section chapter"
->
-
-    <div class="section-header">
-
-        <span>
-            TEAM
-        </span>
-
-        <span>
-            ONE VEHICLE
-        </span>
-
-    </div>
-
-
-    <div class="team-title">
-
-        <h2
-            data-flicker
-        >
-            DIFFERENT<br>
-            DISCIPLINES.<br>
-            ONE MACHINE.
-        </h2>
-
-    </div>
-
-
-    <div class="team-grid">
-
-
-        <a
-            href="The%20team.html"
-            class="team-card page-link"
-        >
-
-            <h3>
-                ELECTRICAL
-            </h3>
-
-
-            <p>
-                PCB design, solar,
-                power, wiring,
-                sensing, and control.
-            </p>
-
-
-            <span class="link-icon">
-                ↗
-            </span>
-
-        </a>
-
-
-
-        <a
-            href="The%20team.html"
-            class="team-card page-link"
-        >
-
-            <h3>
-                MECHANICAL
-            </h3>
-
-
-            <p>
-                Structure, steering,
-                suspension,  and braking.
-            </p>
-
-
-            <span class="link-icon">
-                ↗
-            </span>
-
-        </a>
-
-
-
-        <a
-            href="The%20team.html"
-            class="team-card page-link"
-        >
-
-            <h3>
-                COMPOSITES
-            </h3>
-
-
-            <p>
-                Molds, layups,
-                bodywork, and
-                structural fabrication.
-            </p>
-
-
-            <span class="link-icon">
-                ↗
-            </span>
-
-        </a>
-
-
-
-        <a
-            href="The%20team.html"
-            class="team-card page-link"
-        >
-
-            <h3>
-                OPERATIONS
-            </h3>
-
-
-            <p>
-                Logistics, sponsors,
-                documentation,
-                and race execution.
-            </p>
-
-
-            <span class="link-icon">
-                ↗
-            </span>
-
-        </a>
-
-
-    </div>
-
-</section>
-
-
-
-<!-- =====================================================
-     SUPPORT
-===================================================== -->
-
-<section
-    id="support"
-    class="support-section chapter"
->
-
-    <div>
-
-        <span class="support-label">
-            PARTNERSHIPS
-        </span>
-
-
-        <h2
-            data-flicker
-        >
-            THERE IS<br>
-            MORE LEFT<br>
-            TO BUILD.
-        </h2>
-
-    </div>
-
-
-    <div>
-
-        <p
-            data-flicker
-        >
-            Support gives students access to
-            manufacturing, electronics,
-            materials, testing, and tools
-            needed to turn engineering
-            into a real vehicle.
-        </p>
-
-
-        <a
-            class="support-button page-link"
-            href="Support%20us.html"
-        >
-
-            Support HelioTech
-
-            <span class="link-icon">
-                ↗
-            </span>
-
-        </a>
-
-    </div>
-
-</section>
-
+    </section>
 
 </main>
 
-
-
-<!-- =====================================================
-     FOOTER
-===================================================== -->
-
+<!-- FOOTER -->
 <footer class="site-footer">
-
 
     <div class="footer-brand-area">
 
-        <a
-            class="footer-logo-link"
-            href="index.html"
-            aria-label="HelioTech Home"
-        >
-
+        <a class="footer-logo-link" href="index.html" aria-label="HelioTech Home">
             <img
                 class="footer-logo"
                 src="images/Heliotech-nobg.png"
                 alt="TCHS HelioTech"
             >
-
         </a>
-
 
         <p>
             Temple City High School<br>
@@ -1310,70 +663,38 @@
 
     </div>
 
-
     <div class="footer-links">
 
-
-        <a
-            class="page-link"
-            href="contact.html"
-        >
+        <a class="page-link" href="contact.html">
             Contact
             <span class="link-icon">↗</span>
         </a>
 
-
-        <a
-            class="page-link"
-            href="media.html"
-        >
+        <a class="page-link" href="media.html">
             Media
             <span class="link-icon">↗</span>
         </a>
 
-
-        <a
-            class="page-link"
-            href="sponsors.html"
-        >
+        <a class="page-link" href="sponsors.html">
             Sponsors
             <span class="link-icon">↗</span>
         </a>
-
 
         <a href="index.html">
             Home
             <span class="link-icon">↑</span>
         </a>
 
-
     </div>
-
 
     <div class="footer-bottom">
-
-        <span>
-            © 2026 TCHS HELIOTECH
-        </span>
-
-        <span>
-            STUDENT BUILT / SOLAR POWERED
-        </span>
-
+        <span>© 2026 TCHS HELIOTECH</span>
+        <span>STUDENT BUILT / SOLAR POWERED</span>
     </div>
-
 
 </footer>
 
-
-
-<!-- =====================================================
-     PAGE TRANSITION
-
-     Uses the transparent logo.
-     CSS makes it completely white.
-===================================================== -->
-
+<!-- PAGE TRANSITION -->
 <div
     id="page-transition"
     class="page-transition"
@@ -1381,7 +702,6 @@
 >
 
     <div class="transition-grid"></div>
-
 
     <div class="transition-brand">
 
@@ -1393,12 +713,9 @@
 
     </div>
 
-
     <div class="transition-line"></div>
 
 </div>
 
-
 </body>
-
 </html>
