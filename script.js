@@ -165,7 +165,7 @@
 
             viewer.model.materials.forEach((material, index) => {
                 try {
-                    if (typeof material.setDoubleSided === "function") {
+                    if (viewer.id !== "chassis-model" && typeof material.setDoubleSided === "function") {
                         material.setDoubleSided(true);
                     }
 
