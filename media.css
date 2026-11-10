@@ -1,7 +1,34 @@
 /* =====================================================
    media.css — media.html only. Load after styles.css + pages.css.
-   Gallery + filters, featured video, press cards, press kit.
+   Hero, gallery + filters, featured video, press cards, press kit.
 ===================================================== */
+
+/* ---------- hero (self-contained, so it never depends on pages.css) ---------- */
+.page-media .page-hero{position:relative;display:flex;flex-direction:column;min-height:86vh;overflow:hidden;
+  padding:calc(var(--header) + 28px) var(--gutter) 64px;background:black}
+.page-media .page-hero .hero-background-grid{position:absolute;inset:0;pointer-events:none}
+.page-media .page-hero .hero-topline{position:relative;z-index:2;display:grid;grid-template-columns:1fr 1fr auto;gap:20px;
+  padding-bottom:14px;color:#42515d;border-bottom:1px solid var(--navy-line);
+  font-family:"Space Mono",monospace;font-size:8px;letter-spacing:.08em}
+.page-media .page-hero-body{position:relative;z-index:2;flex:1;display:grid;
+  grid-template-columns:minmax(0,1fr) minmax(260px,400px);grid-template-areas:"eyebrow eyebrow" "title lead";
+  column-gap:6vw;row-gap:26px;align-content:end;align-items:end;padding-top:90px}
+.page-media .page-hero .eyebrow{grid-area:eyebrow;margin:0;color:#52646f;
+  font-family:"Space Mono",monospace;font-size:10px;letter-spacing:.14em}
+.page-media .page-hero h1{grid-area:title;margin:0;font-size:clamp(56px,9.5vw,156px);line-height:.92;letter-spacing:-.055em;color:white}
+.page-media .page-hero h1 span{display:block;color:#68747e}
+.page-media .page-hero .page-lead{grid-area:lead;max-width:none;margin:0 0 .6vw;padding-left:22px;
+  border-left:1px solid var(--navy-line-bright);color:#74818b;font-size:15px;line-height:1.7}
+@media(max-width:900px){
+  .page-media .page-hero-body{grid-template-columns:1fr;grid-template-areas:"eyebrow" "title" "lead"}
+  .page-media .page-hero .page-lead{margin-top:10px;max-width:460px}
+}
+@media(max-width:650px){
+  .page-media .page-hero{min-height:auto}
+  .page-media .page-hero .hero-topline{grid-template-columns:1fr auto}
+  .page-media .page-hero .hero-topline span:nth-child(2){display:none}
+  .page-media .page-hero h1{font-size:clamp(46px,15vw,78px)}
+}
 
 .m-title{margin-top:56px;font-size:clamp(42px,6vw,96px)}
 
