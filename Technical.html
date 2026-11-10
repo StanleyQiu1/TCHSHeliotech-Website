@@ -1,1374 +1,564 @@
+
 <!DOCTYPE html>
 <html lang="en">
-
 <head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <meta name="description" content="Technical specifications for the TCHS HelioTech solar car: energy, electronics, structure, composites, and telemetry.">
+  <meta name="theme-color" content="#000000">
 
-    <meta charset="UTF-8">
+  <title>Technical | TCHS HelioTech</title>
 
-    <meta
-        name="viewport"
-        content="width=device-width, initial-scale=1.0"
-    >
+  <!-- Shared site styles -->
+  <link rel="stylesheet" href="styles.css">
+  <link rel="stylesheet" href="pages.css">
 
-    <meta
-        name="description"
-        content="Technical specifications and engineering systems for the TCHS HelioTech solar car."
-    >
+  <!-- Technical page styles -->
+  <link rel="stylesheet" href="technical.css">
 
-    <meta
-        name="theme-color"
-        content="#000000"
-    >
-
-    <title>
-        Technical — TCHS HelioTech
-    </title>
-
-
-    <!-- =================================================
-         FAVICON
-    ================================================== -->
-
-    <link
-        rel="icon"
-        type="image/png"
-        sizes="512x512"
-        href="images/favicon.png?v=4"
-    >
-
-    <link
-        rel="shortcut icon"
-        href="images/favicon.ico?v=4"
-    >
-
-    <link
-        rel="apple-touch-icon"
-        href="images/favicon.png?v=4"
-    >
-
-
-    <!-- =================================================
-         FONTS
-    ================================================== -->
-
-    <link
-        rel="preconnect"
-        href="https://fonts.googleapis.com"
-    >
-
-    <link
-        rel="preconnect"
-        href="https://fonts.gstatic.com"
-        crossorigin
-    >
-
-    <link
-        href="https://fonts.googleapis.com/css2?family=Inter:wght@400;500;600;700&family=Space+Mono:wght@400;700&display=swap"
-        rel="stylesheet"
-    >
-
-
-    <!-- =================================================
-         CSS
-    ================================================== -->
-
-    <link
-        rel="stylesheet"
-        href="styles.css"
-    >
-
-    <link
-        rel="stylesheet"
-        href="pages.css"
-    >
-
-    <link
-        rel="stylesheet"
-        href="technical.css"
-    >
-
-
-    <!-- =================================================
-         JAVASCRIPT
-    ================================================== -->
-
-    <script
-        src="script.js"
-        defer
-    ></script>
-
+  <!-- Shared site scripts -->
+  <script src="script.js" defer></script>
 </head>
 
+<body class="technical-page">
 
-<body class="inner-page page-technical">
+  <a class="skip-link" href="#main-content">Skip to content</a>
 
+  <!-- Navigation -->
+  <header class="site-header">
+    <nav class="navbar" aria-label="Main navigation">
+      <a href="index.html" class="logo">
+        <span class="logo-mark">H</span>
+        <span>HELIOTECH</span>
+      </a>
 
-<!-- =====================================================
-     SKIP LINK
-===================================================== -->
-
-<a
-    class="skip-link"
-    href="#main"
->
-    Skip to content
-</a>
-
-
-
-<!-- =====================================================
-     HEADER
-===================================================== -->
-
-<header class="site-header">
-
-    <a
-        class="brand"
-        href="index.html"
-        aria-label="HelioTech Home"
-    >
-
-        <img
-            class="brand-logo"
-            src="images/Heliotech-nobg.png"
-            alt="TCHS HelioTech"
-        >
-
-    </a>
-
-
-    <nav
-        id="navigation"
-        aria-label="Main navigation"
-    >
-
-        <a href="about.html">
-            About
-        </a>
-
-        <a href="our%20cars.html">
-            Our Cars
-        </a>
-
-        <a
-            href="technical.html"
-            aria-current="page"
-        >
-            Technical
-        </a>
-
-        <a href="The%20team.html">
-            Team
-        </a>
-
-        <a href="media.html">
-            Media
-        </a>
-
-        <a href="sponsors.html">
-            Sponsors
-        </a>
-
-        <a href="contact.html">
-            Contact
-        </a>
-
-        <a
-            class="nav-support"
-            href="Support%20us.html"
-        >
-            Support
-
-            <span class="link-icon">
-                ↗
-            </span>
-
-        </a>
-
-    </nav>
-
-
-    <button
-        class="menu-toggle"
-        type="button"
-        aria-controls="navigation"
+      <button
+        class="nav-toggle"
+        aria-label="Toggle navigation"
         aria-expanded="false"
-    >
-        Menu +
-    </button>
+        aria-controls="nav-menu"
+      >
+        <span></span>
+        <span></span>
+        <span></span>
+      </button>
 
+      <div class="nav-menu" id="nav-menu">
+        <a href="index.html">Home</a>
+        <a href="our cars.html">Our Cars</a>
+        <a href="Technical.html" aria-current="page">Technical</a>
+        <a href="team.html">Team</a>
+        <a href="sponsors.html">Sponsors</a>
+      </div>
+    </nav>
+  </header>
 
-    <div
-        class="scroll-progress"
-        aria-hidden="true"
-    ></div>
+  <main id="main-content">
 
-</header>
-
-
-
-<!-- =====================================================
-     MAIN
-===================================================== -->
-
-<main id="main">
-
-
-<!-- =====================================================
-     HERO
-===================================================== -->
-
-<section
-    id="top"
-    class="technical-hero chapter"
->
-
-    <div class="hero-background-grid"></div>
-
-
-    <div class="technical-hero-topline">
-
-        <span>
-            TEMPLE CITY HIGH SCHOOL
-        </span>
-
-        <span>
-            HELIOTECH
-        </span>
-
-        <span>
-            TECHNICAL
-        </span>
-
-    </div>
-
-
-    <div class="technical-hero-content">
-
-
-        <div>
-
-            <p
-                class="eyebrow"
-                data-flicker
-            >
-                VEHICLE SYSTEMS + SPECIFICATIONS
-            </p>
-
-
-            <h1
-                data-flicker
-            >
-                ENGINEERED<br>
-                AS ONE<br>
-                <span>SYSTEM.</span>
-            </h1>
-
+    <!-- Hero -->
+    <section class="tech-hero">
+      <div class="tech-container">
+        <div class="tech-eyebrow">
+          <span class="status-dot"></span>
+          ENGINEERING & TECHNOLOGY
         </div>
 
-
-        <div class="technical-hero-copy">
-
-            <p data-flicker>
-                Electrical, mechanical, structural,
-                and software systems are designed around
-                the same objective: efficient, reliable
-                vehicle performance.
-            </p>
-
-        </div>
-
-
-    </div>
-
-</section>
-
-
-
-<!-- =====================================================
-     KEY SPECIFICATIONS
-===================================================== -->
-
-<section
-    class="technical-summary chapter"
-    aria-labelledby="summary-title"
->
-
-    <div class="technical-section-line">
-
-        <span id="summary-title">
-            VEHICLE SUMMARY
-        </span>
-
-        <span>
-            KEY FIGURES
-        </span>
-
-    </div>
-
-
-    <dl class="summary-grid">
-
-
-        <div>
-
-            <dt>
-                TOP SPEED
-            </dt>
-
-            <dd>
-                —
-                <span>MPH</span>
-            </dd>
-
-        </div>
-
-
-        <div>
-
-            <dt>
-                RANGE
-            </dt>
-
-            <dd>
-                —
-                <span>MI</span>
-            </dd>
-
-        </div>
-
-
-        <div>
-
-            <dt>
-                SOLAR ARRAY
-            </dt>
-
-            <dd>
-                —
-                <span>W</span>
-            </dd>
-
-        </div>
-
-
-        <div>
-
-            <dt>
-                BATTERY
-            </dt>
-
-            <dd>
-                —
-                <span>KWH</span>
-            </dd>
-
-        </div>
-
-
-        <div>
-
-            <dt>
-                VEHICLE MASS
-            </dt>
-
-            <dd>
-                —
-                <span>LB</span>
-            </dd>
-
-        </div>
-
-
-        <div>
-
-            <dt>
-                MOTOR
-            </dt>
-
-            <dd>
-                —
-                <span>KW</span>
-            </dd>
-
-        </div>
-
-
-    </dl>
-
-</section>
-
-
-
-<!-- =====================================================
-     SYSTEM ARCHITECTURE
-===================================================== -->
-
-<section
-    class="technical-architecture chapter"
->
-
-    <div class="technical-section-line">
-
-        <span>
-            SYSTEM ARCHITECTURE
-        </span>
-
-        <span>
-            ENERGY FLOW
-        </span>
-
-    </div>
-
-
-    <div class="architecture-heading">
-
-        <div>
-
-            <span class="technical-kicker">
-                POWER PATH
-            </span>
-
-
-            <h2 data-flicker>
-                FROM SUNLIGHT<br>
-                TO MOTION.
-            </h2>
-
-        </div>
-
-
-        <p data-flicker>
-            The high-level electrical path from solar
-            generation through storage, distribution,
-            control, and propulsion.
+        <h1>
+          BUILT ON<br>
+          <span>ENGINEERING.</span>
+        </h1>
+
+        <p class="tech-hero-description">
+          Explore the engineering, technology, and systems behind
+          the TCHS HelioTech solar car.
         </p>
 
-    </div>
+        <div class="tech-hero-meta">
+          <div>
+            <span class="meta-label">TEAM</span>
+            <span class="meta-value">TCHS HELIOTECH</span>
+          </div>
+          <div>
+            <span class="meta-label">PROJECT</span>
+            <span class="meta-value">SOLAR CAR RACING</span>
+          </div>
+          <div>
+            <span class="meta-label">FOCUS</span>
+            <span class="meta-value">ENGINEERING & INNOVATION</span>
+          </div>
+        </div>
+      </div>
+    </section>
 
+    <!-- Overview -->
+    <section class="tech-overview section-spacing">
+      <div class="tech-container">
 
-    <ol class="power-path">
+        <div class="section-heading">
+          <span class="section-number">01 / OVERVIEW</span>
+          <h2>THE ENGINEERING<br>BEHIND THE CAR.</h2>
+          <p>
+            A solar-powered vehicle is more than just a car.
+            It is an integrated system of energy generation,
+            electrical components, mechanical design, and
+            data monitoring.
+          </p>
+        </div>
 
+        <div class="tech-stats-grid">
 
-        <li>
+          <article class="tech-stat-card">
+            <span class="stat-label">POWER SOURCE</span>
+            <span class="stat-value">—</span>
+            <span class="stat-description">Solar energy system</span>
+          </article>
 
-            <span class="power-path-index">
-                01
-            </span>
+          <article class="tech-stat-card">
+            <span class="stat-label">MOTOR</span>
+            <span class="stat-value">—</span>
+            <span class="stat-description">Electric propulsion</span>
+          </article>
 
-            <strong>
-                Solar Array
-            </strong>
+          <article class="tech-stat-card">
+            <span class="stat-label">BATTERY</span>
+            <span class="stat-value">—</span>
+            <span class="stat-description">Energy storage</span>
+          </article>
 
+          <article class="tech-stat-card">
+            <span class="stat-label">VEHICLE WEIGHT</span>
+            <span class="stat-value">—</span>
+            <span class="stat-description">Total vehicle mass</span>
+          </article>
+
+        </div>
+      </div>
+    </section>
+
+    <!-- Energy Flow -->
+    <section class="tech-energy section-spacing">
+      <div class="tech-container">
+
+        <div class="section-heading">
+          <span class="section-number">02 / ENERGY SYSTEM</span>
+          <h2>FROM SUNLIGHT<br>TO MOVEMENT.</h2>
+          <p>
+            The energy system connects solar generation, electrical
+            management, energy storage, and propulsion.
+          </p>
+        </div>
+
+        <div class="energy-flow">
+
+          <article class="energy-card">
+            <span class="energy-index">01</span>
+            <div class="energy-icon">☀</div>
+            <h3>SOLAR PANELS</h3>
             <p>
-                Energy generation
+              Convert sunlight into electrical energy.
             </p>
+          </article>
 
-        </li>
+          <div class="energy-connector" aria-hidden="true">→</div>
 
-
-        <li>
-
-            <span class="power-path-index">
-                02
-            </span>
-
-            <strong>
-                Battery + BMS
-            </strong>
-
+          <article class="energy-card">
+            <span class="energy-index">02</span>
+            <div class="energy-icon">⚡</div>
+            <h3>POWER MANAGEMENT</h3>
             <p>
-                Storage and protection
+              Manages electrical power throughout the system.
             </p>
+          </article>
 
-        </li>
+          <div class="energy-connector" aria-hidden="true">→</div>
 
-
-        <li>
-
-            <span class="power-path-index">
-                03
-            </span>
-
-            <strong>
-                Power Distribution
-            </strong>
-
+          <article class="energy-card">
+            <span class="energy-index">03</span>
+            <div class="energy-icon">▣</div>
+            <h3>BATTERY</h3>
             <p>
-                Switching and regulation
+              Stores electrical energy for vehicle operation.
             </p>
+          </article>
 
-        </li>
+          <div class="energy-connector" aria-hidden="true">→</div>
 
-
-        <li>
-
-            <span class="power-path-index">
-                04
-            </span>
-
-            <strong>
-                Motor Controller
-            </strong>
-
+          <article class="energy-card">
+            <span class="energy-index">04</span>
+            <div class="energy-icon">⚙</div>
+            <h3>ELECTRIC MOTOR</h3>
             <p>
-                Drive control
+              Converts electrical energy into mechanical motion.
             </p>
-
-        </li>
-
-
-        <li>
-
-            <span class="power-path-index">
-                05
-            </span>
-
-            <strong>
-                Motor + Drivetrain
-            </strong>
-
-            <p>
-                Mechanical output
-            </p>
-
-        </li>
-
-
-    </ol>
-
-</section>
-
-
-
-<!-- =====================================================
-     SYSTEM SPECIFICATIONS
-===================================================== -->
-
-<section
-    class="technical-systems chapter"
->
-
-    <div class="technical-section-line">
-
-        <span>
-            SPECIFICATIONS
-        </span>
-
-        <span>
-            BY SYSTEM
-        </span>
-
-    </div>
-
-
-    <div class="technical-systems-layout">
-
-
-        <!-- =================================================
-             INDEX
-        ================================================== -->
-
-        <aside class="technical-index">
-
-            <span class="technical-index-label">
-                SYSTEM INDEX
-            </span>
-
-
-            <nav
-                aria-label="Technical system sections"
-            >
-
-                <a href="#energy">
-                    <span>01</span>
-                    Energy System
-                </a>
-
-                <a href="#pcb">
-                    <span>02</span>
-                    PCB Network
-                </a>
-
-                <a href="#mechanical">
-                    <span>03</span>
-                    Structure + Motion
-                </a>
-
-                <a href="#composites">
-                    <span>04</span>
-                    Body + Fabrication
-                </a>
-
-                <a href="#telemetry">
-                    <span>05</span>
-                    Telemetry
-                </a>
-
-            </nav>
-
-        </aside>
-
-
-
-        <!-- =================================================
-             SPECIFICATION GROUPS
-        ================================================== -->
-
-        <div class="technical-groups">
-
-
-            <!-- =================================================
-                 ENERGY
-            ================================================== -->
-
-            <article
-                id="energy"
-                class="technical-group chapter"
-            >
-
-                <header class="technical-group-heading">
-
-                    <div>
-
-                        <span class="technical-group-number">
-                            01 / POWER
-                        </span>
-
-
-                        <h2 data-flicker>
-                            ENERGY<br>
-                            SYSTEM
-                        </h2>
-
-                    </div>
-
-
-                    <p data-flicker>
-                        Solar generation, battery storage,
-                        protection, monitoring, and
-                        high-voltage power distribution.
-                    </p>
-
-                </header>
-
-
-                <table class="spec-table">
-
-                    <tbody>
-
-                        <tr>
-                            <th scope="row">
-                                Solar cell type
-                            </th>
-                            <td>—</td>
-                        </tr>
-
-                        <tr>
-                            <th scope="row">
-                                Array rating
-                            </th>
-                            <td>— W</td>
-                        </tr>
-
-                        <tr>
-                            <th scope="row">
-                                Array area
-                            </th>
-                            <td>— m²</td>
-                        </tr>
-
-                        <tr>
-                            <th scope="row">
-                                Battery chemistry
-                            </th>
-                            <td>—</td>
-                        </tr>
-
-                        <tr>
-                            <th scope="row">
-                                Pack capacity
-                            </th>
-                            <td>— kWh</td>
-                        </tr>
-
-                        <tr>
-                            <th scope="row">
-                                Pack voltage
-                            </th>
-                            <td>— V</td>
-                        </tr>
-
-                        <tr>
-                            <th scope="row">
-                                Battery management
-                            </th>
-                            <td>—</td>
-                        </tr>
-
-                        <tr>
-                            <th scope="row">
-                                Protection
-                            </th>
-                            <td>—</td>
-                        </tr>
-
-                    </tbody>
-
-                </table>
-
-            </article>
-
-
-
-            <!-- =================================================
-                 PCB NETWORK
-            ================================================== -->
-
-            <article
-                id="pcb"
-                class="technical-group chapter"
-            >
-
-                <header class="technical-group-heading">
-
-                    <div>
-
-                        <span class="technical-group-number">
-                            02 / ELECTRONICS
-                        </span>
-
-
-                        <h2 data-flicker>
-                            PCB<br>
-                            NETWORK
-                        </h2>
-
-                    </div>
-
-
-                    <p data-flicker>
-                        Custom control boards, vehicle sensors,
-                        communications, driver interfaces,
-                        and embedded control systems.
-                    </p>
-
-                </header>
-
-
-                <table class="spec-table">
-
-                    <tbody>
-
-                        <tr>
-                            <th scope="row">
-                                Custom PCBs
-                            </th>
-                            <td>—</td>
-                        </tr>
-
-                        <tr>
-                            <th scope="row">
-                                Microcontrollers
-                            </th>
-                            <td>—</td>
-                        </tr>
-
-                        <tr>
-                            <th scope="row">
-                                Vehicle bus
-                            </th>
-                            <td>—</td>
-                        </tr>
-
-                        <tr>
-                            <th scope="row">
-                                Sensors
-                            </th>
-                            <td>—</td>
-                        </tr>
-
-                        <tr>
-                            <th scope="row">
-                                Driver display
-                            </th>
-                            <td>—</td>
-                        </tr>
-
-                        <tr>
-                            <th scope="row">
-                                PCB design tools
-                            </th>
-                            <td>—</td>
-                        </tr>
-
-                    </tbody>
-
-                </table>
-
-            </article>
-
-
-
-            <!-- =================================================
-                 MECHANICAL
-            ================================================== -->
-
-            <article
-                id="mechanical"
-                class="technical-group chapter"
-            >
-
-                <header class="technical-group-heading">
-
-                    <div>
-
-                        <span class="technical-group-number">
-                            03 / MECHANICAL
-                        </span>
-
-
-                        <h2 data-flicker>
-                            STRUCTURE<br>
-                            + MOTION
-                        </h2>
-
-                    </div>
-
-
-                    <p data-flicker>
-                        Chassis, steering, suspension,
-                        braking, packaging, and mechanical
-                        integration.
-                    </p>
-
-                </header>
-
-
-                <table class="spec-table">
-
-                    <tbody>
-
-                        <tr>
-                            <th scope="row">
-                                Chassis
-                            </th>
-                            <td>—</td>
-                        </tr>
-
-                        <tr>
-                            <th scope="row">
-                                Wheelbase
-                            </th>
-                            <td>— in</td>
-                        </tr>
-
-                        <tr>
-                            <th scope="row">
-                                Track width
-                            </th>
-                            <td>— in</td>
-                        </tr>
-
-                        <tr>
-                            <th scope="row">
-                                Steering
-                            </th>
-                            <td>—</td>
-                        </tr>
-
-                        <tr>
-                            <th scope="row">
-                                Front suspension
-                            </th>
-                            <td>—</td>
-                        </tr>
-
-                        <tr>
-                            <th scope="row">
-                                Rear suspension
-                            </th>
-                            <td>—</td>
-                        </tr>
-
-                        <tr>
-                            <th scope="row">
-                                Brakes
-                            </th>
-                            <td>—</td>
-                        </tr>
-
-                        <tr>
-                            <th scope="row">
-                                Tires
-                            </th>
-                            <td>—</td>
-                        </tr>
-
-                    </tbody>
-
-                </table>
-
-            </article>
-
-
-
-            <!-- =================================================
-                 COMPOSITES
-            ================================================== -->
-
-            <article
-                id="composites"
-                class="technical-group chapter"
-            >
-
-                <header class="technical-group-heading">
-
-                    <div>
-
-                        <span class="technical-group-number">
-                            04 / COMPOSITES
-                        </span>
-
-
-                        <h2 data-flicker>
-                            BODY +<br>
-                            FABRICATION
-                        </h2>
-
-                    </div>
-
-
-                    <p data-flicker>
-                        Bodywork, molds, layups,
-                        aerodynamic surfaces, and
-                        structural fabrication.
-                    </p>
-
-                </header>
-
-
-                <table class="spec-table">
-
-                    <tbody>
-
-                        <tr>
-                            <th scope="row">
-                                Body material
-                            </th>
-                            <td>—</td>
-                        </tr>
-
-                        <tr>
-                            <th scope="row">
-                                Mold type
-                            </th>
-                            <td>—</td>
-                        </tr>
-
-                        <tr>
-                            <th scope="row">
-                                Layup
-                            </th>
-                            <td>—</td>
-                        </tr>
-
-                        <tr>
-                            <th scope="row">
-                                Body mass
-                            </th>
-                            <td>— lb</td>
-                        </tr>
-
-                        <tr>
-                            <th scope="row">
-                                Drag coefficient
-                            </th>
-                            <td>—</td>
-                        </tr>
-
-                    </tbody>
-
-                </table>
-
-            </article>
-
-
-
-            <!-- =================================================
-                 TELEMETRY
-            ================================================== -->
-
-            <article
-                id="telemetry"
-                class="technical-group chapter"
-            >
-
-                <header class="technical-group-heading">
-
-                    <div>
-
-                        <span class="technical-group-number">
-                            05 / DATA
-                        </span>
-
-
-                        <h2 data-flicker>
-                            TELEMETRY
-                        </h2>
-
-                    </div>
-
-
-                    <p data-flicker>
-                        Vehicle information moves from
-                        sensors to controllers, displays,
-                        logging systems, and engineering analysis.
-                    </p>
-
-                </header>
-
-
-                <table class="spec-table">
-
-                    <tbody>
-
-                        <tr>
-                            <th scope="row">
-                                Telemetry link
-                            </th>
-                            <td>—</td>
-                        </tr>
-
-                        <tr>
-                            <th scope="row">
-                                Update rate
-                            </th>
-                            <td>— Hz</td>
-                        </tr>
-
-                        <tr>
-                            <th scope="row">
-                                Logged channels
-                            </th>
-                            <td>—</td>
-                        </tr>
-
-                        <tr>
-                            <th scope="row">
-                                Driver readouts
-                            </th>
-                            <td>—</td>
-                        </tr>
-
-                        <tr>
-                            <th scope="row">
-                                Analysis tools
-                            </th>
-                            <td>—</td>
-                        </tr>
-
-                    </tbody>
-
-                </table>
-
-            </article>
-
+          </article>
 
         </div>
 
-    </div>
+        <p class="diagram-note">
+          Note: This is an illustrative system overview. Update the
+          flow to reflect the team's actual electrical architecture.
+        </p>
 
-</section>
+      </div>
+    </section>
 
+    <!-- Technical Systems -->
+    <section class="tech-systems section-spacing">
+      <div class="tech-container">
 
+        <div class="section-heading">
+          <span class="section-number">03 / TECHNICAL SYSTEMS</span>
+          <h2>DESIGNED AS<br>ONE SYSTEM.</h2>
+          <p>
+            Each subsystem plays a role in the vehicle's performance,
+            reliability, and efficiency.
+          </p>
+        </div>
 
-<!-- =====================================================
-     DOCUMENTS
-===================================================== -->
-
-<section
-    class="technical-documents chapter"
->
-
-    <div class="technical-section-line">
-
-        <span>
-            DOCUMENTS
-        </span>
-
-        <span>
-            ENGINEERING FILES
-        </span>
-
-    </div>
-
-
-    <div class="document-list">
-
-
-        <a
-            class="document-row"
-            href="#"
-        >
-
-            <div class="document-type">
-                PDF
-            </div>
-
-
+        <!-- Energy -->
+        <article class="system-panel">
+          <div class="system-header">
             <div>
-
-                <h3>
-                    Vehicle Spec Sheet
-                </h3>
-
-                <p>
-                    Summary of major vehicle specifications.
-                </p>
-
+              <span class="system-number">01</span>
+              <h3>ENERGY & POWER</h3>
             </div>
+            <span class="system-tag">ELECTRICAL</span>
+          </div>
 
+          <p class="system-description">
+            The energy system is responsible for generating,
+            managing, and storing the electricity needed to
+            operate the vehicle.
+          </p>
 
-            <span class="document-arrow">
-                ↗
-            </span>
+          <div class="spec-table-wrapper">
+            <table class="spec-table">
+              <thead>
+                <tr>
+                  <th scope="col">SPECIFICATION</th>
+                  <th scope="col">DETAILS</th>
+                </tr>
+              </thead>
+              <tbody>
+                <tr>
+                  <td>Solar Panel Type</td>
+                  <td>—</td>
+                </tr>
+                <tr>
+                  <td>Solar Panel Output</td>
+                  <td>—</td>
+                </tr>
+                <tr>
+                  <td>Battery Chemistry</td>
+                  <td>—</td>
+                </tr>
+                <tr>
+                  <td>Battery Capacity</td>
+                  <td>—</td>
+                </tr>
+                <tr>
+                  <td>Power Management</td>
+                  <td>—</td>
+                </tr>
+              </tbody>
+            </table>
+          </div>
+        </article>
 
-        </a>
-
-
-
-        <a
-            class="document-row"
-            href="#"
-        >
-
-            <div class="document-type">
-                PDF
-            </div>
-
-
+        <!-- Electronics -->
+        <article class="system-panel">
+          <div class="system-header">
             <div>
-
-                <h3>
-                    Wiring Diagram
-                </h3>
-
-                <p>
-                    Electrical architecture and vehicle wiring.
-                </p>
-
+              <span class="system-number">02</span>
+              <h3>ELECTRONICS & CONTROL</h3>
             </div>
+            <span class="system-tag">ELECTRONICS</span>
+          </div>
 
+          <p class="system-description">
+            Electronic systems coordinate vehicle operation,
+            manage electrical components, and support reliable
+            communication between subsystems.
+          </p>
 
-            <span class="document-arrow">
-                ↗
-            </span>
+          <div class="spec-table-wrapper">
+            <table class="spec-table">
+              <thead>
+                <tr>
+                  <th scope="col">SPECIFICATION</th>
+                  <th scope="col">DETAILS</th>
+                </tr>
+              </thead>
+              <tbody>
+                <tr>
+                  <td>Main Controller</td>
+                  <td>—</td>
+                </tr>
+                <tr>
+                  <td>Motor Controller</td>
+                  <td>—</td>
+                </tr>
+                <tr>
+                  <td>PCB Design</td>
+                  <td>—</td>
+                </tr>
+                <tr>
+                  <td>Electrical Protection</td>
+                  <td>—</td>
+                </tr>
+                <tr>
+                  <td>Wiring Architecture</td>
+                  <td>—</td>
+                </tr>
+              </tbody>
+            </table>
+          </div>
+        </article>
 
-        </a>
-
-
-
-        <a
-            class="document-row"
-            href="#"
-        >
-
-            <div class="document-type">
-                PDF
-            </div>
-
-
+        <!-- Mechanical -->
+        <article class="system-panel">
+          <div class="system-header">
             <div>
-
-                <h3>
-                    Design Report
-                </h3>
-
-                <p>
-                    Engineering documentation and test results.
-                </p>
-
+              <span class="system-number">03</span>
+              <h3>MECHANICAL SYSTEMS</h3>
             </div>
+            <span class="system-tag">MECHANICAL</span>
+          </div>
 
+          <p class="system-description">
+            Mechanical engineering focuses on the vehicle's
+            structure, drivetrain, steering, and overall
+            physical performance.
+          </p>
 
-            <span class="document-arrow">
-                ↗
-            </span>
+          <div class="spec-table-wrapper">
+            <table class="spec-table">
+              <thead>
+                <tr>
+                  <th scope="col">SPECIFICATION</th>
+                  <th scope="col">DETAILS</th>
+                </tr>
+              </thead>
+              <tbody>
+                <tr>
+                  <td>Chassis Design</td>
+                  <td>—</td>
+                </tr>
+                <tr>
+                  <td>Frame Material</td>
+                  <td>—</td>
+                </tr>
+                <tr>
+                  <td>Motor Type</td>
+                  <td>—</td>
+                </tr>
+                <tr>
+                  <td>Drivetrain</td>
+                  <td>—</td>
+                </tr>
+                <tr>
+                  <td>Steering System</td>
+                  <td>—</td>
+                </tr>
+                <tr>
+                  <td>Braking System</td>
+                  <td>—</td>
+                </tr>
+              </tbody>
+            </table>
+          </div>
+        </article>
 
-        </a>
+        <!-- Body -->
+        <article class="system-panel">
+          <div class="system-header">
+            <div>
+              <span class="system-number">04</span>
+              <h3>BODY & FABRICATION</h3>
+            </div>
+            <span class="system-tag">STRUCTURAL</span>
+          </div>
 
+          <p class="system-description">
+            The vehicle body is designed to balance structural
+            integrity, weight, and aerodynamic performance.
+          </p>
 
-    </div>
+          <div class="spec-table-wrapper">
+            <table class="spec-table">
+              <thead>
+                <tr>
+                  <th scope="col">SPECIFICATION</th>
+                  <th scope="col">DETAILS</th>
+                </tr>
+              </thead>
+              <tbody>
+                <tr>
+                  <td>Body Material</td>
+                  <td>—</td>
+                </tr>
+                <tr>
+                  <td>Composite Materials</td>
+                  <td>—</td>
+                </tr>
+                <tr>
+                  <td>Manufacturing Method</td>
+                  <td>—</td>
+                </tr>
+                <tr>
+                  <td>Aerodynamic Design</td>
+                  <td>—</td>
+                </tr>
+                <tr>
+                  <td>Structural Design</td>
+                  <td>—</td>
+                </tr>
+              </tbody>
+            </table>
+          </div>
+        </article>
 
-</section>
+        <!-- Telemetry -->
+        <article class="system-panel">
+          <div class="system-header">
+            <div>
+              <span class="system-number">05</span>
+              <h3>TELEMETRY & DATA</h3>
+            </div>
+            <span class="system-tag">DATA SYSTEMS</span>
+          </div>
 
+          <p class="system-description">
+            Data collection and telemetry help the team monitor
+            vehicle performance and evaluate system behavior
+            during testing.
+          </p>
 
+          <div class="spec-table-wrapper">
+            <table class="spec-table">
+              <thead>
+                <tr>
+                  <th scope="col">SPECIFICATION</th>
+                  <th scope="col">DETAILS</th>
+                </tr>
+              </thead>
+              <tbody>
+                <tr>
+                  <td>Data Collection System</td>
+                  <td>—</td>
+                </tr>
+                <tr>
+                  <td>Communication Method</td>
+                  <td>—</td>
+                </tr>
+                <tr>
+                  <td>Monitored Parameters</td>
+                  <td>—</td>
+                </tr>
+                <tr>
+                  <td>Data Logging</td>
+                  <td>—</td>
+                </tr>
+                <tr>
+                  <td>Monitoring Software</td>
+                  <td>—</td>
+                </tr>
+              </tbody>
+            </table>
+          </div>
+        </article>
 
-<!-- =====================================================
-     NEXT
-===================================================== -->
+      </div>
+    </section>
 
-<section
-    class="technical-next chapter"
->
+    <!-- Documentation -->
+    <section class="tech-documents section-spacing">
+      <div class="tech-container">
 
-    <div>
+        <div class="section-heading">
+          <span class="section-number">04 / DOCUMENTATION</span>
+          <h2>ENGINEERING<br>DOCUMENTATION.</h2>
+          <p>
+            Technical documents, diagrams, and supporting
+            engineering resources.
+          </p>
+        </div>
 
-        <span class="support-label">
-            NEXT
-        </span>
+        <div class="document-grid">
 
+          <article class="document-card">
+            <div class="document-icon">▤</div>
+            <div>
+              <h3>Electrical Schematics</h3>
+              <p>Electrical system diagrams and circuit documentation.</p>
+              <span class="document-status">COMING SOON</span>
+            </div>
+          </article>
 
-        <h2 data-flicker>
-            SEE IT<br>
-            ON THE ROAD.
-        </h2>
+          <article class="document-card">
+            <div class="document-icon">▧</div>
+            <div>
+              <h3>CAD & Design Files</h3>
+              <p>Vehicle models, component designs, and assemblies.</p>
+              <span class="document-status">COMING SOON</span>
+            </div>
+          </article>
 
-    </div>
+          <article class="document-card">
+            <div class="document-icon">▥</div>
+            <div>
+              <h3>Testing & Performance</h3>
+              <p>Testing results, performance data, and analysis.</p>
+              <span class="document-status">COMING SOON</span>
+            </div>
+          </article>
 
+          <article class="document-card">
+            <div class="document-icon">▦</div>
+            <div>
+              <h3>Engineering Reports</h3>
+              <p>Project reports and technical design documentation.</p>
+              <span class="document-status">COMING SOON</span>
+            </div>
+          </article>
 
-    <div class="technical-next-copy">
+        </div>
+      </div>
+    </section>
 
+    <!-- CTA -->
+    <section class="tech-cta section-spacing">
+      <div class="tech-container">
+        <span class="section-number">05 / EXPLORE MORE</span>
+        <h2>ENGINEERED<br>TO MOVE FORWARD.</h2>
         <p>
-            Explore each HelioTech vehicle
-            and how the design has developed
-            from one generation to the next.
+          Explore the vehicles that bring our engineering
+          and innovation together.
         </p>
-
-
-        <a
-            class="technical-next-link page-link"
-            href="our%20cars.html"
-        >
-            Our cars
-
-            <span>
-                ↗
-            </span>
+        <a href="our cars.html" class="tech-cta-button">
+          EXPLORE OUR CARS <span aria-hidden="true">→</span>
         </a>
+      </div>
+    </section>
 
+  </main>
+
+  <!-- Footer -->
+  <footer class="site-footer">
+    <div class="tech-container footer-content">
+      <div>
+        <a href="index.html" class="logo">
+          <span class="logo-mark">H</span>
+          <span>HELIOTECH</span>
+        </a>
+        <p>TCHS Solar Car Racing Team</p>
+      </div>
+
+      <p class="footer-copyright">
+        © 2026 TCHS HelioTech. All rights reserved.
+      </p>
     </div>
-
-</section>
-
-
-</main>
-
-
-
-<!-- =====================================================
-     FOOTER
-===================================================== -->
-
-<footer class="site-footer">
-
-
-    <div class="footer-brand-area">
-
-        <a
-            class="footer-logo-link"
-            href="index.html"
-            aria-label="HelioTech Home"
-        >
-
-            <img
-                class="footer-logo"
-                src="images/Heliotech-nobg.png"
-                alt="TCHS HelioTech"
-            >
-
-        </a>
-
-
-        <p>
-            Temple City High School<br>
-            Temple City, California
-        </p>
-
-    </div>
-
-
-    <div class="footer-links">
-
-        <a
-            class="page-link"
-            href="contact.html"
-        >
-            Contact
-            <span class="link-icon">↗</span>
-        </a>
-
-        <a
-            class="page-link"
-            href="media.html"
-        >
-            Media
-            <span class="link-icon">↗</span>
-        </a>
-
-        <a
-            class="page-link"
-            href="sponsors.html"
-        >
-            Sponsors
-            <span class="link-icon">↗</span>
-        </a>
-
-        <a href="#top">
-            Back to top
-            <span class="link-icon">↑</span>
-        </a>
-
-    </div>
-
-
-    <div class="footer-bottom">
-
-        <span>
-            © 2026 TCHS HELIOTECH
-        </span>
-
-        <span>
-            STUDENT BUILT / SOLAR POWERED
-        </span>
-
-    </div>
-
-
-</footer>
-
-
-
-<!-- =====================================================
-     PAGE TRANSITION
-===================================================== -->
-
-<div
-    id="page-transition"
-    class="page-transition"
-    aria-hidden="true"
->
-
-    <div class="transition-grid"></div>
-
-
-    <div class="transition-brand">
-
-        <img
-            class="transition-logo-image"
-            src="images/Heliotech-nobg.png"
-            alt=""
-        >
-
-    </div>
-
-
-    <div class="transition-line"></div>
-
-</div>
-
+  </footer>
 
 </body>
-
 </html>
