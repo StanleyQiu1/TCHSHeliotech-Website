@@ -12,7 +12,7 @@
     /* Strength of the dark layer over the photo.
        Higher  = fainter image, easier to read  (max 1)
        Lower   = stronger image                 (min 0)  */
-    --about-bg-dim: .70;
+    --about-bg-dim: .64;
 
     position: relative;
 
@@ -48,9 +48,9 @@
         center / cover
         no-repeat;
 
-    /* black and white so it matches the site.
-       Delete this line to keep the photo in color. */
-    filter: grayscale(1) contrast(1.05);
+    /* color photo. Raise the saturate number for richer color,
+       lower it (0 = black and white) for less. */
+    filter: saturate(1.1);
 
     /* fades the photo out at the top and bottom
        so it blends into the sections around it */
