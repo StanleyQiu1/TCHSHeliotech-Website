@@ -9,8 +9,11 @@
 
 /* ---------- hero ---------- */
 .page-media .page-hero{position:relative;display:flex;flex-direction:column;min-height:86vh;overflow:hidden;
-  padding:calc(var(--header) + 28px) var(--gutter) 64px;background:#000}
-.page-media .page-hero .hero-background-grid{position:absolute;inset:0;pointer-events:none;opacity:.5}
+  padding:calc(var(--header) + 28px) var(--gutter) 64px;
+  /* full-color background photo with a light dark tint so the text stays readable.
+     Change .35 to make the tint stronger (higher) or weaker (lower). */
+  background:linear-gradient(rgba(0,0,0,.35),rgba(0,0,0,.35)),url("images/media-bg.jpg") center/cover no-repeat #000}
+.page-media .page-hero .hero-background-grid{position:absolute;inset:0;pointer-events:none;opacity:.25}
 .page-media .page-hero .hero-topline{position:relative;z-index:2;display:grid;grid-template-columns:1fr 1fr auto;gap:20px;
   padding-bottom:14px;color:#42515d;border-bottom:1px solid var(--navy-line);
   font-family:"Space Mono",monospace;font-size:8px;letter-spacing:.08em}
