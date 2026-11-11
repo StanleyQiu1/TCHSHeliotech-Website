@@ -1,0 +1,84 @@
+/* =====================================================
+   about-bg.css
+
+   Puts a dimmed photo behind the "LIFELONG SKILLS."
+   section on index.html (#about).
+
+   Load AFTER styles.css and hero-car.css.
+   Image: images/learning.jpg
+===================================================== */
+
+#about {
+    /* Strength of the dark layer over the photo.
+       Higher  = fainter image, easier to read  (max 1)
+       Lower   = stronger image                 (min 0)  */
+    --about-bg-dim: .70;
+
+    position: relative;
+
+    /* keeps the photo behind the text and inside this section */
+    isolation: isolate;
+    overflow: hidden;
+}
+
+
+#about::before {
+    content: "";
+
+    position: absolute;
+    inset: 0;
+
+    z-index: -1;
+
+    pointer-events: none;
+
+    background:
+
+        /* dark layer, slightly heavier on the left
+           where the large heading sits */
+        linear-gradient(
+            90deg,
+            rgba(0, 0, 0, calc(var(--about-bg-dim) + .12)) 0%,
+            rgba(0, 0, 0, var(--about-bg-dim)) 55%,
+            rgba(0, 0, 0, calc(var(--about-bg-dim) + .05)) 100%
+        ),
+
+        /* the photo */
+        url("images/learning.jpg")
+        center / cover
+        no-repeat;
+
+    /* black and white so it matches the site.
+       Delete this line to keep the photo in color. */
+    filter: grayscale(1) contrast(1.05);
+
+    /* fades the photo out at the top and bottom
+       so it blends into the sections around it */
+    -webkit-mask-image:
+        linear-gradient(
+            to bottom,
+            transparent 0%,
+            #000 22%,
+            #000 78%,
+            transparent 100%
+        );
+
+    mask-image:
+        linear-gradient(
+            to bottom,
+            transparent 0%,
+            #000 22%,
+            #000 78%,
+            transparent 100%
+        );
+}
+
+
+/* a little more dimming on phones, where text covers more of the photo */
+@media (max-width: 650px) {
+
+    #about {
+        --about-bg-dim: .78;
+    }
+
+}
