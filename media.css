@@ -45,23 +45,19 @@
 .m-filter button[aria-pressed="true"]{color:#c2ccd3;border-color:#718795}
 .m-filter button:focus-visible{outline:2px solid #fff;outline-offset:3px}
 
-.m-gallery{display:grid;grid-template-columns:repeat(12,1fr);grid-auto-rows:190px;grid-auto-flow:dense;gap:14px;margin-top:40px}
-.m-tile{position:relative;margin:0;overflow:hidden;border:1px solid #10283a;background:#010305}
+/* masonry-style columns: each tile is exactly as tall as its photo (no crop, no bars) */
+.m-gallery{column-count:3;column-gap:14px;margin-top:40px}
+.m-tile{position:relative;display:block;break-inside:avoid;margin:0 0 14px;overflow:hidden;border:1px solid #10283a;background:#010305}
 .m-tile[hidden]{display:none}
-.m-lg{grid-column:span 6;grid-row:span 2}
-.m-md{grid-column:span 3;grid-row:span 2}
-.m-sm{grid-column:span 3;grid-row:span 1}
-.m-img{position:absolute;inset:0;display:grid;place-items:center;overflow:hidden;background:#02070b;
+.m-img{position:relative;display:block;overflow:hidden;background:#02070b;
   color:#2f4352;font-family:"Space Mono",monospace;font-size:8px;letter-spacing:.1em}
-.m-img img{position:absolute;inset:0;width:100%;height:100%;object-fit:cover}
-.m-tile figcaption{position:absolute;left:0;right:0;bottom:0;display:flex;justify-content:space-between;gap:16px;
+.m-img img{display:block;width:100%;height:auto}
+/* empty placeholder tiles keep a shape until a photo is added */
+.m-img:not(:has(img)){display:grid;place-items:center;aspect-ratio:4/3}
+.m-tile figcaption{position:relative;display:flex;justify-content:space-between;gap:16px;
   padding:12px 14px;background:#000;border-top:1px solid #10283a;color:#7f8d97;font-size:12px}
 .m-tag{color:#40596a;font-family:"Space Mono",monospace;font-size:8px;letter-spacing:.1em;text-transform:uppercase;white-space:nowrap;align-self:center}
 
-/* tile that shows its whole photo, uncropped */
-.m-tile.m-full{grid-row:span 3}
-.m-full .m-img{bottom:44px}              /* leaves room for the caption bar */
-.m-full .m-img img{object-fit:contain}   /* no cropping */
 
 /* ---------- video ---------- */
 .m-video{display:grid;grid-template-columns:1.6fr 1fr;gap:clamp(40px,6vw,90px);align-items:center;margin-top:56px}
@@ -95,15 +91,12 @@
 
 /* ---------- responsive ---------- */
 @media(max-width:1000px){
-  .m-gallery{grid-template-columns:repeat(6,1fr)}
-  .m-lg{grid-column:span 6}
-  .m-md,.m-sm{grid-column:span 3}
+  .m-gallery{column-count:2}
   .m-video{grid-template-columns:1fr;gap:34px}
 }
 @media(max-width:650px){
-  .m-gallery{grid-template-columns:repeat(2,1fr);grid-auto-rows:150px;gap:10px}
-  .m-lg{grid-column:span 2}
-  .m-md,.m-sm{grid-column:span 1}
+  .m-gallery{column-count:2;column-gap:10px}
+  .m-tile{margin-bottom:10px}
   .m-row{grid-template-columns:1fr 20px;gap:14px 15px}
   .m-row-meta{grid-column:1 / -1;grid-auto-flow:column;justify-content:start;gap:20px}
 }
