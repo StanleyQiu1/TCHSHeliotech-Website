@@ -158,13 +158,6 @@ h3 {
     object-fit: contain;
     object-position: left center;
 
-    /*
-        Converts all visible logo pixels
-        to pure white.
-
-        Transparency remains transparent.
-    */
-
     filter:
         brightness(0)
         invert(1);
@@ -268,117 +261,18 @@ a:hover .link-icon {
 
 
 /* =====================================================
-   TEXT FLICKER
+   TEXT FLICKER - ALL NEON
 ===================================================== */
 
 [data-flicker] {
     opacity: 0;
 }
 
-[data-flicker].flicker-visible {
-    animation:
-        flicker-in
-        .55s
-        linear
-        forwards;
-}
-
-@keyframes flicker-in {
-
-    0% {
-        opacity: 0;
-    }
-
-    12% {
-        opacity: .40;
-    }
-
-    21% {
-        opacity: .08;
-    }
-
-    35% {
-        opacity: .65;
-    }
-
-    45% {
-        opacity: .18;
-    }
-
-    58% {
-        opacity: .86;
-    }
-
-    67% {
-        opacity: .43;
-    }
-
-    79% {
-        opacity: .95;
-    }
-
-    100% {
-        opacity: 1;
-    }
-
-}
-
-
-/* =====================================================
-   EXTRA FLICKER VARIANTS
-
-   Use by setting a value on the attribute, for example:
-   data-flicker="neon"   data-flicker="glitch"
-   data-flicker="strobe" data-flicker="slow"
-
-   A plain data-flicker (no value) keeps the original
-   effect above. These must stay AFTER that block.
-===================================================== */
-
-/* hard strobe: quick on/off blinks, then solid */
-[data-flicker="strobe"].flicker-visible {
-    animation:
-        flicker-strobe
-        .7s
-        steps(1, end)
-        forwards;
-}
-
-@keyframes flicker-strobe {
-
-    0% {
-        opacity: 0;
-    }
-
-    10% {
-        opacity: 1;
-    }
-
-    20% {
-        opacity: 0;
-    }
-
-    35% {
-        opacity: 1;
-    }
-
-    45% {
-        opacity: 0;
-    }
-
-    60% {
-        opacity: 1;
-    }
-
-    100% {
-        opacity: 1;
-    }
-
-}
-
-
-/* neon: slow warm-up with a glow, then a faint hum */
-[data-flicker="neon"].flicker-visible {
+[data-flicker].flicker-visible,
+[data-flicker="neon"].flicker-visible,
+[data-flicker="glitch"].flicker-visible,
+[data-flicker="strobe"].flicker-visible,
+[data-flicker="slow"].flicker-visible {
     animation:
         flicker-neon-on
         1.1s
@@ -392,6 +286,11 @@ a:hover .link-icon {
         infinite;
 }
 
+
+/* =====================================================
+   NEON TURN ON
+===================================================== */
+
 @keyframes flicker-neon-on {
 
     0% {
@@ -401,7 +300,11 @@ a:hover .link-icon {
 
     8% {
         opacity: .9;
-        text-shadow: 0 0 18px #5c9fd0;
+
+        text-shadow:
+            0 0 4px rgba(92, 159, 208, .9),
+            0 0 10px rgba(92, 159, 208, .8),
+            0 0 18px rgba(92, 159, 208, .7);
     }
 
     14% {
@@ -409,137 +312,138 @@ a:hover .link-icon {
         text-shadow: none;
     }
 
-    30% {
-        opacity: .8;
-        text-shadow: 0 0 14px #5c9fd0;
+    22% {
+        opacity: .75;
+
+        text-shadow:
+            0 0 4px rgba(92, 159, 208, .8),
+            0 0 12px rgba(92, 159, 208, .65);
     }
 
-    38% {
+    29% {
         opacity: .2;
         text-shadow: none;
     }
 
-    60% {
+    38% {
         opacity: 1;
-        text-shadow: 0 0 20px #5c9fd0;
+
+        text-shadow:
+            0 0 5px rgba(92, 159, 208, 1),
+            0 0 12px rgba(92, 159, 208, .9),
+            0 0 22px rgba(92, 159, 208, .75);
+    }
+
+    46% {
+        opacity: .35;
+
+        text-shadow:
+            0 0 4px rgba(92, 159, 208, .4);
+    }
+
+    54% {
+        opacity: .9;
+
+        text-shadow:
+            0 0 5px rgba(92, 159, 208, .9),
+            0 0 14px rgba(92, 159, 208, .75);
+    }
+
+    60% {
+        opacity: .45;
+
+        text-shadow:
+            0 0 5px rgba(92, 159, 208, .45);
+    }
+
+    68% {
+        opacity: 1;
+
+        text-shadow:
+            0 0 5px rgba(92, 159, 208, 1),
+            0 0 14px rgba(92, 159, 208, .85),
+            0 0 24px rgba(92, 159, 208, .65);
+    }
+
+    77% {
+        opacity: .8;
+
+        text-shadow:
+            0 0 7px rgba(92, 159, 208, .6);
+    }
+
+    86% {
+        opacity: 1;
+
+        text-shadow:
+            0 0 6px rgba(92, 159, 208, .85),
+            0 0 16px rgba(92, 159, 208, .55);
     }
 
     100% {
         opacity: 1;
-        text-shadow: 0 0 12px rgba(92, 159, 208, .55);
-    }
 
+        text-shadow:
+            0 0 5px rgba(92, 159, 208, .7),
+            0 0 12px rgba(92, 159, 208, .45);
+    }
 }
+
+
+/* =====================================================
+   NEON IDLE HUM
+===================================================== */
 
 @keyframes flicker-neon-hum {
 
     0%,
+    46%,
+    54%,
     100% {
         opacity: 1;
+
+        text-shadow:
+            0 0 5px rgba(92, 159, 208, .7),
+            0 0 12px rgba(92, 159, 208, .45);
     }
 
     48% {
-        opacity: 1;
+        opacity: .92;
+
+        text-shadow:
+            0 0 4px rgba(92, 159, 208, .55),
+            0 0 9px rgba(92, 159, 208, .35);
+    }
+
+    49% {
+        opacity: .72;
+
+        text-shadow:
+            0 0 3px rgba(92, 159, 208, .35);
     }
 
     50% {
-        opacity: .82;
+        opacity: 1;
+
+        text-shadow:
+            0 0 6px rgba(92, 159, 208, .85),
+            0 0 16px rgba(92, 159, 208, .55);
+    }
+
+    51% {
+        opacity: .86;
+
+        text-shadow:
+            0 0 4px rgba(92, 159, 208, .45);
     }
 
     52% {
         opacity: 1;
+
+        text-shadow:
+            0 0 5px rgba(92, 159, 208, .7),
+            0 0 12px rgba(92, 159, 208, .45);
     }
-
-}
-
-
-/* glitch: jumps sideways with a color split, then settles */
-[data-flicker="glitch"].flicker-visible {
-    animation:
-        flicker-glitch
-        .8s
-        steps(1, end)
-        forwards;
-}
-
-@keyframes flicker-glitch {
-
-    0% {
-        opacity: 0;
-    }
-
-    10% {
-        opacity: 1;
-        transform: translateX(-6px);
-        text-shadow: 3px 0 #ff3b5c, -3px 0 #3bd0ff;
-    }
-
-    20% {
-        opacity: 1;
-        transform: translateX(5px);
-        text-shadow: -3px 0 #ff3b5c, 3px 0 #3bd0ff;
-    }
-
-    30% {
-        opacity: .3;
-        transform: none;
-        text-shadow: none;
-    }
-
-    45% {
-        opacity: 1;
-        transform: translateX(-3px);
-        text-shadow: 2px 0 #ff3b5c, -2px 0 #3bd0ff;
-    }
-
-    60% {
-        opacity: 1;
-        transform: none;
-        text-shadow: none;
-    }
-
-    100% {
-        opacity: 1;
-        transform: none;
-        text-shadow: none;
-    }
-
-}
-
-
-/* slow: gentle fade-up with a soft flicker near the end */
-[data-flicker="slow"].flicker-visible {
-    animation:
-        flicker-slow
-        1.6s
-        ease-out
-        forwards;
-}
-
-@keyframes flicker-slow {
-
-    0% {
-        opacity: 0;
-        transform: translateY(10px);
-    }
-
-    60% {
-        opacity: .85;
-        transform: translateY(0);
-    }
-
-    70% {
-        opacity: .55;
-    }
-
-    80% {
-        opacity: 1;
-    }
-
-    100% {
-        opacity: 1;
-    }
-
 }
 
 
@@ -578,12 +482,10 @@ a:hover .link-icon {
     pointer-events: none;
 
     background:
-
         linear-gradient(
             rgba(19, 57, 84, .12) 1px,
             transparent 1px
         ),
-
         linear-gradient(
             90deg,
             rgba(19, 57, 84, .09) 1px,
@@ -918,12 +820,6 @@ a:hover .link-icon {
 ===================================================== */
 
 .vehicle-story {
-
-    /*
-        Matches the latest JS full
-        multi-angle inspection tour.
-    */
-
     height: 1100vh;
 
     background: #121b24;
@@ -960,12 +856,10 @@ a:hover .link-icon {
     z-index: 1;
 
     background:
-
         linear-gradient(
             rgba(20, 61, 90, .11) 1px,
             transparent 1px
         ),
-
         linear-gradient(
             90deg,
             rgba(20, 61, 90, .11) 1px,
@@ -2079,12 +1973,10 @@ effect-composer {
     inset: -20%;
 
     background:
-
         linear-gradient(
             rgba(28, 69, 99, .13) 1px,
             transparent 1px
         ),
-
         linear-gradient(
             90deg,
             rgba(28, 69, 99, .13) 1px,
@@ -2143,10 +2035,6 @@ effect-composer {
 
     object-position: center;
 
-    /*
-        Pure white logo.
-    */
-
     filter:
         brightness(0)
         invert(1);
@@ -2159,9 +2047,6 @@ effect-composer {
 
 /* =====================================================
    TRANSITION LOGO TIMING
-
-   Slanted panel begins FIRST.
-   Logo appears slightly later.
 ===================================================== */
 
 .page-transition.is-entering
@@ -2188,14 +2073,6 @@ effect-composer {
         both;
 }
 
-
-/*
-    Coming into another page:
-    keep logo solid.
-
-    This prevents the second flicker.
-*/
-
 .page-transition.is-arriving
 .transition-brand {
     opacity: 1;
@@ -2205,7 +2082,6 @@ effect-composer {
 
 .page-transition.is-preparing
 .transition-brand,
-
 .page-transition.is-revealed
 .transition-brand {
     opacity: 0;
@@ -2239,7 +2115,6 @@ effect-composer {
     100% {
         opacity: 1;
     }
-
 }
 
 
@@ -2287,7 +2162,6 @@ effect-composer {
         transform:
             scaleX(1);
     }
-
 }
 
 
@@ -2402,7 +2276,6 @@ effect-composer {
             1fr
             1fr;
     }
-
 }
 
 
@@ -2420,8 +2293,6 @@ effect-composer {
             18px;
     }
 
-
-    /* HEADER LOGO */
 
     .brand-logo {
         height:
@@ -2503,12 +2374,6 @@ effect-composer {
             );
     }
 
-
-    /*
-        JS still sets 1100vh,
-        so the complete camera tour
-        remains available on mobile.
-    */
 
     .vehicle-story {
         height:
@@ -2634,8 +2499,6 @@ effect-composer {
     }
 
 
-    /* FOOTER LOGO */
-
     .footer-logo {
         height:
             58px;
@@ -2645,8 +2508,6 @@ effect-composer {
     }
 
 
-    /* TRANSITION LOGO */
-
     .transition-logo-image {
         height:
             100px;
@@ -2655,8 +2516,6 @@ effect-composer {
             76vw;
     }
 
-
-    /* MOBILE TRANSITION SLANT */
 
     .page-transition::before {
         transform:
@@ -2722,7 +2581,6 @@ effect-composer {
             translateX(0)
             skewX(-7deg);
     }
-
 }
 
 
@@ -2752,6 +2610,9 @@ effect-composer {
     [data-flicker] {
         opacity:
             1 !important;
+
+        text-shadow:
+            none !important;
     }
 
 
@@ -2759,5 +2620,4 @@ effect-composer {
         display:
             none;
     }
-
 }
