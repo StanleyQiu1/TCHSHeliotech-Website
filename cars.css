@@ -9,20 +9,21 @@
 /* ---------- hero ---------- */
 .page-cars .page-hero{position:relative;display:flex;flex-direction:column;min-height:86vh;overflow:hidden;
   padding:calc(var(--header) + 28px) var(--gutter) 64px;
-  /* full-color background photo, no overlay */
-  background:url("images/our-car-bg.jpg") center/cover no-repeat #dfe5ea}
+  /* dark fade over the photo: strongest at the bottom where the text sits.
+     Raise the .85 / .45 / .2 values for a darker overlay, lower them for a lighter one. */
+  background:linear-gradient(to top,rgba(10,16,22,.85) 0%,rgba(10,16,22,.45) 55%,rgba(10,16,22,.2) 100%),url("images/our-car-bg.jpg") center/cover no-repeat #121b24}
 .page-cars .page-hero .hero-background-grid{position:absolute;inset:0;pointer-events:none;opacity:.25}
 .page-cars .page-hero .hero-topline{position:relative;z-index:2;display:grid;grid-template-columns:1fr 1fr auto;gap:20px;
-  padding-bottom:14px;color:#0b1218;border-bottom:1px solid rgba(11,18,24,.35);
+  padding-bottom:14px;color:#d5dce1;border-bottom:1px solid rgba(255,255,255,.35);
   font-family:"Space Mono",monospace;font-size:8px;letter-spacing:.08em}
 .page-cars .page-hero-body{position:relative;z-index:2;flex:1;display:grid;
   grid-template-columns:minmax(0,1fr) minmax(260px,400px);grid-template-areas:"eyebrow eyebrow" "title lead";
   column-gap:6vw;row-gap:26px;align-content:end;align-items:end;padding-top:90px}
-.page-cars .page-hero .eyebrow{grid-area:eyebrow;margin:0;color:#0b1218;font-family:"Space Mono",monospace;font-size:10px;letter-spacing:.14em}
-.page-cars .page-hero h1{grid-area:title;margin:0;font-size:clamp(56px,9.5vw,156px);line-height:.92;letter-spacing:-.055em;color:#0b1218}
-.page-cars .page-hero h1 span{display:block;color:#2a3844}
+.page-cars .page-hero .eyebrow{grid-area:eyebrow;margin:0;color:#e3e8ec;font-family:"Space Mono",monospace;font-size:10px;letter-spacing:.14em}
+.page-cars .page-hero h1{grid-area:title;margin:0;font-size:clamp(56px,9.5vw,156px);line-height:.92;letter-spacing:-.055em;color:#ffffff}
+.page-cars .page-hero h1 span{display:block;color:#c3cad0}
 .page-cars .page-hero .page-lead{grid-area:lead;max-width:none;margin:0 0 .6vw;padding-left:22px;
-  border-left:1px solid rgba(11,18,24,.45);color:#0b1218;font-size:15px;line-height:1.7}
+  border-left:1px solid rgba(255,255,255,.5);color:#f0f3f5;font-size:15px;line-height:1.7}
 
 /* ---------- fleet cards ---------- */
 .page-cars .car-list{display:grid;gap:18px;margin-top:56px}
