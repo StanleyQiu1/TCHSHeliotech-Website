@@ -13,7 +13,7 @@
 
 
 .page-support {
-    background: #000000;
+    background: #121b24;
 }
 
 
@@ -48,7 +48,7 @@
 
     overflow: hidden;
 
-    background: #000000;
+    background: #121b24;
 
     border-bottom:
         1px solid
@@ -83,11 +83,11 @@
 
     padding-bottom: 15px;
 
-    color: #415360;
+    color: #677e8f;
 
     border-bottom:
         1px solid
-        #10283c;
+        #1e3e59;
 
     font-family:
         "Space Mono",
@@ -131,7 +131,7 @@
 .support-hero h1 {
     margin-top: 20px;
 
-    color: #bbc4ca;
+    color: #e4e7e9;
 
     font-size:
         clamp(
@@ -147,7 +147,7 @@
 
 
 .support-hero h1 span {
-    color: #66747e;
+    color: #9fa9af;
 }
 
 
@@ -159,7 +159,7 @@
 .support-hero-copy p {
     max-width: 470px;
 
-    color: #73808a;
+    color: #adb3b9;
 
     font-size:
         clamp(
@@ -191,15 +191,15 @@
         13px
         0;
 
-    color: #798791;
+    color: #b2b9be;
 
     border-top:
         1px solid
-        #29475d;
+        #456c89;
 
     border-bottom:
         1px solid
-        #29475d;
+        #456c89;
 
     font-size: 12px;
 
@@ -212,7 +212,7 @@
 .support-primary-link:hover {
     color: #ffffff;
 
-    border-color: #718795;
+    border-color: #aeb9c0;
 }
 
 
@@ -234,11 +234,11 @@
 
     padding-bottom: 14px;
 
-    color: #405667;
+    color: #658298;
 
     border-bottom:
         1px solid
-        #133249;
+        #244d6b;
 
     font-family:
         "Space Mono",
@@ -262,11 +262,11 @@
         var(--gutter)
         120px;
 
-    background: #000000;
+    background: #121b24;
 
     border-bottom:
         1px solid
-        #0a1b28;
+        #163044;
 }
 
 
@@ -283,11 +283,11 @@
 
     border-top:
         1px solid
-        #163044;
+        #284a64;
 
     border-left:
         1px solid
-        #163044;
+        #284a64;
 }
 
 
@@ -298,11 +298,11 @@
 
     border-right:
         1px solid
-        #163044;
+        #284a64;
 
     border-bottom:
         1px solid
-        #163044;
+        #284a64;
 
     background: transparent;
 }
@@ -311,7 +311,7 @@
 .impact-label {
     display: block;
 
-    color: #40596a;
+    color: #66869b;
 
     font-family:
         "Space Mono",
@@ -328,7 +328,7 @@
 .impact-item h2 {
     margin-top: 75px;
 
-    color: #8c99a2;
+    color: #c3c9cd;
 
     font-size:
         clamp(
@@ -348,7 +348,7 @@
 
     margin-top: 15px;
 
-    color: #566671;
+    color: #8896a0;
 
     font-size: 13px;
 
@@ -366,11 +366,11 @@
         var(--gutter)
         125px;
 
-    background: #000000;
+    background: #121b24;
 
     border-bottom:
         1px solid
-        #0a1b28;
+        #163044;
 }
 
 
@@ -401,7 +401,7 @@
 
     margin-bottom: 18px;
 
-    color: #40596a;
+    color: #66869b;
 
     font-family:
         "Space Mono",
@@ -416,7 +416,7 @@
 
 
 .support-level-heading h2 {
-    color: #aab4bc;
+    color: #dee1e4;
 
     font-size:
         clamp(
@@ -434,7 +434,7 @@
 .support-level-heading > p {
     max-width: 460px;
 
-    color: #61707a;
+    color: #98a3aa;
 
     font-size: 14px;
 
@@ -451,7 +451,7 @@
 .level-list {
     border-top:
         1px solid
-        #173248;
+        #294d6a;
 }
 
 
@@ -478,7 +478,7 @@
 
     border-bottom:
         1px solid
-        #173248;
+        #294d6a;
 
     transition:
         background .18s;
@@ -486,14 +486,14 @@
 
 
 .level-row:hover {
-    background: #020609;
+    background: #131e27;
 }
 
 
 .level-name span {
     display: block;
 
-    color: #496174;
+    color: #7790a3;
 
     font-family:
         "Space Mono",
@@ -512,7 +512,7 @@
 
     margin-top: 14px;
 
-    color: #89969f;
+    color: #c1c6cb;
 
     font-size:
         clamp(
@@ -533,7 +533,7 @@
 
 
 .level-details > p {
-    color: #78858f;
+    color: #b1b8bd;
 
     font-size: 15px;
 
@@ -562,11 +562,11 @@
         8px
         18px;
 
-    color: #53636e;
+    color: #83929d;
 
     border-top:
         1px solid
-        #102536;
+        #1e3b52;
 
     font-size: 12px;
 }
@@ -579,7 +579,7 @@
 
     left: 0;
 
-    color: #334e61;
+    color: #547790;
 }
 
 
@@ -596,15 +596,15 @@
         11px
         0;
 
-    color: #697984;
+    color: #a4adb4;
 
     border-top:
         1px solid
-        #29485e;
+        #456e8a;
 
     border-bottom:
         1px solid
-        #29485e;
+        #456e8a;
 
     font-size: 11px;
 
@@ -617,12 +617,12 @@
 .level-link:hover {
     color: #ffffff;
 
-    border-color: #718795;
+    border-color: #aeb9c0;
 }
 
 
 .level-row-title {
-    background: #010407;
+    background: #131d26;
 }
 
 
@@ -636,11 +636,11 @@
         var(--gutter)
         125px;
 
-    background: #000000;
+    background: #121b24;
 
     border-bottom:
         1px solid
-        #0a1b28;
+        #163044;
 }
 
 
@@ -665,7 +665,7 @@
 
 
 .support-in-kind h2 {
-    color: #a8b2ba;
+    color: #dcdfe2;
 
     font-size:
         clamp(
@@ -686,7 +686,7 @@
 
 
 .support-in-kind-lead {
-    color: #85919a;
+    color: #bdc2c7;
 
     font-size:
         clamp(
@@ -708,7 +708,7 @@
 
     border-top:
         1px solid
-        #173248;
+        #294d6a;
 }
 
 
@@ -717,11 +717,11 @@
         13px
         0;
 
-    color: #667681;
+    color: #a0abb2;
 
     border-bottom:
         1px solid
-        #173248;
+        #294d6a;
 
     font-size: 12px;
 }
@@ -730,7 +730,7 @@
 .support-in-kind-copy > p:last-child {
     max-width: 500px;
 
-    color: #566671;
+    color: #8896a0;
 
     font-size: 13px;
 
@@ -762,7 +762,7 @@
         120px
         var(--gutter);
 
-    background: #000000;
+    background: #121b24;
 
     border-bottom:
         1px solid
@@ -773,7 +773,7 @@
 .support-contact h2 {
     margin-top: 20px;
 
-    color: #aab4bc;
+    color: #dee1e4;
 
     font-size:
         clamp(
@@ -791,7 +791,7 @@
 .support-contact-copy p {
     max-width: 450px;
 
-    color: #61707a;
+    color: #98a3aa;
 
     font-size: 14px;
 
@@ -814,15 +814,15 @@
         14px
         0;
 
-    color: #798791;
+    color: #b2b9be;
 
     border-top:
         1px solid
-        #29485e;
+        #456e8a;
 
     border-bottom:
         1px solid
-        #29485e;
+        #456e8a;
 
     font-size: 12px;
 
@@ -835,7 +835,7 @@
 .support-contact-link:hover {
     color: #ffffff;
 
-    border-color: #718795;
+    border-color: #aeb9c0;
 }
 
 
