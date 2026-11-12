@@ -3,7 +3,7 @@
 ===================================================== */
 
 .page-about {
-    background: #000000;
+    background: #121b24;
 }
 
 
@@ -27,7 +27,7 @@
 
     overflow: hidden;
 
-    background: #000000;
+    background: #121b24;
 
     border-bottom:
         1px solid
@@ -59,11 +59,11 @@
 
     padding-bottom: 16px;
 
-    color: #415360;
+    color: #677e8f;
 
     border-bottom:
         1px solid
-        #10283c;
+        #1e3e59;
 
     font-family:
         "Space Mono",
@@ -108,7 +108,7 @@
 .about-hero h1 {
     margin-top: 22px;
 
-    color: #c1c8ce;
+    color: #e7e9eb;
 
     font-size:
         clamp(
@@ -124,7 +124,7 @@
 
 
 .about-hero h1 span {
-    color: #65737e;
+    color: #9ea8af;
 }
 
 
@@ -136,7 +136,7 @@
 .about-hero-lead {
     max-width: 480px;
 
-    color: #7a8791;
+    color: #b3babe;
 
     font-size:
         clamp(
@@ -158,11 +158,11 @@
         110px
         var(--gutter);
 
-    background: #000000;
+    background: #121b24;
 
     border-bottom:
         1px solid
-        #091a27;
+        #152f44;
 }
 
 
@@ -173,11 +173,11 @@
 
     padding-bottom: 15px;
 
-    color: #415666;
+    color: #678296;
 
     border-bottom:
         1px solid
-        #133249;
+        #244d6b;
 
     font-family:
         "Space Mono",
@@ -215,7 +215,7 @@
 
     margin-bottom: 20px;
 
-    color: #40596a;
+    color: #66869b;
 
     font-family:
         "Space Mono",
@@ -229,7 +229,7 @@
 
 
 .about-split h2 {
-    color: #aab4bc;
+    color: #dee1e4;
 
     font-size:
         clamp(
@@ -248,7 +248,7 @@
 .about-copy p {
     margin-bottom: 27px;
 
-    color: #61707a;
+    color: #98a3aa;
 
     font-size: 14px;
 
@@ -257,7 +257,7 @@
 
 
 .about-copy .about-lead {
-    color: #8a969f;
+    color: #c1c7cb;
 
     font-size:
         clamp(
@@ -286,7 +286,7 @@
 .about-highlight h2 {
     max-width: 1100px;
 
-    color: #aab5bd;
+    color: #dee1e4;
 
     font-size:
         clamp(
@@ -304,7 +304,7 @@
 
     margin-left: auto;
 
-    color: #65747f;
+    color: #9fa9b0;
 
     font-size: 15px;
 
@@ -347,7 +347,7 @@
         1px solid
         var(--navy-line);
 
-    background: #010305;
+    background: #121d25;
 
     transition:
         background .2s;
@@ -355,12 +355,12 @@
 
 
 .about-discipline-card:hover {
-    background: #04101a;
+    background: #17232e;
 }
 
 
 .about-discipline-card > span {
-    color: #41596a;
+    color: #68869b;
 
     font-family:
         "Space Mono",
@@ -376,7 +376,7 @@
 .about-discipline-card h3 {
     margin-top: 75px;
 
-    color: #8f9ba4;
+    color: #c6cbcf;
 
     font-size:
         clamp(
@@ -392,7 +392,7 @@
 
     margin-top: 18px;
 
-    color: #52616b;
+    color: #81909a;
 
     font-size: 13px;
 
@@ -440,7 +440,7 @@
 .about-results-grid strong {
     display: block;
 
-    color: #71818c;
+    color: #acb4ba;
 
     font-size: 44px;
 
@@ -455,7 +455,7 @@
 
     margin-top: 12px;
 
-    color: #405868;
+    color: #668499;
 
     font-family:
         "Space Mono",
@@ -470,7 +470,7 @@
 .about-results-grid p {
     margin-top: 72px;
 
-    color: #566671;
+    color: #8896a0;
 
     font-size: 13px;
 
@@ -502,7 +502,7 @@
         120px
         var(--gutter);
 
-    background: #000000;
+    background: #121b24;
 
     border-bottom:
         1px solid
@@ -513,7 +513,7 @@
 .about-next h2 {
     margin-top: 20px;
 
-    color: #a7b1b9;
+    color: #dbdfe1;
 
     font-size:
         clamp(
@@ -527,7 +527,7 @@
 .about-next-copy p {
     max-width: 430px;
 
-    color: #63717b;
+    color: #9ba5ac;
 
     font-size: 14px;
 
