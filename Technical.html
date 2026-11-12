@@ -1,354 +1,1351 @@
 <!DOCTYPE html>
 <html lang="en">
+
 <head>
-<meta charset="UTF-8">
-<meta name="viewport" content="width=device-width, initial-scale=1.0">
-<meta name="description" content="Technical overview of the TCHS HelioTech solar car: energy, electronics, mechanical systems, body, and telemetry.">
-<meta name="theme-color" content="#000000">
-<title>Technical — TCHS HelioTech</title>
 
-<!-- FAVICON -->
-<link rel="icon" type="image/png" sizes="512x512" href="images/favicon.png?v=4">
-<link rel="shortcut icon" href="images/favicon.ico?v=4">
-<link rel="apple-touch-icon" href="images/favicon.png?v=4">
+    <meta charset="UTF-8">
 
-<!-- FONTS -->
-<link rel="preconnect" href="https://fonts.googleapis.com">
-<link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
-<link href="https://fonts.googleapis.com/css2?family=Inter:wght@400;500;600;700;800&family=Space+Mono:wght@400;700&display=swap" rel="stylesheet">
+    <meta
+        name="viewport"
+        content="width=device-width, initial-scale=1.0"
+    >
 
-<!-- CSS -->
-<link rel="stylesheet" href="styles.css">
-<link rel="stylesheet" href="pages.css">
-<link rel="stylesheet" href="Technical.css">
+    <meta
+        name="description"
+        content="Technical overview of the TCHS HelioTech solar car: energy, electronics, mechanical systems, body, and telemetry."
+    >
 
-<script src="script.js" defer></script>
+    <meta
+        name="theme-color"
+        content="#000000"
+    >
+
+    <title>
+        Technical — TCHS HelioTech
+    </title>
+
+
+    <!-- =================================================
+         FAVICON
+    ================================================== -->
+
+    <link
+        rel="icon"
+        type="image/png"
+        sizes="512x512"
+        href="images/favicon.png?v=4"
+    >
+
+    <link
+        rel="shortcut icon"
+        href="images/favicon.ico?v=4"
+    >
+
+    <link
+        rel="apple-touch-icon"
+        href="images/favicon.png?v=4"
+    >
+
+
+    <!-- =================================================
+         FONTS
+    ================================================== -->
+
+    <link
+        rel="preconnect"
+        href="https://fonts.googleapis.com"
+    >
+
+    <link
+        rel="preconnect"
+        href="https://fonts.gstatic.com"
+        crossorigin
+    >
+
+    <link
+        href="https://fonts.googleapis.com/css2?family=Inter:wght@400;500;600;700;800&family=Space+Mono:wght@400;700&display=swap"
+        rel="stylesheet"
+    >
+
+
+    <!-- =================================================
+         CSS
+    ================================================== -->
+
+    <link
+        rel="stylesheet"
+        href="styles.css"
+    >
+
+    <link
+        rel="stylesheet"
+        href="pages.css"
+    >
+
+    <link
+        rel="stylesheet"
+        href="Technical.css"
+    >
+
+
+    <!-- =================================================
+         JAVASCRIPT
+    ================================================== -->
+
+    <script
+        src="script.js"
+        defer
+    ></script>
+
 </head>
+
 
 <body class="inner-page page-technical">
 
-<a class="skip-link" href="#main">Skip to content</a>
 
-<!-- HEADER -->
+<!-- =====================================================
+     SKIP LINK
+===================================================== -->
+
+<a
+    class="skip-link"
+    href="#main"
+>
+    Skip to content
+</a>
+
+
+<!-- =====================================================
+     HEADER
+===================================================== -->
+
 <header class="site-header">
-  <a class="brand" href="index.html" aria-label="HelioTech Home">
-    <img class="brand-logo" src="images/Heliotech-nobg.png" alt="TCHS HelioTech">
-  </a>
-  <nav id="navigation" aria-label="Main navigation">
-    <a href="about.html">About</a>
-    <a href="our%20cars.html">Our Cars</a>
-    <a href="Technical.html" aria-current="page">Technical</a>
-    <a href="The%20team.html">Team</a>
-    <a href="media.html">Media</a>
-    <a href="sponsors.html">Sponsors</a>
-    <a href="contact.html">Contact</a>
-    <a class="nav-support" href="Support%20us.html">Support <span class="link-icon">↗</span></a>
-  </nav>
-  <button class="menu-toggle" type="button" aria-controls="navigation" aria-expanded="false">Menu +</button>
-  <div class="scroll-progress" aria-hidden="true"></div>
+
+    <a
+        class="brand"
+        href="index.html"
+        aria-label="HelioTech Home"
+    >
+
+        <img
+            class="brand-logo"
+            src="images/Heliotech-nobg.png"
+            alt="TCHS HelioTech"
+        >
+
+    </a>
+
+
+    <nav
+        id="navigation"
+        aria-label="Main navigation"
+    >
+
+        <a href="about.html">
+            About
+        </a>
+
+        <a href="our%20cars.html">
+            Our Cars
+        </a>
+
+        <a
+            href="Technical.html"
+            aria-current="page"
+        >
+            Technical
+        </a>
+
+        <a href="The%20team.html">
+            Team
+        </a>
+
+        <a href="media.html">
+            Media
+        </a>
+
+        <a href="sponsors.html">
+            Sponsors
+        </a>
+
+        <a href="contact.html">
+            Contact
+        </a>
+
+        <a
+            class="nav-support"
+            href="Support%20us.html"
+        >
+            Support
+
+            <span class="link-icon">
+                ↗
+            </span>
+        </a>
+
+    </nav>
+
+
+    <button
+        class="menu-toggle"
+        type="button"
+        aria-controls="navigation"
+        aria-expanded="false"
+    >
+        Menu +
+    </button>
+
+
+    <div
+        class="scroll-progress"
+        aria-hidden="true"
+    ></div>
+
 </header>
+
+
+<!-- =====================================================
+     MAIN
+===================================================== -->
 
 <main id="main">
 
-<!-- HERO -->
-<section id="top" class="technical-hero chapter">
-  <div class="hero-background-grid"></div>
 
-  <div class="technical-hero-topline">
-    <span>TEMPLE CITY HIGH SCHOOL</span>
-    <span>HELIOTECH</span>
-    <span>TECHNICAL</span>
-  </div>
+<!-- =====================================================
+     HERO
+===================================================== -->
 
-  <div class="technical-hero-content">
+<section
+    id="top"
+    class="technical-hero chapter"
+>
+
+    <div class="hero-background-grid"></div>
+
+
+    <div class="technical-hero-topline">
+
+        <span>
+            TEMPLE CITY HIGH SCHOOL
+        </span>
+
+        <span>
+            HELIOTECH
+        </span>
+
+        <span>
+            TECHNICAL
+        </span>
+
+    </div>
+
+
+    <div class="technical-hero-content">
+
+        <div>
+
+            <p
+                class="eyebrow"
+                data-flicker
+            >
+                ENGINEERING OVERVIEW
+            </p>
+
+
+            <h1
+                data-flicker
+            >
+                BUILT ON<br>
+                <span>ENGINEERING.</span>
+            </h1>
+
+        </div>
+
+
+        <div class="technical-hero-copy">
+
+            <p
+                data-flicker
+            >
+                A solar car is one system: power in, motion
+                out, and data to prove it works. This page
+                covers how each part of the HelioTech car is
+                designed and how the parts fit together.
+            </p>
+
+        </div>
+
+    </div>
+
+</section>
+
+
+<!-- =====================================================
+     SUMMARY
+===================================================== -->
+
+<section
+    id="summary"
+    class="technical-summary chapter"
+>
+
+    <div class="technical-section-line">
+
+        <span>
+            VEHICLE SUMMARY
+        </span>
+
+        <span>
+            CURRENT CAR
+        </span>
+
+    </div>
+
+
+    <dl
+        class="summary-grid"
+        data-flicker
+    >
+
+        <div>
+            <dt>
+                DIVISION
+            </dt>
+
+            <dd>
+                Cruiser
+            </dd>
+        </div>
+
+
+        <div>
+            <dt>
+                SOLAR ARRAY
+            </dt>
+
+            <dd>
+                — <span>W</span>
+            </dd>
+        </div>
+
+
+        <div>
+            <dt>
+                BATTERY
+            </dt>
+
+            <dd>
+                — <span>kWh</span>
+            </dd>
+        </div>
+
+
+        <div>
+            <dt>
+                MOTOR
+            </dt>
+
+            <dd>
+                — <span>kW</span>
+            </dd>
+        </div>
+
+
+        <div>
+            <dt>
+                VEHICLE MASS
+            </dt>
+
+            <dd>
+                — <span>kg</span>
+            </dd>
+        </div>
+
+
+        <div>
+            <dt>
+                TOP SPEED
+            </dt>
+
+            <dd>
+                — <span>MPH</span>
+            </dd>
+        </div>
+
+    </dl>
+
+</section>
+
+
+<!-- =====================================================
+     ARCHITECTURE
+===================================================== -->
+
+<section
+    id="architecture"
+    class="technical-architecture chapter"
+>
+
+    <div class="technical-section-line">
+
+        <span>
+            ENERGY ARCHITECTURE
+        </span>
+
+        <span>
+            POWER PATH
+        </span>
+
+    </div>
+
+
+    <div class="architecture-heading">
+
+        <div>
+
+            <span class="technical-kicker">
+                FROM SUNLIGHT TO MOTION
+            </span>
+
+
+            <h2
+                data-flicker
+            >
+                ONE PATH<br>
+                FOR POWER.
+            </h2>
+
+        </div>
+
+
+        <p>
+            Energy travels one way through the car:
+            collected by the array, conditioned, stored,
+            and delivered to the wheels. Each stage is
+            designed to waste as little as possible.
+        </p>
+
+    </div>
+
+
+    <ol
+        class="power-path"
+        data-flicker
+    >
+
+        <li>
+
+            <span class="power-path-index">
+                STAGE 1
+            </span>
+
+            <strong>
+                Solar array
+            </strong>
+
+            <p>
+                Converts sunlight into electrical power.
+            </p>
+
+        </li>
+
+
+        <li>
+
+            <span class="power-path-index">
+                STAGE 2
+            </span>
+
+            <strong>
+                Power conditioning
+            </strong>
+
+            <p>
+                Matches array output to the battery voltage.
+            </p>
+
+        </li>
+
+
+        <li>
+
+            <span class="power-path-index">
+                STAGE 3
+            </span>
+
+            <strong>
+                Battery pack
+            </strong>
+
+            <p>
+                Stores energy and is monitored for safety.
+            </p>
+
+        </li>
+
+
+        <li>
+
+            <span class="power-path-index">
+                STAGE 4
+            </span>
+
+            <strong>
+                Motor controller
+            </strong>
+
+            <p>
+                Turns driver input into motor commands.
+            </p>
+
+        </li>
+
+
+        <li>
+
+            <span class="power-path-index">
+                STAGE 5
+            </span>
+
+            <strong>
+                Electric motor
+            </strong>
+
+            <p>
+                Converts electrical power into motion.
+            </p>
+
+        </li>
+
+    </ol>
+
+</section>
+
+
+<!-- =====================================================
+     SYSTEM SPECIFICATIONS
+===================================================== -->
+
+<section
+    id="systems"
+    class="technical-systems chapter"
+>
+
+    <div class="technical-section-line">
+
+        <span>
+            SYSTEM SPECIFICATIONS
+        </span>
+
+        <span>
+            5 SUBSYSTEMS
+        </span>
+
+    </div>
+
+
+    <div class="technical-systems-layout">
+
+
+        <aside
+            class="technical-index"
+            aria-label="Subsystem index"
+        >
+
+            <span class="technical-index-label">
+                JUMP TO
+            </span>
+
+
+            <nav aria-label="Subsystems">
+
+                <a href="#energy">
+                    <span>01</span>
+                    Energy and power
+                </a>
+
+                <a href="#electronics">
+                    <span>02</span>
+                    Electronics and control
+                </a>
+
+                <a href="#mechanical">
+                    <span>03</span>
+                    Mechanical systems
+                </a>
+
+                <a href="#body">
+                    <span>04</span>
+                    Body and fabrication
+                </a>
+
+                <a href="#telemetry">
+                    <span>05</span>
+                    Telemetry and data
+                </a>
+
+            </nav>
+
+        </aside>
+
+
+        <div class="technical-groups">
+
+
+            <!-- =================================================
+                 ENERGY
+            ================================================== -->
+
+            <article
+                id="energy"
+                class="technical-group"
+            >
+
+                <div class="technical-group-heading">
+
+                    <div>
+
+                        <span class="technical-group-number">
+                            SUBSYSTEM 01
+                        </span>
+
+                        <h2
+                            data-flicker
+                        >
+                            ENERGY<br>
+                            AND POWER.
+                        </h2>
+
+                    </div>
+
+
+                    <p>
+                        Generates, manages, and stores
+                        the electricity the car runs on.
+                    </p>
+
+                </div>
+
+
+                <table class="spec-table">
+
+                    <tbody>
+
+                        <tr>
+                            <th scope="row">
+                                Solar cell type
+                            </th>
+                            <td>—</td>
+                        </tr>
+
+                        <tr>
+                            <th scope="row">
+                                Array output
+                            </th>
+                            <td>—</td>
+                        </tr>
+
+                        <tr>
+                            <th scope="row">
+                                Battery chemistry
+                            </th>
+                            <td>—</td>
+                        </tr>
+
+                        <tr>
+                            <th scope="row">
+                                Battery capacity
+                            </th>
+                            <td>—</td>
+                        </tr>
+
+                        <tr>
+                            <th scope="row">
+                                Power management
+                            </th>
+                            <td>—</td>
+                        </tr>
+
+                    </tbody>
+
+                </table>
+
+            </article>
+
+
+            <!-- =================================================
+                 ELECTRONICS
+            ================================================== -->
+
+            <article
+                id="electronics"
+                class="technical-group"
+            >
+
+                <div class="technical-group-heading">
+
+                    <div>
+
+                        <span class="technical-group-number">
+                            SUBSYSTEM 02
+                        </span>
+
+                        <h2
+                            data-flicker
+                        >
+                            ELECTRONICS<br>
+                            AND CONTROL.
+                        </h2>
+
+                    </div>
+
+
+                    <p>
+                        Coordinates the car's electrical
+                        systems and keeps them communicating
+                        reliably.
+                    </p>
+
+                </div>
+
+
+                <table class="spec-table">
+
+                    <tbody>
+
+                        <tr>
+                            <th scope="row">
+                                Main controller
+                            </th>
+                            <td>—</td>
+                        </tr>
+
+                        <tr>
+                            <th scope="row">
+                                Motor controller
+                            </th>
+                            <td>—</td>
+                        </tr>
+
+                        <tr>
+                            <th scope="row">
+                                Custom PCBs
+                            </th>
+                            <td>—</td>
+                        </tr>
+
+                        <tr>
+                            <th scope="row">
+                                Electrical protection
+                            </th>
+                            <td>—</td>
+                        </tr>
+
+                        <tr>
+                            <th scope="row">
+                                Wiring architecture
+                            </th>
+                            <td>—</td>
+                        </tr>
+
+                    </tbody>
+
+                </table>
+
+            </article>
+
+
+            <!-- =================================================
+                 MECHANICAL
+            ================================================== -->
+
+            <article
+                id="mechanical"
+                class="technical-group"
+            >
+
+                <div class="technical-group-heading">
+
+                    <div>
+
+                        <span class="technical-group-number">
+                            SUBSYSTEM 03
+                        </span>
+
+                        <h2
+                            data-flicker
+                        >
+                            MECHANICAL<br>
+                            SYSTEMS.
+                        </h2>
+
+                    </div>
+
+
+                    <p>
+                        The frame, drivetrain, steering,
+                        suspension, and brakes that carry
+                        the driver.
+                    </p>
+
+                </div>
+
+
+                <table class="spec-table">
+
+                    <tbody>
+
+                        <tr>
+                            <th scope="row">
+                                Chassis design
+                            </th>
+                            <td>—</td>
+                        </tr>
+
+                        <tr>
+                            <th scope="row">
+                                Frame material
+                            </th>
+                            <td>—</td>
+                        </tr>
+
+                        <tr>
+                            <th scope="row">
+                                Motor type
+                            </th>
+                            <td>—</td>
+                        </tr>
+
+                        <tr>
+                            <th scope="row">
+                                Drivetrain
+                            </th>
+                            <td>—</td>
+                        </tr>
+
+                        <tr>
+                            <th scope="row">
+                                Steering
+                            </th>
+                            <td>—</td>
+                        </tr>
+
+                        <tr>
+                            <th scope="row">
+                                Suspension
+                            </th>
+                            <td>—</td>
+                        </tr>
+
+                        <tr>
+                            <th scope="row">
+                                Braking
+                            </th>
+                            <td>—</td>
+                        </tr>
+
+                    </tbody>
+
+                </table>
+
+            </article>
+
+
+            <!-- =================================================
+                 BODY
+            ================================================== -->
+
+            <article
+                id="body"
+                class="technical-group"
+            >
+
+                <div class="technical-group-heading">
+
+                    <div>
+
+                        <span class="technical-group-number">
+                            SUBSYSTEM 04
+                        </span>
+
+                        <h2
+                            data-flicker
+                        >
+                            BODY AND<br>
+                            FABRICATION.
+                        </h2>
+
+                    </div>
+
+
+                    <p>
+                        Balances strength, weight, and airflow
+                        in the shell around the car.
+                    </p>
+
+                </div>
+
+
+                <table class="spec-table">
+
+                    <tbody>
+
+                        <tr>
+                            <th scope="row">
+                                Body material
+                            </th>
+                            <td>—</td>
+                        </tr>
+
+                        <tr>
+                            <th scope="row">
+                                Composite layup
+                            </th>
+                            <td>—</td>
+                        </tr>
+
+                        <tr>
+                            <th scope="row">
+                                Manufacturing method
+                            </th>
+                            <td>—</td>
+                        </tr>
+
+                        <tr>
+                            <th scope="row">
+                                Aerodynamic design
+                            </th>
+                            <td>—</td>
+                        </tr>
+
+                        <tr>
+                            <th scope="row">
+                                Drag coefficient
+                            </th>
+                            <td>—</td>
+                        </tr>
+
+                    </tbody>
+
+                </table>
+
+            </article>
+
+
+            <!-- =================================================
+                 TELEMETRY
+            ================================================== -->
+
+            <article
+                id="telemetry"
+                class="technical-group"
+            >
+
+                <div class="technical-group-heading">
+
+                    <div>
+
+                        <span class="technical-group-number">
+                            SUBSYSTEM 05
+                        </span>
+
+                        <h2
+                            data-flicker
+                        >
+                            TELEMETRY<br>
+                            AND DATA.
+                        </h2>
+
+                    </div>
+
+
+                    <p>
+                        Lets the team monitor the car and
+                        learn from every test and race.
+                    </p>
+
+                </div>
+
+
+                <table class="spec-table">
+
+                    <tbody>
+
+                        <tr>
+                            <th scope="row">
+                                Data collection
+                            </th>
+                            <td>—</td>
+                        </tr>
+
+                        <tr>
+                            <th scope="row">
+                                Communication method
+                            </th>
+                            <td>—</td>
+                        </tr>
+
+                        <tr>
+                            <th scope="row">
+                                Monitored parameters
+                            </th>
+                            <td>—</td>
+                        </tr>
+
+                        <tr>
+                            <th scope="row">
+                                Data logging
+                            </th>
+                            <td>—</td>
+                        </tr>
+
+                        <tr>
+                            <th scope="row">
+                                Monitoring software
+                            </th>
+                            <td>—</td>
+                        </tr>
+
+                    </tbody>
+
+                </table>
+
+            </article>
+
+
+        </div>
+
+    </div>
+
+</section>
+
+
+<!-- =====================================================
+     DOCUMENTATION
+===================================================== -->
+
+<section
+    id="documents"
+    class="technical-documents chapter"
+>
+
+    <div class="technical-section-line">
+
+        <span>
+            DOCUMENTATION
+        </span>
+
+        <span>
+            ENGINEERING RESOURCES
+        </span>
+
+    </div>
+
+
+    <div
+        class="document-list"
+        data-flicker
+    >
+
+
+        <a
+            class="document-row"
+            href="#"
+        >
+
+            <span class="document-type">
+                PDF
+            </span>
+
+
+            <div>
+
+                <h3>
+                    Electrical schematics
+                </h3>
+
+                <p>
+                    Circuit diagrams for the power
+                    and control systems.
+                </p>
+
+            </div>
+
+
+            <span
+                class="document-arrow"
+                aria-hidden="true"
+            >
+                ↓
+            </span>
+
+        </a>
+
+
+        <a
+            class="document-row"
+            href="#"
+        >
+
+            <span class="document-type">
+                CAD
+            </span>
+
+
+            <div>
+
+                <h3>
+                    Design files
+                </h3>
+
+                <p>
+                    Vehicle models, component drawings,
+                    and assemblies.
+                </p>
+
+            </div>
+
+
+            <span
+                class="document-arrow"
+                aria-hidden="true"
+            >
+                ↓
+            </span>
+
+        </a>
+
+
+        <a
+            class="document-row"
+            href="#"
+        >
+
+            <span class="document-type">
+                PDF
+            </span>
+
+
+            <div>
+
+                <h3>
+                    Testing and performance
+                </h3>
+
+                <p>
+                    Test results, performance data,
+                    and analysis.
+                </p>
+
+            </div>
+
+
+            <span
+                class="document-arrow"
+                aria-hidden="true"
+            >
+                ↓
+            </span>
+
+        </a>
+
+
+        <a
+            class="document-row"
+            href="#"
+        >
+
+            <span class="document-type">
+                PDF
+            </span>
+
+
+            <div>
+
+                <h3>
+                    Engineering report
+                </h3>
+
+                <p>
+                    Design decisions and technical
+                    documentation for the car.
+                </p>
+
+            </div>
+
+
+            <span
+                class="document-arrow"
+                aria-hidden="true"
+            >
+                ↓
+            </span>
+
+        </a>
+
+
+    </div>
+
+</section>
+
+
+<!-- =====================================================
+     NEXT
+===================================================== -->
+
+<section
+    id="next"
+    class="technical-next chapter"
+>
+
     <div>
-      <p class="eyebrow" data-flicker>ENGINEERING OVERVIEW</p>
-      <h1 data-flicker>BUILT ON<br><span>ENGINEERING.</span></h1>
-    </div>
 
-    <div class="technical-hero-copy">
-      <p data-flicker>
-        A solar car is one system: power in, motion out, and data to
-        prove it works. This page covers how each part of the
-        HelioTech car is designed and how the parts fit together.
-      </p>
-    </div>
-  </div>
-</section>
+        <span class="support-label">
+            NEXT
+        </span>
 
-<!-- SUMMARY -->
-<section id="summary" class="technical-summary chapter">
-  <div class="technical-section-line">
-    <span>VEHICLE SUMMARY</span>
-    <span>CURRENT CAR</span>
-  </div>
 
-  <dl class="summary-grid" data-flicker>
-    <div><dt>DIVISION</dt><dd>Cruiser</dd></div>
-    <div><dt>SOLAR ARRAY</dt><dd>— <span>W</span></dd></div>
-    <div><dt>BATTERY</dt><dd>— <span>kWh</span></dd></div>
-    <div><dt>MOTOR</dt><dd>— <span>kW</span></dd></div>
-    <div><dt>VEHICLE MASS</dt><dd>— <span>kg</span></dd></div>
-    <div><dt>TOP SPEED</dt><dd>— <span>MPH</span></dd></div>
-  </dl>
-</section>
-
-<!-- ARCHITECTURE -->
-<section id="architecture" class="technical-architecture chapter">
-  <div class="technical-section-line">
-    <span>ENERGY ARCHITECTURE</span>
-    <span>POWER PATH</span>
-  </div>
-
-  <div class="architecture-heading">
-    <div>
-      <span class="technical-kicker">FROM SUNLIGHT TO MOTION</span>
-      <h2 data-flicker>ONE PATH<br>FOR POWER.</h2>
-    </div>
-    <p>
-      Energy travels one way through the car: collected by the array,
-      conditioned, stored, and delivered to the wheels. Each stage is
-      designed to waste as little as possible.
-    </p>
-  </div>
-
-  <ol class="power-path" data-flicker>
-    <li>
-      <span class="power-path-index">STAGE 1</span>
-      <strong>Solar array</strong>
-      <p>Converts sunlight into electrical power.</p>
-    </li>
-    <li>
-      <span class="power-path-index">STAGE 2</span>
-      <strong>Power conditioning</strong>
-      <p>Matches array output to the battery voltage.</p>
-    </li>
-    <li>
-      <span class="power-path-index">STAGE 3</span>
-      <strong>Battery pack</strong>
-      <p>Stores energy and is monitored for safety.</p>
-    </li>
-    <li>
-      <span class="power-path-index">STAGE 4</span>
-      <strong>Motor controller</strong>
-      <p>Turns driver input into motor commands.</p>
-    </li>
-    <li>
-      <span class="power-path-index">STAGE 5</span>
-      <strong>Electric motor</strong>
-      <p>Converts electrical power into motion.</p>
-    </li>
-  </ol>
-</section>
-
-<!-- SYSTEM SPECIFICATIONS -->
-<section id="systems" class="technical-systems chapter">
-  <div class="technical-section-line">
-    <span>SYSTEM SPECIFICATIONS</span>
-    <span>5 SUBSYSTEMS</span>
-  </div>
-
-  <div class="technical-systems-layout">
-
-    <aside class="technical-index" aria-label="Subsystem index">
-      <span class="technical-index-label">JUMP TO</span>
-      <nav aria-label="Subsystems">
-        <a href="#energy"><span>01</span>Energy and power</a>
-        <a href="#electronics"><span>02</span>Electronics and control</a>
-        <a href="#mechanical"><span>03</span>Mechanical systems</a>
-        <a href="#body"><span>04</span>Body and fabrication</a>
-        <a href="#telemetry"><span>05</span>Telemetry and data</a>
-      </nav>
-    </aside>
-
-    <div class="technical-groups">
-
-      <article id="energy" class="technical-group">
-        <div class="technical-group-heading">
-          <div>
-            <span class="technical-group-number">SUBSYSTEM 01</span>
-            <h2 data-flicker>ENERGY<br>AND POWER.</h2>
-          </div>
-          <p>Generates, manages, and stores the electricity the car runs on.</p>
-        </div>
-        <table class="spec-table">
-          <tbody>
-            <tr><th scope="row">Solar cell type</th><td>—</td></tr>
-            <tr><th scope="row">Array output</th><td>—</td></tr>
-            <tr><th scope="row">Battery chemistry</th><td>—</td></tr>
-            <tr><th scope="row">Battery capacity</th><td>—</td></tr>
-            <tr><th scope="row">Power management</th><td>—</td></tr>
-          </tbody>
-        </table>
-      </article>
-
-      <article id="electronics" class="technical-group">
-        <div class="technical-group-heading">
-          <div>
-            <span class="technical-group-number">SUBSYSTEM 02</span>
-            <h2 data-flicker>ELECTRONICS<br>AND CONTROL.</h2>
-          </div>
-          <p>Coordinates the car's electrical systems and keeps them communicating reliably.</p>
-        </div>
-        <table class="spec-table">
-          <tbody>
-            <tr><th scope="row">Main controller</th><td>—</td></tr>
-            <tr><th scope="row">Motor controller</th><td>—</td></tr>
-            <tr><th scope="row">Custom PCBs</th><td>—</td></tr>
-            <tr><th scope="row">Electrical protection</th><td>—</td></tr>
-            <tr><th scope="row">Wiring architecture</th><td>—</td></tr>
-          </tbody>
-        </table>
-      </article>
-
-      <article id="mechanical" class="technical-group">
-        <div class="technical-group-heading">
-          <div>
-            <span class="technical-group-number">SUBSYSTEM 03</span>
-            <h2 data-flicker>MECHANICAL<br>SYSTEMS.</h2>
-          </div>
-          <p>The frame, drivetrain, steering, suspension, and brakes that carry the driver.</p>
-        </div>
-        <table class="spec-table">
-          <tbody>
-            <tr><th scope="row">Chassis design</th><td>—</td></tr>
-            <tr><th scope="row">Frame material</th><td>—</td></tr>
-            <tr><th scope="row">Motor type</th><td>—</td></tr>
-            <tr><th scope="row">Drivetrain</th><td>—</td></tr>
-            <tr><th scope="row">Steering</th><td>—</td></tr>
-            <tr><th scope="row">Suspension</th><td>—</td></tr>
-            <tr><th scope="row">Braking</th><td>—</td></tr>
-          </tbody>
-        </table>
-      </article>
-
-      <article id="body" class="technical-group">
-        <div class="technical-group-heading">
-          <div>
-            <span class="technical-group-number">SUBSYSTEM 04</span>
-            <h2 data-flicker>BODY AND<br>FABRICATION.</h2>
-          </div>
-          <p>Balances strength, weight, and airflow in the shell around the car.</p>
-        </div>
-        <table class="spec-table">
-          <tbody>
-            <tr><th scope="row">Body material</th><td>—</td></tr>
-            <tr><th scope="row">Composite layup</th><td>—</td></tr>
-            <tr><th scope="row">Manufacturing method</th><td>—</td></tr>
-            <tr><th scope="row">Aerodynamic design</th><td>—</td></tr>
-            <tr><th scope="row">Drag coefficient</th><td>—</td></tr>
-          </tbody>
-        </table>
-      </article>
-
-      <article id="telemetry" class="technical-group">
-        <div class="technical-group-heading">
-          <div>
-            <span class="technical-group-number">SUBSYSTEM 05</span>
-            <h2 data-flicker>TELEMETRY<br>AND DATA.</h2>
-          </div>
-          <p>Lets the team monitor the car and learn from every test and race.</p>
-        </div>
-        <table class="spec-table">
-          <tbody>
-            <tr><th scope="row">Data collection</th><td>—</td></tr>
-            <tr><th scope="row">Communication method</th><td>—</td></tr>
-            <tr><th scope="row">Monitored parameters</th><td>—</td></tr>
-            <tr><th scope="row">Data logging</th><td>—</td></tr>
-            <tr><th scope="row">Monitoring software</th><td>—</td></tr>
-          </tbody>
-        </table>
-      </article>
+        <h2
+            data-flicker
+        >
+            SEE THE<br>
+            CARS.
+        </h2>
 
     </div>
-  </div>
+
+
+    <div class="technical-next-copy">
+
+        <p>
+            See the vehicles these systems come together
+            in, with 3D models and specs for each car.
+        </p>
+
+
+        <a
+            class="technical-next-link page-link"
+            href="our%20cars.html"
+        >
+            Our cars
+
+            <span aria-hidden="true">
+                ↗
+            </span>
+        </a>
+
+    </div>
+
 </section>
 
-<!-- DOCUMENTATION -->
-<section id="documents" class="technical-documents chapter">
-  <div class="technical-section-line">
-    <span>DOCUMENTATION</span>
-    <span>ENGINEERING RESOURCES</span>
-  </div>
-
-  <div class="document-list" data-flicker>
-    <a class="document-row" href="#">
-      <span class="document-type">PDF</span>
-      <div>
-        <h3>Electrical schematics</h3>
-        <p>Circuit diagrams for the power and control systems.</p>
-      </div>
-      <span class="document-arrow" aria-hidden="true">↓</span>
-    </a>
-    <a class="document-row" href="#">
-      <span class="document-type">CAD</span>
-      <div>
-        <h3>Design files</h3>
-        <p>Vehicle models, component drawings, and assemblies.</p>
-      </div>
-      <span class="document-arrow" aria-hidden="true">↓</span>
-    </a>
-    <a class="document-row" href="#">
-      <span class="document-type">PDF</span>
-      <div>
-        <h3>Testing and performance</h3>
-        <p>Test results, performance data, and analysis.</p>
-      </div>
-      <span class="document-arrow" aria-hidden="true">↓</span>
-    </a>
-    <a class="document-row" href="#">
-      <span class="document-type">PDF</span>
-      <div>
-        <h3>Engineering report</h3>
-        <p>Design decisions and technical documentation for the car.</p>
-      </div>
-      <span class="document-arrow" aria-hidden="true">↓</span>
-    </a>
-  </div>
-</section>
-
-<!-- NEXT -->
-<section id="next" class="technical-next chapter">
-  <div>
-    <span class="support-label">NEXT</span>
-    <h2 data-flicker>SEE THE<br>CARS.</h2>
-  </div>
-
-  <div class="technical-next-copy">
-    <p>See the vehicles these systems come together in, with 3D models and specs for each car.</p>
-    <a class="technical-next-link page-link" href="our%20cars.html">
-      Our cars <span aria-hidden="true">↗</span>
-    </a>
-  </div>
-</section>
 
 </main>
 
-<!-- FOOTER -->
+
+<!-- =====================================================
+     FOOTER
+===================================================== -->
+
 <footer class="site-footer">
-  <div>
-    <a class="footer-brand" href="index.html">HELIOTECH</a>
-    <p>Temple City High School<br>Temple City, California</p>
-  </div>
-  <div class="footer-links">
-    <a class="page-link" href="contact.html">Contact <span class="link-icon">↗</span></a>
-    <a class="page-link" href="media.html">Media <span class="link-icon">↗</span></a>
-    <a class="page-link" href="sponsors.html">Sponsors <span class="link-icon">↗</span></a>
-    <a href="#top">Back to top <span class="link-icon">↑</span></a>
-  </div>
-  <div class="footer-bottom">
-    <span>© 2026 TCHS HELIOTECH</span>
-    <span>STUDENT BUILT / SOLAR POWERED</span>
-  </div>
+
+    <div>
+
+        <a
+            class="footer-brand"
+            href="index.html"
+        >
+            HELIOTECH
+        </a>
+
+        <p>
+            Temple City High School<br>
+            Temple City, California
+        </p>
+
+    </div>
+
+
+    <div class="footer-links">
+
+        <a
+            class="page-link"
+            href="contact.html"
+        >
+            Contact
+            <span class="link-icon">↗</span>
+        </a>
+
+
+        <a
+            class="page-link"
+            href="media.html"
+        >
+            Media
+            <span class="link-icon">↗</span>
+        </a>
+
+
+        <a
+            class="page-link"
+            href="sponsors.html"
+        >
+            Sponsors
+            <span class="link-icon">↗</span>
+        </a>
+
+
+        <a href="#top">
+            Back to top
+            <span class="link-icon">↑</span>
+        </a>
+
+    </div>
+
+
+    <div class="footer-bottom">
+
+        <span>
+            © 2026 TCHS HELIOTECH
+        </span>
+
+        <span>
+            STUDENT BUILT / SOLAR POWERED
+        </span>
+
+    </div>
+
 </footer>
 
-<div id="page-transition" class="page-transition" aria-hidden="true">
-  <div class="transition-grid"></div>
-  <div class="transition-brand">
-    <img class="transition-logo-image" src="images/Heliotech-nobg.png" alt="">
-  </div>
-  <div class="transition-line"></div>
+
+<!-- =====================================================
+     PAGE TRANSITION
+===================================================== -->
+
+<div
+    id="page-transition"
+    class="page-transition"
+    aria-hidden="true"
+>
+
+    <div class="transition-grid"></div>
+
+
+    <div class="transition-brand">
+
+        <img
+            class="transition-logo-image"
+            src="images/Heliotech-nobg.png"
+            alt=""
+        >
+
+    </div>
+
+
+    <div class="transition-line"></div>
+
 </div>
 
+
 </body>
+
 </html>
