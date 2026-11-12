@@ -2,7 +2,7 @@
    HOMEPAGE HERO CAR PHOTO
 
    File:
-   Cruizer_Dark_Small.jpg
+   new-hero-car.jpg
 
    The image is loaded ONLY from index.html.
    CSS handles positioning, cropping, and fading.
@@ -83,7 +83,7 @@
 
     pointer-events: none;
 
-    opacity: .92;
+    opacity: 1;
 
     background: transparent;
 }
@@ -128,9 +128,9 @@
     */
 
     filter:
-        brightness(.78)
-        contrast(1.08)
-        saturate(.88);
+        brightness(1.05)
+        contrast(1.03)
+        saturate(1);
 }
 
 
@@ -161,36 +161,22 @@
                 0,
                 0,
                 0,
-                .92
-            ) 10%,
+                .6
+            ) 8%,
 
             rgba(
                 0,
                 0,
                 0,
-                .72
-            ) 20%,
-
-            rgba(
-                0,
-                0,
-                0,
-                .44
-            ) 32%,
-
-            rgba(
-                0,
-                0,
-                0,
-                .18
-            ) 44%,
+                .28
+            ) 18%,
 
             rgba(
                 0,
                 0,
                 0,
                 0
-            ) 58%
+            ) 34%
         ),
 
 
@@ -211,28 +197,14 @@
                 0,
                 0,
                 0
-            ) 47%,
+            ) 62%,
 
             rgba(
                 0,
                 0,
                 0,
-                .08
-            ) 60%,
-
-            rgba(
-                0,
-                0,
-                0,
-                .28
-            ) 74%,
-
-            rgba(
-                0,
-                0,
-                0,
-                .65
-            ) 89%,
+                .35
+            ) 84%,
 
             #000000 100%
         );
@@ -308,7 +280,7 @@
 
 
         opacity:
-            .82;
+            1;
 
     }
 
