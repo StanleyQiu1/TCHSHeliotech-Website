@@ -1,6 +1,5 @@
 /* =====================================================
    TECHNICAL PAGE
-   Engineering / documentation layout
 ===================================================== */
 
 
@@ -54,7 +53,7 @@
 
 /* =====================================================
    HERO SCHEMATIC BACKGROUND
-   FILLS THE ENTIRE EMPTY TOP AREA
+   COLOR + MORE ZOOMED IN
 ===================================================== */
 
 .technical-hero::after {
@@ -74,39 +73,44 @@
     max-width: 1300px;
 
     background-image:
-        url("images/welding.jpg");
+        url("images/HeliotechV3.0 RevB SCH.jpg");
 
     background-repeat: no-repeat;
-    background-position: center top;
-    background-size: cover;
 
-    opacity: .34;
+    background-position:
+        center top;
+
+    background-size:
+        145% auto;
+
+    opacity: .56;
 
     filter:
-        grayscale(1)
         brightness(1.08)
-        contrast(1.15);
+        contrast(1.12)
+        saturate(1.08);
 
     -webkit-mask-image:
         linear-gradient(
             to right,
             transparent 0%,
-            rgba(0, 0, 0, .18) 10%,
-            rgba(0, 0, 0, .65) 22%,
-            rgba(0, 0, 0, .95) 36%,
-            #000 52%,
-            #000 72%,
-            rgba(0, 0, 0, .92) 82%,
-            rgba(0, 0, 0, .45) 92%,
+            rgba(0, 0, 0, .18) 7%,
+            rgba(0, 0, 0, .72) 17%,
+            rgba(0, 0, 0, .96) 28%,
+            #000 42%,
+            #000 80%,
+            rgba(0, 0, 0, .88) 89%,
+            rgba(0, 0, 0, .42) 96%,
             transparent 100%
         ),
         linear-gradient(
             to bottom,
             transparent 0%,
-            rgba(0, 0, 0, .65) 12%,
-            #000 24%,
-            #000 74%,
-            rgba(0, 0, 0, .65) 88%,
+            rgba(0, 0, 0, .52) 8%,
+            rgba(0, 0, 0, .92) 17%,
+            #000 28%,
+            #000 76%,
+            rgba(0, 0, 0, .72) 89%,
             transparent 100%
         );
 
@@ -114,34 +118,38 @@
         linear-gradient(
             to right,
             transparent 0%,
-            rgba(0, 0, 0, .18) 10%,
-            rgba(0, 0, 0, .65) 22%,
-            rgba(0, 0, 0, .95) 36%,
-            #000 52%,
-            #000 72%,
-            rgba(0, 0, 0, .92) 82%,
-            rgba(0, 0, 0, .45) 92%,
+            rgba(0, 0, 0, .18) 7%,
+            rgba(0, 0, 0, .72) 17%,
+            rgba(0, 0, 0, .96) 28%,
+            #000 42%,
+            #000 80%,
+            rgba(0, 0, 0, .88) 89%,
+            rgba(0, 0, 0, .42) 96%,
             transparent 100%
         ),
         linear-gradient(
             to bottom,
             transparent 0%,
-            rgba(0, 0, 0, .65) 12%,
-            #000 24%,
-            #000 74%,
-            rgba(0, 0, 0, .65) 88%,
+            rgba(0, 0, 0, .52) 8%,
+            rgba(0, 0, 0, .92) 17%,
+            #000 28%,
+            #000 76%,
+            rgba(0, 0, 0, .72) 89%,
             transparent 100%
         );
 
-    -webkit-mask-composite: source-in;
-    mask-composite: intersect;
+    -webkit-mask-composite:
+        source-in;
+
+    mask-composite:
+        intersect;
 
     pointer-events: none;
 }
 
 
 /* =====================================================
-   EXTRA BLEND LAYERS
+   HERO SCHEMATIC BLEND
 ===================================================== */
 
 .technical-hero::before {
@@ -159,23 +167,21 @@
         linear-gradient(
             to right,
             #121b24 0%,
-            #121b24 39%,
-            rgba(18, 27, 36, .82) 47%,
-            rgba(18, 27, 36, .30) 58%,
-            rgba(18, 27, 36, .10) 68%,
-            rgba(18, 27, 36, .08) 76%,
-            rgba(18, 27, 36, .22) 86%,
-            rgba(18, 27, 36, .65) 94%,
+            #121b24 33%,
+            rgba(18, 27, 36, .58) 43%,
+            rgba(18, 27, 36, .12) 57%,
+            rgba(18, 27, 36, .03) 72%,
+            rgba(18, 27, 36, .10) 84%,
+            rgba(18, 27, 36, .44) 93%,
             #121b24 100%
         ),
         linear-gradient(
             to bottom,
-            rgba(18, 27, 36, .10) 0%,
-            rgba(18, 27, 36, .02) 16%,
-            rgba(18, 27, 36, 0) 32%,
-            rgba(18, 27, 36, 0) 60%,
-            rgba(18, 27, 36, .14) 78%,
-            rgba(18, 27, 36, .55) 92%,
+            rgba(18, 27, 36, .02) 0%,
+            rgba(18, 27, 36, 0) 18%,
+            rgba(18, 27, 36, 0) 58%,
+            rgba(18, 27, 36, .10) 78%,
+            rgba(18, 27, 36, .38) 91%,
             #121b24 100%
         );
 }
@@ -229,7 +235,6 @@
         monospace;
 
     font-size: 8px;
-
     font-weight: 700;
 
     letter-spacing: .1em;
@@ -1224,14 +1229,17 @@
 
     .technical-hero::after {
         top: 76px;
-        right: -6vw;
+        right: -4vw;
 
         width: 74vw;
         height: 48vh;
 
         min-width: 720px;
 
-        opacity: .30;
+        background-size:
+            150% auto;
+
+        opacity: .48;
     }
 
 
@@ -1270,14 +1278,17 @@
 
     .technical-hero::after {
         top: 78px;
-        right: -12vw;
+        right: -10vw;
 
         width: 96vw;
         height: 40vh;
 
         min-width: 0;
 
-        opacity: .24;
+        background-size:
+            155% auto;
+
+        opacity: .40;
     }
 
 
@@ -1286,16 +1297,16 @@
             linear-gradient(
                 to right,
                 #121b24 0%,
-                rgba(18, 27, 36, .55) 26%,
-                rgba(18, 27, 36, .16) 50%,
-                rgba(18, 27, 36, .08) 76%,
+                rgba(18, 27, 36, .42) 22%,
+                rgba(18, 27, 36, .10) 48%,
+                rgba(18, 27, 36, .04) 72%,
                 #121b24 100%
             ),
             linear-gradient(
                 to bottom,
                 rgba(18, 27, 36, .02) 0%,
-                rgba(18, 27, 36, .04) 32%,
-                rgba(18, 27, 36, .28) 64%,
+                rgba(18, 27, 36, .04) 30%,
+                rgba(18, 27, 36, .20) 62%,
                 #121b24 100%
             );
     }
@@ -1393,12 +1404,15 @@
 
     .technical-hero::after {
         top: 82px;
-        right: -18vw;
+        right: -16vw;
 
         width: 120vw;
         height: 30vh;
 
-        opacity: .19;
+        background-size:
+            165% auto;
+
+        opacity: .32;
     }
 
 
@@ -1406,9 +1420,9 @@
         background:
             linear-gradient(
                 to bottom,
-                rgba(18, 27, 36, .06) 0%,
-                rgba(18, 27, 36, .10) 38%,
-                rgba(18, 27, 36, .40) 72%,
+                rgba(18, 27, 36, .04) 0%,
+                rgba(18, 27, 36, .08) 32%,
+                rgba(18, 27, 36, .24) 66%,
                 #121b24 100%
             );
     }
@@ -1599,7 +1613,8 @@
 @media(max-width: 420px) {
 
     .summary-grid {
-        grid-template-columns: 1fr;
+        grid-template-columns:
+            1fr;
     }
 
 }
