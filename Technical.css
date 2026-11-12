@@ -52,8 +52,7 @@
 
 
 /* =====================================================
-   HERO SCHEMATIC BACKGROUND
-   COLOR + MORE ZOOMED IN
+   HERO SCHEMATIC
 ===================================================== */
 
 .technical-hero::after {
@@ -75,7 +74,8 @@
     background-image:
         url("images/HeliotechV3.0 RevB SCH.jpg");
 
-    background-repeat: no-repeat;
+    background-repeat:
+        no-repeat;
 
     background-position:
         center top;
@@ -94,23 +94,23 @@
         linear-gradient(
             to right,
             transparent 0%,
-            rgba(0, 0, 0, .18) 7%,
-            rgba(0, 0, 0, .72) 17%,
-            rgba(0, 0, 0, .96) 28%,
+            rgba(0,0,0,.18) 7%,
+            rgba(0,0,0,.72) 17%,
+            rgba(0,0,0,.96) 28%,
             #000 42%,
             #000 80%,
-            rgba(0, 0, 0, .88) 89%,
-            rgba(0, 0, 0, .42) 96%,
+            rgba(0,0,0,.88) 89%,
+            rgba(0,0,0,.42) 96%,
             transparent 100%
         ),
         linear-gradient(
             to bottom,
             transparent 0%,
-            rgba(0, 0, 0, .52) 8%,
-            rgba(0, 0, 0, .92) 17%,
+            rgba(0,0,0,.52) 8%,
+            rgba(0,0,0,.92) 17%,
             #000 28%,
             #000 76%,
-            rgba(0, 0, 0, .72) 89%,
+            rgba(0,0,0,.72) 89%,
             transparent 100%
         );
 
@@ -118,23 +118,23 @@
         linear-gradient(
             to right,
             transparent 0%,
-            rgba(0, 0, 0, .18) 7%,
-            rgba(0, 0, 0, .72) 17%,
-            rgba(0, 0, 0, .96) 28%,
+            rgba(0,0,0,.18) 7%,
+            rgba(0,0,0,.72) 17%,
+            rgba(0,0,0,.96) 28%,
             #000 42%,
             #000 80%,
-            rgba(0, 0, 0, .88) 89%,
-            rgba(0, 0, 0, .42) 96%,
+            rgba(0,0,0,.88) 89%,
+            rgba(0,0,0,.42) 96%,
             transparent 100%
         ),
         linear-gradient(
             to bottom,
             transparent 0%,
-            rgba(0, 0, 0, .52) 8%,
-            rgba(0, 0, 0, .92) 17%,
+            rgba(0,0,0,.52) 8%,
+            rgba(0,0,0,.92) 17%,
             #000 28%,
             #000 76%,
-            rgba(0, 0, 0, .72) 89%,
+            rgba(0,0,0,.72) 89%,
             transparent 100%
         );
 
@@ -168,27 +168,27 @@
             to right,
             #121b24 0%,
             #121b24 33%,
-            rgba(18, 27, 36, .58) 43%,
-            rgba(18, 27, 36, .12) 57%,
-            rgba(18, 27, 36, .03) 72%,
-            rgba(18, 27, 36, .10) 84%,
-            rgba(18, 27, 36, .44) 93%,
+            rgba(18,27,36,.58) 43%,
+            rgba(18,27,36,.12) 57%,
+            rgba(18,27,36,.03) 72%,
+            rgba(18,27,36,.10) 84%,
+            rgba(18,27,36,.44) 93%,
             #121b24 100%
         ),
         linear-gradient(
             to bottom,
-            rgba(18, 27, 36, .02) 0%,
-            rgba(18, 27, 36, 0) 18%,
-            rgba(18, 27, 36, 0) 58%,
-            rgba(18, 27, 36, .10) 78%,
-            rgba(18, 27, 36, .38) 91%,
+            rgba(18,27,36,.02) 0%,
+            rgba(18,27,36,0) 18%,
+            rgba(18,27,36,0) 58%,
+            rgba(18,27,36,.10) 78%,
+            rgba(18,27,36,.38) 91%,
             #121b24 100%
         );
 }
 
 
 /* =====================================================
-   HERO BACKGROUND GRID
+   HERO GRID
 ===================================================== */
 
 .technical-hero .hero-background-grid {
@@ -205,7 +205,7 @@
 
 
 /* =====================================================
-   HERO TOPLINE
+   HERO TOP LINE
 ===================================================== */
 
 .technical-hero-topline {
@@ -253,8 +253,8 @@
     display: grid;
 
     grid-template-columns:
-        minmax(0, 1.3fr)
-        minmax(300px, .7fr);
+        minmax(0,1.3fr)
+        minmax(300px,.7fr);
 
     gap:
         clamp(
@@ -354,6 +354,7 @@
         monospace;
 
     font-size: 8px;
+
     font-weight: 700;
 
     letter-spacing: .1em;
@@ -379,6 +380,38 @@
 
 
 /* =====================================================
+   SUMMARY ROW LABEL
+===================================================== */
+
+.summary-row-label {
+    margin-top: 48px;
+
+    padding-bottom: 12px;
+
+    color: #66869b;
+
+    border-bottom:
+        1px solid
+        #284a64;
+
+    font-family:
+        "Space Mono",
+        monospace;
+
+    font-size: 8px;
+
+    font-weight: 700;
+
+    letter-spacing: .12em;
+}
+
+
+.summary-row-label-second {
+    margin-top: 44px;
+}
+
+
+/* =====================================================
    SUMMARY GRID
 ===================================================== */
 
@@ -388,19 +421,14 @@
     grid-template-columns:
         repeat(
             6,
-            minmax(0, 1fr)
+            minmax(0,1fr)
         );
 
-    margin:
-        52px
-        0
-        0;
+    width: 100%;
+
+    margin: 0;
 
     padding: 0;
-
-    border-top:
-        1px solid
-        #284a64;
 
     border-left:
         1px solid
@@ -408,18 +436,27 @@
 }
 
 
+/* =====================================================
+   SUMMARY CELL
+===================================================== */
+
 .summary-grid > div {
     min-width: 0;
 
-    min-height: 150px;
+    min-height: 180px;
 
     padding:
         22px
-        18px;
+        22px
+        24px;
 
     display: flex;
+
     flex-direction: column;
+
     justify-content: space-between;
+
+    overflow: hidden;
 
     border-right:
         1px solid
@@ -428,10 +465,24 @@
     border-bottom:
         1px solid
         #284a64;
+
+    transition:
+        background .18s;
 }
 
 
+.summary-grid > div:hover {
+    background: #131e27;
+}
+
+
+/* =====================================================
+   SUMMARY LABEL
+===================================================== */
+
 .summary-grid dt {
+    margin: 0;
+
     color: #66869b;
 
     font-family:
@@ -439,32 +490,75 @@
         monospace;
 
     font-size: 8px;
+
     font-weight: 700;
 
-    letter-spacing: .08em;
+    letter-spacing: .09em;
+
+    line-height: 1.2;
+
+    white-space: nowrap;
 }
 
 
+/* =====================================================
+   SUMMARY VALUE
+===================================================== */
+
 .summary-grid dd {
+    min-width: 0;
+
     margin: 0;
+
+    display: flex;
+
+    align-items: baseline;
+
+    gap: 7px;
 
     color: #c4cace;
 
     font-size:
         clamp(
-            28px,
-            2.8vw,
-            43px
+            27px,
+            2.25vw,
+            44px
         );
 
     font-weight: 500;
 
-    letter-spacing: -.05em;
+    line-height: .95;
+
+    letter-spacing: -.055em;
+
+    white-space: nowrap;
 }
 
 
+/* =====================================================
+   DIVISION VALUE
+===================================================== */
+
+.summary-grid dd.summary-text-value {
+    font-size:
+        clamp(
+            22px,
+            1.85vw,
+            36px
+        );
+
+    letter-spacing: -.04em;
+}
+
+
+/* =====================================================
+   SUMMARY UNIT
+===================================================== */
+
 .summary-grid dd span {
-    margin-left: 4px;
+    flex-shrink: 0;
+
+    margin: 0;
 
     color: #678395;
 
@@ -472,9 +566,31 @@
         "Space Mono",
         monospace;
 
-    font-size: 8px;
+    font-size:
+        clamp(
+            7px,
+            .52vw,
+            10px
+        );
+
+    font-weight: 700;
 
     letter-spacing: .06em;
+}
+
+
+/* =====================================================
+   LONGER VALUES
+===================================================== */
+
+.summary-grid > div:nth-child(5) dd,
+.summary-grid > div:nth-child(6) dd {
+    font-size:
+        clamp(
+            25px,
+            2.05vw,
+            40px
+        );
 }
 
 
@@ -500,8 +616,8 @@
     display: grid;
 
     grid-template-columns:
-        minmax(0, 1.15fr)
-        minmax(280px, .85fr);
+        minmax(0,1.15fr)
+        minmax(280px,.85fr);
 
     gap:
         clamp(
@@ -531,6 +647,7 @@
         monospace;
 
     font-size: 8px;
+
     font-weight: 700;
 
     letter-spacing: .11em;
@@ -578,7 +695,7 @@
     grid-template-columns:
         repeat(
             5,
-            minmax(0, 1fr)
+            minmax(0,1fr)
         );
 
     margin: 0;
@@ -607,6 +724,7 @@
         18px;
 
     display: flex;
+
     flex-direction: column;
 
     border-right:
@@ -627,6 +745,7 @@
     z-index: 3;
 
     top: 50%;
+
     right: -8px;
 
     transform:
@@ -667,6 +786,7 @@
     color: #c1c6cb;
 
     font-size: 15px;
+
     font-weight: 600;
 
     line-height: 1.3;
@@ -709,8 +829,8 @@
     display: grid;
 
     grid-template-columns:
-        minmax(190px, .32fr)
-        minmax(0, 1.68fr);
+        minmax(190px,.32fr)
+        minmax(0,1.68fr);
 
     gap:
         clamp(
@@ -726,7 +846,7 @@
 
 
 /* =====================================================
-   STICKY INDEX
+   INDEX
 ===================================================== */
 
 .technical-index {
@@ -756,6 +876,7 @@
         monospace;
 
     font-size: 8px;
+
     font-weight: 700;
 
     letter-spacing: .1em;
@@ -856,8 +977,8 @@
     display: grid;
 
     grid-template-columns:
-        minmax(0, 1.1fr)
-        minmax(250px, .9fr);
+        minmax(0,1.1fr)
+        minmax(250px,.9fr);
 
     gap:
         clamp(
@@ -884,6 +1005,7 @@
         monospace;
 
     font-size: 8px;
+
     font-weight: 700;
 
     letter-spacing: .1em;
@@ -922,7 +1044,7 @@
 
 
 /* =====================================================
-   SPECIFICATION TABLE
+   SPEC TABLE
 ===================================================== */
 
 .spec-table {
@@ -1021,7 +1143,7 @@
 
     grid-template-columns:
         80px
-        minmax(0, 1fr)
+        minmax(0,1fr)
         30px;
 
     gap: 30px;
@@ -1054,6 +1176,7 @@
         monospace;
 
     font-size: 8px;
+
     font-weight: 700;
 
     letter-spacing: .1em;
@@ -1115,8 +1238,8 @@
     display: grid;
 
     grid-template-columns:
-        minmax(0, 1.15fr)
-        minmax(280px, .85fr);
+        minmax(0,1.15fr)
+        minmax(280px,.85fr);
 
     gap:
         clamp(
@@ -1173,10 +1296,6 @@
 }
 
 
-/* =====================================================
-   NEXT LINK
-===================================================== */
-
 .technical-next-link {
     display: flex;
 
@@ -1225,23 +1344,7 @@
    LARGE TABLET
 ===================================================== */
 
-@media(max-width: 1100px) {
-
-    .technical-hero::after {
-        top: 76px;
-        right: -4vw;
-
-        width: 74vw;
-        height: 48vh;
-
-        min-width: 720px;
-
-        background-size:
-            150% auto;
-
-        opacity: .48;
-    }
-
+@media(max-width: 1200px) {
 
     .summary-grid {
         grid-template-columns:
@@ -1252,14 +1355,39 @@
     }
 
 
-    .power-path {
-        grid-template-columns:
-            repeat(
-                5,
-                minmax(140px, 1fr)
-            );
+    .summary-grid > div {
+        min-height: 155px;
+    }
 
-        overflow-x: auto;
+
+    .summary-grid dd {
+        font-size:
+            clamp(
+                30px,
+                3.5vw,
+                46px
+            );
+    }
+
+
+    .summary-grid dd.summary-text-value {
+        font-size:
+            clamp(
+                26px,
+                3vw,
+                38px
+            );
+    }
+
+
+    .summary-grid > div:nth-child(5) dd,
+    .summary-grid > div:nth-child(6) dd {
+        font-size:
+            clamp(
+                28px,
+                3.3vw,
+                42px
+            );
     }
 
 }
@@ -1278,9 +1406,11 @@
 
     .technical-hero::after {
         top: 78px;
+
         right: -10vw;
 
         width: 96vw;
+
         height: 40vh;
 
         min-width: 0;
@@ -1289,26 +1419,6 @@
             155% auto;
 
         opacity: .40;
-    }
-
-
-    .technical-hero::before {
-        background:
-            linear-gradient(
-                to right,
-                #121b24 0%,
-                rgba(18, 27, 36, .42) 22%,
-                rgba(18, 27, 36, .10) 48%,
-                rgba(18, 27, 36, .04) 72%,
-                #121b24 100%
-            ),
-            linear-gradient(
-                to bottom,
-                rgba(18, 27, 36, .02) 0%,
-                rgba(18, 27, 36, .04) 30%,
-                rgba(18, 27, 36, .20) 62%,
-                #121b24 100%
-            );
     }
 
 
@@ -1356,20 +1466,6 @@
     }
 
 
-    .technical-index a:nth-child(odd) {
-        border-right:
-            1px solid
-            #1e3b52;
-
-        padding-right: 15px;
-    }
-
-
-    .technical-index a:nth-child(even) {
-        padding-left: 15px;
-    }
-
-
     .technical-group-heading {
         grid-template-columns:
             1fr;
@@ -1404,27 +1500,17 @@
 
     .technical-hero::after {
         top: 82px;
+
         right: -16vw;
 
         width: 120vw;
+
         height: 30vh;
 
         background-size:
             165% auto;
 
         opacity: .32;
-    }
-
-
-    .technical-hero::before {
-        background:
-            linear-gradient(
-                to bottom,
-                rgba(18, 27, 36, .04) 0%,
-                rgba(18, 27, 36, .08) 32%,
-                rgba(18, 27, 36, .24) 66%,
-                #121b24 100%
-            );
     }
 
 
@@ -1465,6 +1551,16 @@
     }
 
 
+    .summary-row-label {
+        margin-top: 38px;
+    }
+
+
+    .summary-row-label-second {
+        margin-top: 36px;
+    }
+
+
     .summary-grid {
         grid-template-columns:
             repeat(
@@ -1475,7 +1571,47 @@
 
 
     .summary-grid > div {
-        min-height: 125px;
+        min-height: 135px;
+
+        padding:
+            18px
+            15px;
+    }
+
+
+    .summary-grid dd {
+        font-size:
+            clamp(
+                26px,
+                7vw,
+                38px
+            );
+    }
+
+
+    .summary-grid dd.summary-text-value {
+        font-size:
+            clamp(
+                22px,
+                6vw,
+                32px
+            );
+    }
+
+
+    .summary-grid > div:nth-child(5) dd,
+    .summary-grid > div:nth-child(6) dd {
+        font-size:
+            clamp(
+                24px,
+                6.5vw,
+                35px
+            );
+    }
+
+
+    .summary-grid dd span {
+        font-size: 7px;
     }
 
 
@@ -1513,9 +1649,11 @@
         content: "↓";
 
         top: auto;
+
         right: auto;
 
         bottom: -8px;
+
         left: 20px;
 
         transform: none;
@@ -1536,6 +1674,7 @@
     .technical-index a:nth-child(odd),
     .technical-index a:nth-child(even) {
         padding-left: 0;
+
         padding-right: 0;
 
         border-right: 0;
@@ -1615,6 +1754,11 @@
     .summary-grid {
         grid-template-columns:
             1fr;
+    }
+
+
+    .summary-grid > div {
+        min-height: 115px;
     }
 
 }
