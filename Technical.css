@@ -17,7 +17,7 @@
 ===================================================== */
 
 .page-technical {
-    background: #000000;
+    background: #121b24;
 }
 
 
@@ -52,7 +52,7 @@
 
     overflow: hidden;
 
-    background: #000000;
+    background: #121b24;
 
     border-bottom:
         1px solid
@@ -92,11 +92,11 @@
 
     padding-bottom: 14px;
 
-    color: #415360;
+    color: #677e8f;
 
     border-bottom:
         1px solid
-        #10283c;
+        #1e3e59;
 
     font-family:
         "Space Mono",
@@ -150,7 +150,7 @@
 .technical-hero h1 {
     margin: 0;
 
-    color: #c0c8ce;
+    color: #e6e9eb;
 
     font-size:
         clamp(
@@ -166,7 +166,7 @@
 
 
 .technical-hero h1 span {
-    color: #66747e;
+    color: #9fa9af;
 }
 
 
@@ -180,7 +180,7 @@
 
     margin: 0;
 
-    color: #74818a;
+    color: #adb4b9;
 
     font-size:
         clamp(
@@ -207,11 +207,11 @@
 
     padding-bottom: 14px;
 
-    color: #405667;
+    color: #658298;
 
     border-bottom:
         1px solid
-        #133249;
+        #244d6b;
 
     font-family:
         "Space Mono",
@@ -234,11 +234,11 @@
         var(--gutter)
         105px;
 
-    background: #000000;
+    background: #121b24;
 
     border-bottom:
         1px solid
-        #0a1b28;
+        #163044;
 }
 
 
@@ -264,11 +264,11 @@
 
     border-top:
         1px solid
-        #163044;
+        #284a64;
 
     border-left:
         1px solid
-        #163044;
+        #284a64;
 }
 
 
@@ -287,16 +287,16 @@
 
     border-right:
         1px solid
-        #163044;
+        #284a64;
 
     border-bottom:
         1px solid
-        #163044;
+        #284a64;
 }
 
 
 .summary-grid dt {
-    color: #40596a;
+    color: #66869b;
 
     font-family:
         "Space Mono",
@@ -312,7 +312,7 @@
 .summary-grid dd {
     margin: 0;
 
-    color: #8d9aa3;
+    color: #c4cace;
 
     font-size:
         clamp(
@@ -330,7 +330,7 @@
 .summary-grid dd span {
     margin-left: 4px;
 
-    color: #415765;
+    color: #678395;
 
     font-family:
         "Space Mono",
@@ -352,11 +352,11 @@
         var(--gutter)
         120px;
 
-    background: #000000;
+    background: #121b24;
 
     border-bottom:
         1px solid
-        #0a1b28;
+        #163044;
 }
 
 
@@ -388,7 +388,7 @@
 
     margin-bottom: 18px;
 
-    color: #40596a;
+    color: #66869b;
 
     font-family:
         "Space Mono",
@@ -404,7 +404,7 @@
 .architecture-heading h2 {
     margin: 0;
 
-    color: #aab4bc;
+    color: #dee1e4;
 
     font-size:
         clamp(
@@ -424,7 +424,7 @@
 
     margin: 0;
 
-    color: #61707a;
+    color: #98a3aa;
 
     font-size: 14px;
 
@@ -453,11 +453,11 @@
 
     border-top:
         1px solid
-        #173248;
+        #294d6a;
 
     border-left:
         1px solid
-        #173248;
+        #294d6a;
 }
 
 
@@ -475,11 +475,11 @@
 
     border-right:
         1px solid
-        #173248;
+        #294d6a;
 
     border-bottom:
         1px solid
-        #173248;
+        #294d6a;
 }
 
 
@@ -498,9 +498,9 @@
 
     width: 15px;
 
-    color: #496476;
+    color: #7893a5;
 
-    background: #000000;
+    background: #121b24;
 
     font-family:
         "Space Mono",
@@ -513,7 +513,7 @@
 
 
 .power-path-index {
-    color: #40596a;
+    color: #66869b;
 
     font-family:
         "Space Mono",
@@ -528,7 +528,7 @@
 .power-path strong {
     margin-top: auto;
 
-    color: #89969f;
+    color: #c1c6cb;
 
     font-size: 15px;
     font-weight: 600;
@@ -543,7 +543,7 @@
         0
         0;
 
-    color: #4f606b;
+    color: #7c8e9a;
 
     font-size: 11px;
 
@@ -561,11 +561,11 @@
         var(--gutter)
         130px;
 
-    background: #000000;
+    background: #121b24;
 
     border-bottom:
         1px solid
-        #0a1b28;
+        #163044;
 }
 
 
@@ -609,11 +609,11 @@
 
     padding-bottom: 13px;
 
-    color: #40596a;
+    color: #66869b;
 
     border-bottom:
         1px solid
-        #173248;
+        #294d6a;
 
     font-family:
         "Space Mono",
@@ -644,11 +644,11 @@
         13px
         0;
 
-    color: #596a75;
+    color: #8d9ba4;
 
     border-bottom:
         1px solid
-        #102536;
+        #1e3b52;
 
     font-size: 11px;
 
@@ -661,7 +661,7 @@
 
 
 .technical-index a span {
-    color: #304959;
+    color: #4f6f84;
 
     font-family:
         "Space Mono",
@@ -674,7 +674,7 @@
 .technical-index a:hover {
     color: #ffffff;
 
-    border-color: #496679;
+    border-color: #7995a8;
 }
 
 
@@ -703,7 +703,7 @@
 
     border-bottom:
         1px solid
-        #173248;
+        #294d6a;
 }
 
 
@@ -741,7 +741,7 @@
 
     margin-bottom: 16px;
 
-    color: #40596a;
+    color: #66869b;
 
     font-family:
         "Space Mono",
@@ -757,7 +757,7 @@
 .technical-group-heading h2 {
     margin: 0;
 
-    color: #9eabb4;
+    color: #d4d9dc;
 
     font-size:
         clamp(
@@ -777,7 +777,7 @@
 
     margin: 0;
 
-    color: #5e6d77;
+    color: #949fa7;
 
     font-size: 13px;
 
@@ -796,14 +796,14 @@
 
     border-top:
         1px solid
-        #173248;
+        #294d6a;
 }
 
 
 .spec-table tr {
     border-bottom:
         1px solid
-        #102536;
+        #1e3b52;
 }
 
 
@@ -822,7 +822,7 @@
 .spec-table th {
     width: 50%;
 
-    color: #596a75;
+    color: #8d9ba4;
 
     font-size: 12px;
     font-weight: 500;
@@ -830,7 +830,7 @@
 
 
 .spec-table td {
-    color: #8a969f;
+    color: #c1c7cb;
 
     font-family:
         "Space Mono",
@@ -843,7 +843,7 @@
 
 
 .spec-table tr:hover th {
-    color: #8f9ca5;
+    color: #c6ccd0;
 }
 
 
@@ -862,11 +862,11 @@
         var(--gutter)
         120px;
 
-    background: #000000;
+    background: #121b24;
 
     border-bottom:
         1px solid
-        #0a1b28;
+        #163044;
 }
 
 
@@ -875,7 +875,7 @@
 
     border-top:
         1px solid
-        #173248;
+        #294d6a;
 }
 
 
@@ -897,7 +897,7 @@
 
     border-bottom:
         1px solid
-        #173248;
+        #294d6a;
 
     transition:
         background .18s;
@@ -905,12 +905,12 @@
 
 
 .document-row:hover {
-    background: #020609;
+    background: #131e27;
 }
 
 
 .document-type {
-    color: #40596a;
+    color: #66869b;
 
     font-family:
         "Space Mono",
@@ -926,7 +926,7 @@
 .document-row h3 {
     margin: 0;
 
-    color: #85939d;
+    color: #bdc4c8;
 
     font-size:
         clamp(
@@ -955,7 +955,7 @@
         0
         0;
 
-    color: #4f606b;
+    color: #7c8e9a;
 
     font-size: 12px;
 }
@@ -964,7 +964,7 @@
 .document-arrow {
     justify-self: end;
 
-    color: #40586a;
+    color: #66849b;
 
     font-size: 16px;
 }
@@ -994,7 +994,7 @@
         120px
         var(--gutter);
 
-    background: #000000;
+    background: #121b24;
 
     border-bottom:
         1px solid
@@ -1008,7 +1008,7 @@
         0
         0;
 
-    color: #aab4bc;
+    color: #dee1e4;
 
     font-size:
         clamp(
@@ -1028,7 +1028,7 @@
 
     margin: 0;
 
-    color: #61707a;
+    color: #98a3aa;
 
     font-size: 14px;
 
@@ -1054,15 +1054,15 @@
         14px
         0;
 
-    color: #798791;
+    color: #b2b9be;
 
     border-top:
         1px solid
-        #29485e;
+        #456e8a;
 
     border-bottom:
         1px solid
-        #29485e;
+        #456e8a;
 
     font-size: 12px;
 
@@ -1075,7 +1075,7 @@
 .technical-next-link:hover {
     color: #ffffff;
 
-    border-color: #718795;
+    border-color: #aeb9c0;
 }
 
 
@@ -1168,7 +1168,7 @@
     .technical-index a:nth-child(odd) {
         border-right:
             1px solid
-            #102536;
+            #1e3b52;
 
         padding-right: 15px;
     }
