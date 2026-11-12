@@ -12,7 +12,7 @@
     /* Strength of the dark layer over the photo.
        Higher  = fainter image, easier to read  (max 1)
        Lower   = stronger image                 (min 0)  */
-    --about-bg-dim: .64;
+    --about-bg-dim: .46;
 
     position: relative;
 
@@ -38,9 +38,9 @@
            where the large heading sits */
         linear-gradient(
             90deg,
-            rgba(0, 0, 0, calc(var(--about-bg-dim) + .12)) 0%,
-            rgba(0, 0, 0, var(--about-bg-dim)) 55%,
-            rgba(0, 0, 0, calc(var(--about-bg-dim) + .05)) 100%
+            rgba(18,27,36, calc(var(--about-bg-dim) + .12)) 0%,
+            rgba(18,27,36, var(--about-bg-dim)) 55%,
+            rgba(18,27,36, calc(var(--about-bg-dim) + .05)) 100%
         ),
 
         /* the photo */
@@ -58,8 +58,8 @@
         linear-gradient(
             to bottom,
             transparent 0%,
-            #000 22%,
-            #000 78%,
+            #121b24 22%,
+            #121b24 78%,
             transparent 100%
         );
 
@@ -67,8 +67,8 @@
         linear-gradient(
             to bottom,
             transparent 0%,
-            #000 22%,
-            #000 78%,
+            #121b24 22%,
+            #121b24 78%,
             transparent 100%
         );
 }
@@ -78,7 +78,7 @@
 @media (max-width: 650px) {
 
     #about {
-        --about-bg-dim: .78;
+        --about-bg-dim: .62;
     }
 
 }
