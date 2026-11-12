@@ -1,12 +1,12 @@
 :root {
-    --black: #000000;
-    --navy: #030a11;
-    --navy-2: #06111c;
-    --navy-3: #0a1b2a;
-    --navy-line: #10283c;
-    --navy-line-bright: #1b3b54;
-    --text: #77838d;
-    --text-heading: #b5bec6;
+    --black: #121b24;
+    --navy: #141f29;
+    --navy-2: #102539;
+    --navy-3: #163047;
+    --navy-line: #1e3e59;
+    --navy-line-bright: #305a7b;
+    --text: #b0b6bb;
+    --text-heading: #e2e5e8;
     --white: #ffffff;
     --header: 72px;
     --gutter: clamp(20px, 4.5vw, 86px);
@@ -22,13 +22,13 @@
 }
 
 html {
-    background: #000000;
+    background: #121b24;
     scroll-behavior: smooth;
 }
 
 body {
     margin: 0;
-    background: #000000;
+    background: #121b24;
     color: var(--text);
 
     font-family:
@@ -76,7 +76,7 @@ h3 {
 }
 
 ::selection {
-    background: #183b57;
+    background: #2c5a7f;
     color: #ffffff;
 }
 
@@ -94,7 +94,7 @@ h3 {
     padding: 12px 15px;
 
     background: #ffffff;
-    color: #000000;
+    color: #121b24;
 }
 
 .skip-link:focus {
@@ -122,7 +122,7 @@ h3 {
 
     padding: 0 var(--gutter);
 
-    background: rgba(0, 0, 0, .92);
+    background: rgba(18,27,36, .92);
 
     border-bottom:
         1px solid
@@ -198,7 +198,7 @@ nav a {
 
     padding: 0 17px;
 
-    color: #68747e;
+    color: #a1a9b0;
 
     border-left:
         1px solid
@@ -215,15 +215,15 @@ nav a {
 nav a:hover,
 nav a[aria-current="location"] {
     color: #ffffff;
-    background: #03070b;
+    background: #141e28;
 }
 
 .nav-support {
-    background: #02070c;
+    background: #141e28;
 }
 
 .link-icon {
-    color: #596875;
+    color: #8d99a4;
 
     transition:
         color .2s,
@@ -260,7 +260,7 @@ a:hover .link-icon {
     width: 100%;
     height: 1px;
 
-    background: #39556b;
+    background: #5c819d;
 
     transform: scaleX(0);
     transform-origin: left;
@@ -343,7 +343,7 @@ a:hover .link-icon {
 
     overflow: hidden;
 
-    background: #000000;
+    background: #121b24;
 }
 
 .hero-background-grid {
@@ -378,7 +378,7 @@ a:hover .link-icon {
     mask-image:
         linear-gradient(
             to bottom,
-            #000000,
+            #121b24,
             transparent 90%
         );
 }
@@ -399,7 +399,7 @@ a:hover .link-icon {
 
     padding-bottom: 14px;
 
-    color: #42515d;
+    color: #687b8b;
 
     border-bottom:
         1px solid
@@ -438,7 +438,7 @@ a:hover .link-icon {
 }
 
 .eyebrow {
-    color: #536574;
+    color: #8595a3;
 
     font-family:
         "Space Mono",
@@ -464,7 +464,7 @@ a:hover .link-icon {
 }
 
 .hero h1 span {
-    color: #68747e;
+    color: #a1a9b0;
 }
 
 .hero-side {
@@ -474,7 +474,7 @@ a:hover .link-icon {
 .hero-side p {
     max-width: 430px;
 
-    color: #67737d;
+    color: #a0a8ae;
 
     font-size: 14px;
     line-height: 1.65;
@@ -498,13 +498,13 @@ a:hover .link-icon {
         13px
         15px;
 
-    color: #7d8992;
+    color: #b5bbc0;
 
     border:
         1px solid
         var(--navy-line-bright);
 
-    background: #010305;
+    background: #121d25;
 
     font-size: 11px;
 
@@ -519,7 +519,7 @@ a:hover .link-icon {
 
     border-color: #ffffff;
 
-    background: #03070a;
+    background: #131e27;
 }
 
 .hero-data {
@@ -555,7 +555,7 @@ a:hover .link-icon {
 .hero-data span {
     display: block;
 
-    color: #394b59;
+    color: #5b7385;
 
     font-family:
         "Space Mono",
@@ -571,7 +571,7 @@ a:hover .link-icon {
 
     margin-top: 7px;
 
-    color: #667580;
+    color: #a0aab1;
 
     font-size: 11px;
     font-weight: 600;
@@ -587,11 +587,11 @@ a:hover .link-icon {
         110px
         var(--gutter);
 
-    background: #000000;
+    background: #121b24;
 
     border-top:
         1px solid
-        #081724;
+        #132c41;
 }
 
 .section-header {
@@ -603,7 +603,7 @@ a:hover .link-icon {
 
     padding-bottom: 15px;
 
-    color: #40515e;
+    color: #657b8c;
 
     border-bottom:
         1px solid
@@ -643,7 +643,7 @@ a:hover .link-icon {
 }
 
 .statement-lead {
-    color: #8a969f;
+    color: #c1c7cb;
 
     font-size:
         clamp(
@@ -662,7 +662,7 @@ a:hover .link-icon {
 .body-copy {
     margin-top: 27px;
 
-    color: #5f6c76;
+    color: #949ea6;
 
     font-size: 14px;
 }
@@ -678,11 +678,11 @@ a:hover .link-icon {
 
     padding-bottom: 4px;
 
-    color: #71808a;
+    color: #abb3b8;
 
     border-bottom:
         1px solid
-        #203548;
+        #36526b;
 
     font-size: 11px;
 }
@@ -707,7 +707,7 @@ a:hover .link-icon {
 
     height: 1100vh;
 
-    background: #000000;
+    background: #121b24;
 }
 
 .vehicle-sticky {
@@ -720,7 +720,7 @@ a:hover .link-icon {
 
     overflow: hidden;
 
-    background: #000000;
+    background: #121b24;
 }
 
 .vehicle-model-layer {
@@ -728,7 +728,7 @@ a:hover .link-icon {
 
     inset: 0;
 
-    background: #000000;
+    background: #121b24;
 }
 
 .model-grid {
@@ -760,7 +760,7 @@ a:hover .link-icon {
     mask-image:
         radial-gradient(
             circle at center,
-            #000000,
+            #121b24,
             transparent 80%
         );
 }
@@ -844,7 +844,7 @@ effect-composer {
 
     border:
         1px solid
-        #14314a;
+        #254c6d;
 
     border-radius: 50%;
 
@@ -862,7 +862,7 @@ effect-composer {
 
     border:
         1px solid
-        #0e263a;
+        #1c3c57;
 
     border-radius: 50%;
 }
@@ -884,17 +884,17 @@ effect-composer {
 
     border-radius: 50%;
 
-    background: #39556b;
+    background: #5c819d;
 
     box-shadow:
         0
         0
         28px
-        #173854;
+        #2b567b;
 }
 
 .placeholder-copy span {
-    color: #3d5262;
+    color: #617d91;
 
     font-family:
         "Space Mono",
@@ -910,7 +910,7 @@ effect-composer {
 
     margin-top: 12px;
 
-    color: #687985;
+    color: #a3adb4;
 
     font-size: 18px;
     font-weight: 600;
@@ -919,7 +919,7 @@ effect-composer {
 .placeholder-copy p {
     margin-top: 16px;
 
-    color: #42535f;
+    color: #687e8d;
 
     font-size: 11px;
 }
@@ -933,13 +933,13 @@ effect-composer {
         5px
         7px;
 
-    color: #637887;
+    color: #9facb5;
 
-    background: #02070b;
+    background: #131e27;
 
     border:
         1px solid
-        #10283a;
+        #1e3f57;
 
     font-family:
         "Space Mono",
@@ -984,11 +984,11 @@ effect-composer {
 
     padding-bottom: 13px;
 
-    color: #40515e;
+    color: #657b8c;
 
     border-bottom:
         1px solid
-        #10273a;
+        #1e3d57;
 
     font-family:
         "Space Mono",
@@ -1042,7 +1042,7 @@ effect-composer {
 }
 
 .story-label {
-    color: #43596a;
+    color: #6b869a;
 
     font-family:
         "Space Mono",
@@ -1060,7 +1060,7 @@ effect-composer {
         0
         21px;
 
-    color: #9ba7b0;
+    color: #d1d6d9;
 
     font-size:
         clamp(
@@ -1073,7 +1073,7 @@ effect-composer {
 .model-story p {
     max-width: 410px;
 
-    color: #596975;
+    color: #8d9aa4;
 
     font-size: 13px;
 
@@ -1098,11 +1098,11 @@ effect-composer {
 
     padding-top: 13px;
 
-    color: #394d5d;
+    color: #5c768b;
 
     border-top:
         1px solid
-        #10273a;
+        #1e3d57;
 
     font-family:
         "Space Mono",
@@ -1147,7 +1147,7 @@ effect-composer {
 .systems-intro p {
     max-width: 390px;
 
-    color: #5b6974;
+    color: #8f9ba4;
 
     font-size: 14px;
 }
@@ -1185,7 +1185,7 @@ effect-composer {
 }
 
 .system-row:hover {
-    background: #010407;
+    background: #131d26;
 }
 
 .system-label {
@@ -1193,7 +1193,7 @@ effect-composer {
 
     margin-bottom: 9px;
 
-    color: #415666;
+    color: #678296;
 
     font-family:
         "Space Mono",
@@ -1206,7 +1206,7 @@ effect-composer {
 }
 
 .system-row h3 {
-    color: #909ca5;
+    color: #c7ccd0;
 
     font-size:
         clamp(
@@ -1226,7 +1226,7 @@ effect-composer {
 .system-row p {
     max-width: 480px;
 
-    color: #56646e;
+    color: #87949d;
 
     font-size: 13px;
 
@@ -1235,11 +1235,11 @@ effect-composer {
 }
 
 .system-row:hover p {
-    color: #8a969f;
+    color: #c1c7cb;
 }
 
 .system-arrow {
-    color: #415565;
+    color: #678195;
 
     text-align: right;
 
@@ -1293,7 +1293,7 @@ effect-composer {
 }
 
 .result-year {
-    color: #566775;
+    color: #8998a4;
 
     font-size: 52px;
     font-weight: 500;
@@ -1306,7 +1306,7 @@ effect-composer {
 
     margin-top: 8px;
 
-    color: #3e5362;
+    color: #637e91;
 
     font-family:
         "Space Mono",
@@ -1318,7 +1318,7 @@ effect-composer {
 .results-grid h3 {
     margin-top: 72px;
 
-    color: #929ea7;
+    color: #c9ced2;
 
     font-size: 29px;
 }
@@ -1328,7 +1328,7 @@ effect-composer {
 
     margin-top: 15px;
 
-    color: #56646e;
+    color: #87949d;
 
     font-size: 13px;
 }
@@ -1383,13 +1383,13 @@ effect-composer {
 }
 
 .team-card:hover {
-    background: #010407;
+    background: #131d26;
 }
 
 .team-card h3 {
     margin-top: 55px;
 
-    color: #89959e;
+    color: #c0c6ca;
 
     font-size: 25px;
 
@@ -1404,7 +1404,7 @@ effect-composer {
 .team-card p {
     margin-top: 15px;
 
-    color: #53616b;
+    color: #82909a;
 
     font-size: 13px;
 }
@@ -1440,7 +1440,7 @@ effect-composer {
         110px
         var(--gutter);
 
-    background: #000000;
+    background: #121b24;
 
     border-top:
         1px solid
@@ -1448,7 +1448,7 @@ effect-composer {
 }
 
 .support-label {
-    color: #3e5362;
+    color: #637e91;
 
     font-family:
         "Space Mono",
@@ -1462,7 +1462,7 @@ effect-composer {
 .support-section h2 {
     margin-top: 20px;
 
-    color: #9da8b0;
+    color: #d2d6da;
 
     font-size:
         clamp(
@@ -1475,7 +1475,7 @@ effect-composer {
 .support-section p {
     max-width: 490px;
 
-    color: #5c6a74;
+    color: #909ca4;
 
     font-size: 14px;
 }
@@ -1493,13 +1493,13 @@ effect-composer {
         13px
         15px;
 
-    color: #778691;
+    color: #b1b8be;
 
     border:
         1px solid
-        #17354b;
+        #2a516e;
 
-    background: #010407;
+    background: #131d26;
 
     font-size: 11px;
 
@@ -1533,7 +1533,7 @@ effect-composer {
         var(--gutter)
         28px;
 
-    background: #000000;
+    background: #121b24;
 
     border-top:
         1px solid
@@ -1583,7 +1583,7 @@ effect-composer {
 .footer-brand-area p {
     margin-top: 18px;
 
-    color: #43515b;
+    color: #697b88;
 
     font-size: 11px;
 }
@@ -1601,7 +1601,7 @@ effect-composer {
         14px
         30px;
 
-    color: #596771;
+    color: #8b98a1;
 
     font-size: 11px;
 }
@@ -1630,11 +1630,11 @@ effect-composer {
 
     padding-top: 17px;
 
-    color: #364752;
+    color: #566c7b;
 
     border-top:
         1px solid
-        #0a1d2a;
+        #163347;
 
     font-family:
         "Space Mono",
@@ -1682,7 +1682,7 @@ effect-composer {
     width: 145vw;
     height: 145vh;
 
-    background: #000000;
+    background: #121b24;
 
     transform:
         translateX(0)
@@ -1717,7 +1717,7 @@ effect-composer {
     width: 145vw;
     height: 145vh;
 
-    background: #071522;
+    background: #12293f;
 
     transform:
         translateX(0)
@@ -2039,7 +2039,7 @@ effect-composer {
     width: 100%;
     height: 2px;
 
-    background: #173c57;
+    background: #2b5c7f;
 
     transform:
         scaleX(0);
@@ -2102,7 +2102,7 @@ effect-composer {
             stretch;
 
         background:
-            #000000;
+            #121b24;
 
         border-bottom:
             1px solid
