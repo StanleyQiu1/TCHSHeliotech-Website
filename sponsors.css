@@ -5,74 +5,74 @@
 ===================================================== */
 
 /* ---------- page ---------- */
-.page-sponsors{background:#000}
+.page-sponsors{background:#121b24}
 .page-sponsors *,.page-sponsors *::before,.page-sponsors *::after{border-radius:0}
 
 /* ---------- hero ---------- */
 .sponsors-hero{position:relative;min-height:88vh;padding:calc(var(--header) + 34px) var(--gutter) 34px;display:flex;flex-direction:column;
-  justify-content:space-between;overflow:hidden;background:#000;border-bottom:1px solid var(--navy-line)}
+  justify-content:space-between;overflow:hidden;background:#121b24;border-bottom:1px solid var(--navy-line)}
 .sponsors-hero .hero-background-grid{position:absolute;inset:0;z-index:0;pointer-events:none;opacity:.55}
-.sponsors-hero-topline{position:relative;z-index:2;display:grid;grid-template-columns:1fr 1fr auto;gap:25px;padding-bottom:14px;color:#415360;
-  border-bottom:1px solid #10283c;font-family:"Space Mono",monospace;font-size:8px;font-weight:700;letter-spacing:.1em}
+.sponsors-hero-topline{position:relative;z-index:2;display:grid;grid-template-columns:1fr 1fr auto;gap:25px;padding-bottom:14px;color:#677e8f;
+  border-bottom:1px solid #1e3e59;font-family:"Space Mono",monospace;font-size:8px;font-weight:700;letter-spacing:.1em}
 .sponsors-hero-content{position:relative;z-index:2;display:grid;grid-template-columns:minmax(0,1.25fr) minmax(300px,.75fr);
   gap:clamp(60px,9vw,150px);align-items:end;padding:clamp(100px,14vh,180px) 0 75px}
-.sponsors-hero .eyebrow{margin:0 0 22px;color:#52646f;font-family:"Space Mono",monospace;font-size:9px;font-weight:700;letter-spacing:.13em}
-.sponsors-hero h1{margin:0;color:#c0c8ce;font-size:clamp(68px,8.3vw,136px);line-height:.9;letter-spacing:-.065em}
-.sponsors-hero h1 span{color:#687681}
+.sponsors-hero .eyebrow{margin:0 0 22px;color:#82939e;font-family:"Space Mono",monospace;font-size:9px;font-weight:700;letter-spacing:.13em}
+.sponsors-hero h1{margin:0;color:#e6e9eb;font-size:clamp(68px,8.3vw,136px);line-height:.9;letter-spacing:-.065em}
+.sponsors-hero h1 span{color:#a2abb2}
 .sponsors-hero-copy{padding-bottom:8px}
-.sponsors-hero-copy p{max-width:500px;margin:0;color:#74818a;font-size:clamp(16px,1.35vw,21px);line-height:1.6;letter-spacing:-.015em}
-.sponsors-summary{position:relative;z-index:2;display:grid;grid-template-columns:repeat(4,1fr);border-top:1px solid #10283c}
-.sponsors-summary span{padding:15px 16px;color:#435663;border-right:1px solid #10283c;font-family:"Space Mono",monospace;font-size:8px;font-weight:700;letter-spacing:.09em}
+.sponsors-hero-copy p{max-width:500px;margin:0;color:#adb4b9;font-size:clamp(16px,1.35vw,21px);line-height:1.6;letter-spacing:-.015em}
+.sponsors-summary{position:relative;z-index:2;display:grid;grid-template-columns:repeat(4,1fr);border-top:1px solid #1e3e59}
+.sponsors-summary span{padding:15px 16px;color:#698293;border-right:1px solid #1e3e59;font-family:"Space Mono",monospace;font-size:8px;font-weight:700;letter-spacing:.09em}
 .sponsors-summary span:first-child{padding-left:0}
 .sponsors-summary span:last-child{border-right:0}
 
 /* ---------- stats strip ---------- */
-.sponsor-stats{display:grid;grid-template-columns:repeat(4,1fr);background:#000;border-bottom:1px solid #0b1c29}
-.sponsor-stat{padding:46px var(--gutter) 46px 22px;border-right:1px solid #10283c}
+.sponsor-stats{display:grid;grid-template-columns:repeat(4,1fr);background:#121b24;border-bottom:1px solid #183145}
+.sponsor-stat{padding:46px var(--gutter) 46px 22px;border-right:1px solid #1e3e59}
 .sponsor-stat:first-child{padding-left:var(--gutter)}
 .sponsor-stat:last-child{border-right:0}
-.sponsor-stat strong{display:block;color:#aab5bd;font-size:clamp(40px,4.6vw,72px);font-weight:700;line-height:.95;letter-spacing:-.055em}
-.sponsor-stat span{display:block;max-width:190px;margin-top:14px;color:#40596a;font-family:"Space Mono",monospace;font-size:8px;font-weight:700;letter-spacing:.09em;line-height:1.6;text-transform:uppercase}
+.sponsor-stat strong{display:block;color:#dee1e4;font-size:clamp(40px,4.6vw,72px);font-weight:700;line-height:.95;letter-spacing:-.055em}
+.sponsor-stat span{display:block;max-width:190px;margin-top:14px;color:#66869b;font-family:"Space Mono",monospace;font-size:8px;font-weight:700;letter-spacing:.09em;line-height:1.6;text-transform:uppercase}
 
 /* ---------- general sponsor tier ---------- */
-.sponsor-tier{padding:110px var(--gutter) 125px;background:#000;border-bottom:1px solid #0b1c29}
-.sponsor-tier-bar{display:flex;justify-content:space-between;align-items:center;gap:20px;padding-bottom:14px;color:#405667;border-bottom:1px solid #133249;
+.sponsor-tier{padding:110px var(--gutter) 125px;background:#121b24;border-bottom:1px solid #183145}
+.sponsor-tier-bar{display:flex;justify-content:space-between;align-items:center;gap:20px;padding-bottom:14px;color:#658298;border-bottom:1px solid #244d6b;
   font-family:"Space Mono",monospace;font-size:8px;font-weight:700;letter-spacing:.1em}
 .sponsor-tier-heading{display:grid;grid-template-columns:minmax(0,1.15fr) minmax(300px,.85fr);gap:clamp(55px,9vw,150px);align-items:end;padding:65px 0}
 .sponsor-tier-heading-small{padding-bottom:50px}
-.sponsor-kicker{display:block;margin-bottom:18px;color:#40596a;font-family:"Space Mono",monospace;font-size:8px;font-weight:700;letter-spacing:.11em}
-.sponsor-tier-heading h2{margin:0;color:#aab5bd;font-size:clamp(52px,6vw,100px);line-height:.92;letter-spacing:-.055em}
+.sponsor-kicker{display:block;margin-bottom:18px;color:#66869b;font-family:"Space Mono",monospace;font-size:8px;font-weight:700;letter-spacing:.11em}
+.sponsor-tier-heading h2{margin:0;color:#dee1e4;font-size:clamp(52px,6vw,100px);line-height:.92;letter-spacing:-.055em}
 .sponsor-tier-heading-small h2{font-size:clamp(48px,5vw,78px)}
-.sponsor-tier-heading > p{max-width:470px;margin:0;color:#63717b;font-size:14px;line-height:1.7}
+.sponsor-tier-heading > p{max-width:470px;margin:0;color:#9ba5ac;font-size:14px;line-height:1.7}
 
 /* ---------- title partners ---------- */
-.title-partner-list{border-top:1px solid #163044}
+.title-partner-list{border-top:1px solid #284a64}
 .title-partner{display:grid;grid-template-columns:minmax(220px,.72fr) minmax(0,1.28fr) 28px;gap:clamp(35px,5vw,80px);align-items:center;
-  min-height:225px;padding:30px 8px;border-bottom:1px solid #163044;background:transparent;transition:background .18s}
-.title-partner:hover{background:#02070b}
-.title-partner-logo{height:155px;display:grid;place-items:center;overflow:hidden;background:#010305;border:1px solid #173248;color:#40586a;
+  min-height:225px;padding:30px 8px;border-bottom:1px solid #284a64;background:transparent;transition:background .18s}
+.title-partner:hover{background:#131e27}
+.title-partner-logo{height:155px;display:grid;place-items:center;overflow:hidden;background:#121d25;border:1px solid #294d6a;color:#66849b;
   font-family:"Space Mono",monospace;font-size:8px;letter-spacing:.12em}
 .title-partner-logo img{display:block;width:78%;height:110px;object-fit:contain}
 .title-partner-copy{max-width:650px}
-.partner-level{display:block;color:#40596a;font-family:"Space Mono",monospace;font-size:8px;font-weight:700;letter-spacing:.1em}
-.title-partner h3{margin:13px 0 0;color:#929fa8;font-size:clamp(28px,3vw,44px);font-weight:600;letter-spacing:-.045em;transition:color .18s}
+.partner-level{display:block;color:#66869b;font-family:"Space Mono",monospace;font-size:8px;font-weight:700;letter-spacing:.1em}
+.title-partner h3{margin:13px 0 0;color:#c9ced2;font-size:clamp(28px,3vw,44px);font-weight:600;letter-spacing:-.045em;transition:color .18s}
 .title-partner:hover h3{color:#fff}
-.title-partner-copy p{max-width:550px;margin:15px 0 0;color:#586873;font-size:13px;line-height:1.65}
-.partner-arrow{justify-self:end;color:#40586a;font-size:17px;transition:color .18s,transform .18s}
+.title-partner-copy p{max-width:550px;margin:15px 0 0;color:#8b99a2;font-size:13px;line-height:1.65}
+.partner-arrow{justify-self:end;color:#66849b;font-size:17px;transition:color .18s,transform .18s}
 .title-partner:hover .partner-arrow{color:#fff;transform:translate(2px,-2px)}
 
 /* ---------- gold / silver / bronze / community grids ---------- */
-.partner-grid{display:grid;border-top:1px solid #163044;border-left:1px solid #163044}
+.partner-grid{display:grid;border-top:1px solid #284a64;border-left:1px solid #284a64}
 .partner-grid-gold{grid-template-columns:repeat(4,minmax(0,1fr))}     /* gold = 4 */
 .partner-grid-silver{grid-template-columns:repeat(6,minmax(0,1fr))}   /* silver, bronze, community = 6 */
-.partner-cell{min-width:0;min-height:215px;padding:22px;display:flex;flex-direction:column;justify-content:space-between;background:#000;
-  border-right:1px solid #163044;border-bottom:1px solid #163044;transition:background .18s}
-.partner-cell:hover{background:#02070b}
+.partner-cell{min-width:0;min-height:215px;padding:22px;display:flex;flex-direction:column;justify-content:space-between;background:#121b24;
+  border-right:1px solid #284a64;border-bottom:1px solid #284a64;transition:background .18s}
+.partner-cell:hover{background:#131e27}
 .partner-logo{flex:1;min-height:130px;display:grid;place-items:center;overflow:hidden}
-.partner-logo span{color:#3e5564;font-family:"Space Mono",monospace;font-size:8px;letter-spacing:.12em}
+.partner-logo span{color:#638094;font-family:"Space Mono",monospace;font-size:8px;letter-spacing:.12em}
 .partner-logo img{display:block;width:75%;max-height:110px;object-fit:contain;opacity:.88;transition:opacity .18s}
 .partner-cell:hover .partner-logo img{opacity:1}
-.partner-name{display:block;padding-top:16px;color:#687781;border-top:1px solid #10283c;font-size:11px;font-weight:600;line-height:1.35;transition:color .18s}
+.partner-name{display:block;padding-top:16px;color:#a2abb2;border-top:1px solid #1e3e59;font-size:11px;font-weight:600;line-height:1.35;transition:color .18s}
 .partner-cell:hover .partner-name{color:#fff}
 .partner-grid-silver .partner-cell{min-height:165px;padding:16px}
 .partner-grid-silver .partner-logo{min-height:95px}
@@ -81,40 +81,40 @@
 
 /* light-background logo support */
 .title-partner.s-on-light .title-partner-logo,
-.partner-cell.s-on-light .partner-logo{background:#e8ecee}
+.partner-cell.s-on-light .partner-logo{background:#f6f7f8}
 
 /* development instructions: hidden on the live site */
 .sponsor-instructions{display:none}
 
 /* ---------- why partner / levels ---------- */
 .partnership-section{display:grid;grid-template-columns:minmax(280px,.7fr) minmax(0,1.3fr);gap:clamp(60px,10vw,170px);
-  padding:120px var(--gutter);background:#000;border-bottom:1px solid #10283c}
+  padding:120px var(--gutter);background:#121b24;border-bottom:1px solid #1e3e59}
 .partnership-heading{position:sticky;top:calc(var(--header) + 40px);align-self:start}
-.partnership-heading h2{margin:18px 0 0;color:#aab5bd;font-size:clamp(54px,6vw,100px);line-height:.92;letter-spacing:-.055em}
-.partnership-list{border-top:1px solid #173248}
-.partnership-item{padding:34px 0 40px;border-bottom:1px solid #173248}
-.partnership-item h3{margin:0;color:#8997a1;font-size:clamp(22px,2.1vw,30px);font-weight:600;letter-spacing:-.035em}
-.partnership-item p{max-width:620px;margin:15px 0 0;color:#5d6c76;font-size:13px;line-height:1.7}
+.partnership-heading h2{margin:18px 0 0;color:#dee1e4;font-size:clamp(54px,6vw,100px);line-height:.92;letter-spacing:-.055em}
+.partnership-list{border-top:1px solid #294d6a}
+.partnership-item{padding:34px 0 40px;border-bottom:1px solid #294d6a}
+.partnership-item h3{margin:0;color:#c1c7cc;font-size:clamp(22px,2.1vw,30px);font-weight:600;letter-spacing:-.035em}
+.partnership-item p{max-width:620px;margin:15px 0 0;color:#929ea6;font-size:13px;line-height:1.7}
 
 /* sponsorship levels list */
-.levels-note{max-width:300px;margin:26px 0 0;color:#5d6c76;font-size:13px;line-height:1.7}
-.tier-list{border-top:1px solid #173248}
-.tier-row{display:grid;grid-template-columns:minmax(150px,.4fr) minmax(0,1fr);gap:clamp(24px,4vw,60px);align-items:start;padding:30px 0 34px;border-bottom:1px solid #173248}
+.levels-note{max-width:300px;margin:26px 0 0;color:#929ea6;font-size:13px;line-height:1.7}
+.tier-list{border-top:1px solid #294d6a}
+.tier-row{display:grid;grid-template-columns:minmax(150px,.4fr) minmax(0,1fr);gap:clamp(24px,4vw,60px);align-items:start;padding:30px 0 34px;border-bottom:1px solid #294d6a}
 .tier-meta{display:grid;gap:10px}
-.tier-name{color:#8997a1;font-size:clamp(22px,2.1vw,30px);font-weight:600;letter-spacing:-.035em}
-.tier-amount{color:#40596a;font-family:"Space Mono",monospace;font-size:9px;font-weight:700;letter-spacing:.1em}
+.tier-name{color:#c1c7cc;font-size:clamp(22px,2.1vw,30px);font-weight:600;letter-spacing:-.035em}
+.tier-amount{color:#66869b;font-family:"Space Mono",monospace;font-size:9px;font-weight:700;letter-spacing:.1em}
 .tier-benefits{margin:0;padding:0;list-style:none;display:grid;gap:11px}
-.tier-benefits li{position:relative;padding-left:20px;color:#5d6c76;font-size:13px;line-height:1.65}
-.tier-benefits li::before{content:"";position:absolute;left:0;top:.72em;width:8px;border-top:1px solid #40596a}
+.tier-benefits li{position:relative;padding-left:20px;color:#929ea6;font-size:13px;line-height:1.65}
+.tier-benefits li::before{content:"";position:absolute;left:0;top:.72em;width:8px;border-top:1px solid #66869b}
 
 /* ---------- final CTA ---------- */
 .sponsor-cta{display:grid;grid-template-columns:minmax(0,1.15fr) minmax(280px,.85fr);gap:clamp(55px,9vw,150px);align-items:end;
-  padding:120px var(--gutter);background:#000;border-bottom:1px solid #10283c}
-.sponsor-cta h2{margin:20px 0 0;color:#aab4bc;font-size:clamp(62px,7.4vw,120px);line-height:.9;letter-spacing:-.06em}
-.sponsor-cta-copy p{max-width:450px;margin:0;color:#64727c;font-size:14px;line-height:1.7}
-.sponsor-cta-link{display:flex;justify-content:space-between;align-items:center;max-width:430px;margin-top:32px;padding:14px 0;color:#7d8992;
-  border-top:1px solid #29485e;border-bottom:1px solid #29485e;font-size:12px;transition:color .18s,border-color .18s}
-.sponsor-cta-link:hover{color:#fff;border-color:#718795}
+  padding:120px var(--gutter);background:#121b24;border-bottom:1px solid #1e3e59}
+.sponsor-cta h2{margin:20px 0 0;color:#dee1e4;font-size:clamp(62px,7.4vw,120px);line-height:.9;letter-spacing:-.06em}
+.sponsor-cta-copy p{max-width:450px;margin:0;color:#9ca6ad;font-size:14px;line-height:1.7}
+.sponsor-cta-link{display:flex;justify-content:space-between;align-items:center;max-width:430px;margin-top:32px;padding:14px 0;color:#b5bbc0;
+  border-top:1px solid #456e8a;border-bottom:1px solid #456e8a;font-size:12px;transition:color .18s,border-color .18s}
+.sponsor-cta-link:hover{color:#fff;border-color:#aeb9c0}
 .sponsor-cta-link span{font-size:16px}
 
 /* ---------- tablet ---------- */
@@ -128,11 +128,11 @@
   .sponsors-hero-copy p{max-width:560px}
   .sponsors-summary{grid-template-columns:1fr 1fr}
   .sponsors-summary span:nth-child(2){border-right:0}
-  .sponsors-summary span:nth-child(1),.sponsors-summary span:nth-child(2){border-bottom:1px solid #10283c}
+  .sponsors-summary span:nth-child(1),.sponsors-summary span:nth-child(2){border-bottom:1px solid #1e3e59}
   .sponsor-stats{grid-template-columns:1fr 1fr}
   .sponsor-stat,.sponsor-stat:first-child{padding:34px var(--gutter)}
   .sponsor-stat:nth-child(2){border-right:0}
-  .sponsor-stat:nth-child(1),.sponsor-stat:nth-child(2){border-bottom:1px solid #10283c}
+  .sponsor-stat:nth-child(1),.sponsor-stat:nth-child(2){border-bottom:1px solid #1e3e59}
   .sponsor-tier-heading{grid-template-columns:1fr;gap:30px}
   .title-partner{grid-template-columns:210px 1fr 25px;gap:30px}
   .partnership-section{grid-template-columns:1fr;gap:55px}
@@ -148,7 +148,7 @@
   .sponsors-hero-content{padding:75px 0 55px}
   .sponsors-hero h1{font-size:clamp(52px,15vw,76px)}
   .sponsors-summary{grid-template-columns:1fr}
-  .sponsors-summary span{padding:12px 0;border-right:0;border-bottom:1px solid #10283c}
+  .sponsors-summary span{padding:12px 0;border-right:0;border-bottom:1px solid #1e3e59}
   .sponsors-summary span:last-child{border-bottom:0}
   .sponsor-tier{padding:75px var(--gutter)}
   .sponsor-tier-heading{padding:45px 0}
@@ -169,7 +169,7 @@
 @media(max-width:430px){
   .partner-grid-silver{grid-template-columns:1fr}
   .sponsor-stats{grid-template-columns:1fr}
-  .sponsor-stat,.sponsor-stat:first-child{border-right:0;border-bottom:1px solid #10283c}
+  .sponsor-stat,.sponsor-stat:first-child{border-right:0;border-bottom:1px solid #1e3e59}
   .sponsor-stat:last-child{border-bottom:0}
 }
 
