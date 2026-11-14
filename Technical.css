@@ -362,14 +362,14 @@
 
 
 /* =====================================================
-   SUMMARY
+   THE FLEET
 ===================================================== */
 
-.technical-summary {
+.technical-fleet {
     padding:
-        88px
+        105px
         var(--gutter)
-        105px;
+        120px;
 
     background: #121b24;
 
@@ -379,20 +379,62 @@
 }
 
 
-/* =====================================================
-   SUMMARY ROW LABEL
-===================================================== */
+.fleet-list {
+    border-top:
+        1px solid
+        #294d6a;
+}
 
-.summary-row-label {
-    margin-top: 48px;
 
-    padding-bottom: 12px;
+/* one car per row: story on the left, specs on the right */
 
-    color: #66869b;
+.fleet-car {
+    display: grid;
+
+    grid-template-columns:
+        minmax(0, .9fr)
+        minmax(0, 1.1fr);
+
+    gap:
+        clamp(
+            40px,
+            7vw,
+            110px
+        );
+
+    align-items: start;
+
+    padding:
+        56px
+        0;
 
     border-bottom:
         1px solid
-        #284a64;
+        #294d6a;
+}
+
+
+/* the car in development gets a quiet panel */
+
+.fleet-car-dev {
+    padding:
+        56px
+        28px;
+
+    background: #131d26;
+}
+
+
+.fleet-status {
+    display: flex;
+
+    flex-wrap: wrap;
+
+    gap:
+        8px
+        18px;
+
+    color: #66869b;
 
     font-family:
         "Space Mono",
@@ -402,195 +444,156 @@
 
     font-weight: 700;
 
-    letter-spacing: .12em;
+    letter-spacing: .1em;
 }
 
 
-.summary-row-label-second {
-    margin-top: 44px;
+.fleet-status span:first-child {
+    color: #9fb3c1;
 }
 
 
-/* =====================================================
-   SUMMARY GRID
-===================================================== */
+.fleet-car h3 {
+    margin:
+        18px
+        0
+        22px;
 
-.summary-grid {
-    display: grid;
+    color: #d4d9dc;
 
-    grid-template-columns:
-        repeat(
-            6,
-            minmax(0,1fr)
+    font-size:
+        clamp(
+            32px,
+            3.6vw,
+            56px
         );
 
-    width: 100%;
+    line-height: .95;
 
+    letter-spacing: -.05em;
+}
+
+
+.fleet-copy {
+    max-width: 480px;
+
+    margin: 0;
+
+    color: #949fa7;
+
+    font-size: 13px;
+
+    line-height: 1.7;
+}
+
+
+/* spec table sits at the top of the right column */
+
+.fleet-specs {
+    margin-top: 0;
+}
+
+
+/* in-development feature list */
+
+.fleet-features {
     margin: 0;
 
     padding: 0;
 
-    border-left:
+    list-style: none;
+
+    border-top:
         1px solid
-        #284a64;
+        #294d6a;
 }
 
 
-/* =====================================================
-   SUMMARY CELL
-===================================================== */
-
-.summary-grid > div {
-    min-width: 0;
-
-    min-height: 180px;
+.fleet-features li {
+    position: relative;
 
     padding:
-        22px
-        22px
+        14px
+        5px
+        14px
         24px;
 
-    display: flex;
-
-    flex-direction: column;
-
-    justify-content: space-between;
-
-    overflow: hidden;
-
-    border-right:
-        1px solid
-        #284a64;
+    color: #c1c7cb;
 
     border-bottom:
         1px solid
-        #284a64;
+        #1e3b52;
 
-    transition:
-        background .18s;
+    font-size: 13px;
 }
 
 
-.summary-grid > div:hover {
-    background: #131e27;
+.fleet-features li::before {
+    content: "—";
+
+    position: absolute;
+
+    left: 0;
+
+    color: #547790;
 }
 
 
-/* =====================================================
-   SUMMARY LABEL
-===================================================== */
+.fleet-note {
+    margin:
+        26px
+        0
+        0;
 
-.summary-grid dt {
-    margin: 0;
+    color: #8896a0;
 
-    color: #66869b;
+    font-size: 13px;
 
-    font-family:
-        "Space Mono",
-        monospace;
-
-    font-size: 8px;
-
-    font-weight: 700;
-
-    letter-spacing: .09em;
-
-    line-height: 1.2;
-
-    white-space: nowrap;
+    line-height: 1.7;
 }
 
 
-/* =====================================================
-   SUMMARY VALUE
-===================================================== */
-
-.summary-grid dd {
-    min-width: 0;
-
-    margin: 0;
-
+.fleet-link {
     display: flex;
 
-    align-items: baseline;
+    justify-content: space-between;
+    align-items: center;
 
-    gap: 7px;
+    max-width: 320px;
 
-    color: #c4cace;
+    margin-top: 24px;
 
-    font-size:
-        clamp(
-            27px,
-            2.25vw,
-            44px
-        );
+    padding:
+        13px
+        0;
 
-    font-weight: 500;
+    color: #b2b9be;
 
-    line-height: .95;
+    border-top:
+        1px solid
+        #456e8a;
 
-    letter-spacing: -.055em;
+    border-bottom:
+        1px solid
+        #456e8a;
 
-    white-space: nowrap;
+    font-size: 12px;
+
+    transition:
+        color .18s,
+        border-color .18s;
 }
 
 
-/* =====================================================
-   DIVISION VALUE
-===================================================== */
+.fleet-link:hover {
+    color: #ffffff;
 
-.summary-grid dd.summary-text-value {
-    font-size:
-        clamp(
-            22px,
-            1.85vw,
-            36px
-        );
-
-    letter-spacing: -.04em;
+    border-color: #aeb9c0;
 }
 
 
-/* =====================================================
-   SUMMARY UNIT
-===================================================== */
-
-.summary-grid dd span {
-    flex-shrink: 0;
-
-    margin: 0;
-
-    color: #678395;
-
-    font-family:
-        "Space Mono",
-        monospace;
-
-    font-size:
-        clamp(
-            7px,
-            .52vw,
-            10px
-        );
-
-    font-weight: 700;
-
-    letter-spacing: .06em;
-}
-
-
-/* =====================================================
-   LONGER VALUES
-===================================================== */
-
-.summary-grid > div:nth-child(5) dd,
-.summary-grid > div:nth-child(6) dd {
-    font-size:
-        clamp(
-            25px,
-            2.05vw,
-            40px
-        );
+.fleet-link span {
+    font-size: 16px;
 }
 
 
@@ -1341,59 +1344,6 @@
 
 
 /* =====================================================
-   LARGE TABLET
-===================================================== */
-
-@media(max-width: 1200px) {
-
-    .summary-grid {
-        grid-template-columns:
-            repeat(
-                3,
-                1fr
-            );
-    }
-
-
-    .summary-grid > div {
-        min-height: 155px;
-    }
-
-
-    .summary-grid dd {
-        font-size:
-            clamp(
-                30px,
-                3.5vw,
-                46px
-            );
-    }
-
-
-    .summary-grid dd.summary-text-value {
-        font-size:
-            clamp(
-                26px,
-                3vw,
-                38px
-            );
-    }
-
-
-    .summary-grid > div:nth-child(5) dd,
-    .summary-grid > div:nth-child(6) dd {
-        font-size:
-            clamp(
-                28px,
-                3.3vw,
-                42px
-            );
-    }
-
-}
-
-
-/* =====================================================
    TABLET
 ===================================================== */
 
@@ -1429,6 +1379,14 @@
         gap: 45px;
 
         padding-top: 100px;
+    }
+
+
+    .fleet-car {
+        grid-template-columns:
+            1fr;
+
+        gap: 34px;
     }
 
 
@@ -1541,7 +1499,7 @@
     }
 
 
-    .technical-summary,
+    .technical-fleet,
     .technical-architecture,
     .technical-systems,
     .technical-documents {
@@ -1551,67 +1509,32 @@
     }
 
 
-    .summary-row-label {
-        margin-top: 38px;
-    }
-
-
-    .summary-row-label-second {
-        margin-top: 36px;
-    }
-
-
-    .summary-grid {
-        grid-template-columns:
-            repeat(
-                2,
-                1fr
-            );
-    }
-
-
-    .summary-grid > div {
-        min-height: 135px;
-
+    .fleet-car {
         padding:
-            18px
-            15px;
+            40px
+            0;
     }
 
 
-    .summary-grid dd {
+    .fleet-car-dev {
+        padding:
+            40px
+            20px;
+    }
+
+
+    .fleet-car h3 {
         font-size:
             clamp(
-                26px,
-                7vw,
-                38px
+                30px,
+                9vw,
+                42px
             );
     }
 
 
-    .summary-grid dd.summary-text-value {
-        font-size:
-            clamp(
-                22px,
-                6vw,
-                32px
-            );
-    }
-
-
-    .summary-grid > div:nth-child(5) dd,
-    .summary-grid > div:nth-child(6) dd {
-        font-size:
-            clamp(
-                24px,
-                6.5vw,
-                35px
-            );
-    }
-
-
-    .summary-grid dd span {
-        font-size: 7px;
+    .spec-table.fleet-specs th {
+        width: 44%;
     }
 
 
@@ -1746,25 +1669,6 @@
 
 
 /* =====================================================
-   VERY SMALL MOBILE
-===================================================== */
-
-@media(max-width: 420px) {
-
-    .summary-grid {
-        grid-template-columns:
-            1fr;
-    }
-
-
-    .summary-grid > div {
-        min-height: 115px;
-    }
-
-}
-
-
-/* =====================================================
    REDUCED MOTION
 ===================================================== */
 
@@ -1773,7 +1677,8 @@
     .technical-index a,
     .document-row,
     .document-row h3,
-    .technical-next-link {
+    .technical-next-link,
+    .fleet-link {
         transition: none;
     }
 
