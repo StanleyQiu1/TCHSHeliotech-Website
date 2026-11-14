@@ -105,6 +105,9 @@
 }
 
 
+/* Heading is longer now ("A STUDENT MOVEMENT, POWERED BY THE SUN."),
+   so it is a little smaller than before. */
+
 .about-hero h1 {
     margin-top: 22px;
 
@@ -112,14 +115,14 @@
 
     font-size:
         clamp(
-            64px,
-            7.6vw,
-            128px
+            54px,
+            6.4vw,
+            108px
         );
 
-    line-height: .91;
+    line-height: .93;
 
-    letter-spacing: -.065em;
+    letter-spacing: -.06em;
 }
 
 
@@ -140,12 +143,12 @@
 
     font-size:
         clamp(
-            17px,
-            1.45vw,
-            23px
+            16px,
+            1.3vw,
+            21px
         );
 
-    line-height: 1.55;
+    line-height: 1.6;
 }
 
 
@@ -273,7 +276,7 @@
 
 
 /* =====================================================
-   MISSION HIGHLIGHT
+   STORY HEADLINE
 ===================================================== */
 
 .about-highlight {
@@ -290,9 +293,9 @@
 
     font-size:
         clamp(
-            55px,
-            7vw,
-            115px
+            48px,
+            6.2vw,
+            104px
         );
 }
 
@@ -313,7 +316,7 @@
 
 
 /* =====================================================
-   DISCIPLINES
+   CARD GRIDS (values, teams, leadership)
 ===================================================== */
 
 .about-discipline-grid {
@@ -331,6 +334,29 @@
     border-left:
         1px solid
         var(--navy-line);
+}
+
+
+/* Values: three cards across */
+
+.about-values-grid {
+    grid-template-columns:
+        repeat(3, 1fr);
+}
+
+
+/* Leadership: four cards across */
+
+.about-leaders-grid {
+    grid-template-columns:
+        repeat(4, 1fr);
+}
+
+
+/* The two-team cards follow the split heading directly */
+
+.about-team-grid {
+    margin-top: 60px;
 }
 
 
@@ -400,15 +426,87 @@
 }
 
 
+/* Team cards have longer headlines, so they run smaller */
+
+.about-team-grid .about-discipline-card h3 {
+    margin-top: 40px;
+
+    font-size:
+        clamp(
+            22px,
+            2vw,
+            30px
+        );
+
+    line-height: 1.05;
+}
+
+
+/* Leadership cards are just a label and names */
+
+.about-leaders-grid .about-discipline-card {
+    min-height: 200px;
+}
+
+
+/* Lists inside cards (sub-teams and names) */
+
+.about-list {
+    margin: 26px 0 0;
+    padding: 0;
+
+    list-style: none;
+}
+
+
+.about-list li {
+    padding: 11px 0;
+
+    color: #81909a;
+
+    border-top:
+        1px solid
+        var(--navy-line);
+
+    font-size: 13px;
+
+    line-height: 1.5;
+}
+
+
+.about-list li:last-child {
+    border-bottom:
+        1px solid
+        var(--navy-line);
+}
+
+
+.about-list strong {
+    color: #c1c7cb;
+
+    font-weight: 600;
+}
+
+
+.about-leaders-grid .about-list li {
+    color: #c1c7cb;
+
+    font-size: 15px;
+}
+
+
 /* =====================================================
-   RESULTS
+   TIMELINE (2023 – 2027)
 ===================================================== */
 
 .about-results-grid {
     display: grid;
 
+    /* six columns: three cards on the first row,
+       two wider cards on the second */
+
     grid-template-columns:
-        repeat(3, 1fr);
+        repeat(6, 1fr);
 
     margin-top: 70px;
 
@@ -423,6 +521,8 @@
 
 
 .about-results-grid article {
+    grid-column: span 2;
+
     min-height: 280px;
 
     padding: 28px;
@@ -434,6 +534,19 @@
     border-bottom:
         1px solid
         var(--navy-line);
+
+    transition:
+        background .2s;
+}
+
+
+.about-results-grid article:nth-child(n + 4) {
+    grid-column: span 3;
+}
+
+
+.about-results-grid article:hover {
+    background: #131d26;
 }
 
 
@@ -468,13 +581,59 @@
 
 
 .about-results-grid p {
-    margin-top: 72px;
+    max-width: 520px;
+
+    margin-top: 40px;
 
     color: #8896a0;
 
     font-size: 13px;
 
     line-height: 1.65;
+}
+
+
+/* =====================================================
+   QUOTES
+===================================================== */
+
+.about-quote {
+    margin: 0 0 50px;
+
+    padding-left: 24px;
+
+    border-left:
+        1px solid
+        var(--navy-line-bright);
+}
+
+
+.about-quote:last-child {
+    margin-bottom: 0;
+}
+
+
+.about-quote p {
+    margin-bottom: 0;
+}
+
+
+.about-quote footer {
+    margin-top: 18px;
+
+    color: #6b869a;
+
+    font-family:
+        "Space Mono",
+        monospace;
+
+    font-size: 9px;
+
+    letter-spacing: .08em;
+
+    line-height: 1.6;
+
+    text-transform: uppercase;
 }
 
 
@@ -562,8 +721,33 @@
     }
 
 
-    .about-results-grid {
+    .about-values-grid {
         grid-template-columns: 1fr;
+    }
+
+
+    .about-leaders-grid {
+        grid-template-columns:
+            repeat(2, 1fr);
+    }
+
+
+    .about-results-grid {
+        grid-template-columns:
+            repeat(2, 1fr);
+    }
+
+
+    .about-results-grid article,
+    .about-results-grid article:nth-child(n + 4) {
+        grid-column: span 1;
+    }
+
+
+    /* last (odd) timeline card fills the full row */
+
+    .about-results-grid article:last-child {
+        grid-column: 1 / -1;
     }
 
 
@@ -610,9 +794,9 @@
     .about-hero h1 {
         font-size:
             clamp(
-                50px,
-                14vw,
-                72px
+                42px,
+                12.5vw,
+                66px
             );
     }
 
@@ -629,7 +813,8 @@
     }
 
 
-    .about-discipline-grid {
+    .about-discipline-grid,
+    .about-leaders-grid {
         grid-template-columns: 1fr;
     }
 
@@ -637,15 +822,24 @@
     .about-highlight h2 {
         font-size:
             clamp(
-                46px,
-                12vw,
-                68px
+                40px,
+                11vw,
+                62px
             );
     }
 
 
     .about-results-grid {
         grid-template-columns: 1fr;
+    }
+
+
+    .about-results-grid article,
+    .about-results-grid article:nth-child(n + 4),
+    .about-results-grid article:last-child {
+        grid-column: 1 / -1;
+
+        min-height: 0;
     }
 
 
