@@ -860,3 +860,505 @@
     }
 
 }
+
+
+/* =====================================================
+   VISUAL UPGRADE
+   Solar-gold accent, photo hero, stats strip, outlined
+   years, glowing timeline, bigger quotes, photo band.
+   (Placed last so it overrides the base styles above.)
+===================================================== */
+
+.page-about {
+    --solar: #f6b73c;
+    --solar-soft: rgba(246, 183, 60, .16);
+}
+
+
+/* ---------- hero: photo + dark fade + sun glow ---------- */
+
+.about-hero {
+    background:
+        linear-gradient(
+            to top,
+            rgba(10, 16, 22, .92) 0%,
+            rgba(10, 16, 22, .62) 50%,
+            rgba(10, 16, 22, .38) 100%
+        ),
+        url("images/our-car-bg.jpg") center / cover no-repeat,
+        #121b24;
+}
+
+.about-hero::after {
+    content: "";
+
+    position: absolute;
+
+    top: -18%;
+    right: -12%;
+
+    width: 62vw;
+    height: 62vw;
+
+    border-radius: 50%;
+
+    background:
+        radial-gradient(
+            circle,
+            rgba(246, 183, 60, .30) 0%,
+            rgba(246, 120, 40, .10) 38%,
+            transparent 68%
+        );
+
+    pointer-events: none;
+
+    animation: about-sun 9s ease-in-out infinite alternate;
+}
+
+@keyframes about-sun {
+
+    from {
+        opacity: .65;
+        transform: scale(.94);
+    }
+
+    to {
+        opacity: 1;
+        transform: scale(1.06);
+    }
+
+}
+
+.about-hero h1 span {
+    background:
+        linear-gradient(
+            90deg,
+            #ffd479 0%,
+            #f6b73c 45%,
+            #f0803c 100%
+        );
+
+    -webkit-background-clip: text;
+    background-clip: text;
+
+    color: transparent;
+}
+
+.about-hero .eyebrow {
+    color: var(--solar);
+}
+
+.about-hero-lead {
+    padding-left: 22px;
+
+    border-left: 2px solid var(--solar);
+
+    color: #d3d9dd;
+}
+
+
+/* ---------- section headers: gold marker ---------- */
+
+.about-section-header span:first-child::before {
+    content: "";
+
+    display: inline-block;
+
+    width: 8px;
+    height: 8px;
+
+    margin-right: 12px;
+
+    background: var(--solar);
+
+    box-shadow: 0 0 12px var(--solar);
+}
+
+.about-label {
+    color: var(--solar);
+}
+
+
+/* ---------- stats strip ---------- */
+
+.about-stats {
+    display: grid;
+
+    grid-template-columns: repeat(4, 1fr);
+
+    background: #0f1820;
+
+    border-bottom: 1px solid var(--navy-line);
+}
+
+.about-stat {
+    padding:
+        clamp(34px, 5vw, 64px)
+        var(--gutter);
+
+    border-right: 1px solid var(--navy-line);
+
+    transition: background .25s;
+}
+
+.about-stat:last-child {
+    border-right: 0;
+}
+
+.about-stat:hover {
+    background: #14202b;
+}
+
+.about-stat strong {
+    display: block;
+
+    color: var(--solar);
+
+    font-size: clamp(44px, 5.4vw, 88px);
+    font-weight: 700;
+
+    line-height: 1;
+
+    letter-spacing: -.05em;
+}
+
+.about-stat span {
+    display: block;
+
+    margin-top: 14px;
+
+    color: #7893a6;
+
+    font-family: "Space Mono", monospace;
+
+    font-size: 9px;
+    font-weight: 700;
+
+    letter-spacing: .12em;
+}
+
+
+/* ---------- story headline: gold gradient ---------- */
+
+.about-highlight h2 {
+    background:
+        linear-gradient(
+            100deg,
+            #e7e9eb 0%,
+            #e7e9eb 45%,
+            var(--solar) 100%
+        );
+
+    -webkit-background-clip: text;
+    background-clip: text;
+
+    color: transparent;
+}
+
+
+/* ---------- cards: gold top line + glow on hover ---------- */
+
+.about-discipline-card,
+.about-results-grid article {
+    position: relative;
+}
+
+.about-discipline-card::before,
+.about-results-grid article::before {
+    content: "";
+
+    position: absolute;
+
+    top: -1px;
+    left: 0;
+
+    width: 100%;
+    height: 2px;
+
+    background: var(--solar);
+
+    transform: scaleX(0);
+    transform-origin: left;
+
+    transition: transform .45s cubic-bezier(.2, .7, .2, 1);
+}
+
+.about-discipline-card:hover::before,
+.about-results-grid article:hover::before {
+    transform: scaleX(1);
+}
+
+.about-discipline-card:hover,
+.about-results-grid article:hover {
+    background:
+        radial-gradient(
+            circle at 0% 0%,
+            var(--solar-soft),
+            transparent 60%
+        ),
+        #15212c;
+}
+
+
+/* values: big outlined numbers */
+
+.about-values-grid .about-discipline-card > span {
+    display: block;
+
+    color: transparent;
+
+    -webkit-text-stroke: 1px #4d7690;
+
+    font-size: clamp(56px, 6vw, 96px);
+    font-weight: 700;
+
+    line-height: 1;
+
+    letter-spacing: -.04em;
+
+    transition:
+        color .3s,
+        -webkit-text-stroke-color .3s;
+}
+
+.about-values-grid .about-discipline-card:hover > span {
+    color: var(--solar);
+
+    -webkit-text-stroke-color: var(--solar);
+}
+
+.about-values-grid .about-discipline-card h3 {
+    margin-top: 40px;
+}
+
+
+/* ---------- timeline: outlined years + glowing dots ---------- */
+
+.about-results-grid strong {
+    color: transparent;
+
+    -webkit-text-stroke: 1px #5b7f98;
+
+    font-size: clamp(54px, 6vw, 96px);
+    font-weight: 700;
+
+    line-height: .95;
+
+    transition:
+        color .3s,
+        -webkit-text-stroke-color .3s;
+}
+
+.about-results-grid article:hover strong {
+    color: var(--solar);
+
+    -webkit-text-stroke-color: var(--solar);
+}
+
+.about-results-grid article::after {
+    content: "";
+
+    position: absolute;
+
+    top: 32px;
+    right: 28px;
+
+    width: 9px;
+    height: 9px;
+
+    border-radius: 50%;
+
+    background: var(--solar);
+
+    box-shadow:
+        0 0 0 4px rgba(246, 183, 60, .15),
+        0 0 16px var(--solar);
+}
+
+.about-results-grid span {
+    color: var(--solar);
+}
+
+
+/* ---------- quotes: big gold mark ---------- */
+
+.about-quote {
+    position: relative;
+
+    padding-left: 70px;
+
+    border-left: 0;
+}
+
+.about-quote::before {
+    content: "\201C";
+
+    position: absolute;
+
+    left: 0;
+    top: -16px;
+
+    color: var(--solar);
+
+    font-family: Georgia, "Times New Roman", serif;
+    font-size: 110px;
+
+    line-height: 1;
+
+    opacity: .85;
+}
+
+.about-quote footer {
+    color: var(--solar);
+}
+
+
+/* ---------- leadership: names a little brighter ---------- */
+
+.about-leaders-grid .about-discipline-card > span {
+    color: var(--solar);
+}
+
+
+/* ---------- team photo band ---------- */
+
+.about-photo {
+    position: relative;
+
+    padding: 0;
+
+    border-bottom: 1px solid var(--navy-line);
+}
+
+.about-photo figure {
+    position: relative;
+
+    margin: 0;
+
+    height: clamp(300px, 62vh, 640px);
+
+    overflow: hidden;
+}
+
+.about-photo img {
+    width: 100%;
+    height: 100%;
+
+    object-fit: cover;
+    object-position: center 35%;
+
+    transition: transform 1.2s cubic-bezier(.2, .7, .2, 1);
+}
+
+.about-photo figure:hover img {
+    transform: scale(1.04);
+}
+
+.about-photo figure::after {
+    content: "";
+
+    position: absolute;
+    inset: 0;
+
+    background:
+        linear-gradient(
+            to top,
+            rgba(10, 16, 22, .85) 0%,
+            rgba(10, 16, 22, .1) 55%,
+            rgba(10, 16, 22, .25) 100%
+        );
+
+    pointer-events: none;
+}
+
+.about-photo figcaption {
+    position: absolute;
+
+    z-index: 2;
+
+    left: var(--gutter);
+    right: var(--gutter);
+    bottom: 28px;
+
+    display: flex;
+
+    justify-content: space-between;
+
+    padding-top: 14px;
+
+    color: #e3e8ec;
+
+    border-top: 1px solid rgba(255, 255, 255, .3);
+
+    font-family: "Space Mono", monospace;
+
+    font-size: 9px;
+    font-weight: 700;
+
+    letter-spacing: .12em;
+}
+
+.about-photo figcaption span:first-child {
+    color: var(--solar);
+}
+
+
+/* ---------- closing section: gold button hover ---------- */
+
+.about-next .support-button:hover {
+    border-color: var(--solar);
+
+    color: var(--solar);
+}
+
+
+/* ---------- responsive for the upgrade ---------- */
+
+@media(max-width: 1000px) {
+
+    .about-stats {
+        grid-template-columns: repeat(2, 1fr);
+    }
+
+    .about-stat:nth-child(2) {
+        border-right: 0;
+    }
+
+    .about-stat:nth-child(-n + 2) {
+        border-bottom: 1px solid var(--navy-line);
+    }
+
+}
+
+@media(max-width: 650px) {
+
+    .about-hero::after {
+        width: 110vw;
+        height: 110vw;
+    }
+
+    .about-quote {
+        padding-left: 46px;
+    }
+
+    .about-quote::before {
+        font-size: 76px;
+    }
+
+    .about-photo figure {
+        height: 42vh;
+    }
+
+}
+
+@media(prefers-reduced-motion: reduce) {
+
+    .about-hero::after {
+        animation: none;
+    }
+
+    .about-photo img {
+        transition: none;
+    }
+
+}
