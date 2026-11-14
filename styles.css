@@ -2944,3 +2944,563 @@ effect-composer {
     }
 
 }
+
+
+
+/* =====================================================
+   HOME PAGE: SOLAR YELLOW ACCENT
+
+   Everything here is scoped to .page-home (the class on
+   index.html's <body>), so the other pages are unchanged.
+   Edit --solar to change the yellow everywhere at once.
+===================================================== */
+
+.page-home {
+    --solar: #f6b73c;
+    --solar-bright: #ffd36b;
+    --solar-deep: #e8961f;
+    --solar-ink: #1a1405;
+    --solar-line: rgba(246, 183, 60, .28);
+    --solar-soft: rgba(246, 183, 60, .12);
+}
+
+.page-home ::selection {
+    background: var(--solar);
+    color: #121b24;
+}
+
+
+/* ---------- header + progress ---------- */
+
+.page-home .scroll-progress {
+    height: 2px;
+
+    background:
+        linear-gradient(
+            90deg,
+            var(--solar-deep),
+            var(--solar-bright)
+        );
+}
+
+.page-home nav a {
+    position: relative;
+}
+
+.page-home nav a::after {
+    content: "";
+
+    position: absolute;
+
+    left: 17px;
+    right: 17px;
+    bottom: 0;
+
+    height: 2px;
+
+    background: var(--solar);
+
+    transform: scaleX(0);
+    transform-origin: left;
+
+    transition: transform .3s cubic-bezier(.2, .7, .2, 1);
+}
+
+.page-home nav a:hover {
+    color: var(--solar-bright);
+}
+
+.page-home nav a:hover::after {
+    transform: scaleX(1);
+}
+
+.page-home .nav-support {
+    color: var(--solar);
+
+    border-left-color: var(--solar-line);
+}
+
+.page-home a:hover .link-icon {
+    color: var(--solar);
+}
+
+
+/* ---------- hero: warm sunrise glow ---------- */
+
+.page-home .hero {
+    background:
+        radial-gradient(
+            ellipse 70% 60% at 88% 100%,
+            rgba(246, 183, 60, .26) 0%,
+            rgba(232, 150, 31, .10) 40%,
+            transparent 72%
+        ),
+        linear-gradient(
+            180deg,
+            #121b24 0%,
+            #121b24 55%,
+            #1a1608 100%
+        );
+}
+
+.page-home .hero-topline {
+    color: #a89566;
+
+    border-bottom-color: var(--solar-line);
+}
+
+.page-home .eyebrow {
+    color: var(--solar);
+}
+
+.page-home .hero h1 span {
+    color: var(--solar);
+
+    text-shadow: 0 0 26px rgba(246, 183, 60, .45);
+}
+
+.page-home .hero-data {
+    border-top-color: var(--solar-line);
+}
+
+.page-home .hero-data > div {
+    border-right-color: var(--solar-line);
+
+    transition:
+        background .25s,
+        transform .3s cubic-bezier(.2, .7, .2, 1);
+}
+
+.page-home .hero-data > div:hover {
+    background: var(--solar-soft);
+
+    transform: translateY(-3px);
+}
+
+.page-home .hero-data span {
+    color: #b39a5c;
+}
+
+.page-home .hero-data strong {
+    color: var(--solar-bright);
+}
+
+
+/* ---------- section labels ---------- */
+
+.page-home .section-header {
+    color: #cfa650;
+
+    border-bottom-color: var(--solar-line);
+}
+
+
+/* ---------- about: warm panel ---------- */
+
+.page-home #about {
+    background:
+        radial-gradient(
+            circle at 100% 0%,
+            rgba(246, 183, 60, .16) 0%,
+            transparent 50%
+        ),
+        linear-gradient(
+            160deg,
+            #121b24 0%,
+            #1b1609 60%,
+            #261c08 100%
+        );
+
+    border-top-color: var(--solar-line);
+}
+
+.page-home #about .statement-lead {
+    color: #f3e8cc;
+}
+
+.page-home #about .body-copy {
+    color: #b3aa92;
+}
+
+.page-home .text-link {
+    color: var(--solar-bright);
+
+    border-bottom-color: var(--solar);
+
+    transition:
+        color .2s,
+        border-color .2s,
+        gap .25s,
+        transform .25s;
+}
+
+.page-home .text-link:hover {
+    color: #ffffff;
+
+    border-color: var(--solar-bright);
+
+    gap: 14px;
+
+    transform: translateX(4px);
+}
+
+
+/* ---------- 3D vehicle: sun glow behind the model ---------- */
+
+.page-home .vehicle-model-layer::before {
+    content: "";
+
+    position: absolute;
+
+    inset: 0;
+
+    z-index: 1;
+
+    pointer-events: none;
+
+    background:
+        radial-gradient(
+            ellipse 55% 50% at 50% 55%,
+            rgba(246, 183, 60, .13) 0%,
+            transparent 70%
+        );
+}
+
+.page-home .vehicle-topbar {
+    color: #b39a5c;
+
+    border-bottom-color: var(--solar-line);
+}
+
+.page-home .vehicle-bottom {
+    color: #b39a5c;
+
+    border-top-color: var(--solar-line);
+}
+
+.page-home .story-label {
+    color: var(--solar);
+}
+
+.page-home .model-story h2 {
+    color: #f1f3f4;
+}
+
+.page-home .model-story p {
+    color: #aeb7bd;
+}
+
+
+/* ---------- systems: rows light up on hover ---------- */
+
+.page-home #systems {
+    background:
+        radial-gradient(
+            circle at 0% 100%,
+            rgba(246, 183, 60, .10) 0%,
+            transparent 48%
+        ),
+        #121b24;
+}
+
+.page-home .systems-list {
+    border-top-color: var(--solar-line);
+}
+
+.page-home .system-row {
+    position: relative;
+
+    border-bottom-color: var(--solar-line);
+
+    transition:
+        background .25s,
+        padding-left .3s cubic-bezier(.2, .7, .2, 1);
+}
+
+.page-home .system-row::before {
+    content: "";
+
+    position: absolute;
+
+    left: 0;
+    top: 0;
+    bottom: 0;
+
+    width: 3px;
+
+    background: var(--solar);
+
+    transform: scaleY(0);
+    transform-origin: center;
+
+    transition: transform .3s cubic-bezier(.2, .7, .2, 1);
+}
+
+.page-home .system-row:hover {
+    background:
+        linear-gradient(
+            90deg,
+            rgba(246, 183, 60, .14) 0%,
+            rgba(246, 183, 60, .03) 60%,
+            transparent 100%
+        );
+
+    padding-left: 20px;
+}
+
+.page-home .system-row:hover::before {
+    transform: scaleY(1);
+}
+
+.page-home .system-label {
+    color: #cfa650;
+}
+
+.page-home .system-row:hover h3 {
+    color: var(--solar-bright);
+}
+
+.page-home .system-row:hover p {
+    color: #e2d7b8;
+}
+
+.page-home .system-arrow {
+    color: #cfa650;
+
+    transition:
+        color .2s,
+        transform .25s;
+}
+
+.page-home .system-row:hover .system-arrow {
+    color: var(--solar);
+
+    transform: translate(4px, -4px);
+}
+
+
+/* ---------- results: warm panel, gold years ---------- */
+
+.page-home #results {
+    background:
+        radial-gradient(
+            circle at 0% 0%,
+            rgba(246, 183, 60, .16) 0%,
+            transparent 50%
+        ),
+        linear-gradient(
+            200deg,
+            #121b24 0%,
+            #1b1609 58%,
+            #261c08 100%
+        );
+
+    border-top-color: var(--solar-line);
+}
+
+.page-home .results-grid {
+    border-top-color: var(--solar-line);
+    border-left-color: var(--solar-line);
+}
+
+.page-home .results-grid article {
+    position: relative;
+
+    border-right-color: var(--solar-line);
+    border-bottom-color: var(--solar-line);
+
+    transition:
+        background .3s,
+        transform .35s cubic-bezier(.2, .7, .2, 1);
+}
+
+.page-home .results-grid article::before {
+    content: "";
+
+    position: absolute;
+
+    top: -1px;
+    left: 0;
+
+    width: 100%;
+    height: 3px;
+
+    background:
+        linear-gradient(
+            90deg,
+            var(--solar-deep),
+            var(--solar-bright)
+        );
+
+    transform: scaleX(0);
+    transform-origin: left;
+
+    transition: transform .45s cubic-bezier(.2, .7, .2, 1);
+}
+
+.page-home .results-grid article:hover {
+    background: rgba(246, 183, 60, .09);
+
+    transform: translateY(-4px);
+}
+
+.page-home .results-grid article:hover::before {
+    transform: scaleX(1);
+}
+
+.page-home .result-year {
+    color: var(--solar);
+}
+
+.page-home .results-grid article > span {
+    color: #cfa650;
+}
+
+.page-home .results-grid h3 {
+    color: #f3eee0;
+}
+
+.page-home .results-grid p {
+    color: #b3aa92;
+}
+
+
+/* ---------- team: cards flood yellow on hover ---------- */
+
+.page-home #team {
+    background: #121b24;
+}
+
+.page-home .team-grid {
+    border-top-color: var(--solar-line);
+    border-left-color: var(--solar-line);
+}
+
+.page-home .team-card {
+    border-right-color: var(--solar-line);
+    border-bottom-color: var(--solar-line);
+
+    transition:
+        background .3s,
+        transform .35s cubic-bezier(.2, .7, .2, 1);
+}
+
+.page-home .team-card:hover {
+    background:
+        linear-gradient(
+            160deg,
+            var(--solar-bright) 0%,
+            var(--solar) 55%,
+            var(--solar-deep) 100%
+        );
+
+    transform: translateY(-6px);
+
+    z-index: 2;
+}
+
+.page-home .team-card h3 {
+    transition: color .25s;
+}
+
+.page-home .team-card:hover h3 {
+    color: var(--solar-ink);
+}
+
+.page-home .team-card:hover p {
+    color: #3a2d0a;
+}
+
+.page-home .team-card:hover .link-icon {
+    color: var(--solar-ink);
+}
+
+
+/* ---------- support: solid yellow band ---------- */
+
+.page-home .support-section {
+    background:
+        linear-gradient(
+            135deg,
+            var(--solar-bright) 0%,
+            var(--solar) 55%,
+            var(--solar-deep) 100%
+        );
+
+    border-top: 0;
+}
+
+.page-home .support-label {
+    color: #4a3908;
+}
+
+.page-home .support-section h2 {
+    color: var(--solar-ink);
+}
+
+.page-home .support-section p {
+    color: #33270a;
+}
+
+.page-home .support-button {
+    color: var(--solar-bright);
+
+    border-color: #121b24;
+
+    background: #121b24;
+
+    transition:
+        color .25s,
+        background .25s,
+        transform .3s cubic-bezier(.2, .7, .2, 1),
+        box-shadow .3s;
+}
+
+.page-home .support-button .link-icon {
+    color: var(--solar-bright);
+}
+
+.page-home .support-button:hover {
+    color: #121b24;
+
+    border-color: #121b24;
+
+    background: #ffffff;
+
+    transform: translateY(-3px);
+
+    box-shadow: 0 10px 0 rgba(18, 27, 36, .25);
+}
+
+.page-home .support-button:hover .link-icon {
+    color: #121b24;
+}
+
+
+/* ---------- footer ---------- */
+
+.page-home .site-footer {
+    border-top: 2px solid var(--solar);
+}
+
+.page-home .footer-links a {
+    transition:
+        color .2s,
+        transform .25s;
+}
+
+.page-home .footer-links a:hover {
+    color: var(--solar-bright);
+
+    transform: translateX(3px);
+}
+
+.page-home .footer-bottom {
+    color: #8c7c4f;
+
+    border-top-color: var(--solar-line);
+}
+
+.page-home .footer-brand-area p {
+    color: #8c7c4f;
+}
