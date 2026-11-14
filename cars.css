@@ -64,3 +64,182 @@
   .page-cars .car-card{transition:none}
   .page-cars .car-card:hover{transform:none}
 }
+
+
+/* =====================================================
+   SOLAR YELLOW ACCENT (Our Cars page)
+   All rules are scoped to .page-cars, so other pages are
+   unchanged. Edit --solar to change the yellow everywhere.
+===================================================== */
+
+.page-cars {
+  --solar: #f6b73c;
+  --solar-bright: #ffd36b;
+  --solar-deep: #e8961f;
+  --solar-ink: #1a1405;
+  --solar-line: rgba(246,183,60,.28);
+  --solar-soft: rgba(246,183,60,.12);
+}
+
+.page-cars ::selection { background: var(--solar); color: #121b24; }
+
+
+/* ---------- header, progress, nav ---------- */
+
+.page-cars .scroll-progress {
+  height: 2px;
+  background: linear-gradient(90deg, var(--solar-deep), var(--solar-bright));
+}
+
+.page-cars nav a { position: relative; }
+
+.page-cars nav a::after {
+  content: "";
+  position: absolute;
+  left: 17px; right: 17px; bottom: 0;
+  height: 2px;
+  background: var(--solar);
+  transform: scaleX(0);
+  transform-origin: left;
+  transition: transform .3s cubic-bezier(.2,.7,.2,1);
+}
+
+.page-cars nav a:hover { color: var(--solar-bright); }
+.page-cars nav a:hover::after,
+.page-cars nav a[aria-current="page"]::after { transform: scaleX(1); }
+
+.page-cars nav a[aria-current="page"] { color: var(--solar-bright); }
+
+.page-cars .nav-support { color: var(--solar); border-left-color: var(--solar-line); }
+.page-cars a:hover .link-icon { color: var(--solar); }
+
+
+/* ---------- hero: sunrise glow over the photo ---------- */
+
+.page-cars .page-hero {
+  background:
+    radial-gradient(ellipse 70% 60% at 90% 100%, rgba(246,183,60,.30) 0%, rgba(232,150,31,.10) 40%, transparent 72%),
+    linear-gradient(to top, rgba(10,16,22,.85) 0%, rgba(10,16,22,.45) 55%, rgba(10,16,22,.2) 100%),
+    url("images/our-car-bg.jpg") center/cover no-repeat #121b24;
+}
+
+.page-cars .page-hero .hero-topline { color: #e6d6a8; border-bottom-color: var(--solar-line); }
+.page-cars .page-hero .eyebrow { color: var(--solar); }
+.page-cars .page-hero h1 span { color: var(--solar); text-shadow: 0 0 26px rgba(246,183,60,.4); }
+.page-cars .page-hero .page-lead { border-left: 2px solid var(--solar); }
+
+
+/* ---------- 3D sections: sun glow behind the models ---------- */
+
+.page-cars .vehicle-model-layer::before {
+  content: "";
+  position: absolute;
+  inset: 0;
+  z-index: 1;
+  pointer-events: none;
+  background: radial-gradient(ellipse 55% 50% at 50% 55%, rgba(246,183,60,.13) 0%, transparent 70%);
+}
+
+.page-cars .vehicle-topbar { color: #b39a5c; border-bottom-color: var(--solar-line); }
+.page-cars .vehicle-bottom { color: #b39a5c; border-top-color: var(--solar-line); }
+.page-cars .story-label { color: var(--solar); }
+.page-cars .model-story h2 { color: #f1f3f4; }
+.page-cars .model-story p { color: #aeb7bd; }
+
+
+/* ---------- fleet section: warm panel ---------- */
+
+.page-cars .standard-section {
+  background:
+    radial-gradient(circle at 100% 0%, rgba(246,183,60,.16) 0%, transparent 50%),
+    linear-gradient(160deg, #121b24 0%, #1b1609 60%, #261c08 100%);
+  border-top-color: var(--solar-line);
+}
+
+.page-cars .section-header { color: #cfa650; border-bottom-color: var(--solar-line); }
+
+
+/* ---------- car cards ---------- */
+
+.page-cars .car-card {
+  border-color: var(--solar-line);
+  background: linear-gradient(180deg, rgba(21,32,43,.92) 0%, rgba(19,29,38,.92) 100%);
+}
+
+.page-cars .car-card:hover {
+  border-color: var(--solar);
+  box-shadow: 0 22px 50px -26px rgba(246,183,60,.55);
+}
+
+.page-cars .car-visual {
+  border-right-color: var(--solar-line);
+  background: radial-gradient(circle at 50% 40%, #2a2410 0%, #131e27 72%);
+}
+
+.page-cars .car-card:nth-child(even) .car-visual { border-left-color: var(--solar-line); }
+
+.page-cars .car-visual img { transition: transform .9s cubic-bezier(.2,.7,.2,1); }
+.page-cars .car-card:hover .car-visual img { transform: scale(1.06); }
+
+.page-cars .car-visual em { color: var(--solar-bright); }
+
+.page-cars .car-info .story-label { color: var(--solar); }
+
+.page-cars .car-info h3 { transition: color .25s; }
+.page-cars .car-card:hover .car-info h3 { color: var(--solar-bright); }
+
+.page-cars .spec-table th,
+.page-cars .spec-table td { border-bottom-color: var(--solar-line); transition: color .2s, background .2s, padding-left .25s; }
+
+.page-cars .spec-table th { color: #cfa650; }
+.page-cars .spec-table td { color: #e9e2d0; }
+
+.page-cars .spec-table tr:hover th { color: var(--solar-bright); padding-left: 8px; }
+.page-cars .spec-table tr:hover td { color: #ffffff; }
+.page-cars .spec-table tr:hover th,
+.page-cars .spec-table tr:hover td { background: var(--solar-soft); }
+
+
+/* ---------- "next" band: solid yellow ---------- */
+
+.page-cars .support-section {
+  background: linear-gradient(135deg, var(--solar-bright) 0%, var(--solar) 55%, var(--solar-deep) 100%);
+  border-top: 0;
+}
+
+.page-cars .support-label { color: #4a3908; }
+.page-cars .support-section h2 { color: var(--solar-ink); }
+.page-cars .support-section p { color: #33270a; }
+
+.page-cars .support-button {
+  color: var(--solar-bright);
+  border-color: #121b24;
+  background: #121b24;
+  transition: color .25s, background .25s, transform .3s cubic-bezier(.2,.7,.2,1), box-shadow .3s;
+}
+
+.page-cars .support-button .link-icon { color: var(--solar-bright); }
+
+.page-cars .support-button:hover {
+  color: #121b24;
+  background: #ffffff;
+  transform: translateY(-3px);
+  box-shadow: 0 10px 0 rgba(18,27,36,.25);
+}
+
+.page-cars .support-button:hover .link-icon { color: #121b24; }
+
+
+/* ---------- footer ---------- */
+
+.page-cars .site-footer { border-top: 2px solid var(--solar); }
+.page-cars .footer-links a { transition: color .2s, transform .25s; }
+.page-cars .footer-links a:hover { color: var(--solar-bright); transform: translateX(3px); }
+.page-cars .footer-bottom { color: #8c7c4f; border-top-color: var(--solar-line); }
+.page-cars .footer-brand-area p,
+.page-cars .site-footer > div > p { color: #8c7c4f; }
+
+@media(prefers-reduced-motion:reduce){
+  .page-cars .car-visual img,
+  .page-cars .car-card:hover .car-visual img { transition: none; transform: none; }
+}
