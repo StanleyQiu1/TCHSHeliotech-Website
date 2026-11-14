@@ -957,23 +957,6 @@
 }
 
 
-/* ---------- section headers: gold marker ---------- */
-
-.about-section-header span:first-child::before {
-    content: "";
-
-    display: inline-block;
-
-    width: 8px;
-    height: 8px;
-
-    margin-right: 12px;
-
-    background: var(--solar);
-
-    box-shadow: 0 0 12px var(--solar);
-}
-
 .about-label {
     color: var(--solar);
 }
@@ -1132,7 +1115,7 @@
 }
 
 
-/* ---------- timeline: outlined years + glowing dots ---------- */
+/* ---------- timeline: outlined years ---------- */
 
 .about-results-grid strong {
     color: transparent;
@@ -1153,26 +1136,6 @@
     color: var(--solar);
 
     -webkit-text-stroke-color: var(--solar);
-}
-
-.about-results-grid article::after {
-    content: "";
-
-    position: absolute;
-
-    top: 32px;
-    right: 28px;
-
-    width: 9px;
-    height: 9px;
-
-    border-radius: 50%;
-
-    background: var(--solar);
-
-    box-shadow:
-        0 0 0 4px rgba(246, 183, 60, .15),
-        0 0 16px var(--solar);
 }
 
 .about-results-grid span {
