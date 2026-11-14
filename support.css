@@ -157,15 +157,15 @@
 
 
 .support-hero-copy p {
-    max-width: 470px;
+    max-width: 490px;
 
     color: #adb3b9;
 
     font-size:
         clamp(
-            16px,
-            1.3vw,
-            20px
+            15px,
+            1.2vw,
+            19px
         );
 
     line-height: 1.65;
@@ -222,6 +222,81 @@
 
 
 /* =====================================================
+   AT A GLANCE (stats)
+===================================================== */
+
+.support-stats {
+    display: grid;
+
+    grid-template-columns:
+        repeat(4, 1fr);
+
+    padding:
+        0
+        var(--gutter);
+
+    background: #121b24;
+
+    border-bottom:
+        1px solid
+        #163044;
+}
+
+
+.support-stat {
+    padding:
+        clamp(30px, 4vw, 52px)
+        26px;
+
+    border-left:
+        1px solid
+        #1e3e59;
+}
+
+
+.support-stat:last-child {
+    border-right:
+        1px solid
+        #1e3e59;
+}
+
+
+.support-stat strong {
+    display: block;
+
+    color: #d3d8db;
+
+    font-size:
+        clamp(
+            40px,
+            4.6vw,
+            74px
+        );
+
+    font-weight: 600;
+
+    line-height: 1;
+
+    letter-spacing: -.055em;
+}
+
+
+.support-stat span {
+    display: block;
+
+    max-width: 210px;
+
+    margin-top: 16px;
+
+    color: #8896a0;
+
+    font-size: 12px;
+
+    line-height: 1.5;
+}
+
+
+/* =====================================================
    COMMON SECTION BAR
 ===================================================== */
 
@@ -253,7 +328,7 @@
 
 
 /* =====================================================
-   IMPACT
+   IMPACT  (also used by "Why partner")
 ===================================================== */
 
 .support-impact {
@@ -356,6 +431,17 @@
 }
 
 
+/* "Why partner" cards carry longer copy */
+
+.support-why .impact-item {
+    min-height: 280px;
+}
+
+.support-why .impact-item p {
+    max-width: 480px;
+}
+
+
 /* =====================================================
    SPONSORSHIP LEVELS
 ===================================================== */
@@ -446,6 +532,7 @@
    LEVEL ROWS
 
    No pricing cards.
+   Eight levels, Diamond (top) to Supporter.
 ===================================================== */
 
 .level-list {
@@ -473,7 +560,7 @@
     align-items: start;
 
     padding:
-        38px
+        34px
         5px;
 
     border-bottom:
@@ -553,13 +640,20 @@
 }
 
 
+/* benefit list now starts the details column */
+
+.level-details ul:first-child {
+    margin-top: 0;
+}
+
+
 .level-details li {
     position: relative;
 
     padding:
-        8px
+        9px
         0
-        8px
+        9px
         18px;
 
     color: #83929d;
@@ -569,6 +663,15 @@
         #1e3b52;
 
     font-size: 12px;
+
+    line-height: 1.55;
+}
+
+
+.level-details li:first-child {
+    border-top: 0;
+
+    padding-top: 0;
 }
 
 
@@ -580,6 +683,11 @@
     left: 0;
 
     color: #547790;
+}
+
+
+.level-details li:first-child::before {
+    top: 0;
 }
 
 
@@ -621,8 +729,15 @@
 }
 
 
+/* top level (Diamond) stands out a little */
+
 .level-row-title {
     background: #131d26;
+}
+
+
+.level-row-title .level-name strong {
+    color: #e4e7e9;
 }
 
 
@@ -789,7 +904,7 @@
 
 
 .support-contact-copy p {
-    max-width: 450px;
+    max-width: 470px;
 
     color: #98a3aa;
 
@@ -832,6 +947,13 @@
 }
 
 
+/* two links stacked: the second sits flush under the first */
+
+.support-contact-link + .support-contact-link {
+    margin-top: -1px;
+}
+
+
 .support-contact-link:hover {
     color: #ffffff;
 
@@ -861,6 +983,26 @@
         gap: 50px;
 
         padding-top: 100px;
+    }
+
+
+    .support-stats {
+        grid-template-columns:
+            repeat(2, 1fr);
+    }
+
+
+    .support-stat:nth-child(2) {
+        border-right:
+            1px solid
+            #1e3e59;
+    }
+
+
+    .support-stat:nth-child(-n + 2) {
+        border-bottom:
+            1px solid
+            #1e3e59;
     }
 
 
@@ -960,6 +1102,31 @@
     }
 
 
+    .support-stats {
+        grid-template-columns: 1fr;
+    }
+
+
+    .support-stat,
+    .support-stat:last-child {
+        padding:
+            26px
+            0;
+
+        border-left: 0;
+        border-right: 0;
+
+        border-bottom:
+            1px solid
+            #1e3e59;
+    }
+
+
+    .support-stat:last-child {
+        border-bottom: 0;
+    }
+
+
     .support-impact,
     .support-levels,
     .support-in-kind {
@@ -974,7 +1141,8 @@
     }
 
 
-    .impact-item {
+    .impact-item,
+    .support-why .impact-item {
         min-height: 210px;
 
         padding:
