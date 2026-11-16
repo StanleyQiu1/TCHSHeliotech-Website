@@ -1,5 +1,18 @@
 /* =====================================================
    TECHNICAL PAGE
+   Engineering / documentation layout.
+
+   Design principles:
+   - square corners
+   - no gradients
+   - no shadows
+   - no floating cards
+   - limited animation
+   - information first
+
+   Palette: navy + sunrise orange
+   --brand-navy #0B1F4B   --sun #FF8A1F
+   --sky #8FB8F0          --cream #FFF6E5
 ===================================================== */
 
 
@@ -8,7 +21,7 @@
 ===================================================== */
 
 .page-technical {
-    background: #121b24;
+    background: #0b1f4b;
 }
 
 
@@ -43,7 +56,7 @@
 
     overflow: hidden;
 
-    background: #121b24;
+    background: #0b1f4b;
 
     border-bottom:
         1px solid
@@ -51,149 +64,8 @@
 }
 
 
-/* =====================================================
-   HERO SCHEMATIC
-===================================================== */
-
-.technical-hero::after {
-    content: "";
-
-    position: absolute;
-
-    z-index: 1;
-
-    top: 72px;
-    right: 0;
-
-    width: 64vw;
-    height: 54vh;
-
-    min-width: 900px;
-    max-width: 1300px;
-
-    background-image:
-        url("images/HeliotechV3.0 RevB SCH.jpg");
-
-    background-repeat:
-        no-repeat;
-
-    background-position:
-        center top;
-
-    background-size:
-        145% auto;
-
-    opacity: .56;
-
-    filter:
-        brightness(1.08)
-        contrast(1.12)
-        saturate(1.08);
-
-    -webkit-mask-image:
-        linear-gradient(
-            to right,
-            transparent 0%,
-            rgba(0,0,0,.18) 7%,
-            rgba(0,0,0,.72) 17%,
-            rgba(0,0,0,.96) 28%,
-            #000 42%,
-            #000 80%,
-            rgba(0,0,0,.88) 89%,
-            rgba(0,0,0,.42) 96%,
-            transparent 100%
-        ),
-        linear-gradient(
-            to bottom,
-            transparent 0%,
-            rgba(0,0,0,.52) 8%,
-            rgba(0,0,0,.92) 17%,
-            #000 28%,
-            #000 76%,
-            rgba(0,0,0,.72) 89%,
-            transparent 100%
-        );
-
-    mask-image:
-        linear-gradient(
-            to right,
-            transparent 0%,
-            rgba(0,0,0,.18) 7%,
-            rgba(0,0,0,.72) 17%,
-            rgba(0,0,0,.96) 28%,
-            #000 42%,
-            #000 80%,
-            rgba(0,0,0,.88) 89%,
-            rgba(0,0,0,.42) 96%,
-            transparent 100%
-        ),
-        linear-gradient(
-            to bottom,
-            transparent 0%,
-            rgba(0,0,0,.52) 8%,
-            rgba(0,0,0,.92) 17%,
-            #000 28%,
-            #000 76%,
-            rgba(0,0,0,.72) 89%,
-            transparent 100%
-        );
-
-    -webkit-mask-composite:
-        source-in;
-
-    mask-composite:
-        intersect;
-
-    pointer-events: none;
-}
-
-
-/* =====================================================
-   HERO SCHEMATIC BLEND
-===================================================== */
-
-.technical-hero::before {
-    content: "";
-
-    position: absolute;
-
-    inset: 0;
-
-    z-index: 2;
-
-    pointer-events: none;
-
-    background:
-        linear-gradient(
-            to right,
-            #121b24 0%,
-            #121b24 33%,
-            rgba(18,27,36,.58) 43%,
-            rgba(18,27,36,.12) 57%,
-            rgba(18,27,36,.03) 72%,
-            rgba(18,27,36,.10) 84%,
-            rgba(18,27,36,.44) 93%,
-            #121b24 100%
-        ),
-        linear-gradient(
-            to bottom,
-            rgba(18,27,36,.02) 0%,
-            rgba(18,27,36,0) 18%,
-            rgba(18,27,36,0) 58%,
-            rgba(18,27,36,.10) 78%,
-            rgba(18,27,36,.38) 91%,
-            #121b24 100%
-        );
-}
-
-
-/* =====================================================
-   HERO GRID
-===================================================== */
-
 .technical-hero .hero-background-grid {
     position: absolute;
-
     inset: 0;
 
     z-index: 0;
@@ -205,13 +77,13 @@
 
 
 /* =====================================================
-   HERO TOP LINE
+   HERO TOPLINE
 ===================================================== */
 
 .technical-hero-topline {
     position: relative;
 
-    z-index: 4;
+    z-index: 2;
 
     display: grid;
 
@@ -224,11 +96,11 @@
 
     padding-bottom: 14px;
 
-    color: #677e8f;
+    color: #8fb8f0;
 
     border-bottom:
         1px solid
-        #1e3e59;
+        #34528d;
 
     font-family:
         "Space Mono",
@@ -248,13 +120,13 @@
 .technical-hero-content {
     position: relative;
 
-    z-index: 4;
+    z-index: 2;
 
     display: grid;
 
     grid-template-columns:
-        minmax(0,1.3fr)
-        minmax(300px,.7fr);
+        minmax(0, 1.3fr)
+        minmax(300px, .7fr);
 
     gap:
         clamp(
@@ -282,7 +154,7 @@
 .technical-hero h1 {
     margin: 0;
 
-    color: #e6e9eb;
+    color: #ffffff;
 
     font-size:
         clamp(
@@ -298,15 +170,11 @@
 
 
 .technical-hero h1 span {
-    color: #9fa9af;
+    color: #d3dff3;
 }
 
 
 .technical-hero-copy {
-    position: relative;
-
-    z-index: 5;
-
     padding-bottom: 8px;
 }
 
@@ -316,7 +184,7 @@
 
     margin: 0;
 
-    color: #adb4b9;
+    color: #d3dff3;
 
     font-size:
         clamp(
@@ -343,18 +211,17 @@
 
     padding-bottom: 14px;
 
-    color: #658298;
+    color: #8fb8f0;
 
     border-bottom:
         1px solid
-        #244d6b;
+        #34528d;
 
     font-family:
         "Space Mono",
         monospace;
 
     font-size: 8px;
-
     font-weight: 700;
 
     letter-spacing: .1em;
@@ -362,79 +229,112 @@
 
 
 /* =====================================================
-   THE FLEET
+   SUMMARY
 ===================================================== */
 
-.technical-fleet {
+.technical-summary {
     padding:
-        105px
+        88px
         var(--gutter)
-        120px;
+        105px;
 
-    background: #121b24;
+    background: #0b1f4b;
 
     border-bottom:
         1px solid
-        #163044;
+        #34528d;
 }
 
 
-.fleet-list {
-    border-top:
-        1px solid
-        #294d6a;
-}
+/* =====================================================
+   SUMMARY GRID
+===================================================== */
 
-
-/* one car per row: story on the left, specs on the right */
-
-.fleet-car {
+.summary-grid {
     display: grid;
 
     grid-template-columns:
-        minmax(0, .9fr)
-        minmax(0, 1.1fr);
-
-    gap:
-        clamp(
-            40px,
-            7vw,
-            110px
+        repeat(
+            6,
+            minmax(0, 1fr)
         );
 
-    align-items: start;
+    margin:
+        52px
+        0
+        0;
+
+    padding: 0;
+
+    border-top:
+        1px solid
+        #34528d;
+
+    border-left:
+        1px solid
+        #34528d;
+}
+
+
+.summary-grid > div {
+    min-width: 0;
+
+    min-height: 150px;
 
     padding:
-        56px
-        0;
+        22px
+        18px;
+
+    display: flex;
+    flex-direction: column;
+    justify-content: space-between;
+
+    border-right:
+        1px solid
+        #34528d;
 
     border-bottom:
         1px solid
-        #294d6a;
+        #34528d;
 }
 
 
-/* the car in development gets a quiet panel */
+.summary-grid dt {
+    color: #8fb8f0;
 
-.fleet-car-dev {
-    padding:
-        56px
-        28px;
+    font-family:
+        "Space Mono",
+        monospace;
 
-    background: #131d26;
+    font-size: 8px;
+    font-weight: 700;
+
+    letter-spacing: .08em;
 }
 
 
-.fleet-status {
-    display: flex;
+.summary-grid dd {
+    margin: 0;
 
-    flex-wrap: wrap;
+    color: #ffffff;
 
-    gap:
-        8px
-        18px;
+    font-size:
+        clamp(
+            28px,
+            2.8vw,
+            43px
+        );
 
-    color: #66869b;
+    font-weight: 500;
+
+    letter-spacing: -.05em;
+}
+
+
+.summary-grid dd span {
+    margin-left: 4px;
+
+    color: #8fb8f0;
 
     font-family:
         "Space Mono",
@@ -442,158 +342,7 @@
 
     font-size: 8px;
 
-    font-weight: 700;
-
-    letter-spacing: .1em;
-}
-
-
-.fleet-status span:first-child {
-    color: #9fb3c1;
-}
-
-
-.fleet-car h3 {
-    margin:
-        18px
-        0
-        22px;
-
-    color: #d4d9dc;
-
-    font-size:
-        clamp(
-            32px,
-            3.6vw,
-            56px
-        );
-
-    line-height: .95;
-
-    letter-spacing: -.05em;
-}
-
-
-.fleet-copy {
-    max-width: 480px;
-
-    margin: 0;
-
-    color: #949fa7;
-
-    font-size: 13px;
-
-    line-height: 1.7;
-}
-
-
-/* spec table sits at the top of the right column */
-
-.fleet-specs {
-    margin-top: 0;
-}
-
-
-/* in-development feature list */
-
-.fleet-features {
-    margin: 0;
-
-    padding: 0;
-
-    list-style: none;
-
-    border-top:
-        1px solid
-        #294d6a;
-}
-
-
-.fleet-features li {
-    position: relative;
-
-    padding:
-        14px
-        5px
-        14px
-        24px;
-
-    color: #c1c7cb;
-
-    border-bottom:
-        1px solid
-        #1e3b52;
-
-    font-size: 13px;
-}
-
-
-.fleet-features li::before {
-    content: "—";
-
-    position: absolute;
-
-    left: 0;
-
-    color: #547790;
-}
-
-
-.fleet-note {
-    margin:
-        26px
-        0
-        0;
-
-    color: #8896a0;
-
-    font-size: 13px;
-
-    line-height: 1.7;
-}
-
-
-.fleet-link {
-    display: flex;
-
-    justify-content: space-between;
-    align-items: center;
-
-    max-width: 320px;
-
-    margin-top: 24px;
-
-    padding:
-        13px
-        0;
-
-    color: #b2b9be;
-
-    border-top:
-        1px solid
-        #456e8a;
-
-    border-bottom:
-        1px solid
-        #456e8a;
-
-    font-size: 12px;
-
-    transition:
-        color .18s,
-        border-color .18s;
-}
-
-
-.fleet-link:hover {
-    color: #ffffff;
-
-    border-color: #aeb9c0;
-}
-
-
-.fleet-link span {
-    font-size: 16px;
+    letter-spacing: .06em;
 }
 
 
@@ -607,11 +356,11 @@
         var(--gutter)
         120px;
 
-    background: #121b24;
+    background: #0b1f4b;
 
     border-bottom:
         1px solid
-        #163044;
+        #34528d;
 }
 
 
@@ -619,8 +368,8 @@
     display: grid;
 
     grid-template-columns:
-        minmax(0,1.15fr)
-        minmax(280px,.85fr);
+        minmax(0, 1.15fr)
+        minmax(280px, .85fr);
 
     gap:
         clamp(
@@ -643,14 +392,13 @@
 
     margin-bottom: 18px;
 
-    color: #66869b;
+    color: #8fb8f0;
 
     font-family:
         "Space Mono",
         monospace;
 
     font-size: 8px;
-
     font-weight: 700;
 
     letter-spacing: .11em;
@@ -660,7 +408,7 @@
 .architecture-heading h2 {
     margin: 0;
 
-    color: #dee1e4;
+    color: #ffffff;
 
     font-size:
         clamp(
@@ -680,7 +428,7 @@
 
     margin: 0;
 
-    color: #98a3aa;
+    color: #d3dff3;
 
     font-size: 14px;
 
@@ -698,7 +446,7 @@
     grid-template-columns:
         repeat(
             5,
-            minmax(0,1fr)
+            minmax(0, 1fr)
         );
 
     margin: 0;
@@ -709,11 +457,11 @@
 
     border-top:
         1px solid
-        #294d6a;
+        #34528d;
 
     border-left:
         1px solid
-        #294d6a;
+        #34528d;
 }
 
 
@@ -727,16 +475,15 @@
         18px;
 
     display: flex;
-
     flex-direction: column;
 
     border-right:
         1px solid
-        #294d6a;
+        #34528d;
 
     border-bottom:
         1px solid
-        #294d6a;
+        #34528d;
 }
 
 
@@ -748,7 +495,6 @@
     z-index: 3;
 
     top: 50%;
-
     right: -8px;
 
     transform:
@@ -756,9 +502,9 @@
 
     width: 15px;
 
-    color: #7893a5;
+    color: #8fb8f0;
 
-    background: #121b24;
+    background: #0b1f4b;
 
     font-family:
         "Space Mono",
@@ -771,7 +517,7 @@
 
 
 .power-path-index {
-    color: #66869b;
+    color: #8fb8f0;
 
     font-family:
         "Space Mono",
@@ -786,10 +532,9 @@
 .power-path strong {
     margin-top: auto;
 
-    color: #c1c6cb;
+    color: #d3dff3;
 
     font-size: 15px;
-
     font-weight: 600;
 
     line-height: 1.3;
@@ -802,7 +547,7 @@
         0
         0;
 
-    color: #7c8e9a;
+    color: #8fb8f0;
 
     font-size: 11px;
 
@@ -820,11 +565,11 @@
         var(--gutter)
         130px;
 
-    background: #121b24;
+    background: #0b1f4b;
 
     border-bottom:
         1px solid
-        #163044;
+        #34528d;
 }
 
 
@@ -832,8 +577,8 @@
     display: grid;
 
     grid-template-columns:
-        minmax(190px,.32fr)
-        minmax(0,1.68fr);
+        minmax(190px, .32fr)
+        minmax(0, 1.68fr);
 
     gap:
         clamp(
@@ -849,7 +594,7 @@
 
 
 /* =====================================================
-   INDEX
+   STICKY INDEX
 ===================================================== */
 
 .technical-index {
@@ -868,18 +613,17 @@
 
     padding-bottom: 13px;
 
-    color: #66869b;
+    color: #8fb8f0;
 
     border-bottom:
         1px solid
-        #294d6a;
+        #34528d;
 
     font-family:
         "Space Mono",
         monospace;
 
     font-size: 8px;
-
     font-weight: 700;
 
     letter-spacing: .1em;
@@ -904,11 +648,11 @@
         13px
         0;
 
-    color: #8d9ba4;
+    color: #d3dff3;
 
     border-bottom:
         1px solid
-        #1e3b52;
+        #34528d;
 
     font-size: 11px;
 
@@ -921,7 +665,7 @@
 
 
 .technical-index a span {
-    color: #4f6f84;
+    color: #8fb8f0;
 
     font-family:
         "Space Mono",
@@ -934,7 +678,7 @@
 .technical-index a:hover {
     color: #ffffff;
 
-    border-color: #7995a8;
+    border-color: #d3dff3;
 }
 
 
@@ -963,7 +707,7 @@
 
     border-bottom:
         1px solid
-        #294d6a;
+        #34528d;
 }
 
 
@@ -980,8 +724,8 @@
     display: grid;
 
     grid-template-columns:
-        minmax(0,1.1fr)
-        minmax(250px,.9fr);
+        minmax(0, 1.1fr)
+        minmax(250px, .9fr);
 
     gap:
         clamp(
@@ -1001,14 +745,13 @@
 
     margin-bottom: 16px;
 
-    color: #66869b;
+    color: #8fb8f0;
 
     font-family:
         "Space Mono",
         monospace;
 
     font-size: 8px;
-
     font-weight: 700;
 
     letter-spacing: .1em;
@@ -1018,7 +761,7 @@
 .technical-group-heading h2 {
     margin: 0;
 
-    color: #d4d9dc;
+    color: #ffffff;
 
     font-size:
         clamp(
@@ -1038,7 +781,7 @@
 
     margin: 0;
 
-    color: #949fa7;
+    color: #d3dff3;
 
     font-size: 13px;
 
@@ -1047,7 +790,7 @@
 
 
 /* =====================================================
-   SPEC TABLE
+   SPECIFICATION TABLE
 ===================================================== */
 
 .spec-table {
@@ -1057,14 +800,14 @@
 
     border-top:
         1px solid
-        #294d6a;
+        #34528d;
 }
 
 
 .spec-table tr {
     border-bottom:
         1px solid
-        #1e3b52;
+        #34528d;
 }
 
 
@@ -1083,16 +826,15 @@
 .spec-table th {
     width: 50%;
 
-    color: #8d9ba4;
+    color: #d3dff3;
 
     font-size: 12px;
-
     font-weight: 500;
 }
 
 
 .spec-table td {
-    color: #c1c7cb;
+    color: #d3dff3;
 
     font-family:
         "Space Mono",
@@ -1105,7 +847,7 @@
 
 
 .spec-table tr:hover th {
-    color: #c6ccd0;
+    color: #ffffff;
 }
 
 
@@ -1124,11 +866,11 @@
         var(--gutter)
         120px;
 
-    background: #121b24;
+    background: #0b1f4b;
 
     border-bottom:
         1px solid
-        #163044;
+        #34528d;
 }
 
 
@@ -1137,7 +879,7 @@
 
     border-top:
         1px solid
-        #294d6a;
+        #34528d;
 }
 
 
@@ -1146,7 +888,7 @@
 
     grid-template-columns:
         80px
-        minmax(0,1fr)
+        minmax(0, 1fr)
         30px;
 
     gap: 30px;
@@ -1159,7 +901,7 @@
 
     border-bottom:
         1px solid
-        #294d6a;
+        #34528d;
 
     transition:
         background .18s;
@@ -1167,19 +909,18 @@
 
 
 .document-row:hover {
-    background: #131e27;
+    background: #0d2256;
 }
 
 
 .document-type {
-    color: #66869b;
+    color: #8fb8f0;
 
     font-family:
         "Space Mono",
         monospace;
 
     font-size: 8px;
-
     font-weight: 700;
 
     letter-spacing: .1em;
@@ -1189,7 +930,7 @@
 .document-row h3 {
     margin: 0;
 
-    color: #bdc4c8;
+    color: #d3dff3;
 
     font-size:
         clamp(
@@ -1218,7 +959,7 @@
         0
         0;
 
-    color: #7c8e9a;
+    color: #8fb8f0;
 
     font-size: 12px;
 }
@@ -1227,7 +968,7 @@
 .document-arrow {
     justify-self: end;
 
-    color: #66849b;
+    color: #8fb8f0;
 
     font-size: 16px;
 }
@@ -1241,8 +982,8 @@
     display: grid;
 
     grid-template-columns:
-        minmax(0,1.15fr)
-        minmax(280px,.85fr);
+        minmax(0, 1.15fr)
+        minmax(280px, .85fr);
 
     gap:
         clamp(
@@ -1257,7 +998,7 @@
         120px
         var(--gutter);
 
-    background: #121b24;
+    background: #0b1f4b;
 
     border-bottom:
         1px solid
@@ -1271,7 +1012,7 @@
         0
         0;
 
-    color: #dee1e4;
+    color: #ffffff;
 
     font-size:
         clamp(
@@ -1291,13 +1032,17 @@
 
     margin: 0;
 
-    color: #98a3aa;
+    color: #d3dff3;
 
     font-size: 14px;
 
     line-height: 1.7;
 }
 
+
+/* =====================================================
+   NEXT LINK
+===================================================== */
 
 .technical-next-link {
     display: flex;
@@ -1313,15 +1058,15 @@
         14px
         0;
 
-    color: #b2b9be;
+    color: #d3dff3;
 
     border-top:
         1px solid
-        #456e8a;
+        #8fb8f0;
 
     border-bottom:
         1px solid
-        #456e8a;
+        #8fb8f0;
 
     font-size: 12px;
 
@@ -1334,12 +1079,40 @@
 .technical-next-link:hover {
     color: #ffffff;
 
-    border-color: #aeb9c0;
+    border-color: #d3dff3;
 }
 
 
 .technical-next-link span {
     font-size: 16px;
+}
+
+
+/* =====================================================
+   TABLET
+===================================================== */
+
+@media(max-width: 1100px) {
+
+    .summary-grid {
+        grid-template-columns:
+            repeat(
+                3,
+                1fr
+            );
+    }
+
+
+    .power-path {
+        grid-template-columns:
+            repeat(
+                5,
+                minmax(140px, 1fr)
+            );
+
+        overflow-x: auto;
+    }
+
 }
 
 
@@ -1354,24 +1127,6 @@
     }
 
 
-    .technical-hero::after {
-        top: 78px;
-
-        right: -10vw;
-
-        width: 96vw;
-
-        height: 40vh;
-
-        min-width: 0;
-
-        background-size:
-            155% auto;
-
-        opacity: .40;
-    }
-
-
     .technical-hero-content {
         grid-template-columns:
             1fr;
@@ -1382,25 +1137,15 @@
     }
 
 
-    .fleet-car {
-        grid-template-columns:
-            1fr;
-
-        gap: 34px;
-    }
-
-
     .architecture-heading {
-        grid-template-columns:
-            1fr;
+        grid-template-columns: 1fr;
 
         gap: 30px;
     }
 
 
     .technical-systems-layout {
-        grid-template-columns:
-            1fr;
+        grid-template-columns: 1fr;
 
         gap: 55px;
     }
@@ -1424,17 +1169,29 @@
     }
 
 
+    .technical-index a:nth-child(odd) {
+        border-right:
+            1px solid
+            #34528d;
+
+        padding-right: 15px;
+    }
+
+
+    .technical-index a:nth-child(even) {
+        padding-left: 15px;
+    }
+
+
     .technical-group-heading {
-        grid-template-columns:
-            1fr;
+        grid-template-columns: 1fr;
 
         gap: 30px;
     }
 
 
     .technical-next {
-        grid-template-columns:
-            1fr;
+        grid-template-columns: 1fr;
 
         gap: 45px;
     }
@@ -1453,22 +1210,6 @@
             calc(var(--header) + 30px)
             var(--gutter)
             60px;
-    }
-
-
-    .technical-hero::after {
-        top: 82px;
-
-        right: -16vw;
-
-        width: 120vw;
-
-        height: 30vh;
-
-        background-size:
-            165% auto;
-
-        opacity: .32;
     }
 
 
@@ -1499,7 +1240,9 @@
     }
 
 
-    .technical-fleet,
+    /* SUMMARY */
+
+    .technical-summary,
     .technical-architecture,
     .technical-systems,
     .technical-documents {
@@ -1509,34 +1252,21 @@
     }
 
 
-    .fleet-car {
-        padding:
-            40px
-            0;
-    }
-
-
-    .fleet-car-dev {
-        padding:
-            40px
-            20px;
-    }
-
-
-    .fleet-car h3 {
-        font-size:
-            clamp(
-                30px,
-                9vw,
-                42px
+    .summary-grid {
+        grid-template-columns:
+            repeat(
+                2,
+                1fr
             );
     }
 
 
-    .spec-table.fleet-specs th {
-        width: 44%;
+    .summary-grid > div {
+        min-height: 125px;
     }
 
+
+    /* ARCHITECTURE */
 
     .architecture-heading {
         padding:
@@ -1572,16 +1302,16 @@
         content: "↓";
 
         top: auto;
-
         right: auto;
 
         bottom: -8px;
-
         left: 20px;
 
         transform: none;
     }
 
+
+    /* INDEX */
 
     .technical-systems-layout {
         padding-top: 45px;
@@ -1589,20 +1319,20 @@
 
 
     .technical-index nav {
-        grid-template-columns:
-            1fr;
+        grid-template-columns: 1fr;
     }
 
 
     .technical-index a:nth-child(odd),
     .technical-index a:nth-child(even) {
         padding-left: 0;
-
         padding-right: 0;
 
         border-right: 0;
     }
 
+
+    /* GROUP */
 
     .technical-group {
         padding-bottom: 75px;
@@ -1621,6 +1351,8 @@
     }
 
 
+    /* TABLE */
+
     .spec-table th {
         width: 62%;
     }
@@ -1633,6 +1365,8 @@
             3px;
     }
 
+
+    /* DOCUMENTS */
 
     .document-list {
         margin-top: 45px;
@@ -1648,6 +1382,8 @@
         gap: 15px;
     }
 
+
+    /* NEXT */
 
     .technical-next {
         padding:
@@ -1669,6 +1405,19 @@
 
 
 /* =====================================================
+   VERY SMALL MOBILE
+===================================================== */
+
+@media(max-width: 420px) {
+
+    .summary-grid {
+        grid-template-columns: 1fr;
+    }
+
+}
+
+
+/* =====================================================
    REDUCED MOTION
 ===================================================== */
 
@@ -1677,9 +1426,322 @@
     .technical-index a,
     .document-row,
     .document-row h3,
-    .technical-next-link,
-    .fleet-link {
+    .technical-next-link {
         transition: none;
     }
 
+}
+
+
+/* =====================================================
+   NAVY + SUNRISE ORANGE ACCENTS
+   Orange only appears on navy; on orange the text is navy.
+===================================================== */
+
+.page-technical {
+    --brand-navy: #0b1f4b;
+    --sun: #ff8a1f;
+    --sky: #8fb8f0;
+    --cream: #fff6e5;
+
+    --navy-line: rgba(143, 184, 240, .28);
+    --navy-line-bright: rgba(143, 184, 240, .5);
+}
+
+.page-technical ::selection {
+    background: var(--sun);
+    color: var(--brand-navy);
+}
+
+
+/* ---------- header + footer ---------- */
+
+.page-technical .site-header {
+    background: var(--brand-navy);
+    border-bottom: 3px solid var(--sun);
+    backdrop-filter: none;
+}
+
+.page-technical nav a {
+    color: #e6eefb;
+}
+
+.page-technical nav a:hover,
+.page-technical nav a[aria-current="page"] {
+    color: var(--sun);
+    background: transparent;
+}
+
+.page-technical .nav-support {
+    color: var(--brand-navy);
+    background: var(--sun);
+}
+
+.page-technical .nav-support:hover {
+    color: var(--brand-navy);
+    background: var(--cream);
+}
+
+.page-technical .nav-support .link-icon,
+.page-technical .nav-support:hover .link-icon {
+    color: var(--brand-navy);
+}
+
+.page-technical a:hover .link-icon {
+    color: var(--sun);
+}
+
+.page-technical .scroll-progress {
+    height: 3px;
+    background: var(--sun);
+}
+
+.page-technical .menu-toggle {
+    color: #ffffff;
+    border-color: var(--sun);
+}
+
+.page-technical .site-footer {
+    background: var(--brand-navy);
+    border-top: 4px solid var(--sun);
+}
+
+.page-technical .footer-brand-area p,
+.page-technical .footer-bottom {
+    color: var(--sky);
+}
+
+.page-technical .footer-links {
+    color: #e6eefb;
+}
+
+.page-technical .footer-links a:hover {
+    color: var(--sun);
+}
+
+.page-technical .footer-bottom {
+    border-top-color: rgba(143, 184, 240, .4);
+}
+
+@media (max-width: 1000px) {
+
+    .page-technical nav {
+        background: var(--brand-navy);
+        border-bottom-color: var(--sun);
+    }
+
+}
+
+
+/* ---------- hero ---------- */
+
+.technical-hero {
+    border-bottom: 3px solid var(--sun);
+}
+
+.technical-hero-topline {
+    color: var(--sky);
+    border-bottom-color: rgba(143, 184, 240, .5);
+}
+
+.technical-hero .eyebrow {
+    color: var(--sun);
+}
+
+.technical-hero h1 {
+    color: #ffffff;
+}
+
+.technical-hero h1 span {
+    color: var(--sun);
+}
+
+.technical-hero-copy p {
+    color: #e6eefb;
+}
+
+
+/* ---------- section lines + summary ---------- */
+
+.technical-section-line {
+    color: var(--sky);
+    border-bottom: 2px solid rgba(143, 184, 240, .5);
+}
+
+.summary-grid {
+    border-top-color: var(--sky);
+    border-left-color: var(--sky);
+}
+
+.summary-grid > div {
+    border-right-color: var(--sky);
+    border-bottom-color: var(--sky);
+    transition: background .2s;
+}
+
+.summary-grid dd {
+    color: #ffffff;
+}
+
+.summary-grid dd span {
+    color: var(--sun);
+}
+
+.summary-grid > div:hover {
+    background: var(--sun);
+}
+
+.summary-grid > div:hover dt,
+.summary-grid > div:hover dd,
+.summary-grid > div:hover dd span {
+    color: var(--brand-navy);
+}
+
+
+/* ---------- architecture ---------- */
+
+.technical-kicker {
+    color: var(--sun);
+}
+
+.architecture-heading h2 {
+    color: #ffffff;
+}
+
+.power-path li:not(:last-child)::after {
+    color: var(--sun);
+    background: var(--brand-navy);
+}
+
+.power-path-index {
+    color: var(--sun);
+}
+
+.power-path strong {
+    color: #ffffff;
+}
+
+.power-path p {
+    color: var(--sky);
+}
+
+.power-path li {
+    transition: background .2s;
+}
+
+.power-path li:hover {
+    background: #0e2556;
+}
+
+
+/* ---------- system specifications ---------- */
+
+.technical-index-label {
+    color: var(--sun);
+}
+
+.technical-index a:hover {
+    color: var(--sun);
+    border-color: var(--sun);
+}
+
+.technical-index a:hover span {
+    color: var(--sun);
+}
+
+.technical-group-number {
+    color: var(--sun);
+}
+
+.technical-group-heading h2 {
+    color: #ffffff;
+}
+
+.technical-group-heading p {
+    color: var(--sky);
+}
+
+.spec-table th {
+    color: var(--sky);
+}
+
+.spec-table td {
+    color: #ffffff;
+}
+
+.spec-table tr:hover th {
+    color: var(--sun);
+}
+
+.spec-table tr:hover th,
+.spec-table tr:hover td {
+    background: rgba(255, 138, 31, .12);
+}
+
+
+/* ---------- documentation rows ---------- */
+
+.document-type {
+    color: var(--sun);
+}
+
+.document-row h3 {
+    color: #ffffff;
+}
+
+.document-row p {
+    color: var(--sky);
+}
+
+.document-row:hover {
+    background: #0e2556;
+}
+
+.document-row:hover h3 {
+    color: var(--sun);
+}
+
+.document-arrow {
+    color: var(--sky);
+}
+
+.document-row:hover .document-arrow {
+    color: var(--sun);
+}
+
+
+/* ---------- next band: solid orange ---------- */
+
+.technical-next {
+    background: var(--sun);
+    border-bottom: 0;
+}
+
+.technical-next .support-label {
+    color: var(--brand-navy);
+    font-weight: 700;
+}
+
+.technical-next h2 {
+    color: var(--brand-navy);
+}
+
+.technical-next-copy p {
+    color: var(--brand-navy);
+    font-weight: 600;
+}
+
+.technical-next-link {
+    color: var(--brand-navy);
+    border-top: 3px solid var(--brand-navy);
+    border-bottom: 3px solid var(--brand-navy);
+    font-weight: 700;
+}
+
+.technical-next-link:hover {
+    color: var(--cream);
+    background: var(--brand-navy);
+    border-color: var(--brand-navy);
+    padding-left: 14px;
+    padding-right: 14px;
 }
