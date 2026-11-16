@@ -3674,3 +3674,30 @@ effect-composer {
     }
 
 }
+
+
+/* ---------- hero side text + button (home) ---------- */
+/* HERO SIDE TEXT */
+
+.page-home .hero-side p {
+    color: var(--brand-navy);
+    font-size: 16px;
+    font-weight: 600;
+}
+
+.page-home .outline-button {
+    color: var(--lemon);
+    background: var(--brand-navy);
+    border: 3px solid var(--brand-navy);
+    font-weight: 700;
+}
+
+.page-home .outline-button:hover {
+    color: var(--brand-navy);
+    background: var(--lemon);
+    border-color: var(--brand-navy);
+}
+
+.page-home .outline-button span {
+    color: inherit;
+}
