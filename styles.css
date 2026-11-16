@@ -8,6 +8,9 @@
     --text: #b0b6bb;
     --text-heading: #e2e5e8;
     --white: #ffffff;
+    --glacier: #62a4ea;
+    --brand-navy: #0c1b48;
+    --lemon: #f2e41e;
     --header: 72px;
     --gutter: clamp(20px, 4.5vw, 86px);
 }
@@ -2946,68 +2949,69 @@ effect-composer {
 }
 
 
-
 /* =====================================================
-   HOME PAGE: SOLAR YELLOW ACCENT
+   HOME PAGE: GLACIER BLUE / NAVY / LEMON
+
+   Palette (set in :root above):
+   --glacier     #62A4EA
+   --brand-navy  #0C1B48
+   --lemon       #F2E41E
 
    Everything here is scoped to .page-home (the class on
    index.html's <body>), so the other pages are unchanged.
-   Edit --solar to change the yellow everywhere at once.
+   Style: flat colour blocks, huge condensed type, hard
+   offset shadows, one round badge.
 ===================================================== */
 
-.page-home {
-    --solar: #f6b73c;
-    --solar-bright: #ffd36b;
-    --solar-deep: #e8961f;
-    --solar-ink: #1a1405;
-    --solar-line: rgba(246, 183, 60, .28);
-    --solar-soft: rgba(246, 183, 60, .12);
-}
-
 .page-home ::selection {
-    background: var(--solar);
-    color: #121b24;
+    background: var(--lemon);
+    color: var(--brand-navy);
 }
 
 
-/* ---------- header + progress ---------- */
+/* ---------- display type: condensed, heavy, caps ---------- */
 
-.page-home .scroll-progress {
-    height: 2px;
+.page-home h1,
+.page-home h2,
+.page-home h3 {
+    font-family: "Anton", "Inter", sans-serif;
+    font-weight: 400;
+    text-transform: uppercase;
+    letter-spacing: .005em;
+    line-height: .92;
+}
 
-    background:
-        linear-gradient(
-            90deg,
-            var(--solar-deep),
-            var(--solar-bright)
-        );
+
+/* ---------- header: solid navy with lemon rule ---------- */
+
+.page-home .site-header {
+    background: var(--brand-navy);
+    border-bottom: 3px solid var(--lemon);
+    backdrop-filter: none;
 }
 
 .page-home nav a {
     position: relative;
+    color: #dbe7f8;
+    border-left-color: rgba(98, 164, 234, .25);
 }
 
 .page-home nav a::after {
     content: "";
-
     position: absolute;
-
     left: 17px;
     right: 17px;
     bottom: 0;
-
-    height: 2px;
-
-    background: var(--solar);
-
+    height: 3px;
+    background: var(--lemon);
     transform: scaleX(0);
     transform-origin: left;
-
     transition: transform .3s cubic-bezier(.2, .7, .2, 1);
 }
 
 .page-home nav a:hover {
-    color: var(--solar-bright);
+    color: var(--lemon);
+    background: transparent;
 }
 
 .page-home nav a:hover::after {
@@ -3015,203 +3019,355 @@ effect-composer {
 }
 
 .page-home .nav-support {
-    color: var(--solar);
-
-    border-left-color: var(--solar-line);
+    color: var(--brand-navy);
+    background: var(--lemon);
+    border-left: 0;
 }
 
-.page-home a:hover .link-icon {
-    color: var(--solar);
+.page-home .nav-support::after {
+    display: none;
+}
+
+.page-home .nav-support:hover {
+    color: var(--brand-navy);
+    background: #ffffff;
+}
+
+.page-home .nav-support .link-icon,
+.page-home .nav-support:hover .link-icon {
+    color: var(--brand-navy);
+}
+
+.page-home .menu-toggle {
+    color: #ffffff;
+    border-color: var(--lemon);
+}
+
+.page-home .scroll-progress {
+    height: 3px;
+    background: var(--lemon);
+}
+
+@media (max-width: 1000px) {
+
+    .page-home nav {
+        background: var(--brand-navy);
+        border-bottom-color: var(--lemon);
+    }
+
+    .page-home nav a {
+        border-bottom-color: rgba(98, 164, 234, .25);
+    }
+
+    .page-home nav a::after {
+        left: 0;
+        right: auto;
+        width: 40px;
+    }
+
 }
 
 
-/* ---------- hero: warm sunrise glow ---------- */
+/* ---------- hero: glacier blue, lemon + navy type ---------- */
 
 .page-home .hero {
-    background:
-        radial-gradient(
-            ellipse 70% 60% at 88% 100%,
-            rgba(246, 183, 60, .26) 0%,
-            rgba(232, 150, 31, .10) 40%,
-            transparent 72%
-        ),
-        linear-gradient(
-            180deg,
-            #121b24 0%,
-            #121b24 55%,
-            #1a1608 100%
-        );
+    background: var(--glacier);
+}
+
+/* big pale curve behind the photo, like the white wave in the reference */
+.page-home .hero::before {
+    content: "";
+    position: absolute;
+    z-index: 0;
+    right: -24vw;
+    bottom: -42vw;
+    width: 78vw;
+    height: 78vw;
+    border-radius: 50%;
+    background: #eaf3fd;
+    pointer-events: none;
 }
 
 .page-home .hero-topline {
-    color: #a89566;
-
-    border-bottom-color: var(--solar-line);
+    color: var(--brand-navy);
+    border-bottom: 2px solid var(--brand-navy);
+    font-weight: 700;
 }
 
 .page-home .eyebrow {
-    color: var(--solar);
+    color: var(--brand-navy);
+    font-size: 11px;
+}
+
+.page-home .hero h1 {
+    margin-top: 18px;
+    max-width: none;
+    color: var(--lemon);
+    font-size: clamp(76px, 11.5vw, 196px);
+    line-height: .88;
 }
 
 .page-home .hero h1 span {
-    color: var(--solar);
+    color: var(--brand-navy);
+    text-shadow: none;
+}
 
-    text-shadow: 0 0 26px rgba(246, 183, 60, .45);
+/* photo: flat panel with a hard lemon offset, text sits in front of it */
+.page-home .hero-car-fade {
+    border: 4px solid var(--brand-navy);
+    box-shadow: 16px 16px 0 var(--lemon);
+    opacity: 1;
+}
+
+.page-home .hero-car-fade::after {
+    display: none;
+}
+
+/* round lemon badge */
+.page-home .hero-badge {
+    position: absolute;
+    z-index: 4;
+    right: var(--gutter);
+    bottom: 120px;
+    width: clamp(120px, 12.5vw, 180px);
+    aspect-ratio: 1;
+    display: grid;
+    place-items: center;
+    padding: 12px;
+    text-align: center;
+    color: var(--brand-navy);
+    background: var(--lemon);
+    border-radius: 50%;
+    font-family: "Anton", "Inter", sans-serif;
+    font-size: clamp(20px, 2.1vw, 32px);
+    line-height: .95;
+    text-transform: uppercase;
+    transform: rotate(-8deg);
+    transition:
+        transform .35s cubic-bezier(.2, .7, .2, 1),
+        background .25s,
+        color .25s;
+}
+
+.page-home .hero-badge:hover {
+    color: var(--lemon);
+    background: var(--brand-navy);
+    transform: rotate(0deg) scale(1.06);
 }
 
 .page-home .hero-data {
-    border-top-color: var(--solar-line);
+    border-top: 3px solid var(--brand-navy);
 }
 
 .page-home .hero-data > div {
-    border-right-color: var(--solar-line);
-
-    transition:
-        background .25s,
-        transform .3s cubic-bezier(.2, .7, .2, 1);
+    border-right: 2px solid var(--brand-navy);
+    padding-bottom: 14px;
+    transition: background .25s;
 }
 
-.page-home .hero-data > div:hover {
-    background: var(--solar-soft);
-
-    transform: translateY(-3px);
+.page-home .hero-data > div:last-child {
+    border-right: 0;
 }
 
 .page-home .hero-data span {
-    color: #b39a5c;
+    color: var(--brand-navy);
+    font-weight: 700;
 }
 
 .page-home .hero-data strong {
-    color: var(--solar-bright);
+    color: var(--brand-navy);
+    font-size: 13px;
+    font-weight: 700;
+}
+
+.page-home .hero-data > div:hover {
+    background: var(--brand-navy);
+}
+
+.page-home .hero-data > div:hover span {
+    color: var(--glacier);
+}
+
+.page-home .hero-data > div:hover strong {
+    color: var(--lemon);
 }
 
 
-/* ---------- section labels ---------- */
+/* ---------- section labels: shared rule ---------- */
+
+.page-home .standard-section {
+    border-top: 0;
+}
 
 .page-home .section-header {
-    color: #cfa650;
-
-    border-bottom-color: var(--solar-line);
+    border-bottom-width: 2px;
+    font-size: 9px;
 }
 
 
-/* ---------- about: warm panel ---------- */
+/* ---------- about: navy ---------- */
 
 .page-home #about {
-    background:
-        radial-gradient(
-            circle at 100% 0%,
-            rgba(246, 183, 60, .16) 0%,
-            transparent 50%
-        ),
-        linear-gradient(
-            160deg,
-            #121b24 0%,
-            #1b1609 60%,
-            #261c08 100%
-        );
+    background: var(--brand-navy);
+}
 
-    border-top-color: var(--solar-line);
+/* keeps the photo from about-bg.css but tints it navy */
+.page-home #about::before {
+    background:
+        linear-gradient(
+            90deg,
+            rgba(12, 27, 72, .82) 0%,
+            rgba(12, 27, 72, .64) 55%,
+            rgba(12, 27, 72, .74) 100%
+        ),
+        url("images/learning.jpg") center / cover no-repeat;
+}
+
+.page-home #about .section-header {
+    color: var(--glacier);
+    border-bottom-color: var(--glacier);
+}
+
+.page-home #about .statement-layout h2 {
+    color: var(--lemon);
+    font-size: clamp(70px, 10vw, 168px);
 }
 
 .page-home #about .statement-lead {
-    color: #f3e8cc;
+    color: #ffffff;
+    font-size: clamp(22px, 2vw, 32px);
 }
 
 .page-home #about .body-copy {
-    color: #b3aa92;
+    color: #c3d3ee;
 }
 
 .page-home .text-link {
-    color: var(--solar-bright);
-
-    border-bottom-color: var(--solar);
-
+    color: var(--lemon);
+    border-bottom: 2px solid var(--lemon);
     transition:
         color .2s,
-        border-color .2s,
         gap .25s,
         transform .25s;
 }
 
 .page-home .text-link:hover {
     color: #ffffff;
-
-    border-color: var(--solar-bright);
-
+    border-color: #ffffff;
     gap: 14px;
-
     transform: translateX(4px);
 }
 
+.page-home .text-link .link-icon,
+.page-home a:hover .link-icon {
+    color: inherit;
+}
 
-/* ---------- 3D vehicle: sun glow behind the model ---------- */
+
+/* ---------- 3D vehicle: navy stage ---------- */
+
+.page-home .vehicle-story,
+.page-home .vehicle-sticky,
+.page-home .vehicle-model-layer {
+    background: var(--brand-navy);
+}
 
 .page-home .vehicle-model-layer::before {
     content: "";
-
     position: absolute;
-
     inset: 0;
-
     z-index: 1;
-
     pointer-events: none;
-
     background:
         radial-gradient(
             ellipse 55% 50% at 50% 55%,
-            rgba(246, 183, 60, .13) 0%,
+            rgba(98, 164, 234, .30) 0%,
             transparent 70%
         );
 }
 
-.page-home .vehicle-topbar {
-    color: #b39a5c;
-
-    border-bottom-color: var(--solar-line);
-}
-
+.page-home .vehicle-topbar,
 .page-home .vehicle-bottom {
-    color: #b39a5c;
-
-    border-top-color: var(--solar-line);
+    color: var(--glacier);
+    border-color: rgba(98, 164, 234, .5);
 }
 
 .page-home .story-label {
-    color: var(--solar);
+    color: var(--lemon);
+    font-size: 10px;
 }
 
 .page-home .model-story h2 {
-    color: #f1f3f4;
+    color: #ffffff;
+    font-size: clamp(56px, 7vw, 116px);
 }
 
 .page-home .model-story p {
-    color: #aeb7bd;
+    color: #d3e0f5;
+    font-size: 14px;
+}
+
+.page-home .orbit-ring {
+    border-color: var(--glacier);
+}
+
+.page-home .orbit-ring::before {
+    border-color: rgba(98, 164, 234, .5);
+}
+
+.page-home .orbit-ring-inner {
+    background: var(--lemon);
+    box-shadow: 0 0 28px rgba(242, 228, 30, .6);
+}
+
+.page-home .placeholder-copy span {
+    color: var(--glacier);
+}
+
+.page-home .placeholder-copy strong {
+    color: #ffffff;
+}
+
+.page-home .placeholder-copy p {
+    color: #c3d3ee;
+}
+
+.page-home .placeholder-copy code {
+    color: var(--lemon);
+    background: #112457;
+    border-color: var(--glacier);
 }
 
 
-/* ---------- systems: rows light up on hover ---------- */
+/* ---------- systems: glacier blue, rows fill navy on hover ---------- */
 
 .page-home #systems {
-    background:
-        radial-gradient(
-            circle at 0% 100%,
-            rgba(246, 183, 60, .10) 0%,
-            transparent 48%
-        ),
-        #121b24;
+    background: var(--glacier);
+}
+
+.page-home #systems .section-header {
+    color: var(--brand-navy);
+    border-bottom-color: var(--brand-navy);
+}
+
+.page-home .systems-intro h2 {
+    color: var(--lemon);
+    font-size: clamp(76px, 11vw, 188px);
+}
+
+.page-home .systems-intro p {
+    color: var(--brand-navy);
+    font-size: 16px;
+    font-weight: 600;
 }
 
 .page-home .systems-list {
-    border-top-color: var(--solar-line);
+    border-top: 3px solid var(--brand-navy);
 }
 
 .page-home .system-row {
     position: relative;
-
-    border-bottom-color: var(--solar-line);
-
+    border-bottom: 2px solid var(--brand-navy);
     transition:
         background .25s,
         padding-left .3s cubic-bezier(.2, .7, .2, 1);
@@ -3219,236 +3375,223 @@ effect-composer {
 
 .page-home .system-row::before {
     content: "";
-
     position: absolute;
-
     left: 0;
     top: 0;
     bottom: 0;
-
-    width: 3px;
-
-    background: var(--solar);
-
+    width: 6px;
+    background: var(--lemon);
     transform: scaleY(0);
-    transform-origin: center;
-
     transition: transform .3s cubic-bezier(.2, .7, .2, 1);
 }
 
-.page-home .system-row:hover {
-    background:
-        linear-gradient(
-            90deg,
-            rgba(246, 183, 60, .14) 0%,
-            rgba(246, 183, 60, .03) 60%,
-            transparent 100%
-        );
+.page-home .system-label {
+    color: var(--brand-navy);
+    font-size: 9px;
+}
 
-    padding-left: 20px;
+.page-home .system-row h3 {
+    color: var(--brand-navy);
+    font-size: clamp(40px, 4.8vw, 78px);
+}
+
+.page-home .system-row p {
+    color: var(--brand-navy);
+    font-size: 14px;
+    font-weight: 600;
+}
+
+.page-home .system-arrow {
+    color: var(--brand-navy);
+    transition: color .2s, transform .25s;
+}
+
+.page-home .system-row:hover {
+    background: var(--brand-navy);
+    padding-left: 24px;
 }
 
 .page-home .system-row:hover::before {
     transform: scaleY(1);
 }
 
-.page-home .system-label {
-    color: #cfa650;
+.page-home .system-row:hover .system-label {
+    color: var(--glacier);
 }
 
 .page-home .system-row:hover h3 {
-    color: var(--solar-bright);
+    color: var(--lemon);
 }
 
 .page-home .system-row:hover p {
-    color: #e2d7b8;
-}
-
-.page-home .system-arrow {
-    color: #cfa650;
-
-    transition:
-        color .2s,
-        transform .25s;
+    color: #ffffff;
 }
 
 .page-home .system-row:hover .system-arrow {
-    color: var(--solar);
-
+    color: var(--lemon);
     transform: translate(4px, -4px);
 }
 
 
-/* ---------- results: warm panel, gold years ---------- */
+/* ---------- results: lemon band, navy type ---------- */
 
 .page-home #results {
-    background:
-        radial-gradient(
-            circle at 0% 0%,
-            rgba(246, 183, 60, .16) 0%,
-            transparent 50%
-        ),
-        linear-gradient(
-            200deg,
-            #121b24 0%,
-            #1b1609 58%,
-            #261c08 100%
-        );
+    background: var(--lemon);
+}
 
-    border-top-color: var(--solar-line);
+.page-home #results .section-header {
+    color: var(--brand-navy);
+    border-bottom-color: var(--brand-navy);
+}
+
+.page-home .results-title h2 {
+    color: var(--brand-navy);
+    font-size: clamp(76px, 11vw, 188px);
 }
 
 .page-home .results-grid {
-    border-top-color: var(--solar-line);
-    border-left-color: var(--solar-line);
+    border-top: 3px solid var(--brand-navy);
+    border-left: 3px solid var(--brand-navy);
 }
 
 .page-home .results-grid article {
-    position: relative;
-
-    border-right-color: var(--solar-line);
-    border-bottom-color: var(--solar-line);
-
-    transition:
-        background .3s,
-        transform .35s cubic-bezier(.2, .7, .2, 1);
-}
-
-.page-home .results-grid article::before {
-    content: "";
-
-    position: absolute;
-
-    top: -1px;
-    left: 0;
-
-    width: 100%;
-    height: 3px;
-
-    background:
-        linear-gradient(
-            90deg,
-            var(--solar-deep),
-            var(--solar-bright)
-        );
-
-    transform: scaleX(0);
-    transform-origin: left;
-
-    transition: transform .45s cubic-bezier(.2, .7, .2, 1);
-}
-
-.page-home .results-grid article:hover {
-    background: rgba(246, 183, 60, .09);
-
-    transform: translateY(-4px);
-}
-
-.page-home .results-grid article:hover::before {
-    transform: scaleX(1);
+    border-right: 3px solid var(--brand-navy);
+    border-bottom: 3px solid var(--brand-navy);
+    transition: background .25s;
 }
 
 .page-home .result-year {
-    color: var(--solar);
+    color: var(--brand-navy);
+    font-family: "Anton", "Inter", sans-serif;
+    font-size: clamp(72px, 8vw, 128px);
+    font-weight: 400;
+    line-height: .9;
+    letter-spacing: 0;
 }
 
 .page-home .results-grid article > span {
-    color: #cfa650;
+    color: var(--brand-navy);
+    font-weight: 700;
+    font-size: 9px;
 }
 
 .page-home .results-grid h3 {
-    color: #f3eee0;
+    color: var(--brand-navy);
+    font-size: clamp(36px, 3.6vw, 56px);
 }
 
 .page-home .results-grid p {
-    color: #b3aa92;
+    color: var(--brand-navy);
+    font-size: 14px;
+    font-weight: 600;
+}
+
+.page-home .results-grid article:hover {
+    background: var(--brand-navy);
+    transform: none;
+}
+
+.page-home .results-grid article:hover .result-year,
+.page-home .results-grid article:hover h3 {
+    color: var(--lemon);
+}
+
+.page-home .results-grid article:hover > span {
+    color: var(--glacier);
+}
+
+.page-home .results-grid article:hover p {
+    color: #ffffff;
 }
 
 
-/* ---------- team: cards flood yellow on hover ---------- */
+/* ---------- team: navy, cards flood glacier blue ---------- */
 
 .page-home #team {
-    background: #121b24;
+    background: var(--brand-navy);
+}
+
+.page-home #team .section-header {
+    color: var(--glacier);
+    border-bottom-color: var(--glacier);
+}
+
+.page-home .team-title h2 {
+    color: #ffffff;
+    font-size: clamp(70px, 10vw, 172px);
 }
 
 .page-home .team-grid {
-    border-top-color: var(--solar-line);
-    border-left-color: var(--solar-line);
+    border-top: 3px solid var(--glacier);
+    border-left: 3px solid var(--glacier);
 }
 
 .page-home .team-card {
-    border-right-color: var(--solar-line);
-    border-bottom-color: var(--solar-line);
-
-    transition:
-        background .3s,
-        transform .35s cubic-bezier(.2, .7, .2, 1);
-}
-
-.page-home .team-card:hover {
-    background:
-        linear-gradient(
-            160deg,
-            var(--solar-bright) 0%,
-            var(--solar) 55%,
-            var(--solar-deep) 100%
-        );
-
-    transform: translateY(-6px);
-
-    z-index: 2;
+    border-right: 3px solid var(--glacier);
+    border-bottom: 3px solid var(--glacier);
+    transition: background .25s;
 }
 
 .page-home .team-card h3 {
-    transition: color .25s;
+    color: var(--lemon);
+    font-size: 40px;
+    transition: color .2s;
 }
 
-.page-home .team-card:hover h3 {
-    color: var(--solar-ink);
+.page-home .team-card p {
+    color: #c3d3ee;
+    font-size: 14px;
+    transition: color .2s;
 }
 
-.page-home .team-card:hover p {
-    color: #3a2d0a;
+.page-home .team-card .link-icon {
+    color: var(--glacier);
 }
 
+.page-home .team-card:hover {
+    background: var(--glacier);
+    transform: none;
+}
+
+.page-home .team-card:hover h3,
+.page-home .team-card:hover p,
 .page-home .team-card:hover .link-icon {
-    color: var(--solar-ink);
+    color: var(--brand-navy);
 }
 
 
-/* ---------- support: solid yellow band ---------- */
+/* ---------- support: glacier band, lemon button ---------- */
 
 .page-home .support-section {
-    background:
-        linear-gradient(
-            135deg,
-            var(--solar-bright) 0%,
-            var(--solar) 55%,
-            var(--solar-deep) 100%
-        );
-
+    background: var(--glacier);
     border-top: 0;
 }
 
 .page-home .support-label {
-    color: #4a3908;
+    color: var(--brand-navy);
+    font-weight: 700;
+    font-size: 10px;
 }
 
 .page-home .support-section h2 {
-    color: var(--solar-ink);
+    color: var(--lemon);
+    font-size: clamp(76px, 11vw, 188px);
 }
 
 .page-home .support-section p {
-    color: #33270a;
+    color: var(--brand-navy);
+    font-size: 16px;
+    font-weight: 600;
 }
 
 .page-home .support-button {
-    color: var(--solar-bright);
-
-    border-color: #121b24;
-
-    background: #121b24;
-
+    color: var(--brand-navy);
+    background: var(--lemon);
+    border: 3px solid var(--brand-navy);
+    border-radius: 999px;
+    padding: 15px 22px;
+    font-size: 12px;
+    font-weight: 700;
     transition:
         color .25s,
         background .25s,
@@ -3457,30 +3600,35 @@ effect-composer {
 }
 
 .page-home .support-button .link-icon {
-    color: var(--solar-bright);
+    color: var(--brand-navy);
 }
 
 .page-home .support-button:hover {
-    color: #121b24;
-
-    border-color: #121b24;
-
-    background: #ffffff;
-
+    color: var(--lemon);
+    background: var(--brand-navy);
+    border-color: var(--brand-navy);
     transform: translateY(-3px);
-
-    box-shadow: 0 10px 0 rgba(18, 27, 36, .25);
+    box-shadow: 0 8px 0 rgba(12, 27, 72, .3);
 }
 
 .page-home .support-button:hover .link-icon {
-    color: #121b24;
+    color: var(--lemon);
 }
 
 
-/* ---------- footer ---------- */
+/* ---------- footer: navy with lemon rule ---------- */
 
 .page-home .site-footer {
-    border-top: 2px solid var(--solar);
+    background: var(--brand-navy);
+    border-top: 4px solid var(--lemon);
+}
+
+.page-home .footer-brand-area p {
+    color: var(--glacier);
+}
+
+.page-home .footer-links {
+    color: #dbe7f8;
 }
 
 .page-home .footer-links a {
@@ -3490,17 +3638,39 @@ effect-composer {
 }
 
 .page-home .footer-links a:hover {
-    color: var(--solar-bright);
-
+    color: var(--lemon);
     transform: translateX(3px);
 }
 
 .page-home .footer-bottom {
-    color: #8c7c4f;
-
-    border-top-color: var(--solar-line);
+    color: var(--glacier);
+    border-top-color: rgba(98, 164, 234, .4);
 }
 
-.page-home .footer-brand-area p {
-    color: #8c7c4f;
+
+/* ---------- phones ---------- */
+
+@media (max-width: 650px) {
+
+    .page-home .hero-badge {
+        display: none;
+    }
+
+    .page-home .hero h1 {
+        font-size: clamp(64px, 20vw, 104px);
+    }
+
+    .page-home .hero-data > div {
+        border-right: 0;
+        border-bottom: 2px solid var(--brand-navy);
+    }
+
+    .page-home .hero-data > div:last-child {
+        border-bottom: 0;
+    }
+
+    .page-home .team-card {
+        min-height: 220px;
+    }
+
 }
