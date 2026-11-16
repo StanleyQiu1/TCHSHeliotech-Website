@@ -8,9 +8,10 @@
     --text: #b0b6bb;
     --text-heading: #e2e5e8;
     --white: #ffffff;
-    --glacier: #62a4ea;
-    --brand-navy: #0c1b48;
-    --lemon: #f2e41e;
+    --brand-navy: #0b1f4b;
+    --sun: #ff8a1f;
+    --sky: #8fb8f0;
+    --cream: #fff6e5;
     --header: 72px;
     --gutter: clamp(20px, 4.5vw, 86px);
 }
@@ -2950,21 +2951,22 @@ effect-composer {
 
 
 /* =====================================================
-   HOME PAGE: GLACIER BLUE / NAVY / LEMON
+   HOME PAGE: NAVY + SUNRISE ORANGE
 
    Palette (set in :root above):
-   --glacier     #62A4EA
-   --brand-navy  #0C1B48
-   --lemon       #F2E41E
+   --brand-navy  #0B1F4B
+   --sun         #FF8A1F
+   --sky         #8FB8F0
+   --cream       #FFF6E5
 
-   Everything here is scoped to .page-home (the class on
-   index.html's <body>), so the other pages are unchanged.
-   Style: flat colour blocks, huge condensed type, hard
-   offset shadows, one round badge.
+   Scoped to .page-home (the class on index.html's <body>),
+   so the other pages are unchanged.
+   Contrast: orange on navy 6.8:1, navy on orange 6.8:1,
+   navy on sky 7.8:1, navy on cream 14.9:1, white on navy 16:1.
 ===================================================== */
 
 .page-home ::selection {
-    background: var(--lemon);
+    background: var(--sun);
     color: var(--brand-navy);
 }
 
@@ -2982,18 +2984,18 @@ effect-composer {
 }
 
 
-/* ---------- header: solid navy with lemon rule ---------- */
+/* ---------- header: navy with orange rule ---------- */
 
 .page-home .site-header {
     background: var(--brand-navy);
-    border-bottom: 3px solid var(--lemon);
+    border-bottom: 3px solid var(--sun);
     backdrop-filter: none;
 }
 
 .page-home nav a {
     position: relative;
-    color: #dbe7f8;
-    border-left-color: rgba(98, 164, 234, .25);
+    color: #e6eefb;
+    border-left-color: rgba(143, 184, 240, .25);
 }
 
 .page-home nav a::after {
@@ -3003,14 +3005,14 @@ effect-composer {
     right: 17px;
     bottom: 0;
     height: 3px;
-    background: var(--lemon);
+    background: var(--sun);
     transform: scaleX(0);
     transform-origin: left;
     transition: transform .3s cubic-bezier(.2, .7, .2, 1);
 }
 
 .page-home nav a:hover {
-    color: var(--lemon);
+    color: var(--sun);
     background: transparent;
 }
 
@@ -3020,7 +3022,7 @@ effect-composer {
 
 .page-home .nav-support {
     color: var(--brand-navy);
-    background: var(--lemon);
+    background: var(--sun);
     border-left: 0;
 }
 
@@ -3030,7 +3032,7 @@ effect-composer {
 
 .page-home .nav-support:hover {
     color: var(--brand-navy);
-    background: #ffffff;
+    background: var(--cream);
 }
 
 .page-home .nav-support .link-icon,
@@ -3040,23 +3042,23 @@ effect-composer {
 
 .page-home .menu-toggle {
     color: #ffffff;
-    border-color: var(--lemon);
+    border-color: var(--sun);
 }
 
 .page-home .scroll-progress {
     height: 3px;
-    background: var(--lemon);
+    background: var(--sun);
 }
 
 @media (max-width: 1000px) {
 
     .page-home nav {
         background: var(--brand-navy);
-        border-bottom-color: var(--lemon);
+        border-bottom-color: var(--sun);
     }
 
     .page-home nav a {
-        border-bottom-color: rgba(98, 164, 234, .25);
+        border-bottom-color: rgba(143, 184, 240, .25);
     }
 
     .page-home nav a::after {
@@ -3068,99 +3070,76 @@ effect-composer {
 }
 
 
-/* ---------- hero: glacier blue, lemon + navy type ---------- */
+/* ---------- hero: navy, orange headline, sun behind the photo ---------- */
 
 .page-home .hero {
-    background: var(--glacier);
+    background: var(--brand-navy);
 }
 
-/* big pale curve behind the photo, like the white wave in the reference */
 .page-home .hero::before {
     content: "";
     position: absolute;
     z-index: 0;
-    right: -24vw;
-    bottom: -42vw;
-    width: 78vw;
-    height: 78vw;
+    right: -22vw;
+    bottom: -40vw;
+    width: 76vw;
+    height: 76vw;
     border-radius: 50%;
-    background: #eaf3fd;
+    background: #143073;
     pointer-events: none;
 }
 
 .page-home .hero-topline {
-    color: var(--brand-navy);
-    border-bottom: 2px solid var(--brand-navy);
+    color: var(--sky);
+    border-bottom: 2px solid rgba(143, 184, 240, .5);
     font-weight: 700;
 }
 
 .page-home .eyebrow {
-    color: var(--brand-navy);
+    color: var(--sun);
     font-size: 11px;
 }
 
 .page-home .hero h1 {
     margin-top: 18px;
     max-width: none;
-    color: var(--lemon);
+    color: var(--sun);
     font-size: clamp(76px, 11.5vw, 196px);
     line-height: .88;
 }
 
 .page-home .hero h1 span {
-    color: var(--brand-navy);
+    color: #ffffff;
     text-shadow: none;
 }
 
-/* photo: flat panel with a hard lemon offset, text sits in front of it */
+/* photo: no frame, edges fade softly into the background */
 .page-home .hero-car-fade {
-    border: 4px solid var(--brand-navy);
-    box-shadow: 16px 16px 0 var(--lemon);
+    border: 0;
+    box-shadow: none;
     opacity: 1;
+
+    -webkit-mask-image:
+        linear-gradient(to right, transparent 0%, #000 42%, #000 100%),
+        linear-gradient(to bottom, transparent 0%, #000 24%, #000 68%, transparent 100%);
+    -webkit-mask-composite: source-in;
+
+    mask-image:
+        linear-gradient(to right, transparent 0%, #000 42%, #000 100%),
+        linear-gradient(to bottom, transparent 0%, #000 24%, #000 68%, transparent 100%);
+    mask-composite: intersect;
 }
 
 .page-home .hero-car-fade::after {
     display: none;
 }
 
-/* round lemon badge */
-.page-home .hero-badge {
-    position: absolute;
-    z-index: 4;
-    right: var(--gutter);
-    bottom: 120px;
-    width: clamp(120px, 12.5vw, 180px);
-    aspect-ratio: 1;
-    display: grid;
-    place-items: center;
-    padding: 12px;
-    text-align: center;
-    color: var(--brand-navy);
-    background: var(--lemon);
-    border-radius: 50%;
-    font-family: "Anton", "Inter", sans-serif;
-    font-size: clamp(20px, 2.1vw, 32px);
-    line-height: .95;
-    text-transform: uppercase;
-    transform: rotate(-8deg);
-    transition:
-        transform .35s cubic-bezier(.2, .7, .2, 1),
-        background .25s,
-        color .25s;
-}
-
-.page-home .hero-badge:hover {
-    color: var(--lemon);
-    background: var(--brand-navy);
-    transform: rotate(0deg) scale(1.06);
-}
-
 .page-home .hero-data {
-    border-top: 3px solid var(--brand-navy);
+    border-top: 3px solid var(--sun);
 }
 
 .page-home .hero-data > div {
-    border-right: 2px solid var(--brand-navy);
+    border-right: 2px solid rgba(143, 184, 240, .35);
     padding-bottom: 14px;
     transition: background .25s;
 }
@@ -3170,30 +3149,27 @@ effect-composer {
 }
 
 .page-home .hero-data span {
-    color: var(--brand-navy);
+    color: var(--sky);
     font-weight: 700;
 }
 
 .page-home .hero-data strong {
-    color: var(--brand-navy);
+    color: #ffffff;
     font-size: 13px;
     font-weight: 700;
 }
 
 .page-home .hero-data > div:hover {
-    background: var(--brand-navy);
+    background: var(--sun);
 }
 
-.page-home .hero-data > div:hover span {
-    color: var(--glacier);
-}
-
+.page-home .hero-data > div:hover span,
 .page-home .hero-data > div:hover strong {
-    color: var(--lemon);
+    color: var(--brand-navy);
 }
 
 
-/* ---------- section labels: shared rule ---------- */
+/* ---------- shared section rules ---------- */
 
 .page-home .standard-section {
     border-top: 0;
@@ -3205,46 +3181,45 @@ effect-composer {
 }
 
 
-/* ---------- about: navy ---------- */
+/* ---------- about: cream, navy type ---------- */
 
 .page-home #about {
-    background: var(--brand-navy);
+    background: var(--cream);
 }
 
-/* keeps the photo from about-bg.css but tints it navy */
 .page-home #about::before {
     background:
         linear-gradient(
             90deg,
-            rgba(12, 27, 72, .82) 0%,
-            rgba(12, 27, 72, .64) 55%,
-            rgba(12, 27, 72, .74) 100%
+            rgba(255, 246, 229, .93) 0%,
+            rgba(255, 246, 229, .86) 55%,
+            rgba(255, 246, 229, .90) 100%
         ),
         url("images/learning.jpg") center / cover no-repeat;
 }
 
 .page-home #about .section-header {
-    color: var(--glacier);
-    border-bottom-color: var(--glacier);
+    color: var(--brand-navy);
+    border-bottom-color: var(--brand-navy);
 }
 
 .page-home #about .statement-layout h2 {
-    color: var(--lemon);
+    color: var(--brand-navy);
     font-size: clamp(70px, 10vw, 168px);
 }
 
 .page-home #about .statement-lead {
-    color: #ffffff;
+    color: var(--brand-navy);
     font-size: clamp(22px, 2vw, 32px);
 }
 
 .page-home #about .body-copy {
-    color: #c3d3ee;
+    color: #34456f;
 }
 
 .page-home .text-link {
-    color: var(--lemon);
-    border-bottom: 2px solid var(--lemon);
+    color: var(--brand-navy);
+    border-bottom: 3px solid var(--sun);
     transition:
         color .2s,
         gap .25s,
@@ -3252,8 +3227,7 @@ effect-composer {
 }
 
 .page-home .text-link:hover {
-    color: #ffffff;
-    border-color: #ffffff;
+    color: #b85a00;
     gap: 14px;
     transform: translateX(4px);
 }
@@ -3281,19 +3255,19 @@ effect-composer {
     background:
         radial-gradient(
             ellipse 55% 50% at 50% 55%,
-            rgba(98, 164, 234, .30) 0%,
+            rgba(143, 184, 240, .26) 0%,
             transparent 70%
         );
 }
 
 .page-home .vehicle-topbar,
 .page-home .vehicle-bottom {
-    color: var(--glacier);
-    border-color: rgba(98, 164, 234, .5);
+    color: var(--sky);
+    border-color: rgba(143, 184, 240, .5);
 }
 
 .page-home .story-label {
-    color: var(--lemon);
+    color: var(--sun);
     font-size: 10px;
 }
 
@@ -3303,25 +3277,25 @@ effect-composer {
 }
 
 .page-home .model-story p {
-    color: #d3e0f5;
+    color: #dbe6f8;
     font-size: 14px;
 }
 
 .page-home .orbit-ring {
-    border-color: var(--glacier);
+    border-color: var(--sky);
 }
 
 .page-home .orbit-ring::before {
-    border-color: rgba(98, 164, 234, .5);
+    border-color: rgba(143, 184, 240, .5);
 }
 
 .page-home .orbit-ring-inner {
-    background: var(--lemon);
-    box-shadow: 0 0 28px rgba(242, 228, 30, .6);
+    background: var(--sun);
+    box-shadow: 0 0 28px rgba(255, 138, 31, .6);
 }
 
 .page-home .placeholder-copy span {
-    color: var(--glacier);
+    color: var(--sky);
 }
 
 .page-home .placeholder-copy strong {
@@ -3329,20 +3303,20 @@ effect-composer {
 }
 
 .page-home .placeholder-copy p {
-    color: #c3d3ee;
+    color: #c9d8f2;
 }
 
 .page-home .placeholder-copy code {
-    color: var(--lemon);
-    background: #112457;
-    border-color: var(--glacier);
+    color: var(--sun);
+    background: #12295e;
+    border-color: var(--sky);
 }
 
 
-/* ---------- systems: glacier blue, rows fill navy on hover ---------- */
+/* ---------- systems: sky blue, rows fill navy on hover ---------- */
 
 .page-home #systems {
-    background: var(--glacier);
+    background: var(--sky);
 }
 
 .page-home #systems .section-header {
@@ -3351,7 +3325,7 @@ effect-composer {
 }
 
 .page-home .systems-intro h2 {
-    color: var(--lemon);
+    color: var(--brand-navy);
     font-size: clamp(76px, 11vw, 188px);
 }
 
@@ -3380,7 +3354,7 @@ effect-composer {
     top: 0;
     bottom: 0;
     width: 6px;
-    background: var(--lemon);
+    background: var(--sun);
     transform: scaleY(0);
     transition: transform .3s cubic-bezier(.2, .7, .2, 1);
 }
@@ -3416,11 +3390,11 @@ effect-composer {
 }
 
 .page-home .system-row:hover .system-label {
-    color: var(--glacier);
+    color: var(--sky);
 }
 
 .page-home .system-row:hover h3 {
-    color: var(--lemon);
+    color: var(--sun);
 }
 
 .page-home .system-row:hover p {
@@ -3428,15 +3402,15 @@ effect-composer {
 }
 
 .page-home .system-row:hover .system-arrow {
-    color: var(--lemon);
+    color: var(--sun);
     transform: translate(4px, -4px);
 }
 
 
-/* ---------- results: lemon band, navy type ---------- */
+/* ---------- results: orange band, navy type ---------- */
 
 .page-home #results {
-    background: var(--lemon);
+    background: var(--sun);
 }
 
 .page-home #results .section-header {
@@ -3493,11 +3467,11 @@ effect-composer {
 
 .page-home .results-grid article:hover .result-year,
 .page-home .results-grid article:hover h3 {
-    color: var(--lemon);
+    color: var(--sun);
 }
 
 .page-home .results-grid article:hover > span {
-    color: var(--glacier);
+    color: var(--sky);
 }
 
 .page-home .results-grid article:hover p {
@@ -3505,15 +3479,15 @@ effect-composer {
 }
 
 
-/* ---------- team: navy, cards flood glacier blue ---------- */
+/* ---------- team: navy, cards flood sky blue ---------- */
 
 .page-home #team {
     background: var(--brand-navy);
 }
 
 .page-home #team .section-header {
-    color: var(--glacier);
-    border-bottom-color: var(--glacier);
+    color: var(--sky);
+    border-bottom-color: var(--sky);
 }
 
 .page-home .team-title h2 {
@@ -3522,34 +3496,34 @@ effect-composer {
 }
 
 .page-home .team-grid {
-    border-top: 3px solid var(--glacier);
-    border-left: 3px solid var(--glacier);
+    border-top: 3px solid var(--sky);
+    border-left: 3px solid var(--sky);
 }
 
 .page-home .team-card {
-    border-right: 3px solid var(--glacier);
-    border-bottom: 3px solid var(--glacier);
+    border-right: 3px solid var(--sky);
+    border-bottom: 3px solid var(--sky);
     transition: background .25s;
 }
 
 .page-home .team-card h3 {
-    color: var(--lemon);
+    color: var(--sun);
     font-size: 40px;
     transition: color .2s;
 }
 
 .page-home .team-card p {
-    color: #c3d3ee;
+    color: #dbe6f8;
     font-size: 14px;
     transition: color .2s;
 }
 
 .page-home .team-card .link-icon {
-    color: var(--glacier);
+    color: var(--sky);
 }
 
 .page-home .team-card:hover {
-    background: var(--glacier);
+    background: var(--sky);
     transform: none;
 }
 
@@ -3560,10 +3534,10 @@ effect-composer {
 }
 
 
-/* ---------- support: glacier band, lemon button ---------- */
+/* ---------- support: cream band, orange button ---------- */
 
 .page-home .support-section {
-    background: var(--glacier);
+    background: var(--cream);
     border-top: 0;
 }
 
@@ -3574,19 +3548,19 @@ effect-composer {
 }
 
 .page-home .support-section h2 {
-    color: var(--lemon);
+    color: var(--brand-navy);
     font-size: clamp(76px, 11vw, 188px);
 }
 
 .page-home .support-section p {
-    color: var(--brand-navy);
+    color: #34456f;
     font-size: 16px;
     font-weight: 600;
 }
 
 .page-home .support-button {
     color: var(--brand-navy);
-    background: var(--lemon);
+    background: var(--sun);
     border: 3px solid var(--brand-navy);
     border-radius: 999px;
     padding: 15px 22px;
@@ -3604,31 +3578,31 @@ effect-composer {
 }
 
 .page-home .support-button:hover {
-    color: var(--lemon);
+    color: var(--sun);
     background: var(--brand-navy);
     border-color: var(--brand-navy);
     transform: translateY(-3px);
-    box-shadow: 0 8px 0 rgba(12, 27, 72, .3);
+    box-shadow: 0 8px 0 rgba(11, 31, 75, .25);
 }
 
 .page-home .support-button:hover .link-icon {
-    color: var(--lemon);
+    color: var(--sun);
 }
 
 
-/* ---------- footer: navy with lemon rule ---------- */
+/* ---------- footer: navy with orange rule ---------- */
 
 .page-home .site-footer {
     background: var(--brand-navy);
-    border-top: 4px solid var(--lemon);
+    border-top: 4px solid var(--sun);
 }
 
 .page-home .footer-brand-area p {
-    color: var(--glacier);
+    color: var(--sky);
 }
 
 .page-home .footer-links {
-    color: #dbe7f8;
+    color: #e6eefb;
 }
 
 .page-home .footer-links a {
@@ -3638,13 +3612,13 @@ effect-composer {
 }
 
 .page-home .footer-links a:hover {
-    color: var(--lemon);
+    color: var(--sun);
     transform: translateX(3px);
 }
 
 .page-home .footer-bottom {
-    color: var(--glacier);
-    border-top-color: rgba(98, 164, 234, .4);
+    color: var(--sky);
+    border-top-color: rgba(143, 184, 240, .4);
 }
 
 
@@ -3652,17 +3626,13 @@ effect-composer {
 
 @media (max-width: 650px) {
 
-    .page-home .hero-badge {
-        display: none;
-    }
-
     .page-home .hero h1 {
         font-size: clamp(64px, 20vw, 104px);
     }
 
     .page-home .hero-data > div {
         border-right: 0;
-        border-bottom: 2px solid var(--brand-navy);
+        border-bottom: 2px solid rgba(143, 184, 240, .35);
     }
 
     .page-home .hero-data > div:last-child {
@@ -3673,31 +3643,4 @@ effect-composer {
         min-height: 220px;
     }
 
-}
-
-
-/* ---------- hero side text + button (home) ---------- */
-/* HERO SIDE TEXT */
-
-.page-home .hero-side p {
-    color: var(--brand-navy);
-    font-size: 16px;
-    font-weight: 600;
-}
-
-.page-home .outline-button {
-    color: var(--lemon);
-    background: var(--brand-navy);
-    border: 3px solid var(--brand-navy);
-    font-weight: 700;
-}
-
-.page-home .outline-button:hover {
-    color: var(--brand-navy);
-    background: var(--lemon);
-    border-color: var(--brand-navy);
-}
-
-.page-home .outline-button span {
-    color: inherit;
 }
