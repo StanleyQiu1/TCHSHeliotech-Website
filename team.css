@@ -1125,3 +1125,180 @@ img[src="images/JillianMUG.png"] {
     }
 
 }
+
+
+/* =====================================================
+   TEAM PAGE: NAVY + SUNRISE ORANGE
+   Matches the home page palette (set in styles.css :root):
+   --brand-navy  --sun  --sky  --cream
+   Section bands: electrical cream, mechanical sky,
+   composites orange, operations cream, join navy.
+===================================================== */
+
+.page-team {
+    background: var(--brand-navy);
+}
+
+.page-team ::selection {
+    background: var(--sun);
+    color: var(--brand-navy);
+}
+
+
+/* ---------- display type ---------- */
+
+.page-team h1,
+.page-team h2,
+.page-team h3 {
+    font-family: "Anton", "Inter", sans-serif;
+    font-weight: 400;
+    text-transform: uppercase;
+    letter-spacing: .005em;
+    line-height: .92;
+}
+
+
+/* ---------- header ---------- */
+
+.page-team .site-header {
+    background: var(--brand-navy);
+    border-bottom: 3px solid var(--sun);
+    backdrop-filter: none;
+}
+
+.page-team nav a {
+    position: relative;
+    color: #e6eefb;
+    border-left-color: rgba(143, 184, 240, .25);
+}
+
+.page-team nav a::after {
+    content: "";
+    position: absolute;
+    left: 17px;
+    right: 17px;
+    bottom: 0;
+    height: 3px;
+    background: var(--sun);
+    transform: scaleX(0);
+    transform-origin: left;
+    transition: transform .3s cubic-bezier(.2, .7, .2, 1);
+}
+
+.page-team nav a:hover,
+.page-team nav a[aria-current="page"] {
+    color: var(--sun);
+    background: transparent;
+}
+
+.page-team nav a:hover::after,
+.page-team nav a[aria-current="page"]::after {
+    transform: scaleX(1);
+}
+
+.page-team .nav-support {
+    color: var(--brand-navy);
+    background: var(--sun);
+    border-left: 0;
+}
+
+.page-team .nav-support::after {
+    display: none;
+}
+
+.page-team .nav-support:hover {
+    color: var(--brand-navy);
+    background: var(--cream);
+}
+
+.page-team .nav-support .link-icon,
+.page-team .nav-support:hover .link-icon {
+    color: var(--brand-navy);
+}
+
+.page-team .menu-toggle {
+    color: #ffffff;
+    border-color: var(--sun);
+}
+
+.page-team .scroll-progress {
+    height: 3px;
+    background: var(--sun);
+}
+
+@media (max-width: 1000px) {
+
+    .page-team nav {
+        background: var(--brand-navy);
+        border-bottom-color: var(--sun);
+    }
+
+    .page-team nav a {
+        border-bottom-color: rgba(143, 184, 240, .25);
+    }
+
+    .page-team nav a::after {
+        left: 0;
+        right: auto;
+        width: 40px;
+    }
+
+}
+
+
+/* ---------- hero ---------- */
+
+.page-team .team-hero {
+    background: var(--brand-navy);
+    border-bottom: 0;
+}
+
+.page-team .team-hero::before {
+    content: "";
+    position: absolute;
+    z-index: 0;
+    right: -22vw;
+    bottom: -40vw;
+    width: 76vw;
+    height: 76vw;
+    border-radius: 50%;
+    background: #143073;
+    pointer-events: none;
+}
+
+.page-team .team-hero-topline {
+    color: var(--sky);
+    border-bottom: 2px solid rgba(143, 184, 240, .5);
+}
+
+.page-team .eyebrow {
+    color: var(--sun);
+    font-size: 11px;
+}
+
+.page-team .team-hero h1 {
+    color: var(--sun);
+    font-size: clamp(64px, 9.4vw, 160px);
+    line-height: .9;
+    letter-spacing: .005em;
+}
+
+.page-team .team-hero h1 span {
+    color: #ffffff;
+}
+
+.page-team .team-hero-lead {
+    color: #dbe6f8;
+    font-weight: 600;
+}
+
+.page-team .team-hero-stats {
+    border-top: 3px solid var(--sun);
+    border-bottom: 2px solid rgba(143, 184, 240, .35);
+}
+
+.page-team .team-hero-stats > div {
+    transition: background .25s;
+}
+
+.
