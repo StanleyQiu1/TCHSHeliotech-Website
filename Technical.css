@@ -1745,3 +1745,34 @@
     padding-left: 14px;
     padding-right: 14px;
 }
+
+/* =====================================================
+   VEHICLE SUMMARY: two cars
+===================================================== */
+
+/* labels sit close to the grid they describe */
+.technical-summary .technical-kicker {
+    margin: 56px 0 0;
+}
+
+.technical-summary .technical-section-line + .technical-kicker {
+    margin-top: 44px;
+}
+
+.technical-summary .technical-kicker + .summary-grid {
+    margin-top: 16px;
+}
+
+/* text-based summary (2027 Advanced) */
+.summary-grid--text dd {
+    font-size: clamp(20px, 1.9vw, 28px);
+    line-height: 1.1;
+    letter-spacing: -.04em;
+    overflow-wrap: anywhere;
+}
+
+.summary-grid--text dd span {
+    display: block;
+    margin: 8px 0 0;
+    line-height: 1.4;
+}
